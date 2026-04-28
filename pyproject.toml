@@ -1,0 +1,14 @@
+[project]
+name = "twotakt"
+version = "0.1.0"
+requires-python = ">=3.11"
+dependencies = [
+    "mcp[cli]",
+]
+
+[project.scripts]
+twotakt-mcp = "twotakt.mcp.server:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
