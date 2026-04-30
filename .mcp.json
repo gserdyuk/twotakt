@@ -1,9 +1,0 @@
-{
-  "mcpServers": {
-    "twotakt": {
-      "command": "uv",
-      "args": ["run", "twotakt-mcp"],
-      "cwd": "C:\\home\\ohmnova.ai\\twotakt\\.claude\\worktrees\\cool-yonath-d89471"
-    }
-  }
-}
