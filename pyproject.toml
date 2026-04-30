@@ -1,14 +1,8 @@
 [project]
 name = "twotakt"
-version = "0.1.0"
+version = "0.2.0"
+description = "Discrete-event simulation methodology and examples (SimPy)."
 requires-python = ">=3.11"
-dependencies = [
-    "mcp[cli]",
-]
-
-[project.scripts]
-twotakt-mcp = "twotakt.mcp.server:main"
-
-[build-system]
-requires = ["hatchling"]
-build-backend = "hatchling.build"
+# v2: examples are self-contained; per-example requirements.txt declare deps.
+# This file is kept as a workspace marker.
+dependencies = []
