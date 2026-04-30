@@ -13,6 +13,8 @@ with an audit-first methodology and an installable Cowork skill.
   (audit-first protocol, theory glossary, metric checklist, code templates).
 - `perf-simulation.skill` — installable bundle of the skill above.
 - `dev-log.md` — append-only log of project evolution.
+- `docs/concept.md` — vision, problem, key differentiator, planned calibration direction.
+- `docs/architecture.md` — structural arrangement: layers, workflow, persistence, component boundaries.
 - `docs/archive/` — earlier vision documents (v1 — MCP-centric design).
 
 ## Approach
