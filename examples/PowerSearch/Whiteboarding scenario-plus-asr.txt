@@ -1,0 +1,24 @@
+Whiteboarding scenario
+Clothes power Search
+ 
+The solution is aimed to be a unified accumulative store of clothes and prices from the well-known world brands. End-users can choose the best proposal for the clothes, including the best price or more suitable delivery conditions, and after that, they will be redirected to the corresponding reseller site.
+ 
+Functionality:
+* The solution comprises of two parts: the platform (responsible for data gathering, storing and analyzing) and the web site addressed to the end users.
+* Number of supported resellers will be constantly increasing. The plan for the first year is 15 web sites, then +20 resellers each year.
+* Users should be able to see not only the static information on the page but dynamics: for example, the price for some item he/she opened decreased by 10% right now.
+* Anonymous and registered users support. After registration some additional features will be available. Also, users should be able to log-in automatically using their Facebook or Twitter accounts.
+* Important: agile configuration, the system should react to changes on the reseller side without a need to ask developers to fix the code.
+ 
+* Responsive UI, it is expected to use the solution from Mobile, Tablet and Desktop devices.
+ 
+* No downtime allowed; the solution must be absolutely reliable.
+*  We need to support 3 options: API on our side, API on a reseller side, and crawling. 
+
+QA
+
+* expected load from user side – 1000000 users , no model of behavior yet
+* time to appear item in a system – 5 sec (or best offer) -it is time form reseller API submission to appearance on user side. 
+lets allow 10 sec from appearing item at reseller site to appearance on user side
+* in perspective of 5 years – we have 115 resellers. Assortment say 10 000  items for reseller.
+* Lets assume that service works  worldwide.
