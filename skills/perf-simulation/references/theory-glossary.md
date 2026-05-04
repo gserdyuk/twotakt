@@ -43,6 +43,11 @@ is bounded concurrency.
 
 ## Universal Scalability Law (USL)
 
+**Applies to CPU-bound systems only.** If workers are I/O-bound
+(waiting on network / DB / disk), set alpha=beta=0 — the formula
+collapses to M/M/c and the degradation call in `_serve` is dead code.
+Confirm this in audit Q5 before choosing USL.
+
 **Phenomenon captured:** the realistic throughput curve — rises,
 peaks, then **declines** as concurrency grows. M/M/c cannot do this.
 

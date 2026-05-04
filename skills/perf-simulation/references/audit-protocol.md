@@ -10,6 +10,19 @@ After all questions are answered, write the draft `MODEL.md` (use
 confirmation. Do not proceed to Phase 2 until the user has approved
 the draft, even if they signal eagerness to "just write the code".
 
+## Before asking questions — scan the project directory
+
+Before starting Q1–Q8, look for existing documentation: ARCHITECTURE.md,
+README, design docs, ADRs. Real projects accumulate specs; asking questions
+the docs already answer wastes time.
+
+If answers to Q1–Q8 are present:
+1. Read and cite the relevant sections.
+2. Present them as draft answers.
+3. Ask the user to confirm or correct — not to answer from scratch.
+
+Only ask a question from scratch if the answer is genuinely absent.
+
 ## The questions
 
 ### Q1 — What real system is being modelled?
@@ -49,10 +62,34 @@ the user has a reason otherwise. What load range do they want to
 explore in sweeps? (This sets the smoke-test default and the sweep
 range.)
 
+**Q4a — Burst modulation.** Is there a periodic burst pattern? If yes:
+multiplier, duration, interval, shape (square-wave / ramp / stochastic spike).
+Square-wave is the safe default for "prime-time" or "marketing burst" scenarios.
+
+**Q4b — Sweep dimensionality.** How many parameters need to be swept
+independently?
+
+- **1D sweep** (default): vary arrival rate, hold all else constant.
+  Use `templates/sweep.py`. Runtime scales linearly.
+- **2D sweep**: vary two parameters independently, e.g. arrival rate ×
+  number of workers. Use `templates/sweep_2d.py`. Runtime scales as
+  `|dim1| × |dim2| × seeds` — warn the user that a 10×7×3 grid is
+  210 simulation runs. Choose grid sizes deliberately.
+- **3D and beyond**: almost never justified. Each added dimension
+  multiplies runtime. Prefer fixing secondary parameters at a few
+  representative values and running multiple 2D sweeps.
+
 ### Q5 — What kinds of degradation do they want the model to encode?
 
-This is the most important question. Walk through the list and for
-each, ask whether it is in scope:
+**First: are the workers CPU-bound or I/O-bound?**
+- **I/O-bound** (waiting on network, DB, disk): USL does not apply. Set
+  alpha=beta=0 and remove the `degradation_multiplier` call from `_serve`.
+  M/M/c is the correct model. Skip the list below.
+- **CPU-bound** (compute, in-process lock contention, cache coherency):
+  USL applies. Continue with the list below.
+
+For CPU-bound workers, walk through the list and for each ask whether
+it is in scope:
 
 - **CPU time-sharing** under N concurrent threads
 - **Context-switch overhead** growing with N
@@ -104,5 +141,7 @@ Phase 2.
 If the user wants to change something in the draft, change it and
 re-present. Iterate until they are satisfied.
 
-The audit is the cheapest part of the project. Spend time here. The
-cost of a misaligned spec compounds through every subsequent phase.
+When the system is undocumented, the audit is cheaper than coding
+without understanding — a misaligned spec compounds through every
+subsequent phase. When docs already exist, the audit is mostly
+confirmation. In either case: understand before coding.

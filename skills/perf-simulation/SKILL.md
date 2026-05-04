@@ -45,9 +45,12 @@ does our p99 spike", and so on. Also trigger when the user wants to
 **extend** an existing simulation with a new component — extensions
 go through their own (shorter) audit, see Phase 11 below.
 
-When in doubt, trigger. The cost of running this protocol on a
-non-perf task is small; the cost of writing a misleading simulation
-is large.
+Before triggering the full protocol, check if the question can be
+answered with a quick M/M/c calculation: `ceiling = capacity /
+service_time_mean`, or utilization ρ = λ / (c·μ). If that suffices —
+answer directly. Run the full protocol when the user wants to explore
+system behaviour under varying load, or when the question cannot be
+answered analytically.
 
 ## The protocol
 
@@ -58,15 +61,20 @@ skill — skipping a gate defeats the point.
 
 ### Phase 1 — AUDIT (BLOCKING)
 
-Before any code, conduct a structured audit with the user. Read
+Before any code, scan the project directory for existing documentation
+(ARCHITECTURE.md, README, design docs). If spec answers are already there,
+cite them and ask the user to confirm — do not ask questions the docs already answer.
+
+Then conduct a structured audit with the user. Read
 `references/audit-protocol.md` and ask the questions there in the
 order listed. Do not paraphrase the order. The audit produces a draft
 `MODEL.md` capturing the user's intent. Do not proceed to Phase 2
 until the user has confirmed the draft.
 
-This is the single most important phase. If the user pushes to "just
-write the code", explain that the audit is what stops the simulation
-from being misleading, and proceed with the audit anyway.
+The audit is a core requirement of this skill — it is what stops the
+simulation from encoding accidental semantics. If the user does not
+want an audit, they can skip this skill. If they use the skill, the
+audit gate applies.
 
 ### Phase 2 — Choose theoretical framework
 
@@ -90,8 +98,12 @@ listed and chose M/M/1, you have a mismatch.
 Use the templates in `templates/` as the skeleton. Fill in:
 
 - `Config` dataclass — every parameter the audit identified.
-- `Server` class — one `simpy.Resource` per scarce shared thing.
-- `_serve` method — the request lifecycle as a sequence of phases.
+- `Server` class — `simpy.Resource` instances as determined by Q2.
+  The task defines the resources, not the template. Do not add a pool
+  the audit did not identify; do not collapse two distinct scarce
+  resources into one for convenience.
+- `_serve` method — the request lifecycle as a sequence of phases, one
+  acquire→work→release block per phase listed in Q3, in Q3 order.
 - `arrival_process` — the workload generator.
 
 Resist the urge to add anything Phases 1–3 did not call for. No
@@ -158,22 +170,18 @@ MODEL.md edit in the same step.
 
 ### Phase 11 — Extension (when adding components)
 
-When the user wants to add a new component (database, cache,
-downstream service, scheduler, replica), this is a **new audit**, not
-a code change. Read `references/extension-audit.md` for the shorter
-extension audit protocol. Two structural rules:
+When the user wants to add a new component, run an impact audit before
+coding: which `Config` fields, `Resource` instances, and `_serve` phases
+does this change touch? Read `references/extension-audit.md` — the
+audit scope is proportional to the change.
 
-1. **Copy the example folder, do not edit in place.** The new
-   component lives in a sibling example (e.g. `USLDBmodel` is a copy
-   of `USLmodel` with a database added). Each example stays a clean
-   exhibit of one idea.
-2. **The change inside the copy is surgical.** New `Config` fields,
-   new `Resource` on the `Server`, new acquire–hold–release block in
-   `_serve`. Nothing else.
+**On folder structure** — decide based on the user's intent:
+- If the goal is a **clean exhibit of one idea** (library/example):
+  copy the parent folder; each example stays independent.
+- If the goal is **iterative development of one model**: editing in
+  place is acceptable.
 
-After the extension code exists, MODEL.md in the new folder must
-reference its parent and describe only the diff. Do not duplicate the
-parent's content.
+After the code change, update MODEL.md to reflect the diff.
 
 ### Phase 12 — Explore the parameter space
 
@@ -182,6 +190,45 @@ Sweep the new component's defining parameter (e.g. `db_pool_size = 1,
 result is rarely "did it work" — it is "where does the bottleneck
 shift, and at what value of the parameter does the new component
 start to bind."
+
+**Sweep dimensionality** is determined by the audit (Q4b), not by
+convenience. Choose the minimum that answers the question:
+
+- **1D** (arrival rate only): use `templates/sweep.py`. Fine for a
+  single "how does the system degrade?" question.
+- **2D** (e.g. arrival rate × pool size): use `templates/sweep_2d.py`.
+  Produces a family of curves — one per value of the second parameter.
+  **Runtime warning:** a grid of `N × M × seeds` runs can be slow.
+  A 10 × 7 × 3 grid = 210 simulations. Choose grid sizes deliberately;
+  start coarse, refine only where the knee appears.
+- **Higher dimensions**: dimensionality is determined by the task.
+  Alternatives to full grids: fix secondary parameters at a few
+  representative values, run multiple 2D sweeps, or use Monte Carlo
+  sampling for high-dimensional spaces.
+
+Always average over at least 2 seeds per grid cell to stabilise p95
+estimates. Record both the averaged result and, if important, variance.
+
+### Phase 13 — SIM_REPORT.md (optional)
+
+After sweep plots are produced and validated, ask the user whether a
+formal report is needed. Sometimes plots and console output are sufficient;
+sometimes a standalone document is the actual deliverable.
+
+If a report is needed, use `templates/SIM_REPORT.md` as the form.
+The report must stand alone — a reader who has not seen the code or
+the audit should be able to understand the conclusions and their limits.
+
+The template (`templates/SIM_REPORT.md`) suggests five sections that
+worked for PowerSearch — adapt to the project's needs:
+
+1. **Context** — what system, what models, what questions were asked.
+2. **Parameters and assumptions** — every number with its justification.
+3. **Graph interpretation** — what each panel shows, where the knee is.
+4. **Requirements table** — one row per requirement, with a verdict.
+5. **Sensitivity and risks** — which assumptions, if wrong by 2×, flip a verdict.
+
+Do not write the report before the plots exist and are validated.
 
 ## The library
 
@@ -196,6 +243,23 @@ three), suggest extracting it into a small library module. Until
 that, accept the duplication — it is the price of not over-abstracting
 prematurely.
 
+## Maintaining this skill
+
+This skill is built from real simulation projects. Each project may reveal
+gaps, wrong defaults, or new patterns worth capturing.
+
+**During a project:** if you notice something the skill gets wrong or doesn't
+cover, record it in memory as a pending skill update. Don't stop the project
+to fix it — just note it.
+
+**At the end of a project:**
+1. Review the pending updates from memory.
+2. Discuss with the user: which are worth adding, which were project-specific.
+3. Add agreed changes and record them in `CHANGELOG.md` with the source project.
+
+`CHANGELOG.md` lives in this skill directory. Each entry: what changed,
+which project it came from, what gap or failure motivated it.
+
 ## Anti-patterns to actively prevent
 
 These are the failure modes this skill exists to prevent. Watch for
@@ -207,8 +271,9 @@ them and intervene if the user (or you) drift toward any of them:
   preemption, retries, etc. until a sweep proves they matter.
 - **Trusting `latency-of-successes` under overload.** It will lie.
   Always plot it together with success rate and effective latency.
-- **Editing an existing example to add a new component.** Copy the
-  folder. Each example is a clean exhibit of one idea.
+- **Adding `simpy.Resource` objects the audit did not identify, or merging
+  two distinct scarce resources into one.** Resources are determined by Q2,
+  not by the template.
 - **Hard-coded numbers in function bodies.** Every knob lives on
   `Config`.
 - **Single-curve plots when the system has a failure mode.**
@@ -227,7 +292,9 @@ them and intervene if the user (or you) drift toward any of them:
 ## Templates
 
 - `templates/server_sim.py` — Config + Server + _serve skeleton.
-- `templates/sweep.py` — text-mode sweep skeleton.
+- `templates/sweep.py` — 1D sweep (vary one parameter, e.g. arrival rate).
+- `templates/sweep_2d.py` — 2D sweep (vary two parameters; use when Q4b calls for it).
 - `templates/plot_sweep.py` — three-panel plot skeleton.
 - `templates/MODEL.md` — model specification template.
+- `templates/SIM_REPORT.md` — simulation report template (Phase 13).
 - `templates/requirements.txt` — minimal dependencies.
