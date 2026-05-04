@@ -41,10 +41,11 @@ class Config:
     cpu_burst_mean: float = 0.05
     io_wait_mean: float = 0.10
 
-    # Degradation (Phase 2 + theory-glossary.md)
-    # TODO: pick the right law and coefficients
-    alpha: float = 0.02                # USL linear contention
-    beta: float = 0.001                # USL quadratic coherency
+    # Degradation — audit Q5 decides (see theory-glossary.md USL section)
+    # I/O-bound workers (wait on network/DB): alpha=beta=0, remove mult call in _serve
+    # CPU-bound workers (compute, lock contention): set non-zero from profiling
+    alpha: float = 0.0    # USL linear contention
+    beta: float = 0.0     # USL quadratic coherency
 
     # Backpressure / SLO (audit Q6)
     max_threads: Optional[int] = None
@@ -80,8 +81,18 @@ class Server:
     def __init__(self, env: simpy.Environment, cfg: Config):
         self.env = env
         self.cfg = cfg
-        self.cpu = simpy.Resource(env, capacity=1)
-        # TODO: add other Resources here (db pool, disk, etc.) as audit demands
+
+        # --- Ресурсы (audit Q2) ---
+        # Создай ровно столько simpy.Resource, сколько независимых
+        # ограниченных ресурсов выявил аудит (Q2).
+        # Примеры:
+        #   один пул:       self.workers = simpy.Resource(env, capacity=cfg.num_workers)
+        #   два каскадных:  self.workers = simpy.Resource(env, capacity=cfg.num_workers)
+        #                   self.db_pool = simpy.Resource(env, capacity=cfg.db_pool_size)
+        # Не добавляй пул, которого нет в Q2. Не объединяй два разных ресурса в один.
+        # TODO: заменить на реальные ресурсы из аудита
+        self.resource = simpy.Resource(env, capacity=1)
+
         self.active = 0
         self.records: list[RequestRecord] = []
 
@@ -126,19 +137,18 @@ class Server:
     def _serve(self, rec: RequestRecord):
         cfg = self.cfg
         try:
-            for _ in range(cfg.n_phases):
-                base = random.expovariate(1.0 / cfg.cpu_burst_mean)
-                with self.cpu.request() as req:
-                    yield req
-                    if rec.start is None:
-                        rec.start = self.env.now
-                    mult = self.degradation_multiplier(self.active)
-                    yield self.env.timeout(base * mult)
-                if cfg.io_wait_mean > 0:
-                    yield self.env.timeout(
-                        random.expovariate(1.0 / cfg.io_wait_mean)
-                    )
-            # TODO: add downstream phases (DB, cache, etc.) here on extension
+            # Один блок на каждую фазу из Q3: acquire → work → release
+            # mult: I/O-bound → всегда 1.0 (убери вызов); CPU-bound → оставь
+            # TODO: заменить на реальные фазы из аудита
+            with self.resource.request() as req:
+                yield req
+                if rec.start is None:
+                    rec.start = self.env.now
+                mult = self.degradation_multiplier(self.active)
+                yield self.env.timeout(
+                    random.expovariate(1.0 / cfg.cpu_burst_mean) * mult
+                )
+
             rec.outcome = "ok"
             rec.finish = self.env.now
         except simpy.Interrupt:

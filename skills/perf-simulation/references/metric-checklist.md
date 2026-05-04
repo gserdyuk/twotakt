@@ -36,9 +36,9 @@ Plot effective latency (solid) and ok-only latency (dashed) on the
 same panel. The gap between them is a direct visual measure of how
 much survivorship bias the ok-only metric is hiding.
 
-Buffer drops (immediate 503) are excluded from effective latency
-because including them as latency = 0 would falsely *lower* the
-percentiles. Track them via success rate instead.
+Buffer drops (immediate rejection, latency ≈ 0) are tracked via
+success rate. Whether to include them in the latency distribution
+depends on the analysis goal — decide explicitly for the project.
 
 ## Rule 3 — Throughput is not a sufficient summary
 
@@ -119,3 +119,23 @@ of requests (ok-only? effective?), under which workload (arrival
 rate, sim duration, seeds), with which configuration (the Config
 fields). A latency number without this provenance is decoration, not
 data.
+
+## Rule 11 — Check pool ceilings with Little's Law before running the sweep
+
+Before any sweep, verify the throughput ceiling of each resource pool:
+
+    ceiling = capacity / service_time_mean
+
+If a secondary pool's ceiling is lower than the primary pool's at any
+point in the sweep range, the secondary pool will bind first — the
+sweep shows the wrong bottleneck and the wrong knee.
+
+Size secondary pools to be non-binding across the full sweep range,
+or sweep them explicitly as a separate parameter.
+
+Example: ES pool of 50 connections, mean service time 0.15 s →
+ceiling = 333 ev/s. At 1150 ev/s (Year 5) the pool saturates —
+minimum 173 connections needed. Raise to 200 to expose the worker
+pool as the true bottleneck.
+
+Run this check for every `simpy.Resource` in `Server.__init__` before Phase 7.
