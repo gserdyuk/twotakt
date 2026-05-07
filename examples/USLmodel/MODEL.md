@@ -1,129 +1,81 @@
-# USLmodel — what this model represents
+# USLmodel — Simulation Model
 
-This document describes the *intent* of the model. The code in
-`server_sim.py` is a faithful encoding of what is described here, but a
-reader should not have to read the code to understand the modelling
-choices. If the description below and the code disagree, the description
-is the specification and the code is the bug.
+This document describes the *simulation model* — how the architecture is
+translated into SimPy, which mathematical laws are applied, and what the
+model deliberately excludes. Read `ARCHITECTURE.md` first; this document
+assumes familiarity with the system structure.
 
-## What real system is being modelled
+If this description and the code disagree, this description is the
+specification and the code is the bug.
 
-A single web server that handles incoming requests in a
-**thread-per-request** style. Each arriving request is handed to its
-own physical thread which runs the request to completion and then
-exits. There is no application-level queue; the only queueing happens
-implicitly as threads compete for shared resources.
+## From architecture to SimPy
 
-The server has **one CPU**. The simplification to a single core is
-deliberate — it makes the contention story visible without obscuring it
-with multi-core scheduling. Generalizing to N cores is a one-line
-change but changes nothing essential about the dynamics.
+| Architectural element | SimPy primitive | Mathematical model |
+|---|---|---|
+| CPU (single shared resource) | `simpy.Resource(capacity=1)` | M/M/1 baseline; USL multiplier on service time |
+| OS thread (in-flight request) | SimPy process | — |
+| Admission control (thread cap) | check on `cpu.count + len(cpu.queue)` | — |
+| SLA timeout | `simpy.timeout` + `process.interrupt()` | — |
 
-Each thread alternates between two kinds of work:
+## Mathematical model
 
-1. **CPU bursts** — running application code on the core. While a
-   thread is executing CPU work, no other thread can use the CPU at
-   the same time. Multiple CPU-hungry threads compete for the single
-   core, and the operating system time-slices between them.
-2. **I/O waits** — waiting for the network or disk to return. While a
-   thread is in an I/O wait, the CPU is *released* and other threads
-   can run on it. The I/O subsystems (NIC, SSD) are not modelled as
-   scarce — every thread can wait for I/O simultaneously without
-   interfering with anyone else's I/O. This is deliberately
-   optimistic, but it is also realistic for modern SSDs and network
-   stacks at the volumes we care about.
+The CPU burst duration is multiplied by the USL degradation factor:
 
-Each request consists of a configurable number of `(CPU, IO)` phase
-pairs. Two phases roughly approximates "parse request → call backend →
-render response" without committing to a specific shape.
+    effective_burst = base_burst × (1 + α·(N−1) + β·N·(N−1))
 
-## Why thread-per-request and not an event loop
+where N is the number of currently in-flight requests, α captures linear
+contention (Amdahl serialization, context switches), and β captures
+quadratic inter-thread interference (cache coherency, lock convoys).
 
-Thread-per-request is the model where degradation under load is most
-dramatic and easiest to reason about: every additional in-flight
-request is an additional OS thread, an additional set of stack pages,
-an additional participant in CPU scheduling and lock contention. An
-event loop or a fiber-based runtime would have a different — usually
-gentler — degradation curve. We chose the harsher model because it
-exposes the failure modes most clearly and because it remains a common
-deployment pattern in real services.
+Setting α = β = 0 recovers the pure M/M/1 model — useful as a baseline.
 
-## How the server degrades
+I/O wait duration is **not** subject to the USL multiplier. I/O happens
+off-CPU and does not contribute to thread-on-thread interference.
 
-A real server does not just queue requests up to its theoretical
-saturation point and then refuse new work. Past a certain
-concentration of in-flight threads, **each unit of work itself becomes
-slower** — context switches multiply, caches start missing, locks are
-held longer, the garbage collector (where applicable) pauses more
-often. We capture this with the **Universal Scalability Law**: the
-effective duration of a CPU burst is multiplied by
+## Parameter sources
 
-    1 + α·(N − 1) + β·N·(N − 1)
+| Parameter | Default | Source |
+|---|---|---|
+| `cpu_count` | 1 | Architecture decision (single CPU, see ARCHITECTURE.md) |
+| `num_phases` | 2 | Design assumption: "parse → call backend → respond" ≈ 2 phase pairs |
+| `cpu_burst_mean` | 0.05 s | **Assumption** — no real system measured; chosen so saturation ≈ 10 rps with USL visible before that |
+| `io_wait_mean` | 0.10 s | **Assumption** — 2:1 IO:CPU ratio; I/O dominates to make CPU contention visible by contrast |
+| `alpha` | 0.02 | **Assumption** — mild linear contention; sweep to explore |
+| `beta` | 0.001 | **Assumption** — light quadratic effect; sweep to explore |
+| `arrival_rate` | 4.0 rps | Bench parameter — below saturation for healthy baseline |
+| `sla_seconds` | None (10.0 s in sweep) | Off by default; sweep uses 10.0 s to observe the full timeout-driven decline curve |
+| `max_threads` | None | Architecture: no admission control by default |
 
-where N is the number of currently in-flight requests in the system,
-α captures linear contention (Amdahl-style serialization, context
-switches), and β captures the quadratic effect of inter-thread
-interference (cache coherency traffic, lock convoys).
-
-The consequence is the characteristic USL **rise–peak–decline**
-throughput curve: as offered load increases the server initially keeps
-up, then plateaus, then *the throughput actually falls* because every
-extra in-flight thread makes every other thread slower.
-This is the real-world phenomenon a pure M/M/1 queue cannot reproduce.
-
-I/O time is **not** subject to this multiplier. I/O happens off-CPU
-and does not contribute to thread-on-thread interference in our
-abstraction.
-
-## Lifecycle of a single request
-
-1. The request arrives at a Poisson-distributed instant.
-2. Admission control: if a thread cap is configured and is currently
-   exceeded, the request is rejected immediately (a "503"-style
-   `dropped_buffer` outcome). Otherwise a thread is created.
-3. The thread performs its sequence of phases. Each CPU burst stalls
-   on the CPU resource until it is its turn, then runs for
-   *base_burst × USL_multiplier(N)* simulated seconds. Each I/O wait
-   simply elapses simulated time without holding the CPU.
-4. The whole request is wrapped in an optional SLA deadline. If the
-   wall-clock time from arrival exceeds the SLA before the last phase
-   finishes, the request is killed (`dropped_timeout` outcome) and the
-   thread is interrupted cleanly.
-5. On normal completion (`ok` outcome) the thread exits.
-
-## What the operator can dial
-
-- **Workload shape**: arrival rate, number of phases per request, mean
-  CPU and I/O durations.
-- **Degradation character**: α (linear) and β (quadratic). Setting
-  both to zero recovers the pure M/M/1 model and serves as a useful
-  baseline.
-- **Backpressure**: optional cap on in-flight threads (admission
-  control) and optional per-request SLA deadline.
+All numeric assumptions should be treated as illustrative. Use
+`modeling-jain/references/workload.md` to replace assumptions with
+measurements when a real system is available.
 
 ## What this model deliberately does not include
 
-- Multiple cores.
-- Heterogeneous request types (everything is drawn from the same
-  distributions).
-- A separate application-level request queue or load balancer.
-- Memory pressure and OOM, modelled as a hard event.
-- Garbage collection as discrete pauses.
-- Network or disk capacity limits.
-- Anything downstream of the server (database, cache, downstream
-  service) — this is what `USLDBmodel` adds.
+- Multiple cores (one-line change; omitted to keep contention story visible)
+- Heterogeneous request types (single distribution)
+- A separate application-level queue or load balancer
+- Memory pressure and OOM as discrete events
+- Garbage collection as discrete pauses
+- Network or disk capacity limits
+- Anything downstream of the server — that is what `USLDBmodel` adds
 
-These omissions are not because they don't matter; they are because
-this model is the **smallest** thing that already shows the central
-phenomenon (USL-shaped degradation). Each additional concern belongs in
-its own derived model so it can be examined in isolation.
+These omissions are not because they don't matter; each belongs in its
+own derived model so it can be examined in isolation.
 
-## What success looks like when running this model
+## Verification & Validation criteria
 
-The smoke-test config (defaults) should produce a healthy baseline:
-throughput equal to arrival rate, latency p50 close to the sum of CPU
-and I/O means, p99 within a small multiple, no drops. A sweep over
-arrival rate should show three regimes: a linear scaling region, a
-saturation knee, and a thrashing region where throughput *falls* and
-the system loses requests to SLA timeouts. If any of these three
-regions is missing, the model is mis-tuned, not the theory.
+**Verification** (smoke test at defaults):
+- throughput ≈ arrival rate (4.0 rps)
+- latency p50 ≈ num_phases × (cpu_burst_mean + io_wait_mean) = 2 × (0.05 + 0.10) = 0.30 s
+- success rate ≈ 1.0 (no drops at low load; no SLA configured at defaults)
+
+**Validation** (sweep over arrival rate 1–20 rps):
+Three regimes must appear:
+1. **Linear scaling** — throughput tracks arrival rate, latency stable
+2. **Saturation knee** — throughput plateaus, p99 rises
+3. **Thrashing** — throughput *falls*, SLA timeouts dominate
+
+If any regime is absent the model is mis-tuned, not the theory.
+Setting α = β = 0 must produce a pure M/M/1 plateau (no decline) —
+this is the baseline sanity check for the USL implementation.

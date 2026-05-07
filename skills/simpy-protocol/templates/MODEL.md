@@ -62,3 +62,16 @@ supports. Be specific.}
 {From audit Q8. The smoke-test outcome and the validation-sweep
 outcome. The shape of the curve that proves the model is doing what
 it was built to do. This becomes the Phase 7 acceptance test.}
+
+**Smoke test expectation note:** with exponential service times and a
+hard SLA timeout, `success_rate < 1.0` is expected even at zero queue
+depth — the exponential distribution has a heavy tail, and occasionally
+a single request draws a service time longer than `sla_seconds` with no
+congestion at all. The expected residual drop rate is:
+
+    ε ≈ P(Exp(mean) > sla_seconds) = exp(−sla_seconds / service_time_mean)
+
+Example: `sla=0.5 s`, `mean=0.1 s` → `ε ≈ exp(−5) ≈ 0.7%`.
+Set the smoke-test expectation to `success_rate ≈ 1 − ε`, not `1.0`.
+If `wait_mean ≈ 0` and `success_rate ≈ 1 − ε`, the system is healthy.
+Only investigate if `success_rate` is materially below `1 − ε`.
