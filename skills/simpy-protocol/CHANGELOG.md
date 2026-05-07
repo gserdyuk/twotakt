@@ -1,4 +1,4 @@
-# perf-simulation skill — changelog
+# simpy-protocol skill — changelog
 
 Changes are recorded per project. Each entry: what was added or changed,
 which project motivated it, what gap or failure it addresses.
@@ -46,6 +46,52 @@ which project motivated it, what gap or failure it addresses.
 ### Source projects
 - `examples/PowerSearch/model1_ingestion/`
 - `examples/PowerSearch/model2_queries/`
+
+---
+
+## 2026-05  SimPy ecosystem research (yinchi/simpy-examples + ccfelius/queueing)
+
+### Added
+- **M/D/c variant** — `theory-glossary.md` M/M/c section
+  Deterministic service time (`env.timeout(constant)` vs `expovariate`).
+  Lower variance; knee shifts right vs M/M/c at same mean.
+  *(Source: ccfelius/queueing MDN.py, yinchi/simpy-examples ex06_mdkk.py)*
+
+- **PriorityResource / priority queue** — `theory-glossary.md` new section
+  `simpy.PriorityResource` enables SJF or multi-class priority dispatch.
+  Not in any previous project; added because it appeared in ccfelius/queueing
+  and covers a gap for multi-SLA systems.
+  *(Source: ccfelius/queueing MM1_SJ.py)*
+
+- **M/M/k/k finite-capacity (no-queue) variant** — `theory-glossary.md` connection pool section
+  When all servers are busy, reject immediately without queuing.
+  Pattern: check `resource.capacity == len(resource.users)` before request.
+  *(Source: yinchi/simpy-examples ex04_mmkk.py)*
+
+- **Abandonment / customer impatience** — `theory-glossary.md` new section
+  Request cancels *while waiting in queue* (patience timeout), before server
+  acquires it. Self-limiting effect: masks saturation by reducing queue length.
+  Track abandonment rate separately from SLA timeout count.
+  *(Source: yinchi/simpy-examples ex03_mmk_abandonment.py)*
+
+- **Q4c — Multiple arrival streams** — `audit-protocol.md` Q4
+  Sub-question for parallel `arrival_process` generators (e.g. reads vs writes,
+  priority vs best-effort). Default: one stream. Use multiple only when classes
+  have distinct resource paths or SLAs.
+  *(Source: yinchi/simpy-examples ex09_mmc_two_priorities.py, ex10_mmc_two_classes.py)*
+
+- **Phase 7 analytical ceiling validation** — `SKILL.md`
+  After sweep: compare simulated plateau against `capacity / service_time_mean`.
+  >5% gap → secondary pool binding or wrong service-time draw.
+  *(Source: ccfelius/queueing — models include analytical formulas for direct comparison)*
+
+### Not added (noted for future)
+- MiSim (retry, circuit breaker, fault injection) — currently out of scope (Q7).
+  Review before extending the skill with resilience mechanisms.
+
+### Source
+- github.com/yinchi/simpy-examples
+- github.com/ccfelius/queueing
 
 ---
 

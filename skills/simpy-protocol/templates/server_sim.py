@@ -2,7 +2,7 @@
 SimPy server simulation — TEMPLATE.
 
 Fill in the TODOs based on the audit (references/audit-protocol.md).
-The file structure is fixed by the perf-simulation skill so that
+The file structure is fixed by the simpy-protocol skill so that
 sibling examples remain copy-compatible. Do not rename Config / Server
 / run / summarize / arrival_process — downstream tooling depends on
 these names.

@@ -1,27 +1,45 @@
 # Phase 1 — Audit Protocol
 
-The audit is a structured conversation that produces a draft
-`MODEL.md` capturing the user's intent. **Ask the questions in the
-order below.** The order matters: each answer constrains the next
-question. Do not paraphrase the order.
+The audit produces a draft `MODEL.md` — the compiled form of the
+system's architecture and requirements, structured for simulation.
+
+## Why ТЗ and Architecture are required
+
+The questions Q1–Q8 below need answers. The expected source of those
+answers is two documents the user brings:
+
+**ТЗ (technical requirements)** — answers the *why*: performance targets,
+SLA thresholds, capacity goals, operational constraints. Primary source
+for Q4 (workload), Q8 (success criteria).
+
+**Architecture** — answers the *what*: components, resources, topology,
+request lifecycle, backpressure mechanisms. Primary source for Q1, Q2,
+Q3, Q5, Q6.
+
+**Before starting Q1–Q8:** ask the user to provide both documents (or
+point to their location in the project directory). Scan the project for
+existing docs: ARCHITECTURE.md, README, design docs, ADRs — real projects
+accumulate specs.
+
+If answers to Q1–Q8 are already present in the documents:
+1. Read and cite the relevant sections.
+2. Present them as draft answers.
+3. Ask the user to confirm or correct — not to answer from scratch.
+Only ask a question from scratch if the answer is genuinely absent.
+
+**If Architecture does not exist:** do not proceed without it. Two options:
+- Stop and ask the user to produce an architecture document first.
+- Offer to draft a minimal architecture together in this session based
+  on the ТЗ — then treat that draft as the Architecture input and
+  document it explicitly before continuing.
+
+In either case: the architecture must be explicit and confirmed before
+Q1–Q8 can be answered reliably.
 
 After all questions are answered, write the draft `MODEL.md` (use
 `templates/MODEL.md` as the form) and present it to the user for
 confirmation. Do not proceed to Phase 2 until the user has approved
 the draft, even if they signal eagerness to "just write the code".
-
-## Before asking questions — scan the project directory
-
-Before starting Q1–Q8, look for existing documentation: ARCHITECTURE.md,
-README, design docs, ADRs. Real projects accumulate specs; asking questions
-the docs already answer wastes time.
-
-If answers to Q1–Q8 are present:
-1. Read and cite the relevant sections.
-2. Present them as draft answers.
-3. Ask the user to confirm or correct — not to answer from scratch.
-
-Only ask a question from scratch if the answer is genuinely absent.
 
 ## The questions
 
@@ -79,6 +97,18 @@ independently?
   multiplies runtime. Prefer fixing secondary parameters at a few
   representative values and running multiple 2D sweeps.
 
+**Q4c — Multiple arrival streams.** Are there meaningfully different
+request classes (reads vs writes, premium vs best-effort, different
+tenant types)? If yes: do the classes share the same resource path,
+or does each need separate pools? Can they collapse to one stream
+with a mixed service-time distribution?
+
+Use separate arrival generators only when the classes have different
+resource paths or SLAs that the audit says matter. Pattern: parallel
+`env.process(arrival_process_A(...))` + `env.process(arrival_process_B(...))`
+sharing the same `Resource`. For most systems one stream is sufficient.
+*(Source: yinchi/simpy-examples ex09_mmc_two_priorities.py, ex10_mmc_two_classes.py)*
+
 ### Q5 — What kinds of degradation do they want the model to encode?
 
 **First: are the workers CPU-bound or I/O-bound?**
@@ -130,7 +160,17 @@ saturation knee, decline" is a typical answer for USL. "Latency
 hyperbola climbing as utilization approaches 1" is typical for M/M/1.
 
 Write this as the "What success looks like" section of MODEL.md. It
-becomes the Phase 7 validation criterion.
+becomes the validation criterion for Phase 7 (V&V).
+
+**Smoke test floor:** when setting the healthy-baseline expectation,
+account for the exponential tail. With exponential service times and
+a hard SLA timeout, a small fraction of requests will timeout even
+with zero queue depth — this is not a bug. The expected residual rate:
+
+    ε ≈ exp(−sla_seconds / service_time_mean)
+
+State the smoke-test expectation as `success_rate ≈ 1 − ε`, not `1.0`.
+Verify health by checking `wait_mean ≈ 0`, not `success_rate = 1.0`.
 
 ## After the audit
 

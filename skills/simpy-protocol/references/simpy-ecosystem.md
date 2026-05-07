@@ -1,22 +1,22 @@
 # SimPy Ecosystem — Research Results
 
-> Исследование проведено 2026-05. Использовать для улучшения perf-simulation скилла
+> Исследование проведено 2026-05. Использовать для улучшения simpy-protocol скилла
 > и как базу для будущего simpy-reference скилла.
 
 ---
 
-## Релевантно для perf-simulation (IT-инфраструктура)
+## Релевантно для simpy-protocol (IT-инфраструктура)
 
 | Проект | Что моделирует | Чем полезен для скилла |
 |---|---|---|
 | [yinchi/simpy-examples](https://github.com/yinchi/simpy-examples) | M/M/c queueing системы | Учебные примеры, сравнение паттернов |
 | [ccfelius/queueing](https://github.com/ccfelius/queueing) | M/M/c с переменным числом серверов | Альтернативный подход к sweep |
 | [ajdinm/lb-sim](https://github.com/ajdinm/lb-sim) | Load balancer | Паттерн распределения нагрузки |
-| [MiSim](https://dqualizer.github.io/files/QRS22-FrankWagnerHakamianStraesserVanHoorn2022MiSim-preprint-nodoi.pdf) | Resilience микросервисов: circuit breaker, fault injection | Retry/backpressure механизмы которые сейчас вне скопа perf-simulation |
+| [MiSim](https://dqualizer.github.io/files/QRS22-FrankWagnerHakamianStraesserVanHoorn2022MiSim-preprint-nodoi.pdf) | Resilience микросервисов: circuit breaker, fault injection | Retry/backpressure механизмы которые сейчас вне скопа simpy-protocol |
 | [the-average-dev/router-simulation](https://github.com/the-average-dev/router-simulation) | Пакетная маршрутизация, throughput/delay/drop | Паттерн для сетевых моделей |
 | [SimPy Classic — List of Models](https://simpyclassic.readthedocs.io/en/latest/Manuals/Examples/ListOfModels.html) | Каталог готовых моделей | Справочник паттернов |
 
-**Вывод для perf-simulation:** MiSim — наиболее интересен. Показывает как моделировать
+**Вывод для simpy-protocol:** MiSim — наиболее интересен. Показывает как моделировать
 retry, circuit breaker, fault injection — механизмы которые сейчас в Q7 (out of scope).
 При следующем проекте с этими механизмами — изучить MiSim перед расширением скилла.
 
