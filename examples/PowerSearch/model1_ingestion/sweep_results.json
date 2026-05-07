@@ -1,0 +1,632 @@
+[
+  {
+    "num_resellers": 15,
+    "num_workers": 5,
+    "arrival_rate": 150.0,
+    "success_rate": 0.18605372476061188,
+    "throughput_rps": 27.869999999999997,
+    "eff_latency_p95": 10.0,
+    "latency_p95": 9.997176604127958,
+    "dropped_timeout": 71650.5
+  },
+  {
+    "num_resellers": 15,
+    "num_workers": 10,
+    "arrival_rate": 150.0,
+    "success_rate": 0.999655228012769,
+    "throughput_rps": 149.78750000000002,
+    "eff_latency_p95": 0.5197633349323212,
+    "latency_p95": 0.5197633349323212,
+    "dropped_timeout": 0.0
+  },
+  {
+    "num_resellers": 15,
+    "num_workers": 20,
+    "arrival_rate": 150.0,
+    "success_rate": 0.9996934312492316,
+    "throughput_rps": 149.46333333333334,
+    "eff_latency_p95": 0.5109646468749887,
+    "latency_p95": 0.5109646468749887,
+    "dropped_timeout": 0.0
+  },
+  {
+    "num_resellers": 15,
+    "num_workers": 30,
+    "arrival_rate": 150.0,
+    "success_rate": 0.9997047266268992,
+    "throughput_rps": 149.51666666666665,
+    "eff_latency_p95": 0.5118120375606452,
+    "latency_p95": 0.5118120375606452,
+    "dropped_timeout": 0.0
+  },
+  {
+    "num_resellers": 15,
+    "num_workers": 40,
+    "arrival_rate": 150.0,
+    "success_rate": 0.9997047266268992,
+    "throughput_rps": 149.51666666666665,
+    "eff_latency_p95": 0.5118120375606452,
+    "latency_p95": 0.5118120375606452,
+    "dropped_timeout": 0.0
+  },
+  {
+    "num_resellers": 15,
+    "num_workers": 60,
+    "arrival_rate": 150.0,
+    "success_rate": 0.9997047266268992,
+    "throughput_rps": 149.51666666666665,
+    "eff_latency_p95": 0.5118120375606452,
+    "latency_p95": 0.5118120375606452,
+    "dropped_timeout": 0.0
+  },
+  {
+    "num_resellers": 15,
+    "num_workers": 80,
+    "arrival_rate": 150.0,
+    "success_rate": 0.9997047266268992,
+    "throughput_rps": 149.51666666666665,
+    "eff_latency_p95": 0.5118120375606452,
+    "latency_p95": 0.5118120375606452,
+    "dropped_timeout": 0.0
+  },
+  {
+    "num_resellers": 30,
+    "num_workers": 5,
+    "arrival_rate": 300.0,
+    "success_rate": 0.035114723054327855,
+    "throughput_rps": 10.5225,
+    "eff_latency_p95": 10.0,
+    "latency_p95": 9.999143211019629,
+    "dropped_timeout": 170529.5
+  },
+  {
+    "num_resellers": 30,
+    "num_workers": 10,
+    "arrival_rate": 300.0,
+    "success_rate": 0.16678343359262737,
+    "throughput_rps": 50.01916666666666,
+    "eff_latency_p95": 10.0,
+    "latency_p95": 9.997406025017796,
+    "dropped_timeout": 146921.5
+  },
+  {
+    "num_resellers": 30,
+    "num_workers": 20,
+    "arrival_rate": 300.0,
+    "success_rate": 0.9996824336945223,
+    "throughput_rps": 299.15666666666664,
+    "eff_latency_p95": 0.5133795859446479,
+    "latency_p95": 0.5133795859446479,
+    "dropped_timeout": 0.0
+  },
+  {
+    "num_resellers": 30,
+    "num_workers": 30,
+    "arrival_rate": 300.0,
+    "success_rate": 0.9995933502439646,
+    "throughput_rps": 299.0491666666667,
+    "eff_latency_p95": 0.5116134906823646,
+    "latency_p95": 0.5116134906823646,
+    "dropped_timeout": 0.0
+  },
+  {
+    "num_resellers": 30,
+    "num_workers": 40,
+    "arrival_rate": 300.0,
+    "success_rate": 0.9996464053349688,
+    "throughput_rps": 299.19083333333333,
+    "eff_latency_p95": 0.5124920971661595,
+    "latency_p95": 0.5124920971661595,
+    "dropped_timeout": 0.0
+  },
+  {
+    "num_resellers": 30,
+    "num_workers": 60,
+    "arrival_rate": 300.0,
+    "success_rate": 0.9996464053349688,
+    "throughput_rps": 299.19083333333333,
+    "eff_latency_p95": 0.5124920971661595,
+    "latency_p95": 0.5124920971661595,
+    "dropped_timeout": 0.0
+  },
+  {
+    "num_resellers": 30,
+    "num_workers": 80,
+    "arrival_rate": 300.0,
+    "success_rate": 0.9996464053349688,
+    "throughput_rps": 299.19083333333333,
+    "eff_latency_p95": 0.5124920971661595,
+    "latency_p95": 0.5124920971661595,
+    "dropped_timeout": 0.0
+  },
+  {
+    "num_resellers": 45,
+    "num_workers": 5,
+    "arrival_rate": 450.0,
+    "success_rate": 0.01564681399560426,
+    "throughput_rps": 7.0375,
+    "eff_latency_p95": 10.0,
+    "latency_p95": 9.999424364801598,
+    "dropped_timeout": 261136.0
+  },
+  {
+    "num_resellers": 45,
+    "num_workers": 10,
+    "arrival_rate": 450.0,
+    "success_rate": 0.06101222781869753,
+    "throughput_rps": 27.4075,
+    "eff_latency_p95": 10.0,
+    "latency_p95": 9.99879660704326,
+    "dropped_timeout": 248557.5
+  },
+  {
+    "num_resellers": 45,
+    "num_workers": 20,
+    "arrival_rate": 450.0,
+    "success_rate": 0.4369567185651947,
+    "throughput_rps": 196.4925,
+    "eff_latency_p95": 10.0,
+    "latency_p95": 9.992833042655874,
+    "dropped_timeout": 147534.0
+  },
+  {
+    "num_resellers": 45,
+    "num_workers": 30,
+    "arrival_rate": 450.0,
+    "success_rate": 0.9996684461111877,
+    "throughput_rps": 449.78666666666663,
+    "eff_latency_p95": 0.5111344043441886,
+    "latency_p95": 0.5111344043441886,
+    "dropped_timeout": 0.0
+  },
+  {
+    "num_resellers": 45,
+    "num_workers": 40,
+    "arrival_rate": 450.0,
+    "success_rate": 0.9996401201518064,
+    "throughput_rps": 449.03166666666664,
+    "eff_latency_p95": 0.5108907410295842,
+    "latency_p95": 0.5108907410295842,
+    "dropped_timeout": 0.0
+  },
+  {
+    "num_resellers": 45,
+    "num_workers": 60,
+    "arrival_rate": 450.0,
+    "success_rate": 0.9996959178928662,
+    "throughput_rps": 449.30583333333334,
+    "eff_latency_p95": 0.5106264932017837,
+    "latency_p95": 0.5106264932017837,
+    "dropped_timeout": 0.0
+  },
+  {
+    "num_resellers": 45,
+    "num_workers": 80,
+    "arrival_rate": 450.0,
+    "success_rate": 0.9996959178928662,
+    "throughput_rps": 449.30583333333334,
+    "eff_latency_p95": 0.5106264932017837,
+    "latency_p95": 0.5106264932017837,
+    "dropped_timeout": 0.0
+  },
+  {
+    "num_resellers": 60,
+    "num_workers": 5,
+    "arrival_rate": 600.0,
+    "success_rate": 0.009292880313101666,
+    "throughput_rps": 5.564166666666667,
+    "eff_latency_p95": 10.0,
+    "latency_p95": 9.999559313347056,
+    "dropped_timeout": 349857.5
+  },
+  {
+    "num_resellers": 60,
+    "num_workers": 10,
+    "arrival_rate": 600.0,
+    "success_rate": 0.03279799472465472,
+    "throughput_rps": 19.66,
+    "eff_latency_p95": 10.0,
+    "latency_p95": 9.99915137041728,
+    "dropped_timeout": 341844.0
+  },
+  {
+    "num_resellers": 60,
+    "num_workers": 20,
+    "arrival_rate": 600.0,
+    "success_rate": 0.1602093661494469,
+    "throughput_rps": 96.13916666666667,
+    "eff_latency_p95": 10.0,
+    "latency_p95": 9.997571870887711,
+    "dropped_timeout": 296287.0
+  },
+  {
+    "num_resellers": 60,
+    "num_workers": 30,
+    "arrival_rate": 600.0,
+    "success_rate": 0.9982697378093597,
+    "throughput_rps": 598.1791666666667,
+    "eff_latency_p95": 1.2793181058208916,
+    "latency_p95": 1.2793181058208916,
+    "dropped_timeout": 0.0
+  },
+  {
+    "num_resellers": 60,
+    "num_workers": 40,
+    "arrival_rate": 600.0,
+    "success_rate": 0.9996464182364613,
+    "throughput_rps": 600.7583333333333,
+    "eff_latency_p95": 0.5105449222595748,
+    "latency_p95": 0.5105449222595748,
+    "dropped_timeout": 0.0
+  },
+  {
+    "num_resellers": 60,
+    "num_workers": 60,
+    "arrival_rate": 600.0,
+    "success_rate": 0.999656615717592,
+    "throughput_rps": 599.1708333333333,
+    "eff_latency_p95": 0.5087728775729659,
+    "latency_p95": 0.5087728775729659,
+    "dropped_timeout": 0.0
+  },
+  {
+    "num_resellers": 60,
+    "num_workers": 80,
+    "arrival_rate": 600.0,
+    "success_rate": 0.999656615717592,
+    "throughput_rps": 599.1708333333333,
+    "eff_latency_p95": 0.5087728775729659,
+    "latency_p95": 0.5087728775729659,
+    "dropped_timeout": 0.0
+  },
+  {
+    "num_resellers": 75,
+    "num_workers": 5,
+    "arrival_rate": 750.0,
+    "success_rate": 0.0063211231706296455,
+    "throughput_rps": 4.74,
+    "eff_latency_p95": 10.0,
+    "latency_p95": 9.99955402519987,
+    "dropped_timeout": 439639.0
+  },
+  {
+    "num_resellers": 75,
+    "num_workers": 10,
+    "arrival_rate": 750.0,
+    "success_rate": 0.021017198747204018,
+    "throughput_rps": 15.7675,
+    "eff_latency_p95": 10.0,
+    "latency_p95": 9.999341807104095,
+    "dropped_timeout": 433039.0
+  },
+  {
+    "num_resellers": 75,
+    "num_workers": 20,
+    "arrival_rate": 750.0,
+    "success_rate": 0.08926498259124697,
+    "throughput_rps": 66.99833333333333,
+    "eff_latency_p95": 10.0,
+    "latency_p95": 9.998467462738589,
+    "dropped_timeout": 402579.0
+  },
+  {
+    "num_resellers": 75,
+    "num_workers": 30,
+    "arrival_rate": 750.0,
+    "success_rate": 0.2772088336327463,
+    "throughput_rps": 207.63833333333332,
+    "eff_latency_p95": 10.0,
+    "latency_p95": 9.995999980286683,
+    "dropped_timeout": 317359.5
+  },
+  {
+    "num_resellers": 75,
+    "num_workers": 40,
+    "arrival_rate": 750.0,
+    "success_rate": 0.9996391957259199,
+    "throughput_rps": 750.3824999999999,
+    "eff_latency_p95": 0.523242119279999,
+    "latency_p95": 0.523242119279999,
+    "dropped_timeout": 0.0
+  },
+  {
+    "num_resellers": 75,
+    "num_workers": 60,
+    "arrival_rate": 750.0,
+    "success_rate": 0.9996464383542476,
+    "throughput_rps": 749.2491666666667,
+    "eff_latency_p95": 0.5101075670383182,
+    "latency_p95": 0.5101075670383182,
+    "dropped_timeout": 0.0
+  },
+  {
+    "num_resellers": 75,
+    "num_workers": 80,
+    "arrival_rate": 750.0,
+    "success_rate": 0.9996498015353582,
+    "throughput_rps": 749.3291666666667,
+    "eff_latency_p95": 0.5094419531601488,
+    "latency_p95": 0.5094419531601488,
+    "dropped_timeout": 0.0
+  },
+  {
+    "num_resellers": 90,
+    "num_workers": 5,
+    "arrival_rate": 900.0,
+    "success_rate": 0.00455337182717911,
+    "throughput_rps": 4.1,
+    "eff_latency_p95": 10.0,
+    "latency_p95": 9.99966049124265,
+    "dropped_timeout": 528822.5
+  },
+  {
+    "num_resellers": 90,
+    "num_workers": 10,
+    "arrival_rate": 900.0,
+    "success_rate": 0.014844478932356806,
+    "throughput_rps": 13.355833333333333,
+    "eff_latency_p95": 10.0,
+    "latency_p95": 9.99942392698847,
+    "dropped_timeout": 522928.5
+  },
+  {
+    "num_resellers": 90,
+    "num_workers": 20,
+    "arrival_rate": 900.0,
+    "success_rate": 0.05847535078990777,
+    "throughput_rps": 52.64083333333333,
+    "eff_latency_p95": 10.0,
+    "latency_p95": 9.998884828104536,
+    "dropped_timeout": 499521.5
+  },
+  {
+    "num_resellers": 90,
+    "num_workers": 30,
+    "arrival_rate": 900.0,
+    "success_rate": 0.1570197270765477,
+    "throughput_rps": 141.27166666666668,
+    "eff_latency_p95": 10.0,
+    "latency_p95": 9.997650667487505,
+    "dropped_timeout": 446028.5
+  },
+  {
+    "num_resellers": 90,
+    "num_workers": 40,
+    "arrival_rate": 900.0,
+    "success_rate": 0.42313826654666087,
+    "throughput_rps": 380.9141666666667,
+    "eff_latency_p95": 10.0,
+    "latency_p95": 9.99331185916951,
+    "dropped_timeout": 302658.0
+  },
+  {
+    "num_resellers": 90,
+    "num_workers": 60,
+    "arrival_rate": 900.0,
+    "success_rate": 0.9996682616759802,
+    "throughput_rps": 898.9375,
+    "eff_latency_p95": 0.5098750789072994,
+    "latency_p95": 0.5098750789072994,
+    "dropped_timeout": 0.0
+  },
+  {
+    "num_resellers": 90,
+    "num_workers": 80,
+    "arrival_rate": 900.0,
+    "success_rate": 0.9996817375549509,
+    "throughput_rps": 897.8308333333333,
+    "eff_latency_p95": 0.5096284983742265,
+    "latency_p95": 0.5096284983742265,
+    "dropped_timeout": 0.0
+  },
+  {
+    "num_resellers": 105,
+    "num_workers": 5,
+    "arrival_rate": 1050.0,
+    "success_rate": 0.0035336575050613503,
+    "throughput_rps": 3.7091666666666665,
+    "eff_latency_p95": 10.0,
+    "latency_p95": 9.999706066872193,
+    "dropped_timeout": 617028.5
+  },
+  {
+    "num_resellers": 105,
+    "num_workers": 10,
+    "arrival_rate": 1050.0,
+    "success_rate": 0.011145319460493191,
+    "throughput_rps": 11.700833333333334,
+    "eff_latency_p95": 10.0,
+    "latency_p95": 9.999525889034032,
+    "dropped_timeout": 612332.5
+  },
+  {
+    "num_resellers": 105,
+    "num_workers": 20,
+    "arrival_rate": 1050.0,
+    "success_rate": 0.04210240729429898,
+    "throughput_rps": 44.2,
+    "eff_latency_p95": 10.0,
+    "latency_p95": 9.999058319959488,
+    "dropped_timeout": 592943.5
+  },
+  {
+    "num_resellers": 105,
+    "num_workers": 30,
+    "arrival_rate": 1050.0,
+    "success_rate": 0.10533492209816342,
+    "throughput_rps": 110.44416666666666,
+    "eff_latency_p95": 10.0,
+    "latency_p95": 9.99829791170211,
+    "dropped_timeout": 552394.0
+  },
+  {
+    "num_resellers": 105,
+    "num_workers": 40,
+    "arrival_rate": 1050.0,
+    "success_rate": 0.2324618013801122,
+    "throughput_rps": 244.10166666666666,
+    "eff_latency_p95": 10.0,
+    "latency_p95": 9.99666151002377,
+    "dropped_timeout": 473174.0
+  },
+  {
+    "num_resellers": 105,
+    "num_workers": 60,
+    "arrival_rate": 1050.0,
+    "success_rate": 0.9996616929635342,
+    "throughput_rps": 1048.9266666666667,
+    "eff_latency_p95": 0.5127563536877915,
+    "latency_p95": 0.5127563536877915,
+    "dropped_timeout": 0.0
+  },
+  {
+    "num_resellers": 105,
+    "num_workers": 80,
+    "arrival_rate": 1050.0,
+    "success_rate": 0.9996849051618554,
+    "throughput_rps": 1049.6041666666665,
+    "eff_latency_p95": 0.5109150568755592,
+    "latency_p95": 0.5109150568755592,
+    "dropped_timeout": 0.0
+  },
+  {
+    "num_resellers": 115,
+    "num_workers": 5,
+    "arrival_rate": 1150.0,
+    "success_rate": 0.003158957436004393,
+    "throughput_rps": 3.6333333333333337,
+    "eff_latency_p95": 10.0,
+    "latency_p95": 9.999686055183773,
+    "dropped_timeout": 676392.5
+  },
+  {
+    "num_resellers": 115,
+    "num_workers": 10,
+    "arrival_rate": 1150.0,
+    "success_rate": 0.009541686562676817,
+    "throughput_rps": 10.9725,
+    "eff_latency_p95": 10.0,
+    "latency_p95": 9.9995547145964,
+    "dropped_timeout": 671876.0
+  },
+  {
+    "num_resellers": 115,
+    "num_workers": 20,
+    "arrival_rate": 1150.0,
+    "success_rate": 0.03444975801110317,
+    "throughput_rps": 39.61833333333333,
+    "eff_latency_p95": 10.0,
+    "latency_p95": 9.99914850753288,
+    "dropped_timeout": 654840.0
+  },
+  {
+    "num_resellers": 115,
+    "num_workers": 30,
+    "arrival_rate": 1150.0,
+    "success_rate": 0.08379339442380829,
+    "throughput_rps": 96.29416666666667,
+    "eff_latency_p95": 10.0,
+    "latency_p95": 9.998567975184763,
+    "dropped_timeout": 620278.0
+  },
+  {
+    "num_resellers": 115,
+    "num_workers": 40,
+    "arrival_rate": 1150.0,
+    "success_rate": 0.1746472571020128,
+    "throughput_rps": 200.9691666666667,
+    "eff_latency_p95": 10.0,
+    "latency_p95": 9.997466309325475,
+    "dropped_timeout": 558344.0
+  },
+  {
+    "num_resellers": 115,
+    "num_workers": 60,
+    "arrival_rate": 1150.0,
+    "success_rate": 0.9996571938475365,
+    "throughput_rps": 1149.3366666666666,
+    "eff_latency_p95": 0.5242592312669592,
+    "latency_p95": 0.5242592312669592,
+    "dropped_timeout": 0.0
+  },
+  {
+    "num_resellers": 115,
+    "num_workers": 80,
+    "arrival_rate": 1150.0,
+    "success_rate": 0.9996752323585469,
+    "throughput_rps": 1149.065,
+    "eff_latency_p95": 0.5100154541820814,
+    "latency_p95": 0.5100154541820814,
+    "dropped_timeout": 0.0
+  },
+  {
+    "num_resellers": 130,
+    "num_workers": 5,
+    "arrival_rate": 1300.0,
+    "success_rate": 0.002543000697419423,
+    "throughput_rps": 3.3075,
+    "eff_latency_p95": 10.0,
+    "latency_p95": 9.99975148206164,
+    "dropped_timeout": 765320.5
+  },
+  {
+    "num_resellers": 130,
+    "num_workers": 10,
+    "arrival_rate": 1300.0,
+    "success_rate": 0.0075784390891576615,
+    "throughput_rps": 9.850000000000001,
+    "eff_latency_p95": 10.0,
+    "latency_p95": 9.999584331574596,
+    "dropped_timeout": 760812.0
+  },
+  {
+    "num_resellers": 130,
+    "num_workers": 20,
+    "arrival_rate": 1300.0,
+    "success_rate": 0.026619470920595092,
+    "throughput_rps": 34.59916666666667,
+    "eff_latency_p95": 10.0,
+    "latency_p95": 9.999258111827782,
+    "dropped_timeout": 745970.0
+  },
+  {
+    "num_resellers": 130,
+    "num_workers": 30,
+    "arrival_rate": 1300.0,
+    "success_rate": 0.06270169895276453,
+    "throughput_rps": 81.455,
+    "eff_latency_p95": 10.0,
+    "latency_p95": 9.998784954506448,
+    "dropped_timeout": 717664.5
+  },
+  {
+    "num_resellers": 130,
+    "num_workers": 40,
+    "arrival_rate": 1300.0,
+    "success_rate": 0.12547031115374524,
+    "throughput_rps": 162.98250000000002,
+    "eff_latency_p95": 10.0,
+    "latency_p95": 9.998041626320628,
+    "dropped_timeout": 668570.0
+  },
+  {
+    "num_resellers": 130,
+    "num_workers": 60,
+    "arrival_rate": 1300.0,
+    "success_rate": 0.5185961308290619,
+    "throughput_rps": 674.3641666666666,
+    "eff_latency_p95": 10.0,
+    "latency_p95": 9.990567931817282,
+    "dropped_timeout": 362495.5
+  },
+  {
+    "num_resellers": 130,
+    "num_workers": 80,
+    "arrival_rate": 1300.0,
+    "success_rate": 0.9996420470490999,
+    "throughput_rps": 1300.7675,
+    "eff_latency_p95": 0.5335962511687455,
+    "latency_p95": 0.5335962511687455,
+    "dropped_timeout": 0.0
+  }
+]
