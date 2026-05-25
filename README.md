@@ -18,11 +18,19 @@ You sketch the architecture in a short specification (`MODEL.md`), build a small
 
 ## Approach
 
-twotakt uses SimPy — a mature Python library for discrete-event simulation — and deliberately does **not** wrap it in a higher-level abstraction. You see and edit the simulation code directly. This is a design choice, not an oversight: hiding SimPy behind a DSL or builder API would mean asking you to trust that the abstraction faithfully translates your model into events, resources, and timeouts. With SimPy in plain view, what you see is what runs, and the model stays auditable end-to-end.
+The central proposition is speed of assessment. Writing a SimPy simulation
+from scratch takes days; twotakt reduces this to a single session. The skill
+reads the project's architecture document, conducts a structured audit, and
+generates `MODEL.md`, `server_sim.py`, sweep scripts, and a `SIM_REPORT.md`
+with bottleneck analysis and SLA feasibility verdicts. The user provides the
+architecture and makes decisions; the technical work is automated.
 
-The cost of that transparency — having to understand SimPy primitives — has dropped sharply. Modern LLMs work with SimPy idioms well enough that you can use the library directly without a long learning curve, especially with the methodology and templates loaded into context. The installable skill (`perf-simulation.skill`) carries that methodology with you when you work in Cowork, so you don't reinvent the protocol each time.
-
-The workflow itself is a clear sequence: write the specification, review it against a checklist of anti-patterns and theory traps, *then* implement it in SimPy, sweep over load levels, plot, and interpret. The audit step at the start is the most valuable — catching a misconceived model in prose is much cheaper than debugging a simulation that converges to the wrong answer.
+twotakt does **not** hide SimPy. The user sees the code; the methodology
+and the skill ensure the code honestly encodes the intended model. The
+audit-first protocol is the central commitment — no simulation code is
+written before the model specification (`MODEL.md`) is approved. Modern
+LLMs make working with SimPy directly tractable even without deep prior
+knowledge of the library, so abstracting it away is not necessary.
 
 ## Use cases
 
