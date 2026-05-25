@@ -4,7 +4,7 @@ A workspace for building discrete-event simulations of systems under load, with 
 
 Before a system goes into production — or before architectural changes are committed — it helps to know how it will behave under load. Where do bottlenecks appear? How does latency degrade as concurrency grows? Does the queue stabilize, or run away? Live load testing answers these questions late and expensively, and only for systems that already exist. twotakt is a workspace for answering them earlier.
 
-You sketch the architecture in a short specification (`MODEL.md`), build a small executable model of it in SimPy, and run that model under varying load to observe how the system behaves. The audit-first methodology is the central commitment: the specification is reviewed and approved **before** any simulation code is written, so the model honestly encodes what you intended — not whatever the implementation happened to produce.
+You sketch the architecture in a short specification (`MODEL.md`), automatically build a small executable model of it in SimPy, and run that model under varying load to observe how the system behaves. The audit-first methodology is the central commitment: the specification is reviewed and approved **before** any simulation code is written, so the model honestly encodes what you intended — not whatever the implementation happened to produce.
 
 ## Layout
 
