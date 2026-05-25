@@ -1,6 +1,6 @@
 # twotakt
 
-A workspace for building discrete-event simulations of systems under load,
+A workspace for automatic generation of discrete-event models of architected systems,
 with an audit-first methodology and an installable Cowork skill.
 
 ## Layout
@@ -9,7 +9,7 @@ with an audit-first methodology and an installable Cowork skill.
   `plot_sweep.py`, `MODEL.md` (specification) and a `sweep.png`.
 - `examples/METHODOLOGY.md` — 12-step protocol used to build the examples,
   plus a list of recurring anti-patterns.
-- `skills/perf-simulation/` — the methodology packaged as a Cowork skill
+- `skills/simpy-protocol/` — the methodology packaged as a Cowork skill
   (audit-first protocol, theory glossary, metric checklist, code templates).
 - `perf-simulation.skill` — installable bundle of the skill above.
 - `dev-log.md` — append-only log of project evolution.
@@ -18,6 +18,13 @@ with an audit-first methodology and an installable Cowork skill.
 - `docs/archive/` — earlier vision documents (v1 — MCP-centric design).
 
 ## Approach
+
+The central proposition is speed of assessment. Writing a SimPy simulation
+from scratch takes days; twotakt reduces this to a single session. The skill
+reads the project's architecture document, conducts a structured audit, and
+generates `MODEL.md`, `server_sim.py`, sweep scripts, and a `SIM_REPORT.md`
+with bottleneck analysis and SLA feasibility verdicts. The user provides the
+architecture and makes decisions; the technical work is automated.
 
 twotakt does **not** hide SimPy. The user sees the code; the methodology
 and the skill ensure the code honestly encodes the intended model. The
