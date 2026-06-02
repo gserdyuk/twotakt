@@ -5,7 +5,7 @@
 
 ---
 
-> *"I have an architecture. Where does it break under load?"*
+> *"I have an IT architecture. Where does it break under load?"*
 
 That is the question twotakt answers — before production, before load tests, before the architecture is locked.
 
