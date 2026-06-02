@@ -1,78 +1,76 @@
 # twotakt — TODO
 
-## Самоидентификация (зафиксировано)
+## Identity (locked)
 
-**Название:** twotakt
+**Name:** twotakt
 **Tagline:** An AI-native methodology for building simulation models
-**Подзаголовок:** Two phases: Audit together. Simulate autonomously.
+**Subtitle:** Two phases: Audit together. Simulate autonomously.
 
 ---
 
-## README (приоритет: первое что нужно сделать)
+## README (done)
 
-### Что должен делать README за 2 минуты
+### What README should convey in 2 minutes
 
-- Объяснить что это (методология + инструмент, не просто шаблоны SimPy)
-- Объяснить зачем (audit-first: понять систему до того как писать код)
-- Показать как начать (входная точка)
-- Показать структуру (skills/ + examples/)
+- What this is (methodology + tool, not just SimPy templates)
+- Why (audit-first: understand the system before writing code)
+- How to start (entry point)
+- Structure (skills/ + examples/)
 
-### Входная точка для README
+### Entry points
 
-Человек приходит с одной из двух ситуаций:
+**A. You have an architecture:**
+> "I have a service architecture — I want to find the bottlenecks under load"
+→ Open Claude + twotakt → run audit → get model → see where it breaks
 
-**A. Есть архитектура:**
-> «У меня есть архитектура сервиса — хочу понять узкие места под нагрузкой»
-→ Открываешь Claude + twotakt → запускаешь аудит → получаешь модель → видишь где ломается
+**B. You are designing a system:**
+> "I'm designing a system — I want to estimate capacity before writing code"
+→ Same flow, at design time
 
-**B. Строишь систему:**
-> «Проектирую систему — хочу оценить ёмкость до того как писать код»
-→ То же самое, только на этапе проектирования
-
-Входная фраза для README:
+Entry phrase for README:
 > *"I have an architecture. Where does it break under load?"*
 
 ---
 
-## FaxRx — дописать
+## FaxRx — remaining work
 
-- [ ] `plot_sweep.py` — визуализация результатов свипа (4 панели)
-- [ ] Запустить plot, проверить что кривые читаемые
-- [ ] `SIM_REPORT.md` — итоговый отчёт по FaxRx
-
----
-
-## Агентная архитектура — следующий шаг
-
-### Архитектура: один диалог + три агента
-
-```
-[Диалог: аудит] ←─────────────────────────┐
-        ↓                                  │ (если модель неверна)
-     MODEL.md → [Агент: build] → [Агент: sweep] → [Агент: report]
-      ↑ворота          ↑___________________↑
-    человек       баги фиксятся внутри агентов
-```
-
-- [ ] Такт 2 = три агента: Build → Sweep → Report
-- [ ] Каждый агент: чёткий вход (файл) + чёткий выход (файл)
-- [ ] Build agent: пишет server_sim.py, гоняет smoke test, фиксит сам — отдаёт только зелёный
-- [ ] Sweep agent: гоняет свип, сохраняет JSON
-- [ ] Report agent: пишет SIM_REPORT.md из JSON + MODEL.md
-- [ ] Человек читает артефакт на каждом переходе и говорит "дальше"
-- [ ] Возврат к аудиту если свип показал что модель неверна
-
-### Возможные улучшения после
-
-- [ ] Автооркестратор (убрать человека из переходов 2→3→4)
-- [ ] "Living model" — агент подключён к мониторингу, обновляет параметры по Jain
+- [ ] `plot_sweep.py` — sweep visualisation (4 panels)
+- [ ] Run plot, verify curves are readable
+- [ ] `SIM_REPORT.md` — final report for FaxRx
 
 ---
 
-## Продуктовое позиционирование
+## Agent architecture — next step
 
-- [x] Название обосновано: twotakt = Такт 1 (аудит) + Такт 2 (симуляция)
-- [x] Форма: GitHub + README (лабораторный проект)
-- [x] Входная точка определена: «есть архитектура — найди узкие места»
-- [x] Claude-зависимость: не проблема на этом этапе
-- [x] Написать README
+### Design: one dialogue + three agents
+
+```
+[Dialogue: audit] ←────────────────────────┐
+        ↓                                   │ (if model is wrong)
+     MODEL.md → [Agent: build] → [Agent: sweep] → [Agent: report]
+      ↑ gate           ↑____________________↑
+    human         bugs fixed inside agents
+```
+
+- [ ] Phase 2 = three agents: Build → Sweep → Report
+- [ ] Each agent: clear input (file) + clear output (file)
+- [ ] Build agent: writes server_sim.py, runs smoke test, self-fixes — only ships green
+- [ ] Sweep agent: runs sweep, saves JSON
+- [ ] Report agent: writes SIM_REPORT.md from JSON + MODEL.md
+- [ ] Human reads artifact at each transition and says "go"
+- [ ] Return to audit if sweep reveals model mismatch
+
+### Future improvements
+
+- [ ] Auto-orchestrator (remove human from transitions 2→3→4)
+- [ ] Living model — agent connected to monitoring, updates parameters via Jain
+
+---
+
+## Product positioning
+
+- [x] Name justified: twotakt = Phase 1 (audit) + Phase 2 (simulation)
+- [x] Form: GitHub + README (lab project)
+- [x] Entry point defined: "I have an architecture — find the bottlenecks"
+- [x] Claude dependency: not a problem at this stage
+- [x] README written
