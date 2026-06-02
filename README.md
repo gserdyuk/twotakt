@@ -1,20 +1,63 @@
 # twotakt
 
-A workspace for building discrete-event simulations of systems under load, with an audit-first methodology and an installable Cowork skill.
+**An AI-native methodology for building simulation models.**
+*Two phases: Audit together. Simulate autonomously.*
 
-Before a system goes into production — or before architectural changes are committed — it helps to know how it will behave under load. Where do bottlenecks appear? How does latency degrade as concurrency grows? Does the queue stabilize, or run away? Live load testing answers these questions late and expensively, and only for systems that already exist. twotakt is a workspace for answering them earlier.
+---
 
-You sketch the architecture in a short specification (`MODEL.md`), automatically build a small executable model of it in SimPy, and run that model under varying load to observe how the system behaves. The audit-first methodology is the central commitment: the specification is reviewed and approved **before** any simulation code is written, so the model honestly encodes what you intended — not whatever the implementation happened to produce.
+> *"I have an architecture. Where does it break under load?"*
+
+That is the question twotakt answers — before production, before load tests, before the architecture is locked.
+
+## How it works
+
+twotakt is structured as two phases:
+
+**Phase 1 — Audit (dialogue)**
+You and Claude work through the architecture together: what is scarce, what queues, what degrades under load. The output is a reviewed and approved `MODEL.md` — the specification. No simulation code is written before this is confirmed.
+
+**Phase 2 — Simulation (three agents)**
+```
+MODEL.md → [Build] → [Sweep] → [Report]
+```
+- **Build:** generates `server_sim.py`, runs smoke test, fixes until green
+- **Sweep:** runs the model across load scenarios, saves results
+- **Report:** produces `SIM_REPORT.md` with bottleneck analysis and SLA verdicts
+
+If sweep results reveal a model mismatch, you return to the audit. The loop is explicit, not accidental.
+
+## Getting started
+
+**Option A — explore an existing model**
+Open any example in `examples/` and read `ARCHITECTURE.md` → `MODEL.md` → `server_sim.py` in order. Run the smoke test:
+```bash
+cd examples/USLmodel
+pip install simpy
+python server_sim.py
+```
+
+**Option B — model your own system**
+1. Clone this repo and open it in Claude Code
+2. Prepare two documents: your system's architecture and its requirements
+3. Tell Claude: *"I have an architecture. Let's model it."*
+4. Claude runs the audit (Phase 1) — you answer questions, confirm `MODEL.md`
+5. Claude builds, sweeps, and reports (Phase 2)
+
+The `CLAUDE.md` at the repo root loads the methodology skills automatically.
 
 ## Layout
 
-- `examples/` — worked SimPy models. Each contains `server_sim.py`, `sweep.py`, `plot_sweep.py`, `MODEL.md` (specification), and a `sweep.png`. The `METHODOLOGY.md` file in this folder describes the step-by-step protocol used to build the examples, along with recurring anti-patterns.
-- `skills/perf-simulation/` — the methodology packaged as a Cowork skill (audit-first protocol, theory glossary, metric checklist, code templates).
-- `perf-simulation.skill` — installable bundle of the skill above.
+- `skills/` — the methodology as Claude skills:
+  - `simpy-protocol/` — 10-phase audit-to-report protocol
+  - `queueing-lazowska/` — analytical queueing theory (M/M/c, MVA, operational laws)
+  - `modeling-jain/` — statistical rigour for model inputs and outputs
+- `examples/` — worked models at increasing complexity:
+  - `USLmodel/` — single CPU server with USL degradation
+  - `USLDBmodel/` — same, with a database connection pool added
+  - `PowerSearch/` — real system: two pipelines (ingestion + queries)
+  - `FaxRx/` — real system: worldwide fax reception with Erlang B + OCR
+- `CLAUDE.md` — tells Claude how to behave in this workspace (loads skills automatically)
 - `dev-log.md` — append-only log of project evolution.
-- `docs/concept.md` — vision, problem, key differentiator, planned calibration direction.
-- `docs/architecture.md` — structural arrangement: layers, workflow, persistence, component boundaries.
-- `docs/archive/` — earlier vision documents (v1 — MCP-centric design).
 
 ## Approach
 
