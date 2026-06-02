@@ -39,6 +39,7 @@ python server_sim.py
 **Option B — model your own system**
 1. Clone this repo and open it in Claude Code
 2. Prepare two documents: your system's architecture and its requirements
+   (see `examples/USLmodel/ARCHITECTURE.md` and `examples/USLmodel/REQUIREMENTS.md` as examples)
 3. Tell Claude: *"I have an architecture. Let's model it."*
 4. Claude runs the audit (Phase 1) — you answer questions, confirm `MODEL.md`
 5. Claude builds, sweeps, and reports (Phase 2)
@@ -62,18 +63,18 @@ The `CLAUDE.md` at the repo root loads the methodology skills automatically.
 ## Approach
 
 The central proposition is speed of assessment. Writing a SimPy simulation
-from scratch takes days; twotakt reduces this to a single session. The skill
+from scratch takes days; twotakt reduces this to a single session. The methodology
 reads the project's architecture document, conducts a structured audit, and
 generates `MODEL.md`, `server_sim.py`, sweep scripts, and a `SIM_REPORT.md`
 with bottleneck analysis and SLA feasibility verdicts. The user provides the
 architecture and makes decisions; the technical work is automated.
 
 twotakt does **not** hide SimPy. The user sees the code; the methodology
-and the skill ensure the code honestly encodes the intended model. The
-audit-first protocol is the central commitment — no simulation code is
-written before the model specification (`MODEL.md`) is approved. Modern
-LLMs make working with SimPy directly tractable even without deep prior
-knowledge of the library, so abstracting it away is not necessary.
+ensures the code honestly encodes the intended model. The audit-first protocol
+is the central commitment — no simulation code is written before the model
+specification (`MODEL.md`) is approved. Modern LLMs make working with SimPy
+directly tractable even without deep prior knowledge of the library, so
+abstracting it away is not necessary.
 
 ## Use cases
 
