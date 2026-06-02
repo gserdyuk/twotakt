@@ -1,7 +1,9 @@
 # twotakt
 
-**An AI-native methodology for building simulation models.**
+**An AI-native methodology for performance simulation — IT systems and beyond.**
 *Two phases: Audit together. Simulate autonomously.*
+
+twotakt models how systems behave under load — servers, queues, pipelines, connection pools, and any resources that are shared and contended for. The simulation engine is [SimPy](https://simpy.readthedocs.io/) (Python discrete-event simulation); the methodology is what makes the model honest.
 
 ---
 
@@ -76,6 +78,8 @@ specification (`MODEL.md`) is approved. Modern LLMs make working with SimPy
 directly tractable even without deep prior knowledge of the library, so
 abstracting it away is not necessary.
 
+**What "AI-native" means here:** Claude is not a code generator bolted on top. It is a participant in the audit (asking the right questions, flagging gaps) and the driver of Phase 2 (building, running, and reporting autonomously). The methodology is designed for this collaboration — the skills, the document structure, and the agent boundaries all assume Claude is in the loop.
+
 ## Use cases
 
-Anywhere discrete-event simulation under load is the right tool: IT capacity planning, fleet scheduling, patient flow, warehouse throughput. The examples currently in the workspace target IT systems — a single-CPU server with Universal Scalability Law (USL) degradation, and the same with a database connection pool — but the methodology applies wherever shared resources, queues, and contention are in play.
+Wherever there are shared resources, queues, and contention — IT capacity planning, fleet scheduling, patient flow, warehouse throughput. The examples in this repo are IT systems (servers, pipelines, connection pools), but the methodology is not IT-specific.
