@@ -1,6 +1,6 @@
 # twotakt
 
-** Twotakt helps architects turn architecture descriptions into executable simulation models. **
+**Twotakt helps architects turn architecture descriptions into executable simulation models.**
 
 **An AI-native methodology for performance simulation — IT systems and beyond.**
 *In Two phases: Audit together. Simulate autonomously.*
