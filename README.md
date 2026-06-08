@@ -3,6 +3,7 @@
 **Twotakt helps architects turn architecture descriptions into executable simulation models.**
 
 **An AI-native methodology for performance simulation — IT systems and beyond.**
+
 *In Two phases: Audit together. Simulate autonomously.*
 
 twotakt models how systems behave under load — servers, queues, pipelines, connection pools, and any resources that are shared and contended for. The simulation engine is [SimPy](https://simpy.readthedocs.io/) (Python discrete-event simulation); the methodology is what makes the model accurate.
