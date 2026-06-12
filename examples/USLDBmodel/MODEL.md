@@ -61,8 +61,8 @@ CPU ceiling of ~10 rps, so the CPU saturates first under defaults.
 | `db_query_mean` | 0.05 s | **Assumption** — fast query, adds ~0.05 s additive baseline latency |
 
 All numeric assumptions should be treated as illustrative. Use
-`modeling-jain/references/workload.md` to replace assumptions with
-measurements when a real system is available.
+`skills/modeling-jain/references/workload.md` (from repo root) to replace
+assumptions with measurements when a real system is available.
 
 ## What this model deliberately does not include
 

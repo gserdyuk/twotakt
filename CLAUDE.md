@@ -10,13 +10,14 @@ is approved by the user.
 
 ```
 skills/              ← local Claude skills (see below)
-examples/            ← worked SimPy models (PowerSearch, USLmodel, USLDBmodel)
+examples/            ← worked SimPy models (PowerSearch, USLmodel, USLDBmodel, FaxRx)
 docs/                ← concept, architecture, critique
 dev-log.md           ← append-only project log
 ```
 
-Each example folder contains: `server_sim.py`, `sweep.py`, `plot_sweep.py`,
-`MODEL.md`, and a `sweep.png`.
+Each example folder typically contains: `server_sim.py`, `sweep.py`,
+`plot_sweep.py`, `MODEL.md`, `ARCHITECTURE.md`, `REQUIREMENTS.md`, and `sweep.png`.
+Not every example has all files (FaxRx lacks `plot_sweep.py` / `sweep.png` — in progress).
 
 ## Local skills
 
@@ -40,7 +41,9 @@ Load **queueing-lazowska** when the user wants a quick analytical estimate witho
 running code: "how many servers do I need", "which device saturates first",
 "what is the throughput ceiling".
 
-Load **modeling-jain** — see `skills/modeling-jain/SKILL.md` for when to use.
+Load **modeling-jain** when the user wants to: parameterize a model from real
+monitoring data; choose a service-time distribution; compute confidence intervals
+for sweep results; or audit a performance study for common measurement mistakes.
 
 ## Key constraints
 
