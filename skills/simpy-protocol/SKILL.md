@@ -7,7 +7,7 @@ description: >-
   queueing, bottlenecks, capacity, thread-per-request servers, connection
   pools, M/M/1 or M/M/c queues, Universal Scalability Law (USL), thrashing,
   or extending an existing simulation with a new component (database, cache,
-  downstream service). Also use when the user mentions simulation, perfomance,
+  downstream service). Also use when the user mentions simulation, performance,
   degradation, узкое место, очередь, нагрузка, throughput, or asks what
   happens to a server when load grows. Enforces an audit-first protocol —
   never write simulation code before the audit gate is passed and a model
@@ -43,7 +43,7 @@ of a system under load: web servers, queue processors, microservices,
 scheduling, capacity planning, "what if we get 10x traffic", "why
 does our p99 spike", and so on. Also trigger when the user wants to
 **extend** an existing simulation with a new component — extensions
-go through their own (shorter) audit, see Phase 12 below.
+go through their own (shorter) audit, see Phase 9 below.
 
 Before triggering the full protocol, check if the question can be
 answered with a quick M/M/c calculation: `ceiling = capacity /
@@ -191,7 +191,7 @@ Every parameter in `Config` must have a documented source. Three valid sources:
   ("thread pool will be 16", "timeout is 500ms per SLA").
   Record: who decided, where it is documented.
 - **Assumption** — value estimated or guessed. Record: the assumption explicitly,
-  and add it to the sensitivity list for Phase 13 (sweep it).
+  and add it to the sensitivity list for Phase 9 (sweep it).
 
 Parameters with undocumented sources are hidden assumptions — they will
 silently shape results and be invisible in the report. Every magic number
@@ -282,7 +282,7 @@ restart. Then rebuild (Phase 4) and re-analyze (Phase 8).
 
 **Optimization path** — model is correct, exploring parameter space:
 Vary the parameter of interest and re-run Phase 8 (behavioral analysis).
-A sweep is Phase 10 repeated across a range of values — not a separate
+A sweep is Phase 8 repeated across a range of values — not a separate
 concept. Use `templates/sweep.py` (1D) or `templates/sweep_2d.py` (2D) to
 automate the repetition. The interesting result is rarely "did it work" —
 it is "where does the bottleneck shift, and at what value does a new entity

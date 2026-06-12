@@ -1,4 +1,4 @@
-# Twotakt
+# Twotakt — Audit together. Simulate autonomously.
 
 **AI превращает архитектурное описание в исполнимую симуляционную модель — за часы, а не недели.**
 

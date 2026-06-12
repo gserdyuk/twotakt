@@ -30,21 +30,15 @@
 Entry phrase for README:
 > *"I have an architecture. Where does it break under load?"*
 
-### Sync pass (from 2026-06 reviews)
+### Sync pass (done 2026-06-12)
 
-- [ ] **Phase 2 honesty:** "currently runs as a gated Claude session following the
-      10-phase protocol; the three-agent split is the target architecture"
-- [ ] "Real system" → "realistic case study" (PowerSearch: from an architecture
-      whiteboarding scenario; FaxRx: based on a production fax platform the author worked on)
-- [ ] Narrow positioning: drop "and beyond" from header; shrink Use cases to one line
-      ("examples are IT systems; the methodology itself only assumes shared resources,
-      queues and contention")
-- [ ] Align speed claim with one-pager ("days to weeks" vs "недели" — pick one)
-- [ ] Reading path Option A: ARCHITECTURE → MODEL → **SIM_REPORT** (code for those who
-      want the machinery); `pip install -r requirements.txt` instead of bare simpy
-- [ ] Reuse one-pager framing where useful ("architects don't model — and were right",
-      example-library list)
-- [ ] Consider promoting "Audit together. Simulate autonomously." into the one-pager
+- [x] Phase 2 honesty: note added (gated Claude session; three-agent split is target)
+- [x] "Real system" → "realistic case study" for PowerSearch and FaxRx
+- [x] Drop "and beyond" from header; Use cases → "Why now" section (one-pager framing)
+- [x] Speed claim: "days to weeks" (aligned with one-pager)
+- [x] Reading path: ARCHITECTURE → MODEL → SIM_REPORT; `pip install -r requirements.txt`
+- [x] "Architects don't model" framing added as "Why now" section
+- [x] "Audit together. Simulate autonomously." promoted into one-pager title
 
 ---
 
@@ -74,11 +68,9 @@ Entry phrase for README:
       artifacts at each step, where the human confirmation gates stand. Bridges the
       README vocabulary (takts) and the skill vocabulary (phases); a pilot user must
       see their role without asking.
-- [ ] Commit `SIM_REPORT.md` to USLmodel, USLDBmodel, FaxRx (drafts ready 2026-06-11 —
-      review interpretations first)
-- [ ] Replace `skills/simpy-protocol/templates/SIM_REPORT.md` with the merged template
-      (merged draft ready — adds Data source header, Sweep design, Limitations; fixes
-      stale "Phase 13" ref). Do NOT keep a second copy at repo root.
+- [x] Commit `SIM_REPORT.md` to USLmodel, USLDBmodel, FaxRx (done 2026-06-12)
+- [x] Replace `skills/simpy-protocol/templates/SIM_REPORT.md` with the merged template —
+      root copy deleted; skills template is canonical (done 2026-06-12)
 
 ---
 
@@ -96,34 +88,30 @@ Entry phrase for README:
 
 ### simpy-protocol skill
 
-- [ ] Fix stale phase references after renumbering: "see Phase 12 below" (extension
-      audit is Phase 9), "sensitivity list for Phase 13" (no Phase 13), "a sweep is
-      Phase 10 repeated" (sweep is Phase 8; Phase 10 is the report)
-- [ ] Fix typo "perfomance" in YAML `description` — it is a trigger string
+- [x] Fix stale phase references: Phase 12→9, Phase 13→9, Phase 10→8 (done 2026-06-12)
+- [x] Fix typo "perfomance" in YAML `description` (done 2026-06-12)
 - [ ] Rebuild `perf-simulation.skill` package from the current skill (stale: old name,
       no sweep_2d, no SIM_REPORT template, no CHANGELOG) — or delete it until packaging
       is automated
 
 ### CLAUDE.md
 
-- [ ] Add FaxRx to the examples list in Layout
-- [ ] Fix "each example folder contains" (FaxRx lacks plot_sweep/sweep.png; list also
-      omits ARCHITECTURE.md / REQUIREMENTS.md)
-- [ ] Rewrite the plots rule unambiguously: "throughput, success rate, latency are
-      mandatory metrics; panel layout is determined by the question"
-- [ ] modeling-jain row: write actual trigger words instead of "see SKILL.md"
+- [x] Add FaxRx to the examples list in Layout (done 2026-06-12)
+- [x] Fix "each example folder contains" (done 2026-06-12)
+- [x] Plots rule already unambiguous in current CLAUDE.md
+- [x] modeling-jain row: actual trigger words added (done 2026-06-12)
 
 ### Repo-wide
 
 - [ ] Define ТЗ once for non-Slavic readers ("REQUIREMENTS (ТЗ — tech spec)"), align
       naming with examples' `REQUIREMENTS.md`
-- [ ] `.gitignore`: `__pycache__/`, `*.pyc` (committed in skill templates now)
+- [x] `.gitignore`: `__pycache__/`, `*.pyc` — already present in `.gitignore`
 - [ ] Single source for methodology: keep `skills/simpy-protocol/references/methodology.md`,
       root `METHODOLOGY.md` becomes a pointer (or vice versa — pick one)
 - [ ] Language policy = English everywhere: translate `PowerSearch/SIM_REPORT.md`
 - [ ] Re-encode `PowerSearch/Whiteboarding scenario-plus-asr.txt` to UTF-8; CRLF → LF
-- [ ] Verify the `modeling-jain/references/workload.md` reference in
-      `USLDBmodel/MODEL.md` resolves as a relative path from the example
+- [x] Fix `modeling-jain/references/workload.md` reference in `USLDBmodel/MODEL.md` —
+      corrected to `skills/modeling-jain/references/workload.md` from repo root (done 2026-06-12)
 - [ ] **REPRODUCIBILITY position** (METHODOLOGY or separate doc): MODEL.md is the
       determinism boundary. Above it AI variability is acceptable (human confirmation
       selects one model, as between two engineers); below it everything is deterministic
