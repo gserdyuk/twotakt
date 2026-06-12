@@ -260,3 +260,33 @@ and Tier 2 rows complete) and will receive Tier 3 and Tier 4 rows
 once those tiers are reviewed.
 
 `#critique #tier-3 #tier-4 #competitive-landscape #action-list #deferred`
+
+## 2026-06-12 — validation architecture design notes (archaeology from archived chats)
+
+Design notes from earlier discussions, recorded here before the verification harness
+(see TODO P1) is implemented — these decisions should inform the harness design.
+
+**Hybrid validator, single contract.** Structural / deterministic rules → Python
+checkers (run every time, cheap: pre-commit, CI, on save). Semantic rules →
+LLM-as-judge (run rarely and deliberately: before approving MODEL.md, before release).
+Expose both behind one validation function so callers see one contract.
+
+**Don't use an LLM for what code checks deterministically** — loss of precision,
+speed, and money. Reserve the judge for genuinely semantic checks.
+
+**Judge hygiene:**
+- Small, hot context: spec slice + code slice + the one rule being checked (not the whole project).
+- One judge = one concern; several narrow judges beat one "check everything".
+- Calibrate on known-good and known-bad examples to learn false-positive / false-negative rates.
+- Cache same-code vs same-spec results; double-judge critical checks (two prompts or two models,
+  accept only on agreement).
+
+**Correlated blind spots.** An LLM judge checking an LLM generator can miss what the
+generator missed — shared training, shared blind spots. Mitigation: use a different model
+(or at least a different version) as judge for the checks that matter most.
+
+Operational fit for twotakt: the deterministic half → Build agent's "only ships green" exit
+criterion (runnable on every commit); the LLM-judge half → attaches to the human confirmation
+gate (MODEL.md approval), where slow and deliberate is the point anyway.
+
+`#validation #harness #llm-judge #architecture #v2`
