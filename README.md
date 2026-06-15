@@ -16,6 +16,12 @@ That is the question twotakt answers — before production, before load tests, b
 
 ## How it works
 
+Two documents go in, each with a distinct role:
+- **Architecture** (components, pools, queues, flows) → defines the **model**.
+- **Requirements** (load, SLA, questions to answer) → defines the **testbench and acceptance criteria**.
+
+This is the same split as hardware verification: the architecture is the design, the requirements are the testbench. The requirements document is not an artifact invented for the tool — it is your system's original requirements.
+
 twotakt is structured as two phases:
 
 **Phase 1 — Audit (dialogue)**
@@ -36,7 +42,7 @@ If sweep results reveal a model mismatch, you return to the audit. The loop is e
 ## Getting started
 
 **Option A — explore an existing model**
-Open any example in `examples/` and read `ARCHITECTURE.md` → `MODEL.md` → `SIM_REPORT.md` in order. For the code details, continue to `server_sim.py`. Run the smoke test:
+Open any example in `examples/` and start with its `README.md` — a one-page map (input / model / how to run / result). Then read `ARCHITECTURE.md` + `REQUIREMENTS.md` → `MODEL.md` → `SIM_REPORT.md` in order. For the code details, continue to `server_sim.py`. Run the smoke test:
 ```bash
 cd examples/USLmodel
 pip install -r requirements.txt
@@ -71,10 +77,10 @@ The `CLAUDE.md` at the repo root loads the methodology skills automatically.
 
 The central proposition is speed of assessment. Writing a proper simulation
 from scratch takes days to weeks; twotakt reduces this to a single session. The methodology
-reads the project's architecture document, conducts a structured audit, and
+reads the project's architecture and requirements documents, conducts a structured audit, and
 generates `MODEL.md`, `server_sim.py`, sweep scripts, and a `SIM_REPORT.md`
 with bottleneck analysis and SLA feasibility verdicts. The user provides the
-architecture and makes decisions; the technical work is automated.
+architecture and requirements and makes decisions; the technical work is automated.
 
 twotakt does **not** hide SimPy. The user sees the code; the methodology
 ensures the code honestly encodes the intended model. The audit-first protocol

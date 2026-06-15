@@ -49,7 +49,7 @@ def main():
             results.append({
                 "scenario": scenario["label"],
                 "burst_multiplier": mult,
-                **{k: v for k, v in r.items() if k != "config"},
+                **r,
             })
 
     with open("sweep_results.json", "w") as f:

@@ -40,6 +40,23 @@ Entry phrase for README:
 - [x] "Architects don't model" framing added as "Why now" section
 - [x] "Audit together. Simulate autonomously." promoted into one-pager title
 
+### Positioning + example-library pass (done 2026-06-15)
+
+- [x] One-pager rewritten around the two-input dichotomy (architecture → model,
+      requirements → testbench/acceptance criteria); AWS reference dropped; reasons
+      turned into a list; offer names both documents
+- [x] One-pager translated to English: `docs/twotakt-one-pager.md` (EN, canonical name);
+      RU original → `docs/twotakt-one-pager-rus.md`
+- [x] Per-example `README.md` for all four examples (input / model / how to run / output /
+      result / lesson / files) + template at `skills/simpy-protocol/templates/README.md`,
+      registered in `SKILL.md`
+- [x] `## Lesson` section in each README — standalone (no cross-linking), with a precise
+      statement plus an "In plain terms:" expansion for outside readers
+- [x] Root `README.md` synced to the two-input dichotomy; per-example README named as the
+      entry point
+- [ ] Still open: use the captured lessons as a concrete proof/result line in the one-pager
+      (raw material now lives in the per-example README `## Lesson` sections)
+
 ---
 
 ## P1 — before IPRI / mentor pilot (blocking)
@@ -50,10 +67,9 @@ Entry phrase for README:
 > r ≥ 10 replications, warm-up discard, t-based CI via `modeling-jain/templates/ci_calc.py`).
 > The examples predate it — they lag the skill, not the other way around.
 
-- [ ] Retrofit `seed` into every example `Config`; thread through all random draws
+- [x] Retrofit `seed` into every example `Config`; thread through all random draws — already present in all four examples
 - [ ] Sweeps: r ≥ 10 replications per point (r ≥ 20 for p95), report mean ± 95% CI
-- [ ] Pin dependency versions in every `requirements.txt`
-- [ ] Save the full run `Config` alongside results (into `sweep_results.json`)
+- [x] Save the full run `Config` alongside results (into `sweep_results.json`) — done 2026-06-12: USLmodel/USLDBmodel теперь сохраняют JSON; FaxRx включает config; PowerSearch добавляет config + seeds в каждую строку
 
 ### Verification harness
 
@@ -76,11 +92,13 @@ Entry phrase for README:
 
 ## FaxRx — remaining work
 
-- [ ] `plot_sweep.py` — sweep visualisation (4 panels)
-- [ ] Run plot, verify curves are readable
-- [ ] `SIM_REPORT.md` — draft ready (2026-06-11, from committed sweep_results.json) —
-      review interpretations (esp. fail-fast vs fail-slow framing and the redial
-      limitation), then commit
+- [x] `plot_sweep.py` — sweep visualisation (done 2026-06-15; 3 panels: success rate /
+      PSTN block rate / p95 eff vs burst, one curve per architecture; reads committed
+      `sweep_results.json` since the 7200 s × 33 sweep is slow to re-run)
+- [x] Run plot, verify curves are readable (done 2026-06-15 — `sweep.png` generated,
+      matches the report's fail-fast/fail-slow narrative)
+- [x] `SIM_REPORT.md` — committed 2026-06-12; stale "no plot" repo-note replaced with a
+      Plot section (2026-06-15)
 
 ---
 
@@ -103,12 +121,15 @@ Entry phrase for README:
 
 ### Repo-wide
 
-- [ ] Define ТЗ once for non-Slavic readers ("REQUIREMENTS (ТЗ — tech spec)"), align
-      naming with examples' `REQUIREMENTS.md`
+- [x] Align naming with examples' `REQUIREMENTS.md` (done 2026-06-15 — PowerSearch got a
+      `REQUIREMENTS.md`; all four examples now carry `ARCHITECTURE.md` + `REQUIREMENTS.md`).
+      Still open: define ТЗ once for non-Slavic readers ("REQUIREMENTS (ТЗ — tech spec)")
 - [x] `.gitignore`: `__pycache__/`, `*.pyc` — already present in `.gitignore`
+- [ ] Pin dependency versions in every `requirements.txt` (deferred — low real risk; no venv enforcement planned)
 - [ ] Single source for methodology: keep `skills/simpy-protocol/references/methodology.md`,
       root `METHODOLOGY.md` becomes a pointer (or vice versa — pick one)
-- [ ] Language policy = English everywhere: translate `PowerSearch/SIM_REPORT.md`
+- [x] Language policy = English everywhere: translate `PowerSearch/SIM_REPORT.md`
+      (done 2026-06-15 — translated RU → EN; all four reports now in English)
 - [ ] Re-encode `PowerSearch/Whiteboarding scenario-plus-asr.txt` to UTF-8; CRLF → LF
 - [x] Fix `modeling-jain/references/workload.md` reference in `USLDBmodel/MODEL.md` —
       corrected to `skills/modeling-jain/references/workload.md` from repo root (done 2026-06-12)

@@ -78,7 +78,10 @@ def main():
                 return sum(vals) / len(vals) if vals else None
 
             # Одна строка = одна точка на будущем графике.
+            # config из первого прогона (seeds одинаковы по всем параметрам кроме seed).
+            base_config = {**runs[0]["config"], "seeds": SEEDS}
             row = {
+                "config":             base_config,
                 "base_arrival_rate":  base_rate,
                 "num_search_workers": workers,
                 "success_rate":       avg("success_rate"),

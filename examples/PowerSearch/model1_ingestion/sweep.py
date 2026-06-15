@@ -75,7 +75,11 @@ def main():
                 return sum(vals) / len(vals) if vals else None
 
             # Одна строка результатов = одна точка на будущем графике.
+            # config берём из первого прогона (все seeds имеют одинаковые параметры,
+            # кроме seed); список использованных seeds добавляем отдельным полем.
+            base_config = {**runs[0]["config"], "seeds": SEEDS}
             row = {
+                "config":          base_config,
                 "num_resellers":   num_resellers,
                 "num_workers":     num_workers,
                 # arrival_rate одинаков для всех seed при одинаковых num_resellers,
