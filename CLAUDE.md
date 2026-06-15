@@ -15,9 +15,10 @@ docs/                ← concept, architecture, critique
 dev-log.md           ← append-only project log
 ```
 
-Each example folder typically contains: `server_sim.py`, `sweep.py`,
-`plot_sweep.py`, `MODEL.md`, `ARCHITECTURE.md`, `REQUIREMENTS.md`, and `sweep.png`.
-Not every example has all files (FaxRx lacks `plot_sweep.py` / `sweep.png` — in progress).
+Each example folder typically contains: `README.md`, `server_sim.py`, `sweep.py`,
+`plot_sweep.py`, `MODEL.md`, `ARCHITECTURE.md`, `REQUIREMENTS.md`, `SIM_REPORT.md`,
+and `sweep.png`. PowerSearch additionally splits into `model1_ingestion/` and
+`model2_queries/` subfolders, each with its own model files.
 
 ## Local skills
 

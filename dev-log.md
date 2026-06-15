@@ -290,3 +290,66 @@ criterion (runnable on every commit); the LLM-judge half → attaches to the hum
 gate (MODEL.md approval), where slow and deliberate is the point anyway.
 
 `#validation #harness #llm-judge #architecture #v2`
+
+## 2026-06-15 — one-pager rewrite around the two-input dichotomy
+
+Reviewed and rewrote `docs/twotakt-one-pager.md`. The central clarification: the
+methodology has **two** inputs, not one, with distinct roles —
+**architecture → the model**, **requirements → the testbench and acceptance
+criteria** (the same split as hardware verification: design vs testbench). The
+requirements document is the system's *original* requirements, not an artifact
+invented for the tool; this is what closes the "where do the numbers come from"
+objection and keeps the "two hours" offer honest (the architect already has the
+requirements doc).
+
+Edits: the "why architects don't model" reasons turned into a list; the
+unsourced AWS reference removed (the argument "load testing needs a finished
+system" stands on its own); the offer now names both documents. Deliberately
+left untouched: no concrete result/proof yet (no such study has been run —
+flagged for later).
+
+`#one-pager #positioning #two-inputs #dichotomy #docs`
+
+## 2026-06-15 — example-library consistency pass
+
+Made the four examples uniform and self-explanatory, all organised around the
+two-input dichotomy above.
+
+- **PowerSearch got a `REQUIREMENTS.md`** (it only had a scattered
+  `SIMULATION_PLAN.md` + requirements-flavoured content inside `ARCHITECTURE.md`).
+  All four examples now carry the pair `ARCHITECTURE.md` + `REQUIREMENTS.md`.
+- **Per-example `README.md` added to all four** — a one-page map: input / model /
+  how to run / output / result / **lesson** / files. A matching template lives at
+  `skills/simpy-protocol/templates/README.md` and is registered in `SKILL.md`.
+- **`## Lesson` section in each README** — the transferable systems insight,
+  written standalone (no cross-linking; lessons may repeat, since a new
+  example's author writes their own). Each lesson has a precise statement plus an
+  *"In plain terms:"* expansion so an outside reader understands. USLmodel:
+  servers collapse past saturation + survivorship bias. USLDBmodel: resource
+  ceilings don't compose; bottleneck from interaction. FaxRx: judge a design by
+  *where* it fails; admission control is a feature. PowerSearch: provision for
+  the burst peak, not the mean.
+- **FaxRx plot closed** — added `plot_sweep.py` (reads the committed
+  `sweep_results.json`; the 7200 s × 33 sweep is too slow to re-run) and
+  generated `sweep.png` (success / PSTN block / p95 eff vs burst, one curve per
+  architecture). Stale "no plot" notes removed from `SIM_REPORT.md`, the README,
+  and `CLAUDE.md`.
+- **PowerSearch `SIM_REPORT.md` translated** RU → EN, so all four reports share
+  one language.
+- **Root `README.md` updated** — the two-input dichotomy added to "How it works";
+  per-example README named as the entry point; "Approach" now reads "architecture
+  and requirements documents".
+
+`#examples #readme #lessons #requirements #faxrx-plot #consistency #docs`
+
+## 2026-06-15 — one-pager English translation; RU becomes secondary
+
+Translated the one-pager to English. The English version takes the canonical
+name `docs/twotakt-one-pager.md` (so existing links resolve to it); the Russian
+original was renamed to `docs/twotakt-one-pager-rus.md` via `git mv` to preserve
+history. Content is unchanged — same two-input dichotomy
+(architecture → model, requirements → testbench), hardware-verification analogy,
+audit-first framing, and the two-document offer. The still-open gap (no concrete
+proof/result line) carries over to both versions.
+
+`#one-pager #translation #english #docs`

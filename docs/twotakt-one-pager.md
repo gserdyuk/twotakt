@@ -1,43 +1,56 @@
 # Twotakt — Audit together. Simulate autonomously.
 
-**AI превращает архитектурное описание в исполнимую симуляционную модель — за часы, а не недели.**
+**AI turns an architecture description into an executable simulation model — in hours, not weeks.**
 
-Для архитекторов IT-систем: performance modeling, capacity planning, bottleneck analysis.
+For IT-systems architects: performance modeling, capacity planning, bottleneck analysis.
 
 ---
 
-## Архитекторы не моделируют. И до сих пор были правы.
+## Architects don't model. And until now they were right.
 
-Performance-решения принимаются на опыте и интуиции, узкие места обнаруживаются в продакшене, capacity planning делается в таблицах. Это рациональный расчёт: модель требовала недель работы специалиста и устаревала вместе с архитектурой; нагрузочное тестирование (как и предлагает AWS) требует готовой системы; таблицы не видят очередей и каскадных деградаций. При такой цене проверки архитектор справедливо полагался на интуицию.
+Performance decisions are made on experience and intuition, bottlenecks are discovered in production, capacity planning is done in spreadsheets. This was a rational calculation — each alternative had its own cost:
 
-**Цена проверки только что изменилась на порядок. Расчёт пора пересмотреть.**
+- a **model** required weeks of specialist work and went stale along with the architecture;
+- **load testing** requires an already-finished system;
+- **spreadsheets** can't see queues and cascading degradations.
 
-## Как работает Twotakt
+At that cost of verification, the architect justifiably relied on intuition.
 
-1. Вы описываете архитектуру текстом — в свободной форме.
-2. AI строит модель и фиксирует её в **MODEL.md**: компоненты, потоки, допущения, параметры.
-3. **Вы подтверждаете модель — до запуска симуляции.** Ошибки понимания видны и правятся здесь.
-4. Модель компилируется в исполнимую симуляцию (SimPy) и прогоняется по сценариям нагрузки.
-5. Отчёт: пропускная способность, задержки, очереди, узкие места, деградация под нагрузкой.
+**The cost of verification just dropped by an order of magnitude. The calculation is due for a rethink.**
 
-Принцип — **audit-first**: вы доверяете не AI, а модели, которую сами проверили. AI ускоряет построение; решение о корректности остаётся за человеком.
+## How Twotakt works
 
-## «Модели всё равно примерные»
+At its core are two input documents, each with its own role:
 
-Верно — поэтому Twotakt не предлагает точных чисел. Он отвечает на вопросы, устойчивые к погрешности: **что сломается первым** (порядок узких мест), **вариант А или Б** (сравнение на одинаковых сценариях), **что будет при 10-кратной нагрузке** (характер деградации). На такие вопросы интуиция отвечает хуже всего — очереди и каскады нелинейны.
+- **Architecture** — components, pools, queues, flows: how the system is built. The architect produces it. **Architecture produces the model.**
+- **Requirements** — load, SLA, questions about the system. This is your original spec, not a new document created for the tool; the AI helps shape it in conversation. **Requirements produce the testbench and the acceptance criteria.**
 
-И ещё: интуиция архитектора — тоже модель, только неявная. MODEL.md делает её явной и предъявляемой: «уверен — вот модель и прогон» звучит в архитектурном комитете убедительней, чем «уверен, потому что опыт».
+Then:
 
-## Что есть сейчас
+1. The AI builds an executable model from the architecture and records it in **MODEL.md**: components, flows, assumptions, parameters.
+2. From the requirements it assembles load scenarios and criteria — what the model is checked against.
+3. **You confirm both the model and the criteria — before the simulation runs.** Misunderstandings are visible and fixed here.
+4. The model is compiled into a simulation (SimPy) and run across the scenarios from the requirements.
+5. Report: throughput, latencies, queues, bottlenecks, degradation under load — against your acceptance criteria.
 
-- Методология с явными шагами — описание → MODEL.md → подтверждение → симуляция → отчёт; артефакты формализованы.
-- Растущая библиотека примеров — четыре класса систем: web-backend под нагрузкой, backend с пулом БД, поисковый агрегатор (два пайплайна, capacity planning), телеком-обработка факсов. Каждый пилот пополняет её новым классом.
-- Открытый код: https://github.com/gserdyuk/twotakt.
+The principle is **audit-first**: you trust not the AI, but the model you verified yourself. The AI speeds up construction; the decision about correctness stays with the human. The same dichotomy as in hardware verification: architecture is the design, requirements are the testbench.
 
-## Предложение
+## "Models are only approximate anyway"
 
-**Дайте одну вашу архитектуру и два часа вашего времени.**
+True — which is why Twotakt doesn't offer exact numbers. It answers questions that are robust to error: **what breaks first** (the order of bottlenecks), **option A or B** (a comparison on identical scenarios), **what happens at 10× load** (the character of degradation). These are exactly the questions intuition answers worst — queues and cascades are nonlinear.
 
-На выходе — MODEL.md вашей системы и отчёт по узким местам. Модель либо подтвердит ваши ожидания — и они превратятся в документ, который можно показать команде и заказчику, — либо покажет то, чего вы не ждали. До продакшена, а не в продакшене.
+And one more thing: an architect's intuition is also a model, just an implicit one. MODEL.md makes it explicit and presentable: "I'm confident — here's the model and the run" is more convincing in an architecture review board than "I'm confident because of experience."
 
-Геннадий Сердюк — gserdyuk@gmail.com / https://www.linkedin.com/in/gserdyuk
+## What exists now
+
+- A methodology with explicit steps — architecture + requirements → model + acceptance criteria → confirmation → simulation → report; the artifacts are formalized.
+- A growing library of examples — four classes of systems: a web backend under load, a backend with a DB pool, a search aggregator (two pipelines, capacity planning), telecom fax processing. Each pilot adds a new class.
+- Open source: https://github.com/gserdyuk/twotakt.
+
+## The offer
+
+**Give us your system's architecture and requirements — and two hours of your time.**
+
+The output: a MODEL.md of your system and a bottleneck report. The model will either confirm your expectations — and they turn into a document you can show your team and your client — or reveal something you didn't expect. Before production, not in production.
+
+Gennadiy Serdyuk — gserdyuk@gmail.com / https://www.linkedin.com/in/gserdyuk

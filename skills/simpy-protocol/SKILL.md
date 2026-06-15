@@ -381,4 +381,5 @@ them and intervene if the user (or you) drift toward any of them:
 - `templates/plot_sweep.py` — three-panel plot skeleton.
 - `templates/MODEL.md` — model specification template.
 - `templates/SIM_REPORT.md` — simulation report template (Phase 10).
+- `templates/README.md` — per-example README (input / model / how to run / result); the map of an example folder.
 - `templates/requirements.txt` — minimal dependencies.

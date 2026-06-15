@@ -8,6 +8,8 @@ Usage:
     python sweep.py
 """
 
+import json
+
 from server_sim import Config, run
 
 
@@ -15,6 +17,7 @@ RATES = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 14, 16, 18, 20]
 
 
 def main():
+    results = []
     print(f"{'rate':>5} {'thr':>7} {'p50':>8} {'p95':>8} {'p99':>8} "
           f"{'wait':>8} {'drop_to':>8}")
     for rate in RATES:
@@ -31,6 +34,11 @@ def main():
               f"{(r['latency_p99'] or 0):8.3f} "
               f"{(r['wait_mean'] or 0):8.3f} "
               f"{r['dropped_timeout']:8d}")
+        results.append(r)
+
+    with open("sweep_results.json", "w") as f:
+        json.dump(results, f, indent=2)
+    print(f"\nSaved: sweep_results.json ({len(results)} rows)")
 
 
 if __name__ == "__main__":
