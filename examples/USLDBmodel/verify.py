@@ -28,7 +28,7 @@ sys.path.insert(0, str(pathlib.Path(__file__).resolve().parents[2]))
 from harness import RunSummary, CheckRunner          # noqa: E402
 from harness.invariants import (                      # noqa: E402
     assert_work_conservation,
-    assert_no_drops_without_congestion,
+    assert_no_overload_loss,
     assert_nonnegative,
 )
 from server_sim import run, Config                   # noqa: E402
@@ -38,12 +38,14 @@ def adapt(cfg: Config) -> RunSummary:
     """Translate the native dict into the canonical ledger (same keys as USLmodel)."""
     r = run(cfg)
     completed = r["completed_ok"]
-    dropped = r["dropped_buffer"] + r["dropped_timeout"]
+    rejected = r["dropped_buffer"]      # 503 on thread cap — admission, by design
+    overload = r["dropped_timeout"]     # SLA miss — congestion loss
     return RunSummary(
         offered=cfg.arrival_rate * cfg.sim_time,
         completed=completed,
-        dropped=dropped,
-        in_flight=r["total_arrivals"] - completed - dropped,
+        rejected=rejected,
+        dropped_overload=overload,
+        in_flight=r["total_arrivals"] - completed - rejected - overload,
         generated=0.0,
         arrival_rate=cfg.arrival_rate,
         throughput=r["throughput_rps"],
@@ -59,14 +61,14 @@ runner = CheckRunner("USLDBmodel")
 BASELINE = adapt(Config())
 
 
-@runner.register("Tier-1: work conservation (ledger balance + throughput continuity)")
+@runner.register("Tier-1: work conservation (ledger balance)")
 def _conservation() -> None:
     assert_work_conservation(BASELINE)
 
 
-@runner.register("Tier-1: no drops without congestion")
-def _no_drops() -> None:
-    assert_no_drops_without_congestion(BASELINE)
+@runner.register("Tier-1: no congestion loss without saturation")
+def _no_overload() -> None:
+    assert_no_overload_loss(BASELINE)
 
 
 @runner.register("Tier-1: non-negative ledger, success_rate in [0,1]")

@@ -423,6 +423,74 @@ audit-first). This is the **fourth, and methodologically the strongest** — it 
 the *trust mechanism for the tool itself*, not a single example. Candidate to lead
 **ahead of** audit-first as "article #1".
 
+## 9b. Cross-model trend — convergence analysis (from replication)
+
+Built the harness across three examples (USLmodel → USLDBmodel → FaxRx). The replication
+itself produced a meta-finding worth more than the coverage. (Three points — thin, but
+directional; PowerSearch is queued as a test of the predictions below.)
+
+What happened at each step: USLmodel created the contract + Tier-1 + Tier-2 (USL shape,
+degradation-MR). USLDBmodel reused the contract **unchanged** and added a pool-MR (lesson:
+a mechanism binds in *its own regime* — the pool binds in overload, not at the peak).
+FaxRx (Erlang-B blocking, multi-class — a genuinely new class) **bent the contract**.
+
+### The trend: two convergences and one non-convergence
+
+1. **The universal core SHRINKS.** Each new class strips a hidden assumption off a
+   "universal" Tier-1 law. FaxRx revealed that `no-loss-below-saturation` assumed a
+   *queueing* discipline (a blocking system rejects by design), and that
+   `completed ≈ offered` assumed *short* requests (false when in_flight is ~3%). The
+   universal set is not born universal; it is *made* universal by losing assumptions on
+   contact with diversity. In the limit it asymptotes to a single irreducible law — the
+   **continuity equation** (flow balance). Everything else is conditional and migrates to
+   lower, assumption-bearing tiers.
+
+2. **The ledger GROWS — toward a complete taxonomy of work-fates.** `offered = completed +
+   dropped + in_flight` → added `generated` → split `dropped` into `rejected` (admission)
+   + `dropped_overload` (congestion). Each new class adds or splits a term that **names a
+   discipline** the system has (admission control, generation, and later retry/re-entry,
+   preemption, priority…). A unit of work has only finitely many fates, so the ledger
+   converges to a small, complete schema.
+
+3. **The laws DON'T converge.** USL ≠ Erlang-B ≠ … Tier-2 laws do not transfer across
+   classes. What transfers is the **metamorphic method** (toggle a mechanism, assert a
+   direction). So the reusable Tier-2 asset is not a library of laws but a kit of
+   **relation builders** parameterised by (knob, metric, direction, binding-region). The
+   law is *data*; the relation builder is *code*.
+
+### Extrapolation: verify.py → a declarative mechanism manifest
+
+If this continues, the per-example `verify.py` drifts from imperative checks toward a
+**declaration**: a ledger adapter (native dict → RunSummary) plus a list of mechanisms,
+each as `(knob, binding-region, expected-direction)`. The harness then *generates* the
+conservation and metamorphic checks. You no longer write checks — you declare the model's
+mechanisms and how to poke them.
+
+This manifest **is the contract between the code generator and the harness** for the future
+Build agent: the generator, having built the model, declares its mechanisms; the harness
+verifies them. It closes the loop with §4 (the generator conforms to a contract; the trust
+floor stays human-authored and independent).
+
+### Predictions for PowerSearch (the 4th point — to test the trend)
+
+- **Cost ∝ novelty-of-class, not number of models.** USLDBmodel was cheap (same family),
+  FaxRx expensive (new class). PowerSearch = known components, new *topology* (two
+  pipelines, ingestion + queries) → expect the cost to land on **composition/coupling**,
+  not on component laws.
+- **The ledger bends on COMPOSITION.** A single system ledger may not suffice; expect
+  **per-pipeline sub-ledgers + an edge balance between them** — the first real test of the
+  *edge conservation* posited in the scope-axis section (component + edge → system).
+- **The law is different again** → reinforces "method transfers, laws don't".
+- **The first formulation of some check won't bite** (it hasn't failed to recur yet).
+
+### Boundary
+
+Even the "one universal law" is domain-bound: continuity for *discrete* units = the
+ledger; for continuous systems (agro) = mass balance in rates. The discrete ledger is one
+instantiation of continuity, not continuity itself. And the recurring meta-lesson:
+**negative-test-first** — every model's *first* check was wrong (didn't bite, or bit the
+healthy model), so the real unit of work is the negative test, not the check.
+
 ## 10. Open questions / to decide later
 
 - Venue and format (workshop short paper vs conference talk).
