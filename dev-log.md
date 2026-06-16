@@ -431,4 +431,54 @@ run; Erlang B, not USL). P1 verification-harness: 2 of 4 examples done.
 
 `#harness #verification #usldbmodel #metamorphic #pool #non-composition #increment`
 
+## 2026-06-17 — harness on FaxRx (3rd example) + contract refactor; cross-model trend analysis
+
+FaxRx is a different class (Erlang-B blocking + multi-class, not USL), and it bent the
+contract — which is the point of a third example.
+
+**Contract refactor (touched all examples, backward compatible).**
+- `RunSummary.dropped` split into **`rejected`** (admission / blocking loss, by design —
+  503 on a thread cap, Erlang-B busy) and **`dropped_overload`** (congestion loss — SLA
+  timeout under load), with `dropped` kept as a derived property. Driven by FaxRx:
+  Erlang-B blocks ~by design even at low load, so the lumped "no drops below saturation"
+  law falsely reds a *healthy* blocking system (demonstrated: blocked+timeout=12 → old
+  strict==0 fails; new overload-only with tolerance passes).
+- `assert_no_drops_without_congestion` → **`assert_no_overload_loss`** (forbids only
+  congestion loss below saturation; rejection allowed). Tolerance instead of strict 0
+  (a healthy run with an SLA has the occasional timeout).
+- Dropped the "completed ≈ offered" continuity sub-check from `work_conservation` — it
+  assumed in_flight ≈ 0, false for FaxRx's long-lived requests (~3% in flight at sim
+  end). The universal core is now just the **ledger balance**.
+- USLmodel (6/6) and USLDBmodel (7/7) re-run green after the refactor; adapters updated
+  to map dropped_buffer→rejected, dropped_timeout→dropped_overload.
+
+**FaxRx `verify.py` — 6/6 green.**
+- Tier-1 ×3 reused (ledger / no-overload / non-negative).
+- **Multi-class via several RunSummary** — system + per-class (plain, ocr) summaries,
+  with a partition check (plain+ocr == system for completions and timeouts). First use
+  of the `label` field; contract bent to multi-class without new machinery.
+- Tier-2: **channel metamorphic relation** (adding SIP channels removes PSTN blocking:
+  block_rate(270)=0.39 vs block_rate(2565)=0.00 under high load → Erlang-B is wired) +
+  **structural OCR-vs-plain** (OCR path strictly slower). No USL checks — USL is off by
+  default here; the law is Erlang-B blocking, confirming Tier-2 laws don't transfer.
+- Spec slightly too strong: MODEL.md's "OCR ≥ plain + ocr_time_mean" doesn't hold at p50
+  on the healthy model (19.1 < 20; holds at p95). Encoded the robust strict-slower form
+  and flagged the discrepancy in-code rather than red a healthy model.
+
+**Cross-model trend analysis (the lessons, not just the extension).** Recorded in full in
+`docs/article_candidate_4_vv.md` (NOT duplicated here). One line: across USL→USLDB→FaxRx
+there are two convergences and one non-convergence — the *universal* laws shrink toward
+bare continuity (each model strips a hidden assumption), the *ledger* grows toward a
+complete taxonomy of work-fates (each term names a discipline), and the *laws* don't
+converge at all (the reusable asset is the metamorphic method, not the laws). Extrapolated
+endpoint: `verify.py` becomes a declarative mechanism manifest = the generator↔harness
+contract for the Build agent. PowerSearch is queued as a *test of predictions* (cost on
+topology not components; ledger bending on composition → per-pipeline + edge conservation).
+
+State: 3 of 4 examples done. Files: `harness/run_summary.py`, `harness/invariants.py`,
+`examples/USLmodel/verify.py`, `examples/USLDBmodel/verify.py` modified; new
+`examples/FaxRx/verify.py`; analysis added to `docs/article_candidate_4_vv.md`.
+
+`#harness #verification #faxrx #erlang-b #contract-refactor #multi-class #trend #increment`
+
 `#one-pager #translation #english #docs`
