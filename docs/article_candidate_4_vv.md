@@ -483,6 +483,45 @@ floor stays human-authored and independent).
 - **The law is different again** → reinforces "method transfers, laws don't".
 - **The first formulation of some check won't bite** (it hasn't failed to recur yet).
 
+### Outcome — predictions mostly REFUTED (the useful kind)
+
+PowerSearch is built (ingestion 5/5, queries 5/5, all green). The predictions mostly
+failed, informatively:
+
+- #1 (cost ∝ novelty) — **held, but the premise was wrong.** PowerSearch is NOT a new
+  class: it is two *independent instances* of the cascaded-M/M/c family we already had
+  (ingestion = workers→ES, exactly USLDBmodel's CPU→DB). So it was **cheap** — adapter
+  transferred unchanged, Tier-1 reused, **contract did not bend** (unlike FaxRx). Confirms
+  the core claim: the contract bends only on a genuinely new *class*, not per model.
+- #2 (edge conservation between pipelines) — **refuted, then corrected.** The pipelines
+  are modelled independently (each with its own ES pool; shared Elasticsearch is out of
+  scope by design), so there is no series edge. The *real* coupling, if modelled, is
+  **fan-in** (ingest → ES ← queries), not series (ingest → queries). And the fan-in
+  "conservation" (index-load + search-load = total-ES-load) is **near-tautological** — a
+  demand-summation identity, like the ledger residual; it only catches a gross "hit ES,
+  counted in neither workload" bug. The *useful* thing a shared resource enables is
+  **interference** (a metamorphic relation: more ingestion load → worse query latency),
+  not the conservation. Neither is testable here, because the sharing is not modelled.
+- #3 (different law) — **refuted.** It is cascaded M/M/c (queueing), the known no-degradation
+  family, not a new law like Erlang-B.
+- #4 (first check won't bite) — **did not recur** — but only because the binding points
+  were probed first. I.e. the negative-test-first discipline pre-empted it, consistent
+  with the lesson rather than against it.
+
+**Two refinements this forced.**
+1. *Two composition topologies, not one.* **Series** (A→B): edge conservation `out_A == in_B`.
+   **Fan-in / shared resource** (A→R←B): demand superposition + interference. I had
+   conflated them under "edge conservation".
+2. *Conservation at edges/shared resources trends toward tautology; the value of
+   composition lives in the metamorphic relations, not the conservation identities.* Even
+   the series edge inside one pipeline (workers→ES, CPU→DB) is near-tautological as a
+   balance — the value we actually extracted was the **bottleneck-migration** metamorphic
+   check (undersize stage 1 → it binds; then stage 2 binds). This sharpens trend #3:
+   conservation is the weak universal floor; transferable *value* is the metamorphic method.
+3. *The harness sees only the couplings the model represents.* A deliberately decoupled
+   model (PowerSearch's independent ES pools) exposes no coupling invariant at all —
+   whether composition is testable is a Phase-3 modelling choice, not a given.
+
 ### Boundary
 
 Even the "one universal law" is domain-bound: continuity for *discrete* units = the
