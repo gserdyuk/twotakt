@@ -404,4 +404,31 @@ check on the term "intent verification".
 
 `#harness #verification #invariants #metamorphic #non-composition #article-4 #workflow #docs`
 
+## 2026-06-16 — harness replicated to USLDBmodel (2nd example)
+
+Small increment: `examples/USLDBmodel/verify.py`, 7/7 green.
+
+- **Contract transfers.** The adapter is identical to USLmodel (same `run()` dict
+  keys), and the Tier-1 conservation laws are reused from `harness/` unchanged. Second
+  model held by the same `RunSummary` contract — first confirmation it generalizes.
+- **New check — pool-exhaustion metamorphic relation (the interaction bottleneck).**
+  Shrinking `db_pool_size` must lower throughput where the pool binds. Caught a fresh
+  instance of the operating-point lesson: the pool does **not** change the peak (CPU/USL
+  binds at the knee, where even pool=1 keeps up) — it binds in **overload**. So the
+  toggle is taken at rate=8, not at the peak. Probed: at rate 8, pool=1 → 0.29 vs pool=8
+  → 0.89; peaks are equal (~4.07) across pool ∈ {1, 8, 100}. Negative-tested: a
+  non-binding pool (8 vs 100, both 0.89) correctly does *not* pass — the relation keys on
+  real binding, not noise. This is the USLDBmodel "component ceilings don't compose"
+  finding, now demonstrated by an executable check (article candidate #2 material).
+- **Duplication flagged, not yet extracted.** The USL shape checks (linear /
+  degradation-MR / decline) + the sweep helper are now near-identical in USLmodel and
+  USLDBmodel. Kept self-contained (examples are independent). These two are the only USL
+  models; extracting `harness/shapes.py` is warranted if a third consumer appears — FaxRx
+  is Erlang B, not USL, so it likely won't trigger it.
+
+Next: FaxRx — the real contract stress (plain/ocr classes → multiple `RunSummary` per
+run; Erlang B, not USL). P1 verification-harness: 2 of 4 examples done.
+
+`#harness #verification #usldbmodel #metamorphic #pool #non-composition #increment`
+
 `#one-pager #translation #english #docs`

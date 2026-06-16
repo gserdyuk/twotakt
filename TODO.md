@@ -77,6 +77,11 @@ Entry phrase for README:
       validation criteria from `MODEL.md`) for every example. Turns examples into
       regression-tested exhibits; practical answer to "can generated code be trusted".
       Natural pairing with the future Build agent's "only ships green" rule.
+      - In progress (2026-06-16): `harness/` package (RunSummary contract + Tier-1
+        conservation invariants + per-example check runner). Per-example `verify.py`
+        done for **USLmodel** (6/6) and **USLDBmodel** (7/7), each negative-tested.
+        Scope deliberately at the example level — **no repo-wide runner yet** (examples
+        are independent). Remaining: FaxRx, PowerSearch; then decide on an aggregator.
 
 ### Pilot-facing docs
 
