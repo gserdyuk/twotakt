@@ -481,4 +481,92 @@ State: 3 of 4 examples done. Files: `harness/run_summary.py`, `harness/invariant
 
 `#harness #verification #faxrx #erlang-b #contract-refactor #multi-class #trend #increment`
 
+## 2026-06-17 — harness on PowerSearch (4th example) — predictions tested & refuted
+
+PowerSearch is two submodels (ingestion, queries), each its own `server_sim.py` + `run()`.
+Both done: `model1_ingestion/verify.py` (5/5), `model2_queries/verify.py` (5/5), green.
+All four examples / five models now covered.
+
+- **Contract transferred unchanged.** Same `run()` vocabulary as the USL family; Tier-1
+  reused, no refactor. PowerSearch is NOT a new class — it is two independent instances of
+  the cascaded-M/M/c family (ingestion = workers→ES, like USLDBmodel's CPU→DB). Cheap, like
+  USLDBmodel.
+- **Ingestion Tier-2:** two metamorphic relations for the series cascade (undersize the
+  worker pool → it binds; undersize the ES pool → it binds) — bottleneck migration.
+- **Queries Tier-2:** baseline latency under SLA (healthy verification) + the PowerSearch
+  signature, **survivorship bias** (under overload eff_p95 0.461 > raw_p95 0.412 — surviving
+  requests are a biased sample). Article #3 material.
+
+**Predictions (from §9b) mostly refuted — the useful kind.** This was framed as a test of
+the cross-model trend; recorded in full in `docs/article_candidate_4_vv.md` §9b "Outcome".
+Short version: the contract bends only on a genuinely new *class* (FaxRx), not per model;
+PowerSearch was low-novelty so cheap. The "edge conservation between pipelines" prediction
+was wrong — the pipelines are modelled independently (shared ES out of scope), and the real
+coupling would be **fan-in** (ingest→ES←queries), not series. Two refinements forced:
+(1) two composition topologies — series (edge `out_A==in_B`) vs fan-in (demand superposition
++ interference); (2) conservation at edges/shared resources is near-tautological — the value
+of composition lives in the **metamorphic** relations (interference, bottleneck migration),
+not the conservation identities; (3) the harness sees only couplings the model represents
+(a decoupled model exposes none — a Phase-3 choice).
+
+State: 4 of 4 examples done (5 models, all green). New files:
+`examples/PowerSearch/model1_ingestion/verify.py`, `examples/PowerSearch/model2_queries/verify.py`;
+`docs/article_candidate_4_vv.md` §9b extended with the outcome. Remaining for P1: decide on
+a repo-wide aggregator (or keep example-level).
+
+`#harness #verification #powersearch #cascade #survivorship #predictions-refuted #fan-in #increment`
+
+## 2026-06-17 — methodological note: sequential vs holistic analysis (NOT for the article)
+
+A reflection, not a build step, and deliberately kept out of `article_candidate_4_vv.md`
+(it is about *how* the conclusions were reached, not a result to publish). Prompted by:
+"you analysed the four models in sequence — what if you'd been given all four at once?"
+
+**Core duality.** Sequential analysis produced a **narrative** (trend, evolution,
+convergence, tested predictions). Holistic analysis (all four at once) would produce a
+**taxonomy** (a static product-space). They are duals: the trend is the time-projection
+of the taxonomy; the taxonomy is the time-collapse of the trend.
+
+**What would dissolve (artifacts of sequence):**
+- "Universal shrinks / ledger grows / convergence" → holistically just a fixed set of
+  dimensions; the universal core is their *intersection* (conservation). No drama of erosion.
+- "FaxRx forced the rejected/overload split / a hidden assumption was discovered" →
+  holistically all four already carry both loss categories; the split would be *designed
+  once* from the union, no refactor. (Nuance kept: FaxRx is still special — its admission
+  loss, Erlang-B blocking, is structural/non-optional, so it is correctly the model that
+  makes the split non-ignorable. Holism = design upfront; sequence = patch when it breaks;
+  same contract.)
+- "Predictions" don't exist holistically (nothing to predict from 1..N).
+
+**Robust either way:** the three tiers; "conservation is the weak floor, value is in the
+metamorphic relations"; the two composition topologies (series / fan-in); the contract content.
+
+**New conclusions only holism gives:**
+1. The split is *inherent*, not discovered → design the contract once from the union.
+2. A **portfolio-level gap invisible per-model**: seeing ingestion writes ES and queries
+   read ES simultaneously, the obvious question is "is ES shared?" — the unmodelled
+   shared-Elasticsearch interference is the most interesting untested coupling, and only
+   the cross-model view surfaces it.
+3. A clean product-space — *law* (USL / Erlang-B / M/M/c-cascade) × *topology* (single /
+   series / fan-in-blocking) × *loss type* (congestion / admission / blocking) × *request
+   lifetime* (short→in_flight≈0 / long) × *class count* — which yields the declarative
+   contract directly, by classification rather than extrapolation, and more solidly.
+
+**What only sequence gives (holism would lose):**
+- The "doesn't bite" / negative-test-first lesson — learned through repeated first-try
+  failures (the pain is the teacher).
+- *Tested* predictions are epistemically stronger than mere observation (a refuted
+  prediction is a real test).
+- "Universality is made, not born" — you only know an assumption was hidden by watching
+  it break.
+
+**Synthesis.** Complementary epistemics: sequence gives tested / earned / robust knowledge;
+holism gives complete / economical / structural knowledge. Current conclusions are biased
+toward an "evolution/discovery" framing because of order; holism would re-frame them as
+static structure and would have caught (a) the inherent split and (b) the shared-ES gap
+sooner. Practical pointer it surfaces: the **shared-Elasticsearch interference** is the one
+coupling no model covers.
+
+`#methodology #sequential-vs-holistic #taxonomy #epistemics #not-for-article #reflection`
+
 `#one-pager #translation #english #docs`
