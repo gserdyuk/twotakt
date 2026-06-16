@@ -352,4 +352,56 @@ history. Content is unchanged — same two-input dichotomy
 audit-first framing, and the two-document offer. The still-open gap (no concrete
 proof/result line) carries over to both versions.
 
+## 2026-06-16 — takts↔phases map; verification-harness pilot; article candidate #4
+
+Three things this session: a docs fix, a working harness pilot, and a large
+conceptual thread captured as a new article candidate.
+
+**Takts ↔ phases (docs).** Wrote a `WORKFLOW.md` mapping the README's two takts to
+the skill's 10 phases, then **dropped the separate file** — a third copy of the same
+truth is a third source of drift, and pilots read the README, not a standalone doc.
+Folded it into `README.md` as a "Takts ↔ phases" section (per-phase artifact in/out +
+human-gate table). `TODO.md` item closed as "added as README section".
+
+**Verification-harness pilot (code).** Built the skeleton top-down and confirmed it
+runs green:
+- `harness/` package — `run_summary.py` (the `RunSummary` contract: a balanced ledger
+  `offered + generated == completed + dropped + in_flight`, with `generated` defaulting
+  to 0 so a future generating system fills it in without new logic); `invariants.py`
+  (Tier-1 conservation laws, human-authored, model-independent); `runner.py` (runs all
+  checks for one example, catches failures so one break doesn't hide the rest, prints a
+  summary, returns an exit code). No repo-wide runner yet — examples are independent;
+  we play at the example level.
+- `examples/USLmodel/verify.py` — adapter (native dict → `RunSummary`) + 6 checks,
+  6/6 green: Tier-1 ×3 (conservation / no-drops-without-congestion / non-negative),
+  Tier-2 ×3 (linear regime / metamorphic degradation-toggle / decline). Each check
+  negative-tested (deliberately broken → goes red).
+
+**Two engineering findings worth keeping.** (1) A test "doesn't bite" if it stays green
+on a *broken* model — so a negative test (inject the bug, confirm red) is mandatory, not
+optional. (2) The first Tier-2 discriminator used a magic number (`peak < 0.7 × ceiling`)
+and turned out not to bite anyway — a rise→fall curve does not prove USL, because
+SLA-timeout collapse mimics it even with degradation off (verified). Replaced it with a
+**metamorphic toggle**: `peak(degradation ON) < peak(degradation OFF)` — no magic number,
+only the direction taken from MODEL.md.
+
+**Article candidate #4 (concept).** The long conceptual thread — invariant / intent-
+consistency verification for LLM-generated simulations — lives in full in
+`docs/article_candidate_4_vv.md` (NOT duplicated here, to avoid drift). Highlights worked out
+this session: spec = goal not invariant; three tiers by authorship (generator must not
+author its own trust floor); emergence boundary; mechanism-toggle metamorphic relations
+(with an honest triviality note); a third **scope axis** (component / edge / system) with
+the **non-composition thesis** (component correctness does not compose into system
+correctness — USLDBmodel); the **proportionality razor** (don't fill the cube; automate
+verification, keep validation light; the human audit is the real validator); and
+**structural ↔ functional** models deciding which technique is even available
+(component/unit needs seams; metamorphic needs only boundary + a knob). Flagged as lead
+candidate in `TODO.md`, ahead of audit-first.
+
+**Not done:** tile the harness onto USLDBmodel / FaxRx (the `plain_/ocr_` metrics will
+stress the contract); mark P1 verification-harness progress in `TODO.md`; the prior-art
+check on the term "intent verification".
+
+`#harness #verification #invariants #metamorphic #non-composition #article-4 #workflow #docs`
+
 `#one-pager #translation #english #docs`

@@ -80,10 +80,12 @@ Entry phrase for README:
 
 ### Pilot-facing docs
 
-- [ ] **WORKFLOW.md** (or README section): map the two takts to the 10 phases —
-      artifacts at each step, where the human confirmation gates stand. Bridges the
-      README vocabulary (takts) and the skill vocabulary (phases); a pilot user must
-      see their role without asking.
+- [x] **Takts ↔ phases map** (done 2026-06-15): added as a README section, not a
+      separate file — a separate WORKFLOW.md was written then dropped (third source
+      of the same truth = third source of drift; pilots read README, not a standalone
+      doc). The section maps Takt 1 (Audit) = Phases 1–3, Takt 2 (Sim) = Phases 4–10
+      (Build 4–7 / Sweep 8–9 / Report 10) with a per-phase artifact in/out + human-gate
+      table. Bridges README (takts) ↔ skill (phases).
 - [x] Commit `SIM_REPORT.md` to USLmodel, USLDBmodel, FaxRx (done 2026-06-12)
 - [x] Replace `skills/simpy-protocol/templates/SIM_REPORT.md` with the merged template —
       root copy deleted; skills template is canonical (done 2026-06-12)
@@ -188,6 +190,17 @@ Entry phrase for README:
       admission control)
 - [ ] Article #1 (90-day plan, month 2): MODEL.md / audit-first approach; reuse the
       "specification vs bug" line and the survivorship-bias example (PowerSearch)
+- [ ] **Article candidate #4 — intent/consistency verification for LLM-generated
+      simulations** (strongest; lead candidate). Thesis: with no oracle, trust comes from
+      checking mutual consistency among independent expressions of intent. Three tiers by
+      authorship: Tier 1 human-fixed conservation laws, Tier 2 spec-driven law-shape, Tier 3
+      generator-authored model bounds — generator must *never* author its own trust floor
+      (correlated blind spots). Tier 3 = coverage not guarantee (catches self-contradiction,
+      not silent agreement); recurring Tier-3 promotes to Tier-1 by rule of three. Law-shape
+      assertable only up to the *emergence boundary* (beyond it = asserting the research
+      result, same trap as asserting the spec/goal). Novelty is the LLM-code angle, not
+      invariant/intent testing itself. Evidence = P1 harness + multi-gen experiment (Fig 1) —
+      already on the roadmap. Full reasoning: `docs/article_candidate_4_vv.md`.
 
 ---
 

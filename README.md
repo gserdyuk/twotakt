@@ -37,6 +37,30 @@ MODEL.md → [Build] → [Sweep] → [Report]
 
 If sweep results reveal a model mismatch, you return to the audit. The loop is explicit, not accidental.
 
+### Takts ↔ phases
+
+The two takts above are the user-facing view. Under the hood the skill
+(`skills/simpy-protocol/`) runs 10 phases. The map — and where *you* have to act:
+
+| Takt | Step | Phase | Artifact in / out | Human gate |
+|------|------|-------|-------------------|------------|
+| **1 — Audit** | — | **0. Inputs** | in: `ARCHITECTURE.md` + `REQUIREMENTS.md` (ТЗ) | ✋ you supply both documents |
+| **1 — Audit** | Audit | **1. Architecture audit** (blocking) | out: *draft* `MODEL.md` | ✋ you confirm the draft |
+| **1 — Audit** | Audit | **2. Structural decomposition** | `MODEL.md` (entities, signal/control flow) | — |
+| **1 — Audit** | Audit | **3. Model per entity** | `MODEL.md` (SimPy primitive + math model) | ✋ MODEL.md approved → cross into Takt 2 |
+| **2 — Sim** | Build | **4. Build system model** | out: `server_sim.py` | — |
+| **2 — Sim** | Build | **5. Parameter sources** | `Config` tags: measurement / decision / assumption | — |
+| **2 — Sim** | Build | **6. Test bench** | `sweep.py` (arrivals, range, SLA — from ТЗ) | — |
+| **2 — Sim** | Build | **7. Verification & Validation** | green smoke run (baseline + law-shape) | — |
+| **2 — Sim** | Sweep | **8. Behavioral analysis** | `sweep.png` | ✋ you read the result, say "go" |
+| **2 — Sim** | Sweep | **9. Iterate** | `sweep_results.json` (r ≥ 10 seeds, 95% CI) | ✋ refinement may return to Takt 1 |
+| **2 — Sim** | Report | **10. SIM_REPORT.md** (optional) | out: `SIM_REPORT.md` | ✋ you read the final deliverable |
+
+The phases are many; the moments that need **you** are few — supply both inputs,
+confirm `MODEL.md` (the audit gate, non-negotiable), then say "go" at each Takt-2
+transition (Build → Sweep → Report) and whenever a sweep sends you back to audit.
+Everything between these gates is Claude's to execute.
+
 > **Current state:** Phase 2 runs as a gated Claude session following the 10-phase protocol in `skills/simpy-protocol/`. The three-agent split (Build / Sweep / Report as separate agents) is the target architecture — not yet implemented.
 
 ## Getting started
