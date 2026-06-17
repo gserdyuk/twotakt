@@ -129,8 +129,10 @@ Entry phrase for README:
           generalizes, harness *code* does not. Confirm or refute.
 
         *Article:*
-        - [ ] Fold the Model-#5 independent build→verify result into
-          `docs/article_candidate_4_vv.md` §8 (evidence) during the conclusions step.
+        - [x] Fold the Model-#5 independent build→verify result into
+          `docs/article_candidate_4_vv.md` §8 (evidence) — done 2026-06-17: §8 gained the
+          RadioMonitoring "strongest evidence" line, and §9c "Conclusions from the 5-model
+          build-out" was added (Model-#5 + whole validation-harness conclusions + limits).
 
 ### Pilot-facing docs
 
@@ -155,6 +157,25 @@ Entry phrase for README:
       matches the report's fail-fast/fail-slow narrative)
 - [x] `SIM_REPORT.md` — committed 2026-06-12; stale "no plot" repo-note replaced with a
       Plot section (2026-06-15)
+
+---
+
+## RadioMonitoring (Model #5) — remaining work (NOT finished)
+
+> Built fresh through the full protocol in a separate session; validation harness green
+> (19/19, record + decode × voice/digital). The *model* is only **temporarily** considered
+> done — not final. The *example* is not integrated into the library yet.
+
+- [ ] **Model not final** — temporarily parked. Revisit modelling decisions still in flux
+      (e.g. the classify/decode reading, stage-2 decode provisioning, drone/radar handling).
+- [ ] **Behavioural analysis (Phase 8) not done** — the actual question (POI by category as
+      density grows; what binds first, SDR pool or decode/PC) has not been answered via a
+      proper sweep. Needs `sweep.py` + plot, then the verdict.
+- [ ] **Integrate as a full example** — `README.md` (per template) and `SIM_REPORT.md`;
+      add to the README Layout list and `CLAUDE.md` examples list (both currently name only
+      four). `ARCHITECTURE.md` + `REQUIREMENTS.md` + `MODEL.md` + `verify.py` already exist.
+- [ ] Decide whether the `MODEL.ru.md` duplicate stays (English-everywhere policy) and fix
+      the stale "DRAFT — awaiting approval before any code" status line in `MODEL.md`.
 
 ---
 
