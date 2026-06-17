@@ -10,6 +10,11 @@ Pending a prior-art check on the term (§10).*
 This file is the long form — the reasoning chain in full, so the details are not
 lost. The one-line version lives in `TODO.md` under "Article / pitch material".
 
+*Naming: the thing being studied is the **validation harness** (`harness/` package:
+RunSummary contract + Tier-1 invariants + per-example `verify.py`), as distinct from the
+**sweep harness** (`sweep.py` / `sweep_2d.py`, which explores behaviour). "Harness" alone
+is ambiguous in this repo — prefer "validation harness".*
+
 ---
 
 ## 1. How this came up (provenance)
@@ -408,9 +413,16 @@ Good news — this is already on the roadmap, so the paper is a *writeup*, not e
   (shape + a mechanism-toggle metamorphic relation), all green on the healthy model, and
   each negative-tested (deliberately broken → goes red). That "passes when healthy, fails
   when broken" pair is a miniature Figure 1.
+- **RadioMonitoring (Model #5)** — the strongest evidence we have, and unplanted: a model
+  **built in a separate session** (independent of the verifier) was verified cold here and
+  the validation harness **caught a real modelling bug** — a whole request category (digital)
+  was uncapturable because per-block classification (0.5 s) gated recording and equalled the
+  0.5 s block, so every block ended during classification. Independent build + independent
+  verify + a genuine (not planted) bug + a closed loop (architect fixed → re-verify green) =
+  exactly the thesis enacted. This is the candidate Figure 1 / Section-1 hook.
 - **Multi-generation experiment** (TODO P3): regenerate an example 3–5× from the same
   description, run the invariant checks, show they catch divergences between generations.
-  This is literally Figure 1.
+  Complementary statistical evidence on top of the RadioMonitoring single-case.
 
 Build the harness **with the talk in mind** — i.e., log enough at each run (which
 invariant, at which operating point, pass/fail, observed vs bound) that a regeneration
@@ -529,6 +541,68 @@ ledger; for continuous systems (agro) = mass balance in rates. The discrete ledg
 instantiation of continuity, not continuity itself. And the recurring meta-lesson:
 **negative-test-first** — every model's *first* check was wrong (didn't bite, or bit the
 healthy model), so the real unit of work is the negative test, not the check.
+
+## 9c. Conclusions from the 5-model build-out (validation harness)
+
+After five models (USLmodel, USLDBmodel, FaxRx, PowerSearch ×2, RadioMonitoring) the
+validation harness is mature enough to state findings.
+
+### On Model #5 (the independent build → verify experiment)
+
+- **The thesis held, with the strongest possible evidence.** A model built in a *separate
+  session* (independent of the verifier) was verified cold, and the harness caught a **real,
+  unplanted bug** (an entire request category uncapturable). Independent build ⊥ independent
+  verify, via the file boundary alone. This is the demonstration the paper needs.
+- **The loop closed end-to-end:** verifier flags → architect refines → re-verify green. A
+  literal "return to audit on mismatch" — the methodology works as a cycle, not just a checklist.
+- **Telling apart "my test is wrong" from "the model is wrong" is itself a core skill.** The
+  verifier first had to fix its own under-provisioned baseline (pools, then decode workers)
+  before the model bug was isolable. The builder's *own* smoke test, lacking this discipline,
+  mis-attributed the symptom ("too few SDRs") and missed the category bug entirely — which is
+  precisely why an independent verifier earns its keep.
+- **The harness adapts to model evolution.** The reworked model *grew a stage* (record →
+  decode); verifying only stage 1 would have been green-but-blind, so the harness was extended
+  to the new stage. Coverage must track the model, or "green" lies.
+
+### On the validation harness as a whole
+
+1. **The contract bends only on a new CLASS, not per model.** It bent once (FaxRx → the
+   `rejected`/`dropped_overload` split for blocking) and held the other four (cascades,
+   Erlang-A, two-stage), instantiated per-stage/per-class as needed. Cost ∝ class-novelty.
+   The work-fate ledger is approaching closure.
+2. **Conservation is the weak universal floor; the value is metamorphic.** Where `offered` is
+   the model's own count, the ledger balance is near-tautological (it bites mainly through
+   non-negativity and a small residual). The checks that *transfer and bite* are Tier-2
+   metamorphic toggles — degradation-MR, pool-MR, channel-MR, decode-MR. The **method**
+   transfers; the **laws** (USL ≠ Erlang-B ≠ Erlang-A ≠ M/M/c-cascade) do not.
+3. **"Doesn't bite" is the recurring failure mode; negative-test-first is the real unit of
+   work.** Every model's *first* check was wrong — a magic-number that didn't discriminate, a
+   pool-MR read at the wrong operating point, a strict no-drops on a blocking system, an
+   under-provisioned baseline. The negative test is where the design actually happens.
+4. **A mechanism check is only valid where the mechanism BINDS.** Degradation at the peak,
+   the pool in overload, blocking at high offered-load, decode under load. Every metamorphic
+   relation carries a binding region; test it elsewhere and it is vacuous or wrong.
+5. **"Universal" laws carry hidden assumptions; replication strips them.** No-loss assumed a
+   queueing (not blocking) discipline; completed≈offered assumed short requests. Each new
+   class peels one off; the universal core shrinks toward bare continuity.
+6. **The harness's workflow role is bigger than bug-catching: it makes a human gate
+   automatic.** Executable, biting verification turns "a human eyeballs the smoke test and
+   says OK" into "green = OK". That is what lets Phase 2 (Build → Sweep → Report) run
+   autonomously — with a human **sign-off** retained before sweeps as a *cost/consent*
+   safeguard (green certifies correctness; the human authorizes the spend), and a final human
+   acceptance of the report.
+
+### Honest limitations (what is NOT concluded)
+
+- Five models, all IT / discrete-event, mostly queueing. The **domain boundary** (continuous
+  mass-balance, agent-based economics) is argued, not tested.
+- **Untested by construction:** the `generated` ledger term (no generating system yet), and
+  **fan-in / shared-resource interference** (the PowerSearch shared-ES gap — the most
+  interesting uncovered coupling).
+- Tier-1 conservation leans on non-negativity + residual where `offered` is self-reported;
+  the full ledger identity is only non-vacuous when `offered` is independently derivable.
+- **Not yet one process:** the harness is not in the skill, independence is not codified, and
+  sign-off is not defined (see TODO). Until then, build sessions still verify "by prose".
 
 ## 10. Open questions / to decide later
 
