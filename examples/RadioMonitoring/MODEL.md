@@ -29,7 +29,11 @@ the SDR pool (watch+record) or PC compute.
 | Frequency bank L / U | shared store | = frequency plan (**bounded**) | known plan channels, **2-day** TTL, dedup flags |
 
 **Key:** the recording SDRs do double duty — **watch and record** — so the pool is
-the contended resource for *both* activity detection and recording. The discovery
+the contended resource for *both* activity detection and recording.
+
+> *Implementation note:* an idle SDR sleeps until the next block start instead of
+> busy-hopping every t_retune; revisit latency (bucket A) is preserved. This is an
+> efficiency change only — re-verified green (statistical equivalence, not per-seed). The discovery
 scanner **continuously re-scans** the full range (the plan drifts — the adversary
 changes it, in unknown ways), constantly refreshing the bank. Its load is fixed and
 independent of signal density → it never saturates → **not a bottleneck, but not idle.**

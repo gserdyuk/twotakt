@@ -115,6 +115,10 @@ class Server:
         self.decode_q = simpy.Store(env)             # unbounded store; cap enforced manually
         self.net = simpy.Resource(env, capacity=1)   # gigabit LAN as a serial link
 
+        # Per-band wake events — let idle SDRs sleep instead of busy-hopping
+        # (efficiency only; revisit semantics preserved — see sdr_worker).
+        self.wake = {LOWER: env.event(), UPPER: env.event()}
+
         self.channels: list[Channel] = []
         self._build_plan()
         self.by_band = {
@@ -172,8 +176,29 @@ class Server:
                 if self._counting():
                     self.total[ch.category] += 1
                 self.env.process(self.block_closer(ch))
+                self._signal_band(ch.band)             # wake any sleeping SDRs
             else:
                 ch.active_until = max(ch.active_until, now + dur)
+
+    # ---- wake / serviceability helpers (efficiency for idle SDRs) ----------
+
+    def _signal_band(self, band: str):
+        ev = self.wake[band]
+        if not ev.triggered:
+            ev.succeed()
+        self.wake[band] = self.env.event()
+
+    def _serviceable(self, ch: Channel) -> bool:
+        if not ch.active or ch.captured or ch.handling:
+            return False
+        if ch.category == RADAR:
+            return False
+        if ch.category == DRONE:
+            return not ch.snippet_done
+        return True
+
+    def _band_has_serviceable(self, band: str) -> bool:
+        return any(self._serviceable(c) for c in self.by_band[band])
 
     def block_closer(self, ch: Channel):
         while True:
@@ -195,43 +220,54 @@ class Server:
     # ---- Stage ①: SDR worker (hop + record) --------------------------------
 
     def sdr_worker(self, band: str, start_idx: int):
+        # Hop the bank one channel per t_retune (revisit latency = bucket A). When a
+        # full cycle finds nothing serviceable, SLEEP until the next block start
+        # instead of busy-hopping — observationally equivalent (an empty hop detects
+        # nothing) but ~100x fewer events at light load.
         cfg = self.cfg
         chans = self.by_band[band]
         n = len(chans)
         i = start_idx
         while True:
-            ch = chans[i % n]
-            i += 1
-            yield self.env.timeout(cfg.t_retune)
-            if not ch.active or ch.captured or ch.handling:
-                continue
-            cat = ch.category
-            if cat == RADAR:
-                continue
-            if cat == DRONE:
-                if ch.snippet_done:
+            serviced = False
+            for _ in range(n):
+                ch = chans[i % n]
+                i += 1
+                yield self.env.timeout(cfg.t_retune)
+                if not ch.active or ch.captured or ch.handling:
                     continue
+                cat = ch.category
+                if cat == RADAR:
+                    continue
+                if cat == DRONE:
+                    if ch.snippet_done:
+                        continue
+                    ch.handling = True
+                    self.recording[band] += 1
+                    yield self.env.timeout(cfg.t_snip)
+                    self.recording[band] -= 1
+                    ch.snippet_done = True
+                    ch.handling = False
+                    serviced = True
+                    break
+                # target: record immediately; classify concurrently
                 ch.handling = True
+                ch.captured = True
+                on_air = ch.block_start
+                self.env.process(self.classify())
+                rec_dur = cfg.rec_voice if cat == VOICE else cfg.rec_digital
                 self.recording[band] += 1
-                yield self.env.timeout(cfg.t_snip)
+                yield self.env.timeout(rec_dur)
                 self.recording[band] -= 1
-                ch.snippet_done = True
                 ch.handling = False
-                continue
-            # target: record immediately; classify concurrently
-            ch.handling = True
-            ch.captured = True
-            on_air = ch.block_start
-            self.env.process(self.classify())
-            rec_dur = cfg.rec_voice if cat == VOICE else cfg.rec_digital
-            self.recording[band] += 1
-            yield self.env.timeout(rec_dur)
-            self.recording[band] -= 1
-            ch.handling = False
-            if self._counting():
-                self.bucket[cat]["ok"] += 1
-                self.latencies[cat].append(self.env.now - on_air)
-            self._enqueue_decode(cat, on_air)
+                if self._counting():
+                    self.bucket[cat]["ok"] += 1
+                    self.latencies[cat].append(self.env.now - on_air)
+                self._enqueue_decode(cat, on_air)
+                serviced = True
+                break
+            if not serviced and not self._band_has_serviceable(band):
+                yield self.wake[band]                  # nothing to do — sleep until activity
 
     def classify(self):
         with self.pc.request() as req:
