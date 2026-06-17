@@ -56,3 +56,7 @@ for sweep results; or audit a performance study for common measurement mistakes.
 - Plots must show throughput, success rate, and latency together — the number of panels is determined by the question, not by a fixed rule.
 - Sync `MODEL.md` after every code change that touches `Config`, `Server.__init__`,
   or `_serve`.
+- **ASCII only in code.** Use plain ASCII in Python source — especially in any
+  string printed to stdout. The Windows console is cp1251 and crashes
+  (`UnicodeEncodeError`) on non-ASCII like `①②→`. Markdown docs (`.md`) may use
+  Unicode; console output and code must not.
