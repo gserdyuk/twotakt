@@ -84,8 +84,53 @@ Entry phrase for README:
         forced a contract refactor: `dropped` → `rejected` (admission, by design) +
         `dropped_overload` (congestion); backward compatible. Cross-model trend + the
         PowerSearch prediction test recorded in `docs/article_candidate_4_vv.md` §9b.
-      - Still open: (a) decide on a repo-wide aggregator vs keeping example-level;
-        (b) wire into the future Build agent's "ships only green" gate.
+      - **RadioMonitoring (Model #5)** added — built fresh through the full protocol in a
+        *separate* session (independence), verified cold here. Independent verifier caught a
+        real bug (digital uncapturable: classification gated recording, t_class = block
+        length); architect reworked (concurrent classify + a stage-2 decode pipeline);
+        re-verify 19/19 green (record + decode × voice/digital). Loop closed end-to-end.
+        See `dev-log.md` 2026-06-17.
+      - **Still open — V&V / process (consolidated):**
+
+        *Make it ONE process (the gap: build sessions verify "by prose, as they like";
+        the harness is a separate practice not in the skill):*
+        - [ ] Fold the harness into the skill as the **executable form of Phase 7**:
+          `templates/verify.py` + the shared lib (`run_summary.py`, `invariants.py`)
+          referenced from `SKILL.md`. Today Phase 7 is prose and there is no verify
+          template, so nobody following the skill produces a `verify.py`.
+        - [ ] **Codify independence** — Phase 7 run by a *separate* session/agent from the
+          builder (the §4 correlated-blind-spots principle); the file boundary is the
+          hand-off. Currently manual.
+        - [ ] **Define sign-off = three human gates**, and write it into README WORKFLOW +
+          skill: ① approve `MODEL.md` (intent); ② **sign off the verified model before
+          sweeps** (consent / cost safeguard — gated on a green harness; green certifies
+          *correctness* automatically, the human authorizes the *spend*); ③ accept
+          `SIM_REPORT` (findings). Clarify the README Build→Sweep gate accordingly;
+          note the fully-autonomous "green-auto, no human in the middle" as a future
+          relaxation.
+
+        *Harness mechanics:*
+        - [ ] Repo-wide aggregator (`make verify`) vs keep example-level.
+        - [ ] Wire into the future Build agent's "ships only green" gate.
+        - [ ] Loss taxonomy: the 2-way split (`rejected`/`dropped_overload`) is coarser
+          than some models' native buckets (RadioMonitoring has 6: A–E + G). Contract holds
+          for Tier-1 but loses diagnostic resolution — decide whether to enrich.
+        - [ ] Shared Tier-2 shape helpers — rule-of-three did **not** trigger (only USL×2;
+          FaxRx/PowerSearch/RadioMonitoring use other laws). Decide: extract for the two USL
+          models, or leave the small duplication.
+
+        *Coverage gaps (untested claims surfaced by the holistic analysis):*
+        - [ ] `generated` ledger term is built but never exercised — a generating system
+          (keep-alive / heartbeat) would test it (and the self-amplification → emergence
+          boundary).
+        - [ ] Shared-resource / **fan-in interference** never modelled or tested (the
+          PowerSearch shared-Elasticsearch gap) — the most interesting untested coupling.
+        - [ ] Domain boundary: continuous / non-DES model (mass-balance) — principle
+          generalizes, harness *code* does not. Confirm or refute.
+
+        *Article:*
+        - [ ] Fold the Model-#5 independent build→verify result into
+          `docs/article_candidate_4_vv.md` §8 (evidence) during the conclusions step.
 
 ### Pilot-facing docs
 

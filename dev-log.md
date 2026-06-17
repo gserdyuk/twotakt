@@ -569,4 +569,51 @@ coupling no model covers.
 
 `#methodology #sequential-vs-holistic #taxonomy #epistemics #not-for-article #reflection`
 
+## 2026-06-17 — Model #5 RadioMonitoring: independent build → verify loop
+
+A bonus 5th model (radio-spectrum surveillance), and the first built *fresh* through the
+full protocol rather than retrofitted. Deliberately split across sessions for
+**independence** (the §4 principle): a separate session ran the audit + build (Requirements
+→ Architecture → MODEL.md → server_sim.py); this session verified it cold, having authored
+none of it. The contract is the file boundary — verifier reads MODEL.md + code only.
+
+**Round 1 — verifier caught a real bug.** Two failures, separated:
+- *My baseline config was wrong* (mine to fix): baseline made PC generous but left pools at
+  the default 2/4. With an 8 s voice record, the lower pool offers ~2.67 Erlang to 2 SDRs —
+  saturated at *any* load → voice POI 67%, not ~100%. Fixed: generous pools in the baseline.
+- *Model bug* (escalated to the architect): **digital POI ≈ 0.6% even with infinite
+  resources at λ×0.1**, contradicting MODEL.md ("digital POI high but < voice"). Root cause
+  localized: `t_class=0.5 s` (classification gated recording) equalled the digital block
+  duration (0.5 s) → the block ended *during* classification → bucket B. The builder had
+  even flagged the "classify gates record" reading in a code comment.
+
+**Architect reworked the model** (interpretation (a) = bug): classification now runs
+**concurrently** and does not gate recording (`t_class=0.2`); and a **stage 2 decode
+pipeline** was added — a bounded queue + decode workers, with a new loss bucket **G**
+(queue overflow). So the model grew from one stage to a record→decode series.
+
+**Round 2 — re-verify, harness extended, all green.**
+- Digital record stage now healthy (concurrent classify).
+- The model had grown a stage my harness didn't cover — verifying only stage 1 would be
+  green-but-blind on a broken decode. **Extended** verify.py to a second per-category
+  RunSummary for the decode stage (offered=intercepted, completed=decoded, overload=G,
+  in_flight=queue backlog). Result: **19/19 green** (record + decode × voice/digital + Tier-2).
+- Balanced-provisioning lesson (user's note): a healthy baseline needs *every* stage
+  generous AND matched — decode workers scaled to the receiver count (you cannot record
+  faster than you decode; an 8.5 s voice decode on 2 workers saturates at any load). My two
+  wrong baselines (PC-only, then pools-but-not-decode) = two "first formulation wrong" hits.
+
+**What this established.** The methodology loop closed end-to-end: independent verifier
+flagged a real bug → architect refined → re-verify green (a literal "return to audit on
+mismatch"). The contract held a 5th time, and for the first time across a **real async
+series edge** (record→decode handoff with its own queue/drops — less tautological than
+PowerSearch's within-request cascades; `no_overload(G)` + residual-small genuinely bite).
+Strong §8 evidence (independent build, independent verify, real bug caught) — to fold into
+the article during the "conclusions" step, not yet.
+
+State: `examples/RadioMonitoring/` (REQUIREMENTS, ARCHITECTURE, MODEL, MODEL.ru, server_sim,
+verify) — verify.py 19/19 green; whole folder untracked.
+
+`#harness #verification #radiomonitoring #model-5 #independent-verify #two-stage #audit-loop #increment`
+
 `#one-pager #translation #english #docs`
