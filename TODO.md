@@ -92,22 +92,25 @@ Entry phrase for README:
         See `dev-log.md` 2026-06-17.
       - **Still open — V&V / process (consolidated):**
 
-        *Make it ONE process (the gap: build sessions verify "by prose, as they like";
-        the harness is a separate practice not in the skill):*
-        - [ ] Fold the harness into the skill as the **executable form of Phase 7**:
-          `templates/verify.py` + the shared lib (`run_summary.py`, `invariants.py`)
-          referenced from `SKILL.md`. Today Phase 7 is prose and there is no verify
-          template, so nobody following the skill produces a `verify.py`.
-        - [ ] **Codify independence** — Phase 7 run by a *separate* session/agent from the
-          builder (the §4 correlated-blind-spots principle); the file boundary is the
-          hand-off. Currently manual.
-        - [ ] **Define sign-off = three human gates**, and write it into README WORKFLOW +
-          skill: ① approve `MODEL.md` (intent); ② **sign off the verified model before
-          sweeps** (consent / cost safeguard — gated on a green harness; green certifies
-          *correctness* automatically, the human authorizes the *spend*); ③ accept
-          `SIM_REPORT` (findings). Clarify the README Build→Sweep gate accordingly;
-          note the fully-autonomous "green-auto, no human in the middle" as a future
-          relaxation.
+        *Make it ONE process (done 2026-06-17 — harness folded into the skill):*
+        - [x] Harness is the **executable form of Phase 7** — `SKILL.md` Phase 7 rewritten
+          to prescribe an executable `verify.py` (Tier-1 conservation reused + Tier-2
+          per-model metamorphic toggles, negative-tested); `templates/verify.py` added and
+          registered; a "Validation harness" section points to `harness/` + `harness/README.md`.
+        - [x] **Independence codified** — Phase 7 now says "prefer running V&V in a separate
+          session/agent from the builder" (file boundary = hand-off).
+        - [x] **Sign-off defined in the skill** — Phase 7→8 gate = green certifies correctness
+          automatically ("ships only green") + human sign-off before sweeps (consent/cost).
+          ① MODEL.md approval is the Phase 1 gate; ③ report acceptance is Phase 10.
+        - [x] Sign-off / gate wording mirrored into the **README WORKFLOW** takts↔phases table
+          (done 2026-06-17): Phase 7 gate = green-auto correctness + human sign-off before
+          sweeps; "moments that need you" updated; autonomous green-auto noted as a future
+          relaxation. README and skill now say the same thing.
+        - [x] **Shared-lib location — resolved: keep repo-root `harness/`.** twotakt IS the
+          workspace (users model their own system inside `examples/`), so there is no cross-repo
+          need. Vendoring the lib is only relevant if/when the skill is packaged for global
+          install — folded into the existing "rebuild the `.skill` package" item (P2), not a
+          live decision.
 
         *Harness mechanics:*
         - [ ] Repo-wide aggregator (`make verify`) vs keep example-level.

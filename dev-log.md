@@ -616,4 +616,40 @@ verify) — verify.py 19/19 green; whole folder untracked.
 
 `#harness #verification #radiomonitoring #model-5 #independent-verify #two-stage #audit-loop #increment`
 
+## 2026-06-17 — validation harness folded into the skill (process made coherent)
+
+Closed the gap flagged earlier: build sessions were verifying "by prose", because the
+harness was a separate practice the skill knew nothing about. Now it is prescribed.
+
+- **Naming:** the thing is the **validation harness** (`harness/` package), distinct from
+  the **sweep harness** (`sweep.py`, which explores behaviour). "Harness" alone is ambiguous
+  in this repo — use "validation harness".
+- **`harness/README.md`** — user-facing scope: what a green run does and does NOT mean.
+  Anchor line: *green ⇒ the model conserves work and its mechanisms behave directionally as
+  the spec says, at the tested points; green does NOT ⇒ the model is right about the world
+  (that's the audit) or meets its SLA (that's the sweep).*
+- **`SKILL.md` Phase 7 rewritten** to prescribe the executable harness instead of prose:
+  Verification → Tier-1 conservation reused from `harness/invariants.py` (the fixed,
+  independent trust floor — not rewritten per project); Validation → Tier-2 per-model (curve
+  shape + metamorphic toggles, direction from MODEL.md, at the binding point); negative-test
+  every check; prefer running V&V in a *separate session/agent* (correlated blind spots);
+  proportionality razor. `templates/verify.py` added + registered; a "Validation harness"
+  section points at `harness/` + README.
+- **Sign-off / gate defined and mirrored** in both SKILL.md and the README WORKFLOW table.
+  Phase 7 → 8 gate = green certifies *correctness* automatically ("ships only green", the
+  executable check replaces a human eyeballing the smoke test) **+** a human **sign-off**
+  before sweeps (consent/cost — green means safe to proceed, the human authorizes the spend).
+  Autonomous "green-auto, no human in the middle" noted as a future relaxation. README and
+  skill now say the same thing.
+- **Shared-lib location resolved: keep repo-root `harness/`.** twotakt IS the workspace
+  (users model their own system inside `examples/`), so there is no cross-repo need; vendoring
+  only matters if the skill is ever packaged for global install (folded into the existing
+  "rebuild the `.skill` package" P2 item).
+
+Net: "work on the model → verify (executable harness) → sign-off → sweeps → accept report"
+is now ONE process with explicit gates, and the skill prescribes it. No code changed — the
+`harness/` package and the examples' imports are untouched; edits are docs + one template.
+
+`#harness #validation-harness #skill #phase-7 #sign-off #process #docs`
+
 `#one-pager #translation #english #docs`

@@ -51,15 +51,21 @@ The two takts above are the user-facing view. Under the hood the skill
 | **2 — Sim** | Build | **4. Build system model** | out: `server_sim.py` | — |
 | **2 — Sim** | Build | **5. Parameter sources** | `Config` tags: measurement / decision / assumption | — |
 | **2 — Sim** | Build | **6. Test bench** | `sweep.py` (arrivals, range, SLA — from ТЗ) | — |
-| **2 — Sim** | Build | **7. Verification & Validation** | green smoke run (baseline + law-shape) | — |
+| **2 — Sim** | Build | **7. Verification & Validation** | `verify.py` green (conservation + law-shape / metamorphic toggles) | ✋ green = correctness (**auto**); **you sign off** before sweeps |
 | **2 — Sim** | Sweep | **8. Behavioral analysis** | `sweep.png` | ✋ you read the result, say "go" |
 | **2 — Sim** | Sweep | **9. Iterate** | `sweep_results.json` (r ≥ 10 seeds, 95% CI) | ✋ refinement may return to Takt 1 |
 | **2 — Sim** | Report | **10. SIM_REPORT.md** (optional) | out: `SIM_REPORT.md` | ✋ you read the final deliverable |
 
 The phases are many; the moments that need **you** are few — supply both inputs,
-confirm `MODEL.md` (the audit gate, non-negotiable), then say "go" at each Takt-2
-transition (Build → Sweep → Report) and whenever a sweep sends you back to audit.
-Everything between these gates is Claude's to execute.
+confirm `MODEL.md` (the audit gate, non-negotiable), **sign off the verified model
+before sweeps** (the validation harness certifies *correctness* automatically — green =
+"executable model OK"; you authorize the *spend*, since sweeps can be expensive), then
+say "go" at Sweep → Report and whenever a sweep sends you back to audit. Everything
+between these gates is Claude's to execute.
+
+*(The sign-off before sweeps is a cost/consent safeguard, not a correctness check — that
+is what green already is. In a fully autonomous Phase 2, green flows into the sweep
+automatically and this human step drops out.)*
 
 > **Current state:** Phase 2 runs as a gated Claude session following the 10-phase protocol in `skills/simpy-protocol/`. The three-agent split (Build / Sweep / Report as separate agents) is the target architecture — not yet implemented.
 
