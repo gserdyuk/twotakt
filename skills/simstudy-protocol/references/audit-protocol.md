@@ -3,12 +3,12 @@
 The audit produces a draft `MODEL.md` — the compiled form of the
 system's architecture and requirements, structured for simulation.
 
-## Why ТЗ and Architecture are required
+## Why Requirements and Architecture are required
 
 The questions Q1–Q8 below need answers. The expected source of those
 answers is two documents the user brings:
 
-**ТЗ (technical requirements)** — answers the *why*: performance targets,
+**Requirements** — answers the *why*: performance targets,
 SLA thresholds, capacity goals, operational constraints. Primary source
 for Q4 (workload), Q8 (success criteria).
 
@@ -30,7 +30,7 @@ Only ask a question from scratch if the answer is genuinely absent.
 **If Architecture does not exist:** do not proceed without it. Two options:
 - Stop and ask the user to produce an architecture document first.
 - Offer to draft a minimal architecture together in this session based
-  on the ТЗ — then treat that draft as the Architecture input and
+  on the Requirements — then treat that draft as the Architecture input and
   document it explicitly before continuing.
 
 In either case: the architecture must be explicit and confirmed before

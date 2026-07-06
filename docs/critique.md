@@ -123,7 +123,7 @@ They use Cursor, VS Code with Copilot, Claude Code, ChatGPT in a
 browser, terminal Claude. The skill mechanism does not port.
 
 The methodology itself is portable as text — anyone can read
-`skills/simstudy-protocol/references/methodology.md` — but the *enforcement* (gates, automatic critique,
+`skills/simstudy-protocol/SKILL.md` — but the *enforcement* (gates, automatic critique,
 template generation) is Cowork-bound. Users in other environments
 get a much weaker product.
 

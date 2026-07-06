@@ -128,7 +128,7 @@ on the project stage — all of the following are valid:
 | Source | When |
 |---|---|
 | Real system measurement | `modeling-jain`: D_k = U_k / X from monitoring |
-| Design specification | ТЗ or architecture: "DB query ≤ 50ms", "CPU per request = 10ms" |
+| Design specification | Requirements or architecture: "DB query ≤ 50ms", "CPU per request = 10ms" |
 | Engineering estimate | System does not exist yet — estimate by analogy |
 | Analytical derivation | From physics: bytes / bandwidth, disk seek + transfer formulas |
 | Component benchmark | Synthetic benchmark of an isolated component |

@@ -28,7 +28,7 @@ arises, read the corresponding `SKILL.md` and follow the protocol it defines.
 
 | Skill | Path | When to use |
 |-------|------|-------------|
-| `simstudy-protocol` | `skills/simstudy-protocol/SKILL.md` | Building or extending a SimPy simulation; modeling throughput, latency, queues, bottlenecks under load. **Always start here.** Requires REQUIREMENTS (ТЗ — tech spec) + Architecture as inputs. |
+| `simstudy-protocol` | `skills/simstudy-protocol/SKILL.md` | Building or extending a SimPy simulation; modeling throughput, latency, queues, bottlenecks under load. **Always start here.** Requires REQUIREMENTS + Architecture as inputs. |
 | `queueing-lazowska` | `skills/queueing-lazowska/SKILL.md` | Analytical answers without simulation: capacity planning, utilization, bottleneck device, "how many servers?" |
 | `modeling-jain` | `skills/modeling-jain/SKILL.md` | Statistical rigour for simulation inputs and outputs. |
 
@@ -73,6 +73,10 @@ for sweep results; or audit a performance study for common measurement mistakes.
   file layout is the convention, not the folder name). An in-progress example lives in
   `examples/` but stays out of `README.md` and the one-pagers until it is ready — a
   folder present but unlisted is intentional, not a documentation gap.
+- **No "ТЗ" in English.** In English docs and code, the input document is **Requirements**
+  (file `REQUIREMENTS.md`) — never the Russism "ТЗ". Do not use "Spec" for it either: that
+  word is reserved for `MODEL.md` (the model spec). Russian-language docs (e.g. the RU
+  one-pager) may keep "ТЗ".
 
 ## Working rules
 

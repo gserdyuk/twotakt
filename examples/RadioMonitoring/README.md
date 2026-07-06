@@ -7,7 +7,7 @@ and how must it be sized to hit POI ≥ 50 %?**
 
 ## Input
 
-- **ТЗ:** [REQUIREMENTS.md](REQUIREMENTS.md) — scenario, workload (frequency plan:
+- **Requirements:** [REQUIREMENTS.md](REQUIREMENTS.md) — scenario, workload (frequency plan:
   64 voice + 10 digital channels, drones/radar as interference), POI ≥ 50 % target.
 - **Architecture:** [ARCHITECTURE.md](ARCHITECTURE.md) — two scan roles + recording
   SDR pools (2 lower / 4 upper), industrial PC, and the decode stage (queue 100 000

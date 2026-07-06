@@ -233,19 +233,34 @@ Entry phrase for README:
 
 - [x] Align naming with examples' `REQUIREMENTS.md` (done 2026-06-15 — PowerSearch got a
       `REQUIREMENTS.md`; all four examples now carry `ARCHITECTURE.md` + `REQUIREMENTS.md`).
-      ТЗ glossed for non-Slavic readers (done 2026-07): CLAUDE.md now says
-      "REQUIREMENTS (ТЗ — tech spec)"; SKILL.md already defines it at first use.
+      "ТЗ" eliminated from English docs (done 2026-07): the Russism was replaced by
+      **Requirements** repo-wide (SKILL.md, audit-protocol, examples, article, CLAUDE.md);
+      "Spec" deliberately NOT used for it (reserved for MODEL.md). RU one-pager keeps ТЗ.
+      Rule recorded in CLAUDE.md Key constraints.
 - [x] `.gitignore`: `__pycache__/`, `*.pyc` — already present in `.gitignore`
 - [ ] Pin dependency versions in every `requirements.txt` (deferred — low real risk; no venv enforcement planned)
 - [x] Single source for methodology (done 2026-07): `examples/METHODOLOGY.md` was a
       byte-identical duplicate (same SHA256) — deleted; the skill copy
       `skills/simstudy-protocol/references/methodology.md` is canonical; docs
       (architecture, concept, architecture-llm-layers, critique) repointed to it.
-- [ ] **methodology.md is stale content** (separate from the dedup above): it is the old
-      12-step "server degradation" version — predates the current 10-phase SKILL.md (no
-      audit gate as Phase 1, no MODEL.md/executable_model/simulation vocabulary, no V&V
-      harness). Rewrite it as the long-form companion to the current protocol, or retire it
-      and let SKILL.md stand alone. Docs still call it "the 12-step protocol".
+- [x] **methodology.md resolved (done 2026-07): retired (Option A).** The stale 12-step doc
+      was deleted, not rewritten — the reason: we had tried to run "spec is primary" one level
+      up (a prose methodology as the source, the skill as its compilation), and it inverted and
+      rotted (the skill evolved, the doc didn't). Lesson: spec-first holds for *the model* (a
+      per-project artifact a human re-approves), not for *the method* (no one re-approves it
+      each run). SKILL.md is now the single source of the protocol.
+- [ ] **RATIONALE for all three skills.** `skills/simstudy-protocol/RATIONALE.md` created as
+      the human "why" companion to SKILL.md (phase-by-phase reasons/failure-modes) — DRAFT,
+      user is adding their own reasons iteratively. Then mirror the pattern (shorter, tailored)
+      to `queueing-lazowska` and `modeling-jain`, whose "why" is thinner (they wrap external
+      published methods: when-to-use, assumptions, where-it-breaks — not failure-per-gate).
+- [ ] **Refresh the architecture/concept docs** — `docs/architecture.md`, `docs/concept.md`,
+      `docs/architecture-llm-layers.md`, `docs/critique.md` are stale: they name the old skill
+      `skills/perf-simulation/` and the deleted `perf-simulation.skill`, call it "the 12-step
+      protocol", and describe a clean Layer 1 (methodology) / Layer 2 (skill) split that has
+      since collapsed — SKILL.md became the source of truth while methodology.md rotted. Bring
+      the layer model and the names in line with reality (couple this with the methodology.md
+      role decision above: A retire / B source-spec / C rationale-companion).
 - [x] Language policy = English everywhere: translate `PowerSearch/SIM_REPORT.md`
       (done 2026-06-15 — translated RU → EN; all four reports now in English)
 - [x] Re-encode `PowerSearch/Whiteboarding scenario-plus-asr.txt` to UTF-8; CRLF → LF

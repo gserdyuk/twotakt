@@ -736,3 +736,33 @@ audit gate as Phase 1, no MODEL.md/executable_model/simulation vocabulary, no V&
 dedup removed a *copy*, not the *staleness*; a rewrite-or-retire decision is queued.
 
 `#hygiene #encoding #glossary #one-pager #methodology #dedup #stale #docs`
+
+## 2026-07-06 — methodology retired; RATIONALE started; "ТЗ" eliminated
+
+Three linked moves.
+
+- **methodology.md retired (not rewritten).** The surviving `references/methodology.md` was
+  the old 12-step "server degradation" doc, far behind the 10-phase SKILL.md. We deleted it.
+  The *reason it rotted* is the interesting part: we had (implicitly) tried to run the
+  project's own "spec is primary" principle one level up — a prose **methodology** as the
+  source spec, the **skill** as its compilation. That inverted: the skill evolved with every
+  project, the methodology doc didn't, and it became the stale one. **Lesson:** spec-first
+  holds for *the model* (a per-project artifact a human re-approves each run) but **not** for
+  *the method itself* (nobody re-approves the method each run, so the "source" gets ignored
+  and the "compiled" skill becomes the truth). SKILL.md is now the single source of the
+  protocol; docs repointed to it.
+
+- **RATIONALE.md started** — `skills/simstudy-protocol/RATIONALE.md`, the human "why"
+  companion to SKILL.md. Not a parallel protocol (that's what rotted); it explains, phase by
+  phase, *what failure each gate prevents* and the judgement behind it — content that does not
+  belong in terse agent instructions. Co-located with SKILL.md (location answers "which skill",
+  and reduces drift). DRAFT; the author is adding their own reasons iteratively. Planned:
+  mirror to the other two skills (shorter — they wrap external methods).
+
+- **"ТЗ" eliminated from English** — the Russism was replaced by **Requirements** repo-wide
+  (SKILL.md, audit-protocol, examples, article, CLAUDE.md). Deliberately **not** "Spec":
+  that word is reserved for `MODEL.md` (the model spec), so "Spec" for the requirements doc
+  would re-introduce a conflation. This reverses the earlier same-day "gloss ТЗ" fix — glossing
+  → eliminating. RU one-pager keeps ТЗ (native there). Rule recorded in CLAUDE.md.
+
+`#methodology #retire #rationale #skill #vocabulary #requirements #anti-russism #docs`

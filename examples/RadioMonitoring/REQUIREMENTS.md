@@ -1,6 +1,6 @@
-# RadioMonitoring — Requirements (ТЗ)
+# RadioMonitoring — Requirements
 
-> Status: **ТЗ COMPLETE (step 1 closed).** Workload, timings, SLA, loss-accounting,
+> Status: **Requirements COMPLETE (step 1 closed).** Workload, timings, SLA, loss-accounting,
 > and the strong/weak split (5 %/95 %) are agreed. Architecture (step 2) —
 > receiver/channel/worker counts, record & re-detection policy, resource binding —
 > is the next step, out of scope of this doc.
@@ -92,7 +92,7 @@ weak recording). Sweep n = 2…4 as sensitivity.
 
 | Spec | Value | Model impact |
 |---|---|---|
-| Tuning range | 100 kHz – **6 GHz** | scan band fixed to 100 MHz–6 GHz = **5.9 GHz** (ТЗ ceiling set to match) |
+| Tuning range | 100 kHz – **6 GHz** | scan band fixed to 100 MHz–6 GHz = **5.9 GHz** (Requirements ceiling set to match) |
 | Instantaneous bandwidth | **50 MHz** | scan step / record window |
 | IQ rate | 50 MSPS, 14-bit | ≈ 200 MB/s per channel over USB 3.0 |
 | Band Scan rate | **14 GHz/s** | T_sweep = 5.9/14 ≈ 0.42 s → rounded to **0.5 s** |
@@ -168,7 +168,7 @@ held by continuous emitters.
 > **t_class is a duration, not a resource binding.** Whether those 500 ms are
 > spent on the receiver (parked on frequency, blind) or on a separate compute
 > unit working from already-recorded IQ is an **architecture decision (step 2)**.
-> Different architectures → different POI; the model will compare them. ТЗ fixes
+> Different architectures → different POI; the model will compare them. The requirements fix
 > only the duration.
 
 ## SLA / targets
@@ -231,7 +231,7 @@ intercepted signals, per category — reported, no pass/fail threshold.
 
 > Note: re-detection policy, record policy, and which resource each phase binds
 > are **model/architecture decisions (step 2 + Phase 1 audit)** — out of scope
-> for this ТЗ. The ТЗ fixes only *what we measure*, not *how it is computed*.
+> for these requirements. The requirements fix only *what we measure*, not *how it is computed*.
 
 ## Questions this model must answer
 

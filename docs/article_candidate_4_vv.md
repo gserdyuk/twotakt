@@ -37,7 +37,7 @@ scope creep — and noticing the structure is what produced the article idea.
 ## 2. The correction that made the idea sharp
 
 First wrong turn (recorded so we don't repeat it): "write the asserts from the spec's
-V&V criteria." **Wrong** — the spec / ТЗ is the **goal**, not an invariant. We build
+V&V criteria." **Wrong** — the spec / Requirements is the **goal**, not an invariant. We build
 the model precisely to test whether the goal is *achievable* in this architecture.
 Asserting the goal asserts the very thing under investigation: a correct model that
 shows "this architecture fails the SLA at 10 rps" is a **correct result**, yet a
@@ -52,7 +52,7 @@ This is the same trap, restated, that appears later with emergent systems (§5).
 
 | Layer | Question | Assertable? |
 |-------|----------|-------------|
-| **Requirements / ТЗ** (goal) | does the architecture meet the SLA? | **No** — this is the output (SIM_REPORT verdict) |
+| **Requirements** (goal) | does the architecture meet the SLA? | **No** — this is the output (SIM_REPORT verdict) |
 | **Verification** ("building the model right") | does the code conserve work? | **Yes** — conservation laws |
 | **Validation** ("building the right model") | does the curve have the law's shape? | **Yes** — law-shape, with caveats |
 

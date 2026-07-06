@@ -65,7 +65,7 @@ encodes the intended model.
 
 Three layers today:
 
-1. **Methodology** (`skills/simstudy-protocol/references/methodology.md`) — the 12-step protocol
+1. **Methodology** (`skills/simstudy-protocol/SKILL.md`) — the 12-step protocol
    that produces every example. Audit-first: no code is written
    before the model specification (`MODEL.md`) is approved.
 2. **Skill** (`skills/perf-simulation/`) — the methodology packaged as

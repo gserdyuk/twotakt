@@ -58,7 +58,7 @@ answered analytically.
 
 This skill requires two inputs before the protocol begins:
 
-**1. ТЗ — technical requirements** (what the system must do)
+**1. Requirements** (what the system must do)
 Performance targets (throughput, latency SLAs), capacity goals, constraints,
 operational context. This is the *why* — it explains motivation and defines
 success criteria for the simulation.
@@ -67,7 +67,7 @@ success criteria for the simulation.
 Components, resources, topology, service interactions. This is the *what* —
 the structural decisions already made by a system architect.
 
-**Important:** the transition from ТЗ to Architecture is non-trivial design
+**Important:** the transition from Requirements to Architecture is non-trivial design
 work — it is the architect's job and is explicitly out of scope for this skill.
 This skill audits and refines an existing architecture for simulation purposes.
 It does not derive architecture from requirements.
@@ -90,10 +90,10 @@ skill — skipping a gate defeats the point.
 
 ### Phase 1 — ARCHITECTURE AUDIT (BLOCKING)
 
-**Require both inputs before proceeding:** ТЗ and Architecture. If either is
+**Require both inputs before proceeding:** Requirements and Architecture. If either is
 missing, ask the user to provide it. Do not substitute one for the other.
 
-Read the architecture document first. Then read the ТЗ for context —
+Read the architecture document first. Then read the Requirements for context —
 especially the performance targets and operational constraints that motivate
 the architecture decisions.
 
@@ -204,10 +204,10 @@ must live on `Config` and carry its source as a comment or MODEL.md entry.
 Build the experimental wrapper around the executable_model.
 
 - `arrival_process` — workload generator. Arrival rate and distribution come
-  from the ТЗ (bench spec), not the system architecture.
+  from the Requirements (bench spec), not the system architecture.
 - Sweep parameters — what to vary and over what range. Determined by the
-  question in the ТЗ: "how does the system behave as load grows from X to Y?"
-- SLA thresholds — the pass/fail criteria from the ТЗ. These become the
+  question in the Requirements: "how does the system behave as load grows from X to Y?"
+- SLA thresholds — the pass/fail criteria from the Requirements. These become the
   reference lines on plots and the verdict column in SIM_REPORT.md.
 
 The bench drives the model; it does not change the model. If defining the bench
@@ -274,12 +274,12 @@ Phase 8 until the harness is green and (in interactive mode) the human has signe
 
 ### Phase 8 — Behavioral analysis
 
-Run the simulation and analyze system behavior against the questions from the ТЗ.
+Run the simulation and analyze system behavior against the questions from the Requirements.
 Visualization is one tool — the number of plots and panels is determined by the
 question, not by a fixed rule. Use `templates/plot_sweep.py` as the skeleton.
 
 The goal is to understand behavior, not to produce charts. Ask: does the system
-satisfy the requirements from the ТЗ? Where is the knee? Which entity saturates
+satisfy the requirements from the Requirements? Where is the knee? Which entity saturates
 first?
 
 Analysis produces one of two conclusions — both lead to Phase 9:
@@ -400,7 +400,6 @@ them and intervene if the user (or you) drift toward any of them:
 - `references/extension-audit.md` — Phase 9 iteration mini-audit.
 - `references/theory-glossary.md` — M/M/1, M/M/c, USL formulas and when to use each.
 - `references/metric-checklist.md` — Phase 7 V&V metric lens.
-- `references/methodology.md` — full prose methodology, the long form of this protocol.
 
 ## Templates
 
