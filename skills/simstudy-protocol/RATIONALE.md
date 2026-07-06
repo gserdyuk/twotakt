@@ -29,12 +29,6 @@ So the bet is: **`MODEL.md` (the model, the spec) is the source of truth; the
 is the bug. Every phase either writes the spec, writes code in service of the spec,
 or checks that the code still honours it.
 
-> NOTE: we tried to run this same "spec is primary" idea one level up — a prose
-> *methodology* doc as the spec, the skill as its compilation. That inverted and
-> rotted (the skill evolved, the methodology doc didn't), so we retired it. The
-> lesson: spec-first holds for **the model** (a per-project artifact a human
-> approves), but not for **the method itself** (no one re-approves it each run).
-
 ---
 
 ## Inputs: why two documents, Requirements + Architecture
