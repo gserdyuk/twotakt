@@ -254,6 +254,17 @@ Entry phrase for README:
       user is adding their own reasons iteratively. Then mirror the pattern (shorter, tailored)
       to `queueing-lazowska` and `modeling-jain`, whose "why" is thinner (they wrap external
       published methods: when-to-use, assumptions, where-it-breaks — not failure-per-gate).
+- [ ] **Split V&V into its own skill (skill modularity).** Extract Verification & Validation
+      out of `simstudy-protocol` into a separate skill. **Why:** many V&V techniques will
+      accumulate (Tier-1/Tier-2, metamorphic toggles, independence, negative-testing, future
+      methods) — plain modularity says keep skills at a normal size and stop any one from
+      growing unbounded. **What moves out:** Phase 7 detail, `references/metric-checklist.md`,
+      `templates/verify.py`, and the pointer to the shared `harness/` package. **What stays in
+      simstudy-protocol:** Phase 7 as a thin *gate* that invokes the V&V skill (the gate belongs
+      to the protocol; the technique belongs to its own skill). Naming can follow the sibling
+      `<topic>-<author>` scheme — Phase 7 already cites Sargent (V&V methodology), so e.g.
+      `verification-sargent`. Same modularity question applies as the toolkit grows (measurement,
+      distribution fitting, etc. already split into `modeling-jain`).
 - [ ] **Refresh the architecture/concept docs** — `docs/architecture.md`, `docs/concept.md`,
       `docs/architecture-llm-layers.md`, `docs/critique.md` are stale: they name the old skill
       `skills/perf-simulation/` and the deleted `perf-simulation.skill`, call it "the 12-step
