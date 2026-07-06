@@ -2,9 +2,33 @@
 
 ## Identity (locked)
 
-**Name:** twotakt
+**Name:** twotakt (repo / paths) · **TwoTakt** (display / brand)
 **Tagline:** An AI-native methodology for building simulation models
 **Subtitle:** Two phases: Audit together. Simulate autonomously.
+**Entry-point skill:** `simstudy-protocol` (renamed 2026-07 from `simpy-protocol` —
+SimPy is a swappable engine, not the method; audit-first lives in the description, not the name)
+**Vocabulary (locked 2026-07):** `MODEL.md` = the model (spec, human-verified) ·
+`executable_model` = the code (machine-verified against the model) · `simulation` = the run
+(a process). Bare "model" always means MODEL.md; the code is always `executable_model`.
+**Example naming:** deliberately free (author's choice); the internal file layout is the convention.
+
+---
+
+## Release prep (done 2026-07)
+
+- [x] Skill renamed `simpy-protocol` → `simstudy-protocol` (commit 29d28b8; rationale in the
+      skill `CHANGELOG.md`). Name says what it is; audit-first is the description's first line.
+- [x] Code artifact renamed `server_sim.py` → `executable_model.py` repo-wide, and the
+      model / executable_model / simulation vocabulary unified across README, skill, and both
+      one-pagers (commits d6a2a3a, cc2fc8f). "SimPy model" left as descriptive prose where it
+      names an actual SimPy example.
+- [x] README rebuilt from the one-pager (1dad4c9) + getting-started vocab fix (ee47e28).
+- [x] Methodology schema diagram — `docs/methodology.svg` (self-contained, phase-numbered),
+      referenced under "Under the hood" (d9147b0, 8ea8f0c).
+- [x] Git history rewritten to a single author identity (gserdyuk@gmail.com); stale merged
+      branches pruned; repo-local git config set (do NOT set global — work machine).
+- [x] Policy: in-progress examples stay in-repo but out of README / one-pagers until ready
+      (RadioMonitoring is currently in-repo, intentionally not listed).
 
 ---
 
@@ -167,18 +191,21 @@ Entry phrase for README:
 
 > Built fresh through the full protocol in a separate session; validation harness green
 > (19/19, record + decode × voice/digital). The *model* is only **temporarily** considered
-> done — not final. The *example* is not integrated into the library yet.
+> done — not final. The *example* is deliberately not listed in README / one-pagers yet
+> (showcase-when-ready policy), though it lives in `examples/`.
 
 - [ ] **Model not final** — temporarily parked. Revisit modelling decisions still in flux
-      (e.g. the classify/decode reading, stage-2 decode provisioning, drone/radar handling).
-- [ ] **Behavioural analysis (Phase 8) not done** — the actual question (POI by category as
-      density grows; what binds first, SDR pool or decode/PC) has not been answered via a
-      proper sweep. Needs `sweep.py` + plot, then the verdict.
-- [ ] **Integrate as a full example** — `README.md` (per template) and `SIM_REPORT.md`;
-      add to the README Layout list and `CLAUDE.md` examples list (both currently name only
-      four). `ARCHITECTURE.md` + `REQUIREMENTS.md` + `MODEL.md` + `verify.py` already exist.
+      (classify/decode reading, stage-2 decode provisioning, core-contention when co-located,
+      drone/radar handling). User was gathering real params (see memory `radiomonitoring-status`).
+- [x] **Behavioural analysis (Phase 8)** — done: `sweep.py` + `plot_sweep.py` + `sweep.png`
+      exist; findings (undersized at both stages; ~12–16 SDR/band + ~32 decode workers)
+      recorded in memory + `dev-log.md`. (Contingent on the model-final caveat above.)
+- [ ] **SIM_REPORT.md** — the only remaining artifact; `README.md` (per template),
+      `ARCHITECTURE.md` + `REQUIREMENTS.md` + `MODEL.md` + `verify.py` + sweep already exist.
 - [ ] Decide whether the `MODEL.ru.md` duplicate stays (English-everywhere policy) and fix
       the stale "DRAFT — awaiting approval before any code" status line in `MODEL.md`.
+- [ ] Listing in README Layout / `CLAUDE.md` examples is **not** a gap — deferred by the
+      showcase-when-ready policy; add only when the model is final.
 
 ---
 
@@ -188,9 +215,10 @@ Entry phrase for README:
 
 - [x] Fix stale phase references: Phase 12→9, Phase 13→9, Phase 10→8 (done 2026-06-12)
 - [x] Fix typo "perfomance" in YAML `description` (done 2026-06-12)
-- [ ] Rebuild `perf-simulation.skill` package from the current skill (stale: old name,
-      no sweep_2d, no SIM_REPORT template, no CHANGELOG) — or delete it until packaging
-      is automated
+- [ ] Delete or rebuild the stale root `perf-simulation.skill` package — named **two**
+      renames ago (perf-simulation → simpy-protocol → simstudy-protocol), and missing
+      sweep_2d, SIM_REPORT template, verify.py, CHANGELOG. Recommend: delete until packaging
+      is automated; rebuild as `simstudy-protocol.skill` only when packaging for global install.
 
 ### CLAUDE.md
 
