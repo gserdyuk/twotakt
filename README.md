@@ -49,7 +49,7 @@ And one more thing: an architect's intuition is also a model, just an implicit o
 
 ## Getting started
 
-**Option A — explore an existing model**
+**Option A — explore an existing example**
 Open any example in `examples/` and start with its `README.md` — a one-page map (input / model / how to run / result). Then read `ARCHITECTURE.md` + `REQUIREMENTS.md` → `MODEL.md` → `SIM_REPORT.md` in order. For the code details, continue to `executable_model.py`. Run the smoke test:
 ```bash
 cd examples/USLmodel
