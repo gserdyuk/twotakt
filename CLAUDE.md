@@ -60,3 +60,24 @@ for sweep results; or audit a performance study for common measurement mistakes.
   string printed to stdout. The Windows console is cp1251 and crashes
   (`UnicodeEncodeError`) on non-ASCII like `①②→`. Markdown docs (`.md`) may use
   Unicode; console output and code must not.
+- **Vocabulary is locked.** `MODEL.md` = **the model** (spec, human-verified);
+  `executable_model` (file `executable_model.py`) = **the code** (machine-verified
+  against the model); `simulation` = **the run** (a process, not an artifact — never
+  name a file "the simulation"). Bare "model" always means `MODEL.md`; the code is
+  always `executable_model`. "SimPy model" is fine as descriptive prose for an actual
+  SimPy example.
+- **dev-log discipline.** After any significant change (a rename, a new example, a
+  methodology or spec decision, a policy call), append a dated entry to `dev-log.md`
+  capturing the *why*, not just the *what*. Append-only — never edit past entries.
+- **Example policy.** Example folder names are the author's free choice (the *internal*
+  file layout is the convention, not the folder name). An in-progress example lives in
+  `examples/` but stays out of `README.md` and the one-pagers until it is ready — a
+  folder present but unlisted is intentional, not a documentation gap.
+
+## Working rules
+
+New conventions that emerge during work go in the **Key constraints** section above —
+`CLAUDE.md` is loaded every session, so rules Claude must always follow belong here (not
+in memory, which surfaces only selectively). Machine- or account-specific details (e.g.
+git identity) do **not** go here — this file is committed to a public repo; keep those in
+memory instead.
