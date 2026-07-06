@@ -27,10 +27,10 @@ At its core are two input documents, each with its own role:
 
 Then:
 
-1. The AI builds an executable model from the architecture and records it in **MODEL.md**: components, flows, assumptions, parameters.
+1. The AI builds a **model** of the system from the architecture and records it in **MODEL.md**: components, flows, assumptions, parameters.
 2. From the requirements it assembles load scenarios and criteria — what the model is checked against.
 3. **You confirm both the model and the criteria — before the simulation runs.** Misunderstandings are visible and fixed here.
-4. The model is compiled into a simulation (SimPy) and run across the scenarios from the requirements.
+4. The model is compiled into an executable model (SimPy) and run — the simulation — across the scenarios from the requirements.
 5. Report: throughput, latencies, queues, bottlenecks, degradation under load — against your acceptance criteria.
 
 The principle is **audit-first**: you trust not the AI, but the model you verified yourself. The AI speeds up construction; the decision about correctness stays with the human. The same dichotomy as in hardware verification: architecture is the design, requirements are the testbench.
