@@ -1,73 +1,51 @@
-# twotakt
+# Twotakt — Audit together. Simulate autonomously.
 
-**Twotakt helps architects turn architecture descriptions into executable simulation models.**
+**AI turns an architecture description into an executable simulation model — in hours, not weeks.**
 
-**An AI-native methodology for performance simulation of IT systems.**
-
-*In Two phases: Audit together. Simulate autonomously.*
-
-twotakt models how systems behave under load — servers, queues, pipelines, connection pools, and any resources that are shared and contended for. The simulation engine is [SimPy](https://simpy.readthedocs.io/) (Python discrete-event simulation); the methodology is what makes the model accurate.
-
----
+For IT-system architects: performance modeling, capacity planning, bottleneck analysis. The simulation engine is [SimPy](https://simpy.readthedocs.io/) (Python discrete-event simulation); the methodology is what makes the model trustworthy.
 
 > *"I have an IT architecture. Where does it break under load?"*
 
-That is the question twotakt answers — before production, before load tests, before the architecture is locked.
+That is the question Twotakt answers — before production, before load tests, before the architecture is locked.
 
-## How it works
+## Architects don't model. And until now they were right.
 
-Two documents go in, each with a distinct role:
-- **Architecture** (components, pools, queues, flows) → defines the **model**.
-- **Requirements** (load, SLA, questions to answer) → defines the **testbench and acceptance criteria**.
+Performance decisions are made on experience and intuition, bottlenecks are discovered in production, capacity planning is done in spreadsheets. This was a rational calculation — each alternative had its own cost:
 
-This is the same split as hardware verification: the architecture is the design, the requirements are the testbench. The requirements document is not an artifact invented for the tool — it is your system's original requirements.
+- a **model** required weeks of specialist work and went stale along with the architecture;
+- **load testing** requires an already-finished system;
+- **spreadsheets** can't see queues and cascading degradations.
 
-twotakt is structured as two phases:
+At that cost of verification, the architect justifiably relied on intuition.
 
-**Phase 1 — Audit (dialogue)**
-You and Claude work through the architecture together: what is scarce, what queues, what degrades under load. The output is a reviewed and approved `MODEL.md` — the specification. No simulation code is written before this is confirmed.
+**The cost of verification just dropped by an order of magnitude. The calculation is due for a rethink.** Twotakt is the methodology for using that shift.
 
-**Phase 2 — Simulation**
-```
-MODEL.md → [Build] → [Sweep] → [Report]
-```
-- **Build:** generates `server_sim.py`, runs smoke test, fixes until green
-- **Sweep:** runs the model across load scenarios, saves results
-- **Report:** produces `SIM_REPORT.md` with bottleneck analysis and SLA verdicts
+## How Twotakt works
 
-If sweep results reveal a model mismatch, you return to the audit. The loop is explicit, not accidental.
+Two documents go in, each with its own role:
 
-### Takts ↔ phases
+- **Architecture** — components, pools, queues, flows: how the system is built. The architect produces it. **Architecture produces the model.**
+- **Requirements** — load, SLA, questions about the system. This is your original spec, not a new document created for the tool; the AI helps shape it in conversation. **Requirements produce the testbench and the acceptance criteria.**
 
-The two takts above are the user-facing view. Under the hood the skill
-(`skills/simstudy-protocol/`) runs 10 phases. The map — and where *you* have to act:
+The same split as in hardware verification: the architecture is the design, the requirements are the testbench.
 
-| Takt | Step | Phase | Artifact in / out | Human gate |
-|------|------|-------|-------------------|------------|
-| **1 — Audit** | — | **0. Inputs** | in: `ARCHITECTURE.md` + `REQUIREMENTS.md` (ТЗ) | ✋ you supply both documents |
-| **1 — Audit** | Audit | **1. Architecture audit** (blocking) | out: *draft* `MODEL.md` | ✋ you confirm the draft |
-| **1 — Audit** | Audit | **2. Structural decomposition** | `MODEL.md` (entities, signal/control flow) | — |
-| **1 — Audit** | Audit | **3. Model per entity** | `MODEL.md` (SimPy primitive + math model) | ✋ MODEL.md approved → cross into Takt 2 |
-| **2 — Sim** | Build | **4. Build system model** | out: `server_sim.py` | — |
-| **2 — Sim** | Build | **5. Parameter sources** | `Config` tags: measurement / decision / assumption | — |
-| **2 — Sim** | Build | **6. Test bench** | `sweep.py` (arrivals, range, SLA — from ТЗ) | — |
-| **2 — Sim** | Build | **7. Verification & Validation** | `verify.py` green (conservation + law-shape / metamorphic toggles) | ✋ green = correctness (**auto**); **you sign off** before sweeps |
-| **2 — Sim** | Sweep | **8. Behavioral analysis** | `sweep.png` | ✋ you read the result, say "go" |
-| **2 — Sim** | Sweep | **9. Iterate** | `sweep_results.json` (r ≥ 10 seeds, 95% CI) | ✋ refinement may return to Takt 1 |
-| **2 — Sim** | Report | **10. SIM_REPORT.md** (optional) | out: `SIM_REPORT.md` | ✋ you read the final deliverable |
+Then:
 
-The phases are many; the moments that need **you** are few — supply both inputs,
-confirm `MODEL.md` (the audit gate, non-negotiable), **sign off the verified model
-before sweeps** (the validation harness certifies *correctness* automatically — green =
-"executable model OK"; you authorize the *spend*, since sweeps can be expensive), then
-say "go" at Sweep → Report and whenever a sweep sends you back to audit. Everything
-between these gates is Claude's to execute.
+1. The AI builds an executable model from the architecture and records it in **MODEL.md**: components, flows, assumptions, parameters.
+2. From the requirements it assembles load scenarios and acceptance criteria — what the model is checked against.
+3. **You confirm both the model and the criteria — before any simulation code is written.** Misunderstandings are visible and fixed here.
+4. The model is compiled into a simulation (SimPy), verified against the spec with an executable check battery, and run across the scenarios from the requirements.
+5. Report: throughput, latencies, queues, bottlenecks, degradation under load — against your acceptance criteria.
 
-*(The sign-off before sweeps is a cost/consent safeguard, not a correctness check — that
-is what green already is. In a fully autonomous Phase 2, green flows into the sweep
-automatically and this human step drops out.)*
+If the runs reveal a model mismatch, you return to the audit. The loop is explicit, not accidental.
 
-> **Current state:** Phase 2 runs as a gated Claude session following the 10-phase protocol in `skills/simstudy-protocol/`. The three-agent split (Build / Sweep / Report as separate agents) is the target architecture — not yet implemented.
+The principle is **audit-first**: you trust not the AI, but the model you verified yourself. The AI speeds up construction; the decision about correctness stays with the human.
+
+## "Models are only approximate anyway"
+
+True — which is why Twotakt doesn't offer exact numbers. It answers questions that are robust to error: **what breaks first** (the order of bottlenecks), **option A or B** (a comparison on identical scenarios), **what happens at 10× load** (the character of degradation). These are exactly the questions intuition answers worst — queues and cascades are nonlinear.
+
+And one more thing: an architect's intuition is also a model, just an implicit one. MODEL.md makes it explicit and presentable: "I'm confident — here's the model and the run" is more convincing in an architecture review board than "I'm confident because of experience."
 
 ## Getting started
 
@@ -84,45 +62,65 @@ python server_sim.py
 2. Prepare two documents: your system's architecture and its requirements
    (see `examples/USLmodel/ARCHITECTURE.md` and `examples/USLmodel/REQUIREMENTS.md` as examples)
 3. Tell Claude: *"I have an architecture. Let's model it."*
-4. Claude runs the audit (Phase 1) — you answer questions, confirm `MODEL.md`
-5. Claude builds, sweeps, and reports (Phase 2)
+4. Claude runs the audit — you answer questions, confirm `MODEL.md`
+5. Claude builds, verifies, sweeps, and reports
 
 The `CLAUDE.md` at the repo root loads the methodology skills automatically.
 
-## Layout
+## Under the hood: two takts, ten phases
+
+The two takts — audit together, simulate autonomously — are the user-facing view.
+Under the hood the skill (`skills/simstudy-protocol/`) runs 10 gated phases:
+
+| Takt | Step | Phase | Artifact in / out | Human gate |
+|------|------|-------|-------------------|------------|
+| **1 — Audit** | — | **0. Inputs** | in: `ARCHITECTURE.md` + `REQUIREMENTS.md` | ✋ you supply both documents |
+| **1 — Audit** | Audit | **1. Architecture audit** (blocking) | out: *draft* `MODEL.md` | ✋ you confirm the draft |
+| **1 — Audit** | Audit | **2. Structural decomposition** | `MODEL.md` (entities, signal/control flow) | — |
+| **1 — Audit** | Audit | **3. Model per entity** | `MODEL.md` (SimPy primitive + math model) | ✋ MODEL.md approved → cross into Takt 2 |
+| **2 — Sim** | Build | **4. Build system model** | out: `server_sim.py` | — |
+| **2 — Sim** | Build | **5. Parameter sources** | `Config` tags: measurement / decision / assumption | — |
+| **2 — Sim** | Build | **6. Test bench** | `sweep.py` (arrivals, range, SLA — from requirements) | — |
+| **2 — Sim** | Build | **7. Verification & Validation** | `verify.py` green (conservation + law-shape / metamorphic toggles) | ✋ green = correctness (**auto**); **you sign off** before sweeps |
+| **2 — Sim** | Sweep | **8. Behavioral analysis** | `sweep.png` | ✋ you read the result, say "go" |
+| **2 — Sim** | Sweep | **9. Iterate** | `sweep_results.json` (r ≥ 10 seeds, 95% CI) | ✋ refinement may return to Takt 1 |
+| **2 — Sim** | Report | **10. SIM_REPORT.md** (optional) | out: `SIM_REPORT.md` | ✋ you read the final deliverable |
+
+The phases are many; the moments that need **you** are few — supply both inputs,
+confirm `MODEL.md` (the audit gate, non-negotiable), sign off the verified model
+before sweeps (the validation harness certifies *correctness* automatically; you
+authorize the *spend*, since sweeps can be expensive), then say "go" at Sweep →
+Report and whenever a sweep sends you back to audit. Everything between these
+gates is Claude's to execute.
+
+> **Current state:** Takt 2 runs as a gated Claude session following the 10-phase protocol in `skills/simstudy-protocol/`. The three-agent split (Build / Sweep / Report as separate agents) is the target architecture — not yet implemented.
+
+## What's in the repo
 
 - `skills/` — the methodology as Claude skills:
-  - `simstudy-protocol/` — 10-phase audit-to-report protocol
+  - `simstudy-protocol/` — the audit-first, 10-phase audit-to-report protocol (the entry point)
   - `queueing-lazowska/` — analytical queueing theory (M/M/c, MVA, operational laws)
   - `modeling-jain/` — statistical rigour for model inputs and outputs
-- `examples/` — worked models at increasing complexity:
+- `harness/` — shared validation harness for Phase 7: conservation invariants + runner (what "green" means — and does not mean — is in its README)
+- `examples/` — worked models, four classes of systems so far:
   - `USLmodel/` — single CPU server with USL degradation
-  - `USLDBmodel/` — same, with a database connection pool added
-  - `PowerSearch/` — realistic case study: two pipelines (ingestion + queries), from an architecture whiteboarding scenario
-  - `FaxRx/` — realistic case study: worldwide fax reception with Erlang B + OCR, based on a production platform
+  - `USLDBmodel/` — same, with a database connection pool added: cascaded bottlenecks
+  - `PowerSearch/` — search aggregator case study: two pipelines (ingestion + queries), capacity planning
+  - `FaxRx/` — worldwide fax reception with Erlang B + OCR, based on a production platform
+- `docs/` — concept, architecture, critique, one-pagers
 - `CLAUDE.md` — tells Claude how to behave in this workspace (loads skills automatically)
-- `dev-log.md` — append-only log of project evolution.
+- `dev-log.md` — append-only log of project evolution
 
-## Approach
+## What "AI-native" means here
 
-The central proposition is speed of assessment. Writing a proper simulation
-from scratch takes days to weeks; twotakt reduces this to a single session. The methodology
-reads the project's architecture and requirements documents, conducts a structured audit, and
-generates `MODEL.md`, `server_sim.py`, sweep scripts, and a `SIM_REPORT.md`
-with bottleneck analysis and SLA feasibility verdicts. The user provides the
-architecture and requirements and makes decisions; the technical work is automated.
+Claude is not a code generator bolted on top. It is a participant in the audit (asking the right questions, flagging gaps) and the driver of the simulation takt (building, verifying, running, and reporting autonomously). The methodology is designed for this collaboration — the skills, the document structure, and the gate boundaries all assume Claude is in the loop.
 
-twotakt does **not** hide SimPy. The user sees the code; the methodology
-ensures the code honestly encodes the intended model. The audit-first protocol
-is the central commitment — no simulation code is written before the model
-specification (`MODEL.md`) is approved. Modern LLMs make working with SimPy
-directly tractable even without deep prior knowledge of the library, so
-abstracting it away is not necessary.
+Twotakt does **not** hide SimPy. The user sees the code; the methodology ensures the code honestly encodes the intended model. Modern LLMs make working with SimPy directly tractable even without deep prior knowledge of the library, so abstracting it away is not necessary.
 
-**What "AI-native" means here:** Claude is not a code generator bolted on top. It is a participant in the audit (asking the right questions, flagging gaps) and the driver of Phase 2 (building, running, and reporting autonomously). The methodology is designed for this collaboration — the skills, the document structure, and the agent boundaries all assume Claude is in the loop.
+## Try it on your system
 
-## Why now
+**Give it your system's architecture and requirements — and two hours of your time.**
 
-Architects don't model — and until recently they were right. Building a simulation required weeks of specialist work and went stale with every architecture change. The cost of verification was higher than the cost of being wrong.
+The output: a MODEL.md of your system and a bottleneck report. The model will either confirm your expectations — and they turn into a document you can show your team and your client — or reveal something you didn't expect. Before production, not in production.
 
-That cost just dropped by an order of magnitude. twotakt is the methodology for using that shift: the examples are IT systems, and the methodology assumes only shared resources, queues, and contention.
+Gennadiy Serdyuk — gserdyuk@gmail.com / https://www.linkedin.com/in/gserdyuk
