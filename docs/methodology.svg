@@ -1,6 +1,6 @@
 <svg viewBox="0 0 680 512" width="680" height="512" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="ttl desc">
 <title id="ttl">Twotakt methodology schema</title>
-<desc id="desc">Two green inputs feed an audit producing MODEL.md which you approve; the approved model crosses the audit-first gate into Takt 2, where Claude builds the executable_model, an automatic verify gate certifies it green, you sign off the spend, the simulation runs and reports. A loop returns to the audit on mismatch.</desc>
+<desc id="desc">Six steps annotated with the skill's ten phase numbers: audit (1-3) produces MODEL.md which you approve, then executable_model (4-6), verify (7), simulation (8), report (10), with the iterate loop (9) returning on mismatch.</desc>
 
 <defs>
   <marker id="ahb" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#2563eb"/></marker>
@@ -8,12 +8,11 @@
   <marker id="ahg" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#94a3b8"/></marker>
 </defs>
 
-<!-- card background (theme-independent) -->
 <rect x="1" y="1" width="678" height="510" rx="10" fill="#ffffff" stroke="#e5e7eb" stroke-width="1"/>
 
-<!-- loop back -->
+<!-- loop back (phase 9) -->
 <path d="M 200 454 L 40 454 L 40 116 L 196 116" fill="none" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="5 4" opacity="0.75" marker-end="url(#ahg)"/>
-<text x="46" y="250" font-family="sans-serif" font-size="10.5" font-weight="600" fill="#64748b">mismatch</text>
+<text x="46" y="250" font-family="sans-serif" font-size="10.5" font-weight="700" fill="#64748b">9 &#183; mismatch</text>
 <text x="46" y="264" font-family="sans-serif" font-size="10.5" font-weight="600" fill="#64748b">&#8594; refine</text>
 
 <!-- INPUT -->
@@ -27,6 +26,8 @@
 
 <!-- TAKT 1 -->
 <text x="560" y="122" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="700" fill="#334155">TAKT 1 &#183; AUDIT</text>
+<rect x="148" y="107" width="44" height="22" rx="7" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1"/>
+<text x="170" y="122" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="700" fill="#475569">1-3</text>
 <rect x="200" y="96" width="200" height="44" rx="8" fill="#dbeafe" stroke="#93c5fd" stroke-width="1"/>
 <text x="300" y="118" text-anchor="middle" font-family="sans-serif" font-size="13.5" font-weight="600" fill="#1d4ed8">Audit</text>
 <text x="300" y="133" text-anchor="middle" font-family="sans-serif" font-size="10.5" fill="#475569">clarify the architecture</text>
@@ -46,10 +47,14 @@
 
 <!-- TAKT 2 -->
 <text x="560" y="284" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="700" fill="#334155">TAKT 2 &#183; SIMULATE</text>
+<rect x="148" y="269" width="44" height="22" rx="7" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1"/>
+<text x="170" y="284" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="700" fill="#475569">4-6</text>
 <rect x="200" y="258" width="200" height="44" rx="8" fill="#dbeafe" stroke="#93c5fd" stroke-width="1"/>
 <text x="300" y="280" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="600" fill="#1d4ed8">executable_model</text>
 <text x="300" y="295" text-anchor="middle" font-family="sans-serif" font-size="10.5" fill="#475569">the code</text>
 <line x1="300" y1="302" x2="300" y2="318" stroke="#2563eb" stroke-width="1.6" marker-end="url(#ahb)"/>
+<rect x="148" y="331" width="44" height="22" rx="7" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1"/>
+<text x="170" y="346" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="700" fill="#475569">7</text>
 <rect x="200" y="320" width="200" height="44" rx="8" fill="#ccfbf1" stroke="#5eead4" stroke-width="1"/>
 <text x="300" y="342" text-anchor="middle" font-family="sans-serif" font-size="13.5" font-weight="600" fill="#0f766e">&#9881; verify</text>
 <text x="300" y="357" text-anchor="middle" font-family="sans-serif" font-size="10.5" fill="#475569">automatic &#8212; harness green</text>
@@ -57,24 +62,31 @@
 <rect x="460" y="327" width="200" height="30" rx="8" fill="#fef3c7" stroke="#fcd34d" stroke-width="1"/>
 <text x="560" y="346" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="600" fill="#b45309">&#9995; you sign off &#8212; the spend</text>
 <line x1="300" y1="364" x2="300" y2="382" stroke="#2563eb" stroke-width="1.6" marker-end="url(#ahb)"/>
+<rect x="148" y="393" width="44" height="22" rx="7" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1"/>
+<text x="170" y="408" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="700" fill="#475569">8</text>
 <rect x="200" y="384" width="200" height="44" rx="8" fill="#dbeafe" stroke="#93c5fd" stroke-width="1"/>
 <text x="300" y="406" text-anchor="middle" font-family="sans-serif" font-size="13.5" font-weight="600" fill="#1d4ed8">simulation</text>
 <text x="300" y="421" text-anchor="middle" font-family="sans-serif" font-size="10.5" fill="#475569">sweep scenarios</text>
 <line x1="300" y1="428" x2="300" y2="446" stroke="#2563eb" stroke-width="1.6" marker-end="url(#ahb)"/>
 
 <!-- OUTPUT -->
-<text x="52" y="458" font-family="sans-serif" font-size="10.5" font-weight="700" fill="#334155">OUTPUT &#9656;</text>
+<text x="52" y="430" font-family="sans-serif" font-size="10.5" font-weight="700" fill="#334155">OUTPUT &#9656;</text>
+<rect x="148" y="459" width="44" height="22" rx="7" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1"/>
+<text x="170" y="474" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="700" fill="#475569">10</text>
 <polygon points="214,448 400,448 386,492 200,492" fill="#dbeafe" stroke="#93c5fd" stroke-width="1"/>
 <text x="300" y="470" text-anchor="middle" font-family="sans-serif" font-size="13.5" font-weight="600" fill="#1d4ed8">report</text>
 <text x="300" y="485" text-anchor="middle" font-family="sans-serif" font-size="10.5" fill="#475569">bottlenecks &#183; verdicts</text>
 
 <!-- legend -->
-<rect x="112" y="502" width="14" height="8" rx="2" fill="#dcfce7" stroke="#86efac" stroke-width="1"/>
-<text x="132" y="510" font-family="sans-serif" font-size="10" fill="#64748b">input</text>
-<rect x="182" y="502" width="14" height="8" rx="2" fill="#dbeafe" stroke="#93c5fd" stroke-width="1"/>
-<text x="202" y="510" font-family="sans-serif" font-size="10" fill="#64748b">step / output</text>
-<rect x="316" y="502" width="14" height="8" rx="2" fill="#ccfbf1" stroke="#5eead4" stroke-width="1"/>
-<text x="336" y="510" font-family="sans-serif" font-size="10" fill="#64748b">&#9881; auto gate</text>
-<rect x="432" y="502" width="14" height="8" rx="2" fill="#fef3c7" stroke="#fcd34d" stroke-width="1"/>
-<text x="452" y="510" font-family="sans-serif" font-size="10" fill="#64748b">&#9995; human gate</text>
+<rect x="80" y="502" width="14" height="8" rx="2" fill="#dcfce7" stroke="#86efac" stroke-width="1"/>
+<text x="100" y="510" font-family="sans-serif" font-size="10" fill="#64748b">input</text>
+<rect x="146" y="502" width="14" height="8" rx="2" fill="#dbeafe" stroke="#93c5fd" stroke-width="1"/>
+<text x="166" y="510" font-family="sans-serif" font-size="10" fill="#64748b">step / output</text>
+<rect x="272" y="502" width="14" height="8" rx="2" fill="#ccfbf1" stroke="#5eead4" stroke-width="1"/>
+<text x="292" y="510" font-family="sans-serif" font-size="10" fill="#64748b">&#9881; auto gate</text>
+<rect x="384" y="502" width="14" height="8" rx="2" fill="#fef3c7" stroke="#fcd34d" stroke-width="1"/>
+<text x="404" y="510" font-family="sans-serif" font-size="10" fill="#64748b">&#9995; human gate</text>
+<rect x="500" y="500" width="20" height="12" rx="4" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1"/>
+<text x="510" y="509" text-anchor="middle" font-family="sans-serif" font-size="8" font-weight="700" fill="#475569">1-3</text>
+<text x="526" y="510" font-family="sans-serif" font-size="10" fill="#64748b">= skill phase(s)</text>
 </svg>
