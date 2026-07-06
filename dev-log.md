@@ -653,3 +653,63 @@ is now ONE process with explicit gates, and the skill prescribes it. No code cha
 `#harness #validation-harness #skill #phase-7 #sign-off #process #docs`
 
 `#one-pager #translation #english #docs`
+
+## 2026-07-06 — release-prep pass: skill rename, vocabulary lock, README schema, history cleanup
+
+A naming-and-consistency session ahead of release. No model or harness code changed;
+this is identity, vocabulary, docs, and repo hygiene. Several decisions were reached by
+working the reasoning out loud, so the *why* is recorded here, not just the *what*.
+
+- **Skill renamed `simpy-protocol` → `simstudy-protocol`** (commit 29d28b8). The argument:
+  SimPy is a *swappable engine*, not the methodology — the protocol would survive replacing
+  SimPy with another DES simulator, so the name must not encode the implementation. Rejected
+  `twotakt-protocol` (couples a portable skill to the container; adds a third naming scheme)
+  and `simulation-*`/`gated-*` variants. Landed on `simstudy` = "simulation study" (the full
+  cycle: model spec → verification → execution → report) + `-protocol` as the entry-point
+  marker. **audit-first stays in the description's first line, not the name** — name says
+  *what it is*, description says *what makes it different*. The two sibling skills correctly
+  carry `<topic>-<author>` (queueing-lazowska, modeling-jain) because they wrap *borrowed*
+  methods; simstudy-protocol is the project's *own* method, so it is named by its principle.
+
+- **Code artifact renamed `server_sim.py` → `executable_model.py`** repo-wide (7 files,
+  commit d6a2a3a). Same logic as the skill rename: `server_sim` encoded a "server" assumption
+  too narrow for the method (RadioMonitoring, FaxRx are not servers). This forced settling the
+  **vocabulary**, which had been conflated: `MODEL.md` = **the model** (spec, human-verified) ·
+  `executable_model` = **the code** (machine-verified *against* the model) · `simulation` =
+  **the run** (a *process*, not an artifact — never name a file "the simulation"). Rule: bare
+  "model" always = MODEL.md; the code is always `executable_model`. User's call: use the
+  underscore token because this is "almost a spec — must be unambiguous". Fixed a real
+  conflation in README/one-pagers (an executable model was described as *recorded in MODEL.md*)
+  and sharpened the trust sentence to "two verifications, two verifiers: you certify the intent,
+  the machine certifies the code honours it." "SimPy model" left as descriptive prose where it
+  names an actual SimPy example (not a conflation).
+
+- **README rebuilt from the one-pager** (1dad4c9) + a **methodology schema** added
+  (`docs/methodology.svg`, self-contained, phase-numbered; d9147b0/8ea8f0c). The diagram
+  encodes six aspects the user asked for — steps, takts, inputs, outputs, **human** gates
+  (approve MODEL.md; sign off the spend) vs the **automatic** gate (verify = harness green) —
+  and collapses the skill's 10 phases into 6 visual steps with per-step phase-number badges
+  (Audit 1–3, executable_model 4–6, verify 7, simulation 8, iterate-loop 9, report 10).
+
+- **Git history rewritten to a single author identity** (`gserdyuk@gmail.com`) with
+  git-filter-repo; three work emails (refinitive/epam) removed from all 46 commits; tag v2.0
+  re-pushed; stale merged branches pruned. Repo-local git config set — **not** global (this is
+  a work machine; global gmail would misattribute work repos). Note: old commits remain
+  reachable only via GitHub `refs/pull/*` (support-only cleanup).
+
+- **Repo hygiene:** deleted the stale root `perf-simulation.skill` (6153515) — a build
+  artifact from the very first skill name, two renames behind and missing the whole V&V/harness
+  layer; skills are read from disk, not installed from it. **TODO reconciled** with reality
+  (RadioMonitoring Phase 8 is actually done; listing examples in README is deferred by policy,
+  not a gap).
+
+- **Policy decisions (locked, do-not-relitigate):** example folder names are **deliberately
+  free** (contributors' choice; the *internal* file layout is the convention, per the skill's
+  "The library"); in-progress examples stay in-repo but **out of README/one-pagers until ready**
+  (RadioMonitoring is the current case). Brand is **TwoTakt** (display) / `twotakt` (repo/paths).
+
+Net: the release-facing surface now speaks one vocabulary and one identity — `simstudy-protocol`
++ `MODEL.md`/`executable_model`/`simulation`, a single-author history, a visual methodology
+schema, and a TODO that matches the repo. No simulation or harness code touched.
+
+`#release-prep #rename #simstudy-protocol #executable_model #vocabulary #readme #schema #git-history #hygiene #policy #docs`
