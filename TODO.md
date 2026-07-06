@@ -78,8 +78,9 @@ Entry phrase for README:
       statement plus an "In plain terms:" expansion for outside readers
 - [x] Root `README.md` synced to the two-input dichotomy; per-example README named as the
       entry point
-- [ ] Still open: use the captured lessons as a concrete proof/result line in the one-pager
-      (raw material now lives in the per-example README `## Lesson` sections)
+- [x] Use a captured lesson as a concrete proof/result line in both one-pagers (done 2026-07):
+      the USLDBmodel interaction-bottleneck (pool=1 collapses at ~6 rps despite a ~20 ceiling)
+      added to "What exists now" / "Что есть сейчас".
 
 ---
 
@@ -232,14 +233,23 @@ Entry phrase for README:
 
 - [x] Align naming with examples' `REQUIREMENTS.md` (done 2026-06-15 — PowerSearch got a
       `REQUIREMENTS.md`; all four examples now carry `ARCHITECTURE.md` + `REQUIREMENTS.md`).
-      Still open: define ТЗ once for non-Slavic readers ("REQUIREMENTS (ТЗ — tech spec)")
+      ТЗ glossed for non-Slavic readers (done 2026-07): CLAUDE.md now says
+      "REQUIREMENTS (ТЗ — tech spec)"; SKILL.md already defines it at first use.
 - [x] `.gitignore`: `__pycache__/`, `*.pyc` — already present in `.gitignore`
 - [ ] Pin dependency versions in every `requirements.txt` (deferred — low real risk; no venv enforcement planned)
-- [ ] Single source for methodology: keep `skills/simstudy-protocol/references/methodology.md`,
-      root `METHODOLOGY.md` becomes a pointer (or vice versa — pick one)
+- [x] Single source for methodology (done 2026-07): `examples/METHODOLOGY.md` was a
+      byte-identical duplicate (same SHA256) — deleted; the skill copy
+      `skills/simstudy-protocol/references/methodology.md` is canonical; docs
+      (architecture, concept, architecture-llm-layers, critique) repointed to it.
+- [ ] **methodology.md is stale content** (separate from the dedup above): it is the old
+      12-step "server degradation" version — predates the current 10-phase SKILL.md (no
+      audit gate as Phase 1, no MODEL.md/executable_model/simulation vocabulary, no V&V
+      harness). Rewrite it as the long-form companion to the current protocol, or retire it
+      and let SKILL.md stand alone. Docs still call it "the 12-step protocol".
 - [x] Language policy = English everywhere: translate `PowerSearch/SIM_REPORT.md`
       (done 2026-06-15 — translated RU → EN; all four reports now in English)
-- [ ] Re-encode `PowerSearch/Whiteboarding scenario-plus-asr.txt` to UTF-8; CRLF → LF
+- [x] Re-encode `PowerSearch/Whiteboarding scenario-plus-asr.txt` to UTF-8; CRLF → LF
+      (done 2026-07 — was Windows-1252 with CRLF; recovered to clean ASCII/UTF-8, LF only)
 - [x] Fix `modeling-jain/references/workload.md` reference in `USLDBmodel/MODEL.md` —
       corrected to `skills/modeling-jain/references/workload.md` from repo root (done 2026-06-12)
 - [ ] **REPRODUCIBILITY position** (METHODOLOGY or separate doc): MODEL.md is the

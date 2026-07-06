@@ -28,7 +28,7 @@ arises, read the corresponding `SKILL.md` and follow the protocol it defines.
 
 | Skill | Path | When to use |
 |-------|------|-------------|
-| `simstudy-protocol` | `skills/simstudy-protocol/SKILL.md` | Building or extending a SimPy simulation; modeling throughput, latency, queues, bottlenecks under load. **Always start here.** Requires ТЗ + Architecture as inputs. |
+| `simstudy-protocol` | `skills/simstudy-protocol/SKILL.md` | Building or extending a SimPy simulation; modeling throughput, latency, queues, bottlenecks under load. **Always start here.** Requires REQUIREMENTS (ТЗ — tech spec) + Architecture as inputs. |
 | `queueing-lazowska` | `skills/queueing-lazowska/SKILL.md` | Analytical answers without simulation: capacity planning, utilization, bottleneck device, "how many servers?" |
 | `modeling-jain` | `skills/modeling-jain/SKILL.md` | Statistical rigour for simulation inputs and outputs. |
 

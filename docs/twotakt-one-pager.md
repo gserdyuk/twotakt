@@ -45,6 +45,7 @@ And one more thing: an architect's intuition is also a model, just an implicit o
 
 - A methodology with explicit steps — architecture + requirements → model + acceptance criteria → confirmation → simulation → report; the artifacts are formalized.
 - A growing library of examples — four classes of systems: a web backend under load, a backend with a DB pool, a search aggregator (two pipelines, capacity planning), telecom fax processing. Each pilot adds a new class.
+- A concrete result from that library: in a two-tier model a connection pool of 1 collapsed the system at ~6 requests/second — though each component's own ceiling sat near 20 — because two resources in series interact. That is exactly the class of failure a spreadsheet and intuition miss.
 - Open source: https://github.com/gserdyuk/twotakt.
 
 ## The offer

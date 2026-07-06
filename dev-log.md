@@ -713,3 +713,26 @@ Net: the release-facing surface now speaks one vocabulary and one identity — `
 schema, and a TODO that matches the repo. No simulation or harness code touched.
 
 `#release-prep #rename #simstudy-protocol #executable_model #vocabulary #readme #schema #git-history #hygiene #policy #docs`
+
+## 2026-07-06 — P2 hygiene batch + methodology dedup
+
+Small release-hygiene pass, four items:
+
+- **`PowerSearch/Whiteboarding…txt` re-encoded** — was Windows-1252 with CRLF (broke UTF-8);
+  recovered to clean ASCII/UTF-8, LF.
+- **ТЗ glossed** for non-Slavic readers — CLAUDE.md now says "REQUIREMENTS (ТЗ — tech spec)";
+  SKILL.md already defined it at first use.
+- **One-pager proof line** (both en + rus) — a captured lesson as a concrete result: the
+  USLDBmodel interaction-bottleneck (pool=1 collapses at ~6 rps despite a ~20 ceiling) — the
+  class of failure a spreadsheet misses.
+- **Methodology de-duplicated** — `examples/METHODOLOGY.md` was a *byte-identical* copy (same
+  SHA256) of `skills/simstudy-protocol/references/methodology.md`; deleted the examples copy,
+  repointed the docs (architecture, concept, architecture-llm-layers, critique) to the skill
+  copy, which is now the single source.
+
+Finding worth flagging (new TODO item): the surviving `methodology.md` is itself **stale** —
+the old 12-step "server degradation" version, predating the current 10-phase SKILL.md (no
+audit gate as Phase 1, no MODEL.md/executable_model/simulation vocabulary, no V&V harness). The
+dedup removed a *copy*, not the *staleness*; a rewrite-or-retire decision is queued.
+
+`#hygiene #encoding #glossary #one-pager #methodology #dedup #stale #docs`

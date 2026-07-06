@@ -72,7 +72,7 @@ the background.
 
 twotakt has four layers today and one planned.
 
-### Layer 1 — Methodology (`examples/METHODOLOGY.md`)
+### Layer 1 — Methodology (`skills/simstudy-protocol/references/methodology.md`)
 
 The 12-step protocol that produces every example. Plain English
 prose. No machine-readable form. The methodology is the
