@@ -69,6 +69,10 @@ The `CLAUDE.md` at the repo root loads the methodology skills automatically.
 
 ## Under the hood: two takts, ten phases
 
+<p align="center">
+  <img src="docs/methodology.svg" alt="Twotakt methodology: two green inputs feed the audit that produces MODEL.md (you approve), which crosses the audit-first gate into Takt 2 where Claude builds the executable_model, an automatic verify gate certifies it, you sign off the spend, and the simulation reports; a loop returns to the audit on mismatch." width="700">
+</p>
+
 The two takts — audit together, simulate autonomously — are the user-facing view.
 Under the hood the skill (`skills/simstudy-protocol/`) runs 10 gated phases:
 
