@@ -5,8 +5,8 @@ description: >-
   models — the Lazowska/QSP methodology. Use when the user wants to estimate
   throughput, utilization, response time, or bottleneck without running a
   simulation: capacity planning, "what if N users?", "which device saturates
-  first?", "how many servers do I need?". Complements simpy-protocol:
-  QSP gives fast closed-form answers; simpy-protocol explores stochastic
+  first?", "how many servers do I need?". Complements simstudy-protocol:
+  QSP gives fast closed-form answers; simstudy-protocol explores stochastic
   behaviour and non-product-form mechanisms. Source: Lazowska, Zahorjan,
   Graham, Sevcik — "Quantitative System Performance" (1984),
   freely available at homes.cs.washington.edu/~lazowska/qsp/
@@ -17,15 +17,15 @@ description: >-
 This skill encodes the Lazowska queueing network methodology: operational
 laws, asymptotic bound analysis (ABA), and mean value analysis (MVA).
 
-## When to use this skill vs. simpy-protocol
+## When to use this skill vs. simstudy-protocol
 
 | Question | Use |
 |---|---|
 | Which device is the bottleneck? | QSP (ABA, instant) |
 | What throughput can I sustain at N users? | QSP (MVA, exact) |
-| How does latency behave near saturation? | simpy-protocol |
-| Does USL thrashing appear past saturation? | simpy-protocol |
-| Circuit breaker / retry / admission control? | simpy-protocol |
+| How does latency behave near saturation? | simstudy-protocol |
+| Does USL thrashing appear past saturation? | simstudy-protocol |
+| Circuit breaker / retry / admission control? | simstudy-protocol |
 | Validating a SimPy sweep against theory | **Both** — use QSP ceiling as reference line |
 
 ## Core concepts
@@ -106,19 +106,19 @@ Read `references/fesc.md` for the full algorithm and applicability rules.
 Check `references/fesc.md` → "Applicability to our models" table before
 deciding which tiers to simulate and which to replace with FESC.
 
-## Relationship to simpy-protocol
+## Relationship to simstudy-protocol
 
-Use QSP first (fast), then simpy-protocol (slow but richer):
+Use QSP first (fast), then simstudy-protocol (slow but richer):
 
 1. QSP identifies the bottleneck and approximate knee → informs
    the sweep range and validates model choices made in Phase 3
-   (choose model per entity) of simpy-protocol.
-2. simpy-protocol validates behaviour: USL thrashing, burst spikes,
+   (choose model per entity) of simstudy-protocol.
+2. simstudy-protocol validates behaviour: USL thrashing, burst spikes,
    SLA timeout effects that QSP cannot model (USL and product-form
    assumptions are incompatible).
 3. QSP ceiling (`1/D_max`) becomes the reference line on the SimPy
    throughput plot — used in Phase 7 (V&V, curve shape validation)
-   and Phase 8 (behavioral analysis) of simpy-protocol.
+   and Phase 8 (behavioral analysis) of simstudy-protocol.
 
 ## Source of D_k
 
@@ -134,13 +134,13 @@ on the project stage — all of the following are valid:
 | Component benchmark | Synthetic benchmark of an isolated component |
 
 Document the source for each D_k the same way as any other parameter
-(see Phase 5 of simpy-protocol). Estimates should be flagged for
+(see Phase 5 of simstudy-protocol). Estimates should be flagged for
 sensitivity analysis (Step 6).
 
-## Extended integration with simpy-protocol (optional)
+## Extended integration with simstudy-protocol (optional)
 
 Beyond the basic "QSP first, then simulate" pattern, QSP can play
-additional roles at Phase 3 (choose model per entity) of simpy-protocol:
+additional roles at Phase 3 (choose model per entity) of simstudy-protocol:
 
 | Role | What it provides |
 |---|---|

@@ -234,7 +234,7 @@ The cube of axis1 × axis2 × axis3 is a *map of the possible*, not a checklist.
 are empty or redundant; the map's job is to choose a few high-value checks deliberately and
 to know what is left unchecked.
 
-**Proportionality razor** — the same razor simpy-protocol Phase 3 applies to model choices
+**Proportionality razor** — the same razor simstudy-protocol Phase 3 applies to model choices
 ("what does this capture that a simpler one does not? if nothing, drop it"), applied to
 checks: add a check only against a *named risk*, and only if it catches a bug the cheaper
 checks miss. Default = system-level Tier-1 conservation (cheap, universal, ~80% of the

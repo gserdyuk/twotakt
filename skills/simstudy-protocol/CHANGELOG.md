@@ -1,7 +1,24 @@
-# simpy-protocol skill — changelog
+# simstudy-protocol skill — changelog
 
 Changes are recorded per project. Each entry: what was added or changed,
 which project motivated it, what gap or failure it addresses.
+
+---
+
+## 2026-07  Release preparation — skill renamed
+
+### Changed
+- **Skill renamed: `simpy-protocol` → `simstudy-protocol`**
+  Motivation: SimPy is a replaceable technology, not the methodology. The
+  protocol covers the full simulation-study cycle (model spec → verification →
+  execution → report) and must survive a switch to another DES simulator.
+  `simstudy` = "simulation study" (the full-cycle term, cf. Law & Kelton);
+  `-protocol` marks the skill as the entry point / conductor among the three
+  skills. The audit-first principle stays in the description and docs
+  vocabulary, not in the name — the name says what it is, the description
+  says what makes it different.
+  Dated entries below keep the old name (history is written in the names of
+  its time). `SimPy` remains a trigger word in the description.
 
 ---
 

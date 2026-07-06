@@ -103,9 +103,9 @@ CI half-width = t × s / √r. To halve the CI, quadruple the replications.
 
 ---
 
-## Integration with simpy-protocol
+## Integration with simstudy-protocol
 
-Current simpy-protocol sweep uses `seeds = [42, 43, 44]` and reports
+Current simstudy-protocol sweep uses `seeds = [42, 43, 44]` and reports
 `mean ± std`. Replace with:
 
 1. Choose r = 10–20 seeds.

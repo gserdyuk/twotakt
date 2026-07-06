@@ -92,7 +92,7 @@ MVA gives the complete curve X(N) and R(N), not just bounds.
 
 ---
 
-## Relationship to simpy-protocol Phase 7
+## Relationship to simstudy-protocol Phase 7
 
 The MVA throughput curve X(N) is the analytical ground truth for
 an M/M/c queueing network. Use it to validate a SimPy sweep:

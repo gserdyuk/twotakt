@@ -67,7 +67,7 @@ two percentiles (p50, p95 or p99). Report CV = σ/μ.
 Reporting "average latency = 50 ms" while 30% of requests time out.
 The average is computed over the survivors (survivorship bias).
 Fix: always report success rate alongside latency. This is Rules 1–2
-of simpy-protocol metric-checklist — see that file for detail.
+of simstudy-protocol metric-checklist — see that file for detail.
 
 **M10 — Ignoring correlation.**
 Treating autocorrelated samples as independent. Consecutive latency

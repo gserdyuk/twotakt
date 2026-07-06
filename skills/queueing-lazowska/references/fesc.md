@@ -112,7 +112,7 @@ until T(k) stabilises. Usually converges in 2–3 iterations.
 
 ---
 
-## Integration with simpy-protocol skill
+## Integration with simstudy-protocol skill
 
 When extending a SimPy model with a new tier that is well-behaved (M/M/c):
 

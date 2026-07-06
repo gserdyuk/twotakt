@@ -1,7 +1,7 @@
 # RadioMonitoring
 
 A two-stage SimPy model of a frontline radio-spectrum surveillance system, built
-with the audit-first simpy-protocol. The question: **what fraction of an adversary's
+with the audit-first simstudy-protocol. The question: **what fraction of an adversary's
 channel activity does the system intercept and decode end-to-end (POI × decode-yield),
 and how must it be sized to hit POI ≥ 50 %?**
 

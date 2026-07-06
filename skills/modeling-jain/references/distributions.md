@@ -126,6 +126,6 @@ CV = 1). This is justified when:
 
 When Poisson is wrong:
 - **Bursty arrivals (CV > 1):** use square-wave burst modulation (already
-  in simpy-protocol Q4a) or a compound Poisson process.
+  in simstudy-protocol Q4a) or a compound Poisson process.
 - **Regular arrivals (CV < 1):** D/M/c — less queueing than M/M/c at same load.
 - **Correlated arrivals:** requires simulation; analytical models break.

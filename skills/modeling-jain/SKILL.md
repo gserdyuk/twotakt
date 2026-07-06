@@ -6,7 +6,7 @@ description: >-
   model from real system monitoring data; (2) deciding which distribution to use
   for service times; (3) computing proper confidence intervals for SimPy sweep
   results; (4) auditing a performance study for common mistakes. Complements
-  simpy-protocol (provides inputs and validates outputs) and queueing-lazowska
+  simstudy-protocol (provides inputs and validates outputs) and queueing-lazowska
   (provides D_k when measured from real system monitoring). Source: Raj Jain — "The Art of
   Computer Systems Performance Analysis" (Wiley, 1991).
   Free: archive.org/details/artofcomputersys0000jain
@@ -15,7 +15,7 @@ description: >-
 # Jain — Measurement and Output Analysis Methodology
 
 This skill captures the four parts of Jain's book that fill gaps in
-simpy-protocol and queueing-lazowska:
+simstudy-protocol and queueing-lazowska:
 
 1. **Common mistakes** — checklist to audit any performance study before and after.
 2. **Workload characterization** — how to get model inputs (D_k, arrival rate,
@@ -26,7 +26,7 @@ simpy-protocol and queueing-lazowska:
 
 ## What Jain uniquely provides
 
-These three capabilities are absent from both queueing-lazowska and simpy-protocol:
+These three capabilities are absent from both queueing-lazowska and simstudy-protocol:
 
 **1. The real-system → model bridge**
 When a real system exists, Jain provides the measurement method for model
@@ -39,7 +39,7 @@ parameters are hidden assumptions. Read `references/workload.md`.
 **2. CV check before choosing a distribution**
 `CV = σ/μ` of service time samples is the single decision that determines tail
 accuracy. CV ≈ 1 → exponential valid (M/M/c applies). CV > 1.5 → Pareto or
-log-normal → p99 underestimated by 2–10× if you keep `expovariate`. simpy-protocol
+log-normal → p99 underestimated by 2–10× if you keep `expovariate`. simstudy-protocol
 defaults to `expovariate` everywhere; Jain tells you when that default is wrong.
 Read `references/distributions.md`.
 
@@ -70,7 +70,7 @@ Read `references/output-analysis.md`.
         │
         ├──▶ queueing-lazowska: ABA/MVA (fast analytical answer)
         │
-        └──▶ simpy-protocol:
+        └──▶ simstudy-protocol:
                Phase 5  ← parameter sources (D_k, service times, distributions)
                Phase 7  ← CV check before choosing distribution (V&V)
                   │
@@ -82,7 +82,7 @@ Read `references/output-analysis.md`.
               Validated results
 
 Jain sits at the input end (Phase 5, Phase 7) and the output end (Phase 9).
-QSP and simpy-protocol are the middle.
+QSP and simstudy-protocol are the middle.
 When no real system exists, Jain's output analysis (Phase 9) still applies —
 the measurement part (workload.md) does not.
 

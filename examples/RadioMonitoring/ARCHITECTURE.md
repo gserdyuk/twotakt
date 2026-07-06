@@ -1,6 +1,6 @@
 # RadioMonitoring — Architecture (step 2)
 
-> Architect's design (input #2 to the simpy-protocol). Captures *how the system
+> Architect's design (input #2 to the simstudy-protocol). Captures *how the system
 > is built*. **Revised** after model review: recording starts immediately on
 > detection (classification is concurrent, not a gate), and downstream
 > analysis/decoding is out of scope. Resolved audit gaps are listed at the end.

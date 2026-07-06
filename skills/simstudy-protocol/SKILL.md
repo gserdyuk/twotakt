@@ -1,20 +1,22 @@
 ---
-name: simpy-protocol
+name: simstudy-protocol
 description: >-
-  Methodology and templates for building SimPy simulations of servers, queues,
-  and any system that degrades under concurrent load. Use whenever the user
-  wants to model server behaviour, request handling, throughput, latency,
-  queueing, bottlenecks, capacity, thread-per-request servers, connection
-  pools, M/M/1 or M/M/c queues, Universal Scalability Law (USL), thrashing,
-  or extending an existing simulation with a new component (database, cache,
-  downstream service). Also use when the user mentions simulation, performance,
-  degradation, узкое место, очередь, нагрузка, throughput, or asks what
-  happens to a server when load grows. Enforces an audit-first protocol —
-  never write simulation code before the audit gate is passed and a model
-  specification is approved. Bundles methodology, code templates, a theory
-  glossary, and a metric-critique checklist that catches survivorship bias
-  and other common measurement mistakes. Default examples library lives at
-  the user examples directory, for instance twotakt/examples.
+  Audit-first protocol for full-cycle simulation studies — model spec,
+  verification, execution, report. Never write simulation code before the
+  audit gate is passed and the model specification is approved. Methodology
+  and templates for building discrete-event simulations (currently SimPy) of
+  servers, queues, and any system that degrades under concurrent load. Use
+  whenever the user wants to model server behaviour, request handling,
+  throughput, latency, queueing, bottlenecks, capacity, thread-per-request
+  servers, connection pools, M/M/1 or M/M/c queues, Universal Scalability
+  Law (USL), thrashing, or extending an existing simulation with a new
+  component (database, cache, downstream service). Also use when the user
+  mentions simulation, SimPy, performance, degradation, узкое место, очередь,
+  нагрузка, throughput, or asks what happens to a server when load grows.
+  Bundles methodology, code templates, a theory glossary, and a
+  metric-critique checklist that catches survivorship bias and other common
+  measurement mistakes. Default examples library lives at the user examples
+  directory, for instance twotakt/examples.
 ---
 
 # Performance Simulation Methodology

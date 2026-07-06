@@ -30,7 +30,7 @@ question is a data dump. Link to MODEL.md files.}
 > Every number must be justified. Numbers derived from measurement get a
 > source. Numbers set by the architect or requirements get "Design decision".
 > Numbers that were assumed get an explicit "Assumed:" label and a risk
-> statement. (Three valid sources — see simpy-protocol Phase 5.)
+> statement. (Three valid sources — see simstudy-protocol Phase 5.)
 
 | Parameter | Value | Source / Justification |
 |---|---|---|

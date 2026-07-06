@@ -40,7 +40,7 @@ If sweep results reveal a model mismatch, you return to the audit. The loop is e
 ### Takts ↔ phases
 
 The two takts above are the user-facing view. Under the hood the skill
-(`skills/simpy-protocol/`) runs 10 phases. The map — and where *you* have to act:
+(`skills/simstudy-protocol/`) runs 10 phases. The map — and where *you* have to act:
 
 | Takt | Step | Phase | Artifact in / out | Human gate |
 |------|------|-------|-------------------|------------|
@@ -67,7 +67,7 @@ between these gates is Claude's to execute.
 is what green already is. In a fully autonomous Phase 2, green flows into the sweep
 automatically and this human step drops out.)*
 
-> **Current state:** Phase 2 runs as a gated Claude session following the 10-phase protocol in `skills/simpy-protocol/`. The three-agent split (Build / Sweep / Report as separate agents) is the target architecture — not yet implemented.
+> **Current state:** Phase 2 runs as a gated Claude session following the 10-phase protocol in `skills/simstudy-protocol/`. The three-agent split (Build / Sweep / Report as separate agents) is the target architecture — not yet implemented.
 
 ## Getting started
 
@@ -92,7 +92,7 @@ The `CLAUDE.md` at the repo root loads the methodology skills automatically.
 ## Layout
 
 - `skills/` — the methodology as Claude skills:
-  - `simpy-protocol/` — 10-phase audit-to-report protocol
+  - `simstudy-protocol/` — 10-phase audit-to-report protocol
   - `queueing-lazowska/` — analytical queueing theory (M/M/c, MVA, operational laws)
   - `modeling-jain/` — statistical rigour for model inputs and outputs
 - `examples/` — worked models at increasing complexity:

@@ -48,7 +48,7 @@ Entry phrase for README:
 - [x] One-pager translated to English: `docs/twotakt-one-pager.md` (EN, canonical name);
       RU original → `docs/twotakt-one-pager-rus.md`
 - [x] Per-example `README.md` for all four examples (input / model / how to run / output /
-      result / lesson / files) + template at `skills/simpy-protocol/templates/README.md`,
+      result / lesson / files) + template at `skills/simstudy-protocol/templates/README.md`,
       registered in `SKILL.md`
 - [x] `## Lesson` section in each README — standalone (no cross-linking), with a precise
       statement plus an "In plain terms:" expansion for outside readers
@@ -146,7 +146,7 @@ Entry phrase for README:
       (Build 4–7 / Sweep 8–9 / Report 10) with a per-phase artifact in/out + human-gate
       table. Bridges README (takts) ↔ skill (phases).
 - [x] Commit `SIM_REPORT.md` to USLmodel, USLDBmodel, FaxRx (done 2026-06-12)
-- [x] Replace `skills/simpy-protocol/templates/SIM_REPORT.md` with the merged template —
+- [x] Replace `skills/simstudy-protocol/templates/SIM_REPORT.md` with the merged template —
       root copy deleted; skills template is canonical (done 2026-06-12)
 
 ---
@@ -184,7 +184,7 @@ Entry phrase for README:
 
 ## P2 — skills & repo hygiene (before any public visit)
 
-### simpy-protocol skill
+### simstudy-protocol skill
 
 - [x] Fix stale phase references: Phase 12→9, Phase 13→9, Phase 10→8 (done 2026-06-12)
 - [x] Fix typo "perfomance" in YAML `description` (done 2026-06-12)
@@ -206,7 +206,7 @@ Entry phrase for README:
       Still open: define ТЗ once for non-Slavic readers ("REQUIREMENTS (ТЗ — tech spec)")
 - [x] `.gitignore`: `__pycache__/`, `*.pyc` — already present in `.gitignore`
 - [ ] Pin dependency versions in every `requirements.txt` (deferred — low real risk; no venv enforcement planned)
-- [ ] Single source for methodology: keep `skills/simpy-protocol/references/methodology.md`,
+- [ ] Single source for methodology: keep `skills/simstudy-protocol/references/methodology.md`,
       root `METHODOLOGY.md` becomes a pointer (or vice versa — pick one)
 - [x] Language policy = English everywhere: translate `PowerSearch/SIM_REPORT.md`
       (done 2026-06-15 — translated RU → EN; all four reports now in English)
