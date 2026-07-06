@@ -215,10 +215,11 @@ Entry phrase for README:
 
 - [x] Fix stale phase references: Phase 12→9, Phase 13→9, Phase 10→8 (done 2026-06-12)
 - [x] Fix typo "perfomance" in YAML `description` (done 2026-06-12)
-- [ ] Delete or rebuild the stale root `perf-simulation.skill` package — named **two**
-      renames ago (perf-simulation → simpy-protocol → simstudy-protocol), and missing
-      sweep_2d, SIM_REPORT template, verify.py, CHANGELOG. Recommend: delete until packaging
-      is automated; rebuild as `simstudy-protocol.skill` only when packaging for global install.
+- [x] Stale root `perf-simulation.skill` package **deleted** (2026-07) — it was named two
+      renames ago and missing the whole V&V/harness layer. Source of truth is
+      `skills/simstudy-protocol/`; build a fresh `simstudy-protocol.skill` from it (a zip of
+      the skill folder) only when/if packaging for global install is needed — and automate it
+      then, so it can't drift again.
 
 ### CLAUDE.md
 
