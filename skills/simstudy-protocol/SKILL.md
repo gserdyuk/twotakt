@@ -32,7 +32,7 @@ accidentally produced, not what the modeller intended.
 **Specification is primary, code is downstream.**
 
 The model spec (`MODEL.md`) is the source of truth. The code
-(`server_sim.py` and friends) is its implementation. If the spec and
+(`executable_model.py` and friends) is its implementation. If the spec and
 the code disagree, the spec is the specification and the code is the
 bug. Every step of this protocol either updates the spec, updates the
 code in service of the spec, or validates that the code still honours
@@ -77,7 +77,7 @@ It does not derive architecture from requirements.
   the gaps. Filling them is a joint effort with the architect — not a
   unilateral decision by this skill.
 
-**Output of the full protocol:** `MODEL.md` + SimPy model + sweep plots.
+**Output of the full protocol:** `MODEL.md` + executable_model + sweep plots.
 `MODEL.md` is the compiled form of both inputs, structured for simulation —
 the single source of truth from which all code flows.
 
@@ -165,9 +165,9 @@ The control flow elements from Phase 2 (timeouts, retries, circuit breakers)
 also need model decisions here. Anything not in the table above: note it
 explicitly and decide whether to include or defer.
 
-### Phase 4 — Build the system model
+### Phase 4 — Build the executable_model
 
-Use the templates in `templates/` as the skeleton. Build the system model only —
+Use the templates in `templates/` as the skeleton. Build the executable_model only —
 the bench comes in Phase 6.
 
 - `Config` dataclass — system parameters (capacities, service times, pool sizes).
@@ -201,7 +201,7 @@ must live on `Config` and carry its source as a comment or MODEL.md entry.
 
 ### Phase 6 — Build the test bench
 
-Build the experimental wrapper around the system model.
+Build the experimental wrapper around the executable_model.
 
 - `arrival_process` — workload generator. Arrival rate and distribution come
   from the ТЗ (bench spec), not the system architecture.
@@ -404,7 +404,7 @@ them and intervene if the user (or you) drift toward any of them:
 
 ## Templates
 
-- `templates/server_sim.py` — Config + Server + _serve skeleton.
+- `templates/executable_model.py` — Config + Server + _serve skeleton.
 - `templates/sweep.py` — 1D sweep (vary one parameter, e.g. arrival rate).
 - `templates/sweep_2d.py` — 2D sweep (vary two parameters; use when Q4b calls for it).
 - `templates/plot_sweep.py` — three-panel plot skeleton.

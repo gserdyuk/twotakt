@@ -96,7 +96,7 @@ no schemas, no daemons.
 
 ### Layer 3 — Templates (`skills/perf-simulation/templates/`)
 
-Skeleton files for `server_sim.py`, `sweep.py`, `plot_sweep.py`,
+Skeleton files for `executable_model.py`, `sweep.py`, `plot_sweep.py`,
 `MODEL.md`, `requirements.txt`. Templates are runnable as-is (they
 encode the v2 baseline) so a new example always starts from a known
 working point. Templates are versioned with the skill: when the
@@ -106,7 +106,7 @@ re-packages both together.
 ### Layer 4 — Examples library (`examples/`)
 
 The growing collection of worked models. Each example is a sibling
-folder following the same structural shape (`server_sim.py`,
+folder following the same structural shape (`executable_model.py`,
 `sweep.py`, `plot_sweep.py`, `MODEL.md`, `requirements.txt`,
 `sweep.png`). The shape is a contract: keeping it consistent is
 what makes copy-and-extend a mechanical operation, which in turn is
@@ -171,7 +171,7 @@ with `model.json` and `benches/`). Persistence in v2 is the git
 working tree itself:
 
 - The model spec is `examples/<name>/MODEL.md`.
-- The model code is `examples/<name>/server_sim.py` and siblings.
+- The model code is `examples/<name>/executable_model.py` and siblings.
 - Each sweep result is `examples/<name>/sweep.png`; rerunning is
   cheap so we do not store raw sweep tables.
 - Cross-example evolution is in `dev-log.md` — append-only,

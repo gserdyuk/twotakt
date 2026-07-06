@@ -14,7 +14,7 @@ SimPy primitives, not the math. From audit Q1.}
 ## What is scarce / shared in this system
 
 {The list of contended resources from audit Q2, with capacities. Each
-item here corresponds to one `simpy.Resource` in `server_sim.py`.}
+item here corresponds to one `simpy.Resource` in `executable_model.py`.}
 
 ## What a request looks like
 

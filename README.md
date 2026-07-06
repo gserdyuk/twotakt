@@ -31,15 +31,15 @@ The same split as in hardware verification: the architecture is the design, the 
 
 Then:
 
-1. The AI builds an executable model from the architecture and records it in **MODEL.md**: components, flows, assumptions, parameters.
+1. The AI builds a **model** of the system from the architecture and records it in **MODEL.md**: components, flows, assumptions, parameters.
 2. From the requirements it assembles load scenarios and acceptance criteria — what the model is checked against.
 3. **You confirm both the model and the criteria — before any simulation code is written.** Misunderstandings are visible and fixed here.
-4. The model is compiled into a simulation (SimPy), verified against the spec with an executable check battery, and run across the scenarios from the requirements.
+4. The model is compiled into an **executable_model** (SimPy), checked against the spec with an executable check, then run — the **simulation** — across the scenarios from the requirements.
 5. Report: throughput, latencies, queues, bottlenecks, degradation under load — against your acceptance criteria.
 
 If the runs reveal a model mismatch, you return to the audit. The loop is explicit, not accidental.
 
-The principle is **audit-first**: you trust not the AI, but the model you verified yourself. The AI speeds up construction; the decision about correctness stays with the human.
+The principle is **audit-first**: you trust not the AI, but the **model** you verified yourself (MODEL.md). An executable check confirms the **executable_model** faithfully implements it — two verifications, two verifiers: you certify the intent, the machine certifies the code honours it. The AI speeds up construction; the decision about correctness stays with the human.
 
 ## "Models are only approximate anyway"
 
@@ -50,11 +50,11 @@ And one more thing: an architect's intuition is also a model, just an implicit o
 ## Getting started
 
 **Option A — explore an existing model**
-Open any example in `examples/` and start with its `README.md` — a one-page map (input / model / how to run / result). Then read `ARCHITECTURE.md` + `REQUIREMENTS.md` → `MODEL.md` → `SIM_REPORT.md` in order. For the code details, continue to `server_sim.py`. Run the smoke test:
+Open any example in `examples/` and start with its `README.md` — a one-page map (input / model / how to run / result). Then read `ARCHITECTURE.md` + `REQUIREMENTS.md` → `MODEL.md` → `SIM_REPORT.md` in order. For the code details, continue to `executable_model.py`. Run the smoke test:
 ```bash
 cd examples/USLmodel
 pip install -r requirements.txt
-python server_sim.py
+python executable_model.py
 ```
 
 **Option B — model your own system**
@@ -78,7 +78,7 @@ Under the hood the skill (`skills/simstudy-protocol/`) runs 10 gated phases:
 | **1 — Audit** | Audit | **1. Architecture audit** (blocking) | out: *draft* `MODEL.md` | ✋ you confirm the draft |
 | **1 — Audit** | Audit | **2. Structural decomposition** | `MODEL.md` (entities, signal/control flow) | — |
 | **1 — Audit** | Audit | **3. Model per entity** | `MODEL.md` (SimPy primitive + math model) | ✋ MODEL.md approved → cross into Takt 2 |
-| **2 — Sim** | Build | **4. Build system model** | out: `server_sim.py` | — |
+| **2 — Sim** | Build | **4. Build the executable_model** | out: `executable_model.py` | — |
 | **2 — Sim** | Build | **5. Parameter sources** | `Config` tags: measurement / decision / assumption | — |
 | **2 — Sim** | Build | **6. Test bench** | `sweep.py` (arrivals, range, SLA — from requirements) | — |
 | **2 — Sim** | Build | **7. Verification & Validation** | `verify.py` green (conservation + law-shape / metamorphic toggles) | ✋ green = correctness (**auto**); **you sign off** before sweeps |

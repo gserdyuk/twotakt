@@ -36,13 +36,13 @@ exploration.
 examples/PowerSearch/
   model1_ingestion/
     MODEL.md
-    server_sim.py
+    executable_model.py
     sweep.py
     plot_sweep.py
     requirements.txt
   model2_queries/
     MODEL.md
-    server_sim.py
+    executable_model.py
     sweep.py
     plot_sweep.py
     requirements.txt
@@ -254,9 +254,9 @@ Phases 1–3 are done (audit complete, M/M/c framework chosen, mechanisms listed
 | Step | Action |
 |---|---|
 | 4 | Write `model1_ingestion/MODEL.md` from draft above |
-| 4 | Write `model1_ingestion/server_sim.py` — Config + IngestionServer (workers + es_pool) + _serve (two sequential resource acquires) + arrival_process (Poisson) + run/summarize |
+| 4 | Write `model1_ingestion/executable_model.py` — Config + IngestionServer (workers + es_pool) + _serve (two sequential resource acquires) + arrival_process (Poisson) + run/summarize |
 | 4 | Write `model1_ingestion/requirements.txt` (simpy, matplotlib, numpy) |
-| 6 | Smoke test: `python server_sim.py` with num_resellers=15, num_workers=10. Verify success_rate=1.0, p95 well under 10 s |
+| 6 | Smoke test: `python executable_model.py` with num_resellers=15, num_workers=10. Verify success_rate=1.0, p95 well under 10 s |
 | 6 | If not healthy, adjust defaults (not model logic) |
 | 7 | Write `model1_ingestion/sweep.py` — 2D grid (num_resellers × num_workers), emit JSON results |
 | 7 | Run sweep, verify curve: at fixed num_workers, increasing num_resellers eventually causes SLA misses |
@@ -269,7 +269,7 @@ Phases 1–3 are done (audit complete, M/M/c framework chosen, mechanisms listed
 | Step | Action |
 |---|---|
 | 4 | Write `model2_queries/MODEL.md` from draft above |
-| 4 | Write `model2_queries/server_sim.py` — Config + QueryServer (search_workers + es_query_pool) + _serve + burst-aware arrival_process (square-wave: `env.now % burst_interval < burst_duration`) |
+| 4 | Write `model2_queries/executable_model.py` — Config + QueryServer (search_workers + es_query_pool) + _serve + burst-aware arrival_process (square-wave: `env.now % burst_interval < burst_duration`) |
 | 4 | Write `model2_queries/requirements.txt` |
 | 6 | Smoke test: base_arrival_rate=100, num_search_workers=25, no burst. success_rate=1.0, eff_p95 < 500 ms |
 | 7 | Write `model2_queries/sweep.py` — sweep base_arrival_rate for several num_search_workers values |
@@ -282,12 +282,12 @@ Phases 1–3 are done (audit complete, M/M/c framework chosen, mechanisms listed
 
 ## Critical files (to modify or create)
 
-- `examples/PowerSearch/model1_ingestion/server_sim.py` — new file from template
+- `examples/PowerSearch/model1_ingestion/executable_model.py` — new file from template
 - `examples/PowerSearch/model1_ingestion/MODEL.md` — new file from draft
-- `examples/PowerSearch/model2_queries/server_sim.py` — new file, adds burst arrival_process
+- `examples/PowerSearch/model2_queries/executable_model.py` — new file, adds burst arrival_process
 - `examples/PowerSearch/model2_queries/MODEL.md` — new file from draft
-- `skills/perf-simulation/templates/server_sim.py` — read-only reference (do not modify)
-- `examples/USLDBmodel/server_sim.py` — read-only reference (copy pattern)
+- `skills/simstudy-protocol/templates/executable_model.py` — read-only reference (do not modify)
+- `examples/USLDBmodel/executable_model.py` — read-only reference (copy pattern)
 
 ---
 
@@ -315,7 +315,7 @@ Phases 1–3 are done (audit complete, M/M/c framework chosen, mechanisms listed
 ## Verification end-to-end
 
 1. `cd examples/PowerSearch/model1_ingestion && pip install -r requirements.txt`
-2. `python server_sim.py` → smoke test output; success_rate should be 1.0
+2. `python executable_model.py` → smoke test output; success_rate should be 1.0
 3. `python sweep.py` → JSON/CSV of results grid
 4. `python plot_sweep.py` → three-panel PNG; verify curve shapes
 5. Repeat steps 1–4 in `model2_queries/`

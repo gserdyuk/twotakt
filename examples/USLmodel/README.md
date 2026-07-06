@@ -21,7 +21,7 @@ at the current in-flight count N. Full spec in [`MODEL.md`](MODEL.md).
 
 ```sh
 pip install -r requirements.txt
-python server_sim.py    # smoke test — should report success_rate ≈ 1.0
+python executable_model.py    # smoke test — should report success_rate ≈ 1.0
 python sweep.py         # sweeps arrival rate 1→20 rps → sweep_results.json
 python plot_sweep.py    # → sweep.png (throughput / success rate / latency)
 ```
@@ -65,7 +65,7 @@ dashboard will look green while almost nothing useful is getting through.
 |---|---|
 | `ARCHITECTURE.md`, `REQUIREMENTS.md` | inputs (see above) |
 | `MODEL.md` | the audited model spec — source of truth |
-| `server_sim.py` | SimPy model + `Config` |
+| `executable_model.py` | SimPy model + `Config` |
 | `sweep.py` | parameter sweep → `sweep_results.json` |
 | `plot_sweep.py` | plotting → `sweep.png` |
 | `SIM_REPORT.md` | results and conclusions |

@@ -175,14 +175,14 @@ At `base = 100 req/s`:
 # Model 1 — Ingestion
 cd examples/PowerSearch/model1_ingestion
 pip install -r requirements.txt
-python server_sim.py      # smoke test
+python executable_model.py      # smoke test
 python sweep.py           # ~2 min, generates sweep_results.json
 python plot_sweep.py      # generates sweep_plot.png
 
 # Model 2 — User Queries
 cd examples/PowerSearch/model2_queries
 pip install -r requirements.txt
-python server_sim.py      # smoke test + survivorship bias check
+python executable_model.py      # smoke test + survivorship bias check
 python sweep.py           # ~3 min, generates sweep_results.json
 python plot_sweep.py      # generates sweep_plot.png
 ```

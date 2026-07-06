@@ -27,7 +27,7 @@ throughput, mean/p50/p95/p99 latency, mean wait, drop counts.
 Run
 ---
     pip install simpy
-    python server_sim.py
+    python executable_model.py
 
 Tweak Config(...) at the bottom or call run(Config(...)) from a sweep harness.
 """

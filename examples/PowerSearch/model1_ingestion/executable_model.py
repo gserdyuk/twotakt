@@ -14,7 +14,7 @@ SimPy simulation — PowerSearch Ingestion Pipeline (Model 1).
   - Сколько воркеров нужно, чтобы уложиться в SLA 10 с при N ресейлерах?
   - Где узкое место при росте: воркеры или пул коннектов ES?
 
-Запуск: python server_sim.py   (smoke test)
+Запуск: python executable_model.py   (smoke test)
 Sweep:  python sweep.py        (полный перебор параметров)
 """
 

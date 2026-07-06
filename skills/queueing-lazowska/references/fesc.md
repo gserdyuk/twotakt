@@ -117,7 +117,7 @@ until T(k) stabilises. Usually converges in 2–3 iterations.
 When extending a SimPy model with a new tier that is well-behaved (M/M/c):
 
 1. Run `mva_calc.py` on the new tier alone → get T(k) table.
-2. In `server_sim.py`: replace the `simpy.Resource` + `yield timeout` block
+2. In `executable_model.py`: replace the `simpy.Resource` + `yield timeout` block
    for that tier with a single `yield env.timeout(1.0 / T_fesc[k])`.
 3. The FESC tier no longer appears as a `simpy.Resource` — it is invisible
    to SimPy's scheduler, which reduces event count and speeds up the simulation.

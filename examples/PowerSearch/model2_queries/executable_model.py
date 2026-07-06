@@ -14,7 +14,7 @@ SimPy simulation — PowerSearch User Query Pipeline (Model 2).
   - При каком числе воркеров система удерживает p95 < 500 мс во время всплесков?
   - Как survivorship bias маскирует реальную деградацию (raw vs effective latency)?
 
-Запуск: python server_sim.py   (smoke test + bias check)
+Запуск: python executable_model.py   (smoke test + bias check)
 Sweep:  python sweep.py        (полный перебор параметров)
 """
 

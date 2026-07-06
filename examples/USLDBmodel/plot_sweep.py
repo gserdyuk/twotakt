@@ -19,7 +19,7 @@ import os
 
 import matplotlib.pyplot as plt
 
-from server_sim import Config, run
+from executable_model import Config, run
 from sweep import RATES  # single source of truth for the rate list
 
 

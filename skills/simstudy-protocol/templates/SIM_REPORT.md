@@ -117,7 +117,7 @@ the next extension, and what question it would answer.}
 # {ModelName1}
 cd {path/to/model1}
 pip install -r requirements.txt   # versions pinned
-python server_sim.py    # smoke test (fixed seed from Config)
+python executable_model.py    # smoke test (fixed seed from Config)
 python sweep.py         # generates sweep_results.json (r replications per point, run Config embedded)
 python plot_sweep.py    # generates sweep_plot.png
 ```

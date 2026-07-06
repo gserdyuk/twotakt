@@ -34,7 +34,7 @@ SLA value to avoid survivorship bias under overload.
 Run
 ---
     pip install simpy
-    python server_sim.py
+    python executable_model.py
 """
 
 from __future__ import annotations

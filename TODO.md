@@ -235,7 +235,7 @@ Entry phrase for README:
 
 - [ ] Phase 2 = three agents: Build → Sweep → Report
 - [ ] Each agent: clear input (file) + clear output (file)
-- [ ] Build agent: writes server_sim.py, runs smoke test, self-fixes — only ships green
+- [ ] Build agent: writes executable_model.py, runs smoke test, self-fixes — only ships green
       (= verification harness as its exit criterion)
 - [ ] Sweep agent: runs sweep, saves JSON
 - [ ] Report agent: writes SIM_REPORT.md from JSON + MODEL.md (merged

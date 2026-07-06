@@ -10,7 +10,7 @@ summarize_replications() on a list of run() result dicts.
 Example
 -------
     from ci_calc import ci, summarize_replications
-    from server_sim import run, Config
+    from executable_model import run, Config
 
     results = [run(Config(seed=s)) for s in range(10, 30)]
     print(summarize_replications(results, metrics=["throughput_rps", "eff_latency_p95"]))
@@ -87,7 +87,7 @@ def summarize_replications(
 
     Parameters
     ----------
-    results              : list of dicts returned by server_sim.run()
+    results              : list of dicts returned by executable_model.run()
     metrics              : which keys to summarize (None = all numeric keys)
     confidence           : CI level
     warn_relative_error  : warn if CI_half / mean exceeds this threshold
@@ -150,7 +150,7 @@ def print_summary(summary: dict) -> None:
 
 if __name__ == "__main__":
     # Adapt imports to your project:
-    # from server_sim import run, Config
+    # from executable_model import run, Config
 
     # Synthetic example: pretend we have 15 replication results
     import random as _rand

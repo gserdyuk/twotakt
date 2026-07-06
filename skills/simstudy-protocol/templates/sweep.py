@@ -6,7 +6,7 @@ structure: plot_sweep.py imports RATES from here so the visual sweep
 and the text sweep stay aligned.
 """
 
-from server_sim import Config, run
+from executable_model import Config, run
 
 
 RATES = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 14, 16, 18, 20]

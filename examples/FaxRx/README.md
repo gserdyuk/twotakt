@@ -22,7 +22,7 @@ M/M/c; OCR workers are CPU-bound M/M/c with USL degradation. Full spec in [`MODE
 
 ```sh
 pip install -r requirements.txt
-python server_sim.py    # smoke test — should report success_rate ≈ 1.0
+python executable_model.py    # smoke test — should report success_rate ≈ 1.0
 python sweep.py         # 3 architectures × 11 burst levels → sweep_results.json
 python plot_sweep.py    # reads sweep_results.json → sweep.png
 ```
@@ -74,7 +74,7 @@ feature, because accepting work you can't finish only hides the failure.
 |---|---|
 | `ARCHITECTURE.md`, `REQUIREMENTS.md` | inputs (see above) |
 | `MODEL.md` | the audited model spec — source of truth |
-| `server_sim.py` | SimPy model + `Config` (Erlang B + M/M/c + USL OCR) |
+| `executable_model.py` | SimPy model + `Config` (Erlang B + M/M/c + USL OCR) |
 | `sweep.py` | parameter sweep → `sweep_results.json` |
 | `plot_sweep.py` | plotting (reads `sweep_results.json`) → `sweep.png` |
 | `SIM_REPORT.md` | results and conclusions |

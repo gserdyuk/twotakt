@@ -27,7 +27,7 @@ import os
 
 import matplotlib.pyplot as plt
 
-# Plain (non-OCR) and OCR SLA ceilings, seconds — see server_sim.Config.
+# Plain (non-OCR) and OCR SLA ceilings, seconds — see executable_model.Config.
 SLA_PLAIN = 600.0
 SLA_OCR = 3600.0
 

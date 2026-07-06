@@ -22,7 +22,7 @@ issues exactly one query after its CPU/IO work. Full spec in [`MODEL.md`](MODEL.
 
 ```sh
 pip install -r requirements.txt
-python server_sim.py    # smoke test — should report success_rate ≈ 1.0
+python executable_model.py    # smoke test — should report success_rate ≈ 1.0
 python sweep.py         # arrival-rate sweep, default pool vs starved pool → sweep_results.json
 python plot_sweep.py    # → sweep.png (regression) and sweep_2.png (pool comparison)
 ```
@@ -73,7 +73,7 @@ worst-case number of simultaneous requests, not the average rate.
 |---|---|
 | `ARCHITECTURE.md`, `REQUIREMENTS.md` | inputs (see above) |
 | `MODEL.md` | the audited model spec — source of truth |
-| `server_sim.py` | SimPy model + `Config` (USLmodel + DB pool) |
+| `executable_model.py` | SimPy model + `Config` (USLmodel + DB pool) |
 | `sweep.py` | parameter sweep → `sweep_results.json` |
 | `plot_sweep.py` | plotting → `sweep.png`, `sweep_2.png` |
 | `SIM_REPORT.md` | results and conclusions |

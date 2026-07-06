@@ -31,7 +31,7 @@ from harness.invariants import (                      # noqa: E402
     assert_no_overload_loss,
     assert_nonnegative,
 )
-from server_sim import run, Config                   # noqa: E402
+from executable_model import run, Config                   # noqa: E402
 
 
 def adapt(cfg: Config) -> RunSummary:

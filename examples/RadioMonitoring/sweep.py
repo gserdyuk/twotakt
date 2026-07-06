@@ -14,7 +14,7 @@ plot_sweep.py imports the ranges and run_avg so text and visual stay aligned.
 
 from statistics import mean, stdev
 
-from server_sim import Config, run
+from executable_model import Config, run
 
 LAMBDA_MULTS = [0.25, 0.5, 1.0, 2.0, 4.0, 8.0]
 SDR_SIZES = [1, 2, 4, 8, 16, 24]          # lower = upper = k

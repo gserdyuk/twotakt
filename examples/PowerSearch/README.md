@@ -30,14 +30,14 @@ Run each pipeline from its own folder:
 # Ingestion
 cd model1_ingestion
 pip install -r requirements.txt
-python server_sim.py    # smoke test
+python executable_model.py    # smoke test
 python sweep.py         # ~2 min → sweep_results.json
 python plot_sweep.py    # → sweep_plot.png
 
 # User queries
 cd ../model2_queries
 pip install -r requirements.txt
-python server_sim.py    # smoke test + survivorship-bias check
+python executable_model.py    # smoke test + survivorship-bias check
 python sweep.py         # ~3 min → sweep_results.json
 python plot_sweep.py    # → sweep_plot.png
 ```
@@ -85,6 +85,6 @@ includes the timeouts, not the latency of the survivors.
 | File | What it is |
 |---|---|
 | `ARCHITECTURE.md`, `REQUIREMENTS.md` | inputs (see above) |
-| `model1_ingestion/`, `model2_queries/` | the two models — each has `MODEL.md`, `server_sim.py`, `sweep.py`, `plot_sweep.py`, `sweep_plot.png` |
+| `model1_ingestion/`, `model2_queries/` | the two models — each has `MODEL.md`, `executable_model.py`, `sweep.py`, `plot_sweep.py`, `sweep_plot.png` |
 | `SIMULATION_PLAN.md` | audit answers + MODEL drafts + build sequence (downstream planning artifact) |
 | `SIM_REPORT.md` | results and conclusions for both pipelines |

@@ -10,7 +10,7 @@ Usage:
 
 import json
 
-from server_sim import Config, run
+from executable_model import Config, run
 
 
 RATES = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 14, 16, 18, 20]

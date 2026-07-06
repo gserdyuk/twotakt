@@ -195,7 +195,7 @@ than in its substance.
 multi-part fix.
 
 1. **Remove USL as the default in templates.** The default
-   `server_sim.py` becomes M/M/c — `Resource(capacity=N)` without a
+   `executable_model.py` becomes M/M/c — `Resource(capacity=N)` without a
    degradation multiplier. Parameters N (capacity), service rate,
    arrival rate are all directly observable from production data.
    No voodoo at the default level.
@@ -285,7 +285,7 @@ Phase 7.5 are the same operation.
 
 ### 2.4 Spec-code drift has no enforcement
 
-`MODEL.md` and `server_sim.py` are kept in sync by social pressure
+`MODEL.md` and `executable_model.py` are kept in sync by social pressure
 and the agent's discipline. There is no automated check, no test
 that they describe the same model, no schema linking them. In
 practice they will drift. We have already drifted once during this
@@ -300,7 +300,7 @@ Approximate shape: each example tracks (in a small file) the commit
 at which spec and code were last reconciled. A simple freshness
 check counts relevant changes since then; once activity passes some
 threshold, a reminder is raised. The audit itself is performed by
-the LLM (or human) reading `MODEL.md` and `server_sim.py` together
+the LLM (or human) reading `MODEL.md` and `executable_model.py` together
 and reporting any inconsistencies in natural language — exactly the
 kind of work the LLM does well and that a regex parser cannot do.
 After reconciliation the tracking file is updated.

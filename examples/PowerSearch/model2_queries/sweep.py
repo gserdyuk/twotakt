@@ -34,7 +34,7 @@ Survivorship bias в результатах:
 import csv
 import json
 
-from server_sim import Config, run
+from executable_model import Config, run
 
 # ---------------------------------------------------------------------------
 # Сетка параметров для перебора.

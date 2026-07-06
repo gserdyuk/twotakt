@@ -24,7 +24,7 @@
 import csv
 import json
 
-from server_sim import Config, run
+from executable_model import Config, run
 
 # ---------------------------------------------------------------------------
 # Сетки параметров — определяются задачей (audit Q4b).
