@@ -324,6 +324,62 @@ Entry phrase for README:
 
 ---
 
+## Verifiability doc — open threads (from `docs/verifiability.md`, 2026-07-09)
+
+> `docs/verifiability.md` (DRAFT) is the map+doctrine layer above article #4. Three
+> follow-ups of different nature and weight: one protects external *wording*, one
+> builds a *tool*, one tests the *theory itself*. Independent of each other; natural
+> order = by increasing weight. The third is the one that matters: the first two
+> improve the document, the third checks whether it lies.
+
+- [ ] **Prior-art check on the term "verifiability by construction" (~1 h).** Before
+      the term goes external (pitch, article, talk), search formal methods / M&S /
+      software engineering for it. Three bad outcomes this prevents: (a) we re-invented
+      a named method — a reviewer closes it with "known since N"; (b) we renamed
+      someone else's concept — reads as ignorance; (c) the term is already taken with a
+      *different* meaning (e.g. "verifiability" is an established property in e-voting
+      protocols) — collision confuses readers. The term is a deliberate rhyme with
+      Dijkstra's correctness-by-construction; find out whether someone made this rhyme
+      first. Verdict is one of three: *free → adopt*; *taken with a close meaning →
+      cite it and position against it*; *taken with a foreign meaning → rename*. Same
+      discipline as the pending "intent verification" check in
+      `article_candidate_4_vv.md` §10. While at it, also check the sibling coinage
+      "design for modelability" (verifiability.md §5).
+
+- [ ] **Frame-compliance prototype in ONE example's SIM_REPORT (~1 day).**
+      verifiability.md §7 (the per-run verdict) is only words so far; build it by hand
+      once *before* legislating it in the skill. Why prototype-first — the project's own
+      lesson, learned twice: methodology.md rotted because rules were written ahead of
+      practice, and negative-test-first (article #4 §9c) showed every check's *first*
+      version is wrong (doesn't bite, or bites the healthy model) — no reason frame
+      monitors are the exception. Candidate example: USLmodel (simplest) or
+      RadioMonitoring (richest). The work: add monitors to the run — actual
+      per-component rho, observed input characteristics vs the certified frame, config
+      point inside/outside the validated region — and emit a **"Frame compliance"
+      section in SIM_REPORT.md**: a table of assumption / certified range / observed /
+      verdict, with *directional* notes where the bias direction is known (e.g. rho in
+      the amplification zone -> "top-of-sweep latencies: optimistic, treat with
+      caution"). Deliverable: one worked example + a lessons list (what bit, what
+      didn't) -> only then decide what enters the skill and in what form.
+
+- [ ] **Stress-test the map on a static/stochastic example (largest — a full
+      mini-example).** The whole map (the 2x2, gates A/B/C, the doctrine) was built
+      from ONE cell's experience: dynamic/stochastic (DES + queueing). Its generality
+      claim is untested. verifiability.md §9 records the testable prediction (i):
+      transferring the methodology to a new model kind is *cheap* — layer A (audit
+      gate, MODEL.md discipline) carries over unchanged, only the B/C gate tables get
+      rewritten; if a real attempt finds nothing transfers, the map is wrong. The test:
+      take a problem from the static/stochastic cell — **single-measurement
+      direction-finder bearing error** (error budget, Monte Carlo error propagation),
+      with CRLB as the analytic oracle in the role M/M/1 plays for DES. Small scope
+      deliberately: one measurement, not the whole DF system. The result is an honest
+      per-layer record: did A transfer unchanged? did the B table write itself from the
+      doc's per-kind recipe, or need invention? did C (CI width, N sufficiency, seeds —
+      Jain mechanics) carry over? All three outcomes are valuable: transfers = map
+      confirmed; doesn't = honest negative result; partial = the boundary gets located.
+
+---
+
 ## Article / pitch material (actions from captured findings)
 
 - [ ] Article candidate: **interaction bottleneck** (USLDBmodel — component ceilings

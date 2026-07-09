@@ -766,3 +766,102 @@ Three linked moves.
   → eliminating. RU one-pager keeps ТЗ (native there). Rule recorded in CLAUDE.md.
 
 `#methodology #retire #rationale #skill #vocabulary #requirements #anti-russism #docs`
+
+
+## 2026-07-08 — architecture framing: performance is a 42010 concern, not the whole map
+
+Methodological decision on how the project positions itself in architecture terms,
+prompted by the author asking how to state precisely "what is being modeled" without
+sounding like a dilettante in front of architects.
+
+**Decision.** The project speaks the vocabulary of **ISO/IEC 42010** (architecture
+description), because it is a metamodel the other schools reduce to:
+- **Concern** = performance / scalability (throughput, latency, behavior under load) —
+  a quality attribute owned by specific stakeholders, *not* a "view".
+- **Viewpoint** = the convention (questions, notation) that addresses that concern — a
+  type, exists before any system.
+- **Model kind** = discrete-event simulation (SimPy) + queueing analysis (Lazowska,
+  M/M/c, USL) + statistics (Jain). This is *how* the model inside the viewpoint is built.
+- **View** = the concrete model of a concrete system under a concrete load profile — an
+  instance of the viewpoint.
+
+One-line framing for external use: *"performance view of the system: concern =
+performance under load; model kind = discrete-event simulation + queueing analysis."*
+
+**Framework caveat (kept on purpose).** Whether performance is a *viewpoint* or a
+*perspective* is school-dependent: Rozanski & Woods treat it as a **perspective**
+(cross-cutting quality applied over structural views), pure 42010 as a **concern** served
+by a viewpoint, Kruchten 4+1 has no dedicated view for it at all. We deliberately talk in
+42010 so we are not pinned to one school. Knowing this landscape is the difference between
+sounding expert and sounding like one textbook.
+
+**Direction (planned, not yet built).** Performance is the *first* of a family of
+**operational perspectives** reachable on the same structural base (server / queue /
+workers): availability & resilience (fault-tree, Markov), capacity & cost (queueing —
+already nearly in reach). Security is explicitly **out of perimeter** — it lives in a
+different plane (threat model, attack trees), not operational. The three skills
+(simstudy / lazowska / jain) cluster in the operational plane, which is why extension to
+availability/cost is natural and to security is not.
+
+Not yet propagated to the pitch or README — author will fold it in later.
+
+`#architecture #42010 #viewpoint #perspective #performance #methodology #direction`
+
+## 2026-07-09 — docs/verifiability.md: map + doctrine draft ("verifiability by construction")
+
+Distilled a multi-day design conversation into a new theory doc, `docs/verifiability.md`
+(DRAFT). Named for the answer, not the map: the taxonomy turned out to be textbook
+material once stress-tested, while the load-bearing element is the doctrine — since AI
+made model *construction* cheap and *justification* stayed expensive (Wei's asymmetry of
+verification, Karpathy's verification gap, Prediction Machines lineage — all checked,
+none of it ours), the response is to make verifiability a **property of the model
+itself**: unit-simulatable components, assume/guarantee certificates, built-in degeneracy
+to analytic oracles, instrumented invariants, declared calibration paths, metamorphic
+properties, runtime frame monitors. One-liner: *a model must carry its own verifiers;
+a model without its certificate is unfinished.*
+
+Notable moves recorded in the doc:
+
+- **Rebuilt on standard foundations after self-critique.** The conversation's first
+  constructions (gates A/B/C, simulation-as-solver, concern-as-relevance-criterion)
+  turned out to be re-derivations of Sargent/ASME V&V, Zeigler's frame/model/simulator,
+  and GQM. Kept the standard names — citable beats homegrown, and independent
+  re-derivation is evidence the structure is right, not a novelty claim.
+- **Composition:** layer B composes (DEVS closure under coupling), layer A does not;
+  assume-guarantee certificates as the joint discipline; fix pattern = promote hidden
+  coupling to explicit component (shared CPU as Resource ~ parasitic capacitor).
+- **Isolation buys compositionality at the price of utilization** (FPGA pipelines,
+  network calculus); "design for modelability" as the architectural twin of the doctrine.
+- **Per-run verdict:** applicability domain is earned by validation, AI is registrar and
+  patrol (not authority); verdicts must be localized and directional. Planned home:
+  frame-compliance section in SIM_REPORT.md (prototype before legislating).
+- **Complication discipline:** model size is now bounded by the justification budget,
+  not construction labor; predicted failure-mode sign flip (too-simple -> baroque).
+
+Deliberately cross-referenced with `article_candidate_4_vv.md` (the harness machinery is
+its worked instance) instead of duplicating it — discovered mid-write that the article
+already holds the tiers/metamorphic/non-composition layer.
+
+The meta-observation worth keeping: during the source conversation, every aesthetically
+pleasing closure the AI produced (skills mapped onto the taxonomy, concern->cell as a
+function, simulation as a model kind) was retracted under the author's pushback within a
+turn — the author's skepticism operated as gate A at the discourse level. Most direct
+confirmation of the project's central thesis so far, obtained about theorizing rather
+than about SimPy code.
+
+Pitch/README propagation deliberately deferred until the draft settles.
+
+`#docs #verifiability #doctrine #vv #composition #methodology #draft`
+
+## 2026-07-09 — concern paragraph propagated to README + both one-pagers
+
+Closed the deferred item from the 2026-07-08 architecture-framing entry: README and both
+one-pagers now carry a short paragraph naming the concern (ISO/IEC 42010 terms) —
+performance & scalability, served by DES + queueing analysis; availability and cost named
+as planned operational siblings on the same structural base; security explicitly out of
+scope. Placed right after the audience line in the one-pagers and after the opening
+question in README — the spot where "performance modeling, capacity planning" was listed
+without a frame. RU one-pager worded natively; EN kept to one paragraph per the "short"
+requirement.
+
+`#docs #42010 #concern #readme #one-pager`

@@ -8,6 +8,8 @@ For IT-system architects: performance modeling, capacity planning, bottleneck an
 
 That is the question Twotakt answers — before production, before load tests, before the architecture is locked.
 
+**Scope: one concern, deliberately.** An architecture serves many stakeholder concerns; Twotakt models one of them — in ISO/IEC 42010 terms, the concern of **performance and scalability**: throughput, latency, behavior under load. The model kind is discrete-event simulation plus queueing analysis. Availability and cost are natural next steps — they read the same structure of servers, queues, and pools. Security is a different kind of analysis, out of scope.
+
 ## Architects don't model. And until now they were right.
 
 Performance decisions are made on experience and intuition, bottlenecks are discovered in production, capacity planning is done in spreadsheets. This was a rational calculation — each alternative had its own cost:
