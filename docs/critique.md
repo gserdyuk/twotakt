@@ -545,6 +545,23 @@ competitive-landscape section above is also pending review.
 
 ---
 
+## The five-point external critique (captured 2026-07-09, from notes.txt)
+
+A compact critique set voiced in an outside conversation, recorded here so it is not
+lost. Each point is mapped to where this document — or the project since this
+document was written — addresses it. One point (N4) turns out not to be covered
+above and is genuinely open.
+
+| # | Point | Where it lands | Status |
+|---|---|---|---|
+| N1 | Model accuracy is capped by input data ("the service takes 50 ms — says who?"); beautiful results from wrong assumptions | 1.3 (no calibration), 2.7 (unrealistic defaults); since then, the verifiability doctrine: every parameter declares its calibration path or is demoted to a scenario variable (`docs/verifiability.md` §6.5, §8) | **Partially addressed** — conceptually resolved by the doctrine; the calibration MVP itself is still deferred (action-list #3) |
+| N2 | Trust: why believe a SimPy model that Claude generated? "There is no verification" | The project's central thesis: audit-first (MODEL.md gate) + the validation harness (Tier-1/2 invariants, negative-tested, independent verifier — caught a real unplanted bug in Model #5) + `docs/verifiability.md` | **Addressed** — now the project's strongest suit; the premise "no verification" is factually outdated |
+| N3 | Competes with intuition: a senior architect already knows the bottlenecks; a junior can't ask the right questions | 2.1 (audit assumes knowledge → the Q0 two-path fix); competitive landscape ("doing nothing"); README's counter: intuition is also a model, just an implicit one — MODEL.md makes it presentable | **Partially addressed** — the positioning answer exists; the junior path (walk-through mode) is designed but not yet exercised |
+| N4 | Real systems are hundreds of microservices with unpredictable traffic; any model will be a simplification | **Not previously captured in this document.** Closest: README "Models are only approximate anyway" (robust questions, not exact numbers); `docs/verifiability.md` §8 (model size bounded by the justification budget; sensitivity × measurability matrix) and §4 (composition). But the *scaling* question — does the methodology survive at 100+ components — is untouched | **Open** — candidate new Tier-2 entry (deliberately kept as a row for now; promote when we take it on). Honest answer today: validated on five small models; large-topology economics untested |
+| N5 | Adoption: architects already use their own tools — why learn a new one | 1.1 (no fast path), 1.4 (Cowork-only → portability tracks), 1.5 (no success stories), the competitive-landscape table | **Addressed in analysis, unresolved in fact** — same standing as action-list rows 1, 4, 5 |
+
+---
+
 ## Closing note
 
 This critique is the starting p
