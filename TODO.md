@@ -332,19 +332,19 @@ Entry phrase for README:
 > order = by increasing weight. The third is the one that matters: the first two
 > improve the document, the third checks whether it lies.
 
-- [ ] **Prior-art check on the term "verifiability by construction" (~1 h).** Before
-      the term goes external (pitch, article, talk), search formal methods / M&S /
-      software engineering for it. Three bad outcomes this prevents: (a) we re-invented
-      a named method — a reviewer closes it with "known since N"; (b) we renamed
-      someone else's concept — reads as ignorance; (c) the term is already taken with a
-      *different* meaning (e.g. "verifiability" is an established property in e-voting
-      protocols) — collision confuses readers. The term is a deliberate rhyme with
-      Dijkstra's correctness-by-construction; find out whether someone made this rhyme
-      first. Verdict is one of three: *free → adopt*; *taken with a close meaning →
-      cite it and position against it*; *taken with a foreign meaning → rename*. Same
-      discipline as the pending "intent verification" check in
-      `article_candidate_4_vv.md` §10. While at it, also check the sibling coinage
-      "design for modelability" (verifiability.md §5).
+- [x] **Prior-art check (done 2026-07-09).** "Verifiability by construction": no named
+      method owns it; scattered descriptive uses (AI, e-voting crypto). Closest concepts,
+      both now cited in verifiability.md: correct-by-construction (the parent rhyme —
+      we promise *checkability*, not correctness) and **Design for Verification**
+      (MEMOCODE'05 panel) — ours = DFV applied to simulation models in the
+      no-oracle/AI context. Caveat: in e-voting "verifiability" is a different
+      established property — footnote it for security-adjacent audiences.
+      "Design for modelability": phrase free; **the program partially exists — SEI's
+      "Predictability by Construction" / PACC** (Predictable Assembly from Certifiable
+      Components: certified components -> predictable assemblies ≈ our §4 certificates
+      + §5). Cite PACC; our delta = modelability incl. the observational half
+      (calibratability) + the AI-asymmetry driver. Follow-up: read the PACC reports
+      before making external novelty claims about verifiability.md §5.
 
 - [ ] **Frame-compliance prototype in ONE example's SIM_REPORT (~1 day).**
       verifiability.md §7 (the per-run verdict) is only words so far; build it by hand

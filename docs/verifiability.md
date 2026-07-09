@@ -219,6 +219,12 @@ The general principle — the architectural twin of this document's methodologic
 > enumerable ports, declare frames per level. Then validity is assembled, not
 > re-discovered at every level.
 
+Closest existing program: SEI's **Predictability by Construction** (the PACC
+initiative — Predictable Assembly from Certifiable Components): predictable assemblies
+from certified components, i.e. section 4's certificates aimed at one perspective.
+Ours generalizes: modelability includes the observational half (calibratability,
+below), and the driver is the AI asymmetry.
+
 Modelability has two halves, and a system can have either without the other:
 
 - **Structural** — isolated flows, enumerable couplings, explicit ports. Buys
@@ -252,8 +258,12 @@ existence proof).
 
 Since construction is cheap and justification is the bottleneck, the answer is to make
 **verifiability a property of the model itself** — the same move as correctness-by-
-construction (Dijkstra), design-by-contract (Meyer), design-for-test, and software's
-discovery that "testable code" and "good code" converge.
+construction (Dijkstra), design-by-contract (Meyer), **design for verification**
+(software/hardware: build the artifact so it is easier to verify), design-for-test, and
+software's discovery that "testable code" and "good code" converge. One distinction
+against the parent rhyme: correctness-by-construction promises *correctness* (through
+verified refinement); we promise only *checkability* — a weaker claim about a different
+object (the model, not the program).
 
 One distinction first: **isolation is a property of the system; verifiability is a
 property of the model.** The first is available only when you control the architecture.
@@ -410,8 +420,6 @@ constructions were verified by fifty years of other people.
 - **Stress-test the map** on a static/stochastic case (direction-finder accuracy: error
   budget, CRLB, Monte Carlo — a different region of the map than everything built so
   far).
-- **Prior-art check** on "verifiability by construction" as a term before using it
-  externally (same discipline as article #4's pending check on "intent verification").
 - **Frame-compliance section**: prototype it in one example's `SIM_REPORT.md` before
   legislating it in the skill.
 - **Modelability findings**: decide whether `SIM_REPORT.md` gains a "modelability
