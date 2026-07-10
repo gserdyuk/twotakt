@@ -94,8 +94,9 @@ in this order of likelihood under default parameters."
 
 If the extension introduces a new failure mode (e.g. "rejected
 because pool was full"), it needs its own outcome category and its
-own appearance in the plot. Update the metric-checklist application
-in Phase 8 accordingly.
+own appearance in the plot. Update the metric-checklist
+(`skills/verification-validation/references/metric-checklist.md`)
+application in Phase 8 accordingly.
 
 ## After the extension audit
 

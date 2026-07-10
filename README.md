@@ -87,7 +87,7 @@ Under the hood the skill (`skills/simstudy-protocol/`) runs 10 gated phases:
 | **2 — Sim** | Build | **4. Build the executable_model** | out: `executable_model.py` | — |
 | **2 — Sim** | Build | **5. Parameter sources** | `Config` tags: measurement / decision / assumption | — |
 | **2 — Sim** | Build | **6. Test bench** | `sweep.py` (arrivals, range, SLA — from requirements) | — |
-| **2 — Sim** | Build | **7. Verification & Validation** | `verify.py` green (conservation + law-shape / metamorphic toggles) | ✋ green = correctness (**auto**); **you sign off** before sweeps |
+| **2 — Sim** | Build | **7. Verification & Validation** | `verify.py` green (via the `verification-validation` skill) | ✋ green = correctness (**auto**); **you sign off** before sweeps |
 | **2 — Sim** | Sweep | **8. Behavioral analysis** | `sweep.png` | ✋ you read the result, say "go" |
 | **2 — Sim** | Sweep | **9. Iterate** | `sweep_results.json` (r ≥ 10 seeds, 95% CI) | ✋ refinement may return to Takt 1 |
 | **2 — Sim** | Report | **10. SIM_REPORT.md** (optional) | out: `SIM_REPORT.md` | ✋ you read the final deliverable |
@@ -105,6 +105,7 @@ gates is Claude's to execute.
 
 - `skills/` — the methodology as Claude skills:
   - `simstudy-protocol/` — the audit-first, 10-phase audit-to-report protocol (the entry point)
+  - `verification-validation/` — executable V&V: the trust check between build and sweeps (invoked at Phase 7)
   - `queueing-lazowska/` — analytical queueing theory (M/M/c, MVA, operational laws)
   - `modeling-jain/` — statistical rigour for model inputs and outputs
 - `harness/` — shared validation harness for Phase 7: conservation invariants + runner (what "green" means — and does not mean — is in its README)

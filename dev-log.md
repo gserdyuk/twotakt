@@ -866,3 +866,18 @@ requirement.
 
 `#docs #42010 #concern #readme #one-pager`
 ## 2026-07-09 — scope paragraphs removed from README + both one-pagers (concern → attribute → deletion)
+
+## 2026-07-10 — V&V extracted into its own skill: skills/verification-validation/
+
+Phase 7 detail, metric-checklist.md, templates/verify.py, and the harness pointer
+moved out of simstudy-protocol; Phase 7 stays as a thin gate that invokes the new
+skill. Why: V&V techniques will keep accumulating (verification levels,
+compositional verification) — modularity says no skill grows unbounded; the gate
+belongs to the protocol, the technique to its own skill (same split as statistics
+into modeling-jain). Name is descriptive, not <topic>-<author>: the author scheme
+fits skills wrapping one published method — here the method is in-house and growing,
+Sargent is a source, not the owner. Backlog stays project-wide in TODO.md
+(per-skill backlogs = the third-source-of-truth drift, learned twice); skills carry
+only CHANGELOGs.
+
+`#skills #vv #modularity #verification-validation`

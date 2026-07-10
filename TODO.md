@@ -137,7 +137,8 @@ Entry phrase for README:
           install — folded into the existing "rebuild the `.skill` package" item (P2), not a
           live decision.
 
-        *Harness mechanics:*
+        *Harness mechanics (now owned by the `verification-validation` skill —
+        backlog stays here, project-wide TODO):*
         - [ ] Repo-wide aggregator (`make verify`) vs keep example-level.
         - [ ] Wire into the future Build agent's "ships only green" gate.
         - [ ] Loss taxonomy: the 2-way split (`rejected`/`dropped_overload`) is coarser
@@ -147,7 +148,8 @@ Entry phrase for README:
           FaxRx/PowerSearch/RadioMonitoring use other laws). Decide: extract for the two USL
           models, or leave the small duplication.
 
-        *Coverage gaps (untested claims surfaced by the holistic analysis):*
+        *Coverage gaps (untested claims surfaced by the holistic analysis; owned by
+        the `verification-validation` skill, backlog stays here):*
         - [ ] `generated` ledger term is built but never exercised — a generating system
           (keep-alive / heartbeat) would test it (and the self-amplification → emergence
           boundary).
@@ -254,17 +256,17 @@ Entry phrase for README:
       user is adding their own reasons iteratively. Then mirror the pattern (shorter, tailored)
       to `queueing-lazowska` and `modeling-jain`, whose "why" is thinner (they wrap external
       published methods: when-to-use, assumptions, where-it-breaks — not failure-per-gate).
-- [ ] **Split V&V into its own skill (skill modularity).** Extract Verification & Validation
-      out of `simstudy-protocol` into a separate skill. **Why:** many V&V techniques will
-      accumulate (Tier-1/Tier-2, metamorphic toggles, independence, negative-testing, future
-      methods) — plain modularity says keep skills at a normal size and stop any one from
-      growing unbounded. **What moves out:** Phase 7 detail, `references/metric-checklist.md`,
-      `templates/verify.py`, and the pointer to the shared `harness/` package. **What stays in
-      simstudy-protocol:** Phase 7 as a thin *gate* that invokes the V&V skill (the gate belongs
-      to the protocol; the technique belongs to its own skill). Naming can follow the sibling
-      `<topic>-<author>` scheme — Phase 7 already cites Sargent (V&V methodology), so e.g.
-      `verification-sargent`. Same modularity question applies as the toolkit grows (measurement,
-      distribution fitting, etc. already split into `modeling-jain`).
+- [x] **Split V&V into its own skill (done 2026-07-10): `skills/verification-validation/`.**
+      Extracted out of `simstudy-protocol`: Phase 7 detail, `references/metric-checklist.md`,
+      `templates/verify.py`, the pointer to the shared `harness/` package. Phase 7 stays in
+      simstudy-protocol as a thin *gate* that invokes the V&V skill (the gate belongs to the
+      protocol; the technique belongs to its own skill). **Why:** many V&V techniques will
+      accumulate (verification levels, compositional verification) — modularity, no skill
+      grows unbounded. **Naming decided:** descriptive `verification-validation`, NOT
+      `<topic>-<author>` — the author scheme fits skills wrapping one published method
+      (Lazowska, Jain); here the method is in-house and growing, Sargent is a source, not
+      the owner. **Backlog stays project-wide** (this file) — per-skill backlogs = drift;
+      skills carry only CHANGELOGs. CLAUDE.md / README / cross-refs synced same day.
 - [ ] **Refresh the architecture/concept docs** — `docs/architecture.md`, `docs/concept.md`,
       `docs/architecture-llm-layers.md`, `docs/critique.md` are stale: they name the old skill
       `skills/perf-simulation/` and the deleted `perf-simulation.skill`, call it "the 12-step

@@ -5,6 +5,23 @@ which project motivated it, what gap or failure it addresses.
 
 ---
 
+## 2026-07  Phase 7 V&V extracted into the verification-validation skill
+
+### Changed
+- **Phase 7 is now a thin gate.** The V&V technique (two-questions protocol,
+  executable verify.py, Tier-1/Tier-2, metamorphic toggles, negative-testing,
+  independence) moved to `skills/verification-validation/`, together with
+  `references/metric-checklist.md`, `templates/verify.py`, and the
+  "Validation harness" section. Phase 7 here keeps only the questions, the
+  pointer to the V&V skill, and the gate (green auto-certifies correctness;
+  human signs off the spend before sweeps).
+  Motivation: skill modularity — V&V techniques accumulate (verification
+  levels, compositional verification expected); the gate belongs to the
+  protocol, the technique to its own skill. Same split as statistics into
+  `modeling-jain`.
+
+---
+
 ## 2026-07  Release preparation — skill renamed
 
 ### Changed

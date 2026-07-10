@@ -216,61 +216,25 @@ back to Phase 2/3 and resolve it there before continuing.
 
 ### Phase 7 — Verification & Validation (V&V)
 
-*Ref: Sargent, R.G. "Verification and Validation of Simulation Models", Journal of Simulation, 2013.*
+Two questions, one gate: **verification** — "are we building the model
+right?" (does the code implement MODEL.md); **validation** — "are we
+building the right model?" (does the simulation exhibit the law chosen
+in Phase 3).
 
-Two questions, one gate:
+The technique lives in its own skill: read
+`skills/verification-validation/SKILL.md` and follow it. In short —
+write an executable `verify.py` on the shared harness (Tier-1
+conservation invariants reused, Tier-2 per-model law-shape and
+metamorphic toggles), negative-test every check, and prefer running
+V&V in a separate session/agent from the one that built the code (the
+file boundary is the hand-off). Prose verification is not acceptable.
 
-**Verification** — "are we building the model right?" Does the code correctly
-implement MODEL.md? Run once with default parameters. Expected outcome: healthy
-baseline — throughput equal to arrival rate, latency p50 close to sum of phase
-means, no drops, success rate 100%. If the baseline is already pathological,
-the defaults are wrong (not the model) — adjust arrival rate until a healthy
-point exists. The defaults should demonstrate the model works, not stress-test it.
-
-**Validation** — "are we building the right model?" Does the simulation exhibit
-the behavior predicted by the law chosen in Phase 3? Run over a load range and
-inspect the curve shape:
-- USL: three regimes — linear scaling → knee → declining throughput
-- M/M/1: hyperbolic latency rise toward saturation
-- M/M/c: throughput plateau within ~5% of analytical ceiling `capacity / service_time_mean`
-
-If the curve does not match: debug the model — a degradation coefficient is
-zero, a Resource has wrong capacity, or the service-time draw is wrong.
-
-Apply `references/metric-checklist.md` as a mandatory lens on both checks.
-Critical rule: latency-of-successful-requests is not safe beyond saturation —
-surviving requests are a biased sample. Always track **effective latency**
-(timeouts counted as SLA seconds) and **success rate** alongside latency.
-If the user has not asked for these, add them and explain why.
-
-**Do this with the validation harness (executable V&V).** Do not verify "by prose"
-— write an executable `verify.py` using the shared harness (`harness/`, see
-`harness/README.md`; skeleton at `templates/verify.py`). It adapts the model's output
-into the `RunSummary` ledger and runs a small, negative-tested battery:
-
-- **Verification → Tier-1 conservation** — universal invariants reused from
-  `harness/invariants.py` (work is conserved; no congestion loss at a healthy baseline;
-  non-negative ledger). Do not rewrite these per project — they are the fixed, independent
-  trust floor.
-- **Validation → Tier-2, per model** — the curve shape for the chosen law, and
-  **metamorphic toggles**: disable a mechanism and assert the metric moves the right way
-  (e.g. degradation off → peak rises; shrink a pool → throughput drops where it binds).
-  Use the *direction* from MODEL.md, not magic-number thresholds, and take each toggle at
-  the operating point where the mechanism **binds**.
-- **Negative-test every check** — confirm it goes red on a deliberately broken model. A
-  check that stays green on a broken model is worthless; this is non-negotiable.
-- **Prefer independence** — run V&V in a *separate* session/agent from the one that built
-  the code (correlated blind spots: a generator that missed a bug also fails to check for
-  it). The file boundary is the hand-off.
-
-Keep it small (proportionality razor): system-level Tier-1 by default; add a Tier-2 check
-only against a named risk. See `harness/README.md` for what green does — and does not — mean.
-
-**The gate (Phase 7 → 8).** Green certifies *correctness* automatically — this is the
-Build agent's "ships only green" exit criterion; the executable check replaces a human
-eyeballing the smoke test. Then a **human sign-off** before sweeps: green means it is safe
-to proceed, the human authorizes the *spend* (sweeps can be expensive). Do not proceed to
-Phase 8 until the harness is green and (in interactive mode) the human has signed off.
+**The gate (Phase 7 → 8).** Green certifies *correctness*
+automatically — this is the Build agent's "ships only green" exit
+criterion. Then a **human sign-off** before sweeps: green means it is
+safe to proceed, the human authorizes the *spend* (sweeps can be
+expensive). Do not proceed to Phase 8 until the harness is green and
+(in interactive mode) the human has signed off.
 
 ### Phase 8 — Behavioral analysis
 
@@ -399,7 +363,6 @@ them and intervene if the user (or you) drift toward any of them:
 - `references/audit-protocol.md` — Phase 1 audit, full Q&A in order.
 - `references/extension-audit.md` — Phase 9 iteration mini-audit.
 - `references/theory-glossary.md` — M/M/1, M/M/c, USL formulas and when to use each.
-- `references/metric-checklist.md` — Phase 7 V&V metric lens.
 
 ## Templates
 
@@ -410,16 +373,7 @@ them and intervene if the user (or you) drift toward any of them:
 - `templates/MODEL.md` — model specification template.
 - `templates/SIM_REPORT.md` — simulation report template (Phase 10).
 - `templates/README.md` — per-example README (input / model / how to run / result); the map of an example folder.
-- `templates/verify.py` — per-example V&V skeleton (Phase 7); the executable form of V&V.
 - `templates/requirements.txt` — minimal dependencies.
 
-## Validation harness
-
-The executable form of Phase 7 lives in the repo-root `harness/` package (shared, fixed):
-
-- `harness/run_summary.py` — the `RunSummary` ledger (the contract each model adapts into).
-- `harness/invariants.py` — Tier-1 universal conservation invariants (do not edit per project).
-- `harness/runner.py` — runs one example's checks and reports pass/fail.
-- `harness/README.md` — **what green does and does NOT mean** (read this before trusting a run).
-
-Distinct from the *sweep* harness (`sweep.py` / `sweep_2d.py`), which explores behaviour.
+Phase 7 tooling (the `verify.py` skeleton, the metric checklist, the shared
+`harness/` package) lives in the `verification-validation` skill.

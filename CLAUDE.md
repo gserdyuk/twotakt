@@ -22,13 +22,14 @@ and `sweep.png`. PowerSearch additionally splits into `model1_ingestion/` and
 
 ## Local skills
 
-This project ships three skills in the `skills/` directory. They are **not**
+This project ships four skills in the `skills/` directory. They are **not**
 installed globally — Claude must read them from disk. When a relevant task
 arises, read the corresponding `SKILL.md` and follow the protocol it defines.
 
 | Skill | Path | When to use |
 |-------|------|-------------|
 | `simstudy-protocol` | `skills/simstudy-protocol/SKILL.md` | Building or extending a SimPy simulation; modeling throughput, latency, queues, bottlenecks under load. **Always start here.** Requires REQUIREMENTS + Architecture as inputs. |
+| `verification-validation` | `skills/verification-validation/SKILL.md` | Checking an executable_model against MODEL.md: verify.py, Tier-1/Tier-2 checks, negative tests. Invoked by simstudy-protocol Phase 7; also standalone re-verification. |
 | `queueing-lazowska` | `skills/queueing-lazowska/SKILL.md` | Analytical answers without simulation: capacity planning, utilization, bottleneck device, "how many servers?" |
 | `modeling-jain` | `skills/modeling-jain/SKILL.md` | Statistical rigour for simulation inputs and outputs. |
 
@@ -37,6 +38,10 @@ arises, read the corresponding `SKILL.md` and follow the protocol it defines.
 Load **simstudy-protocol** when the user mentions: simulation, SimPy, throughput,
 latency, queue, bottleneck, capacity, p99, overload, degradation, M/M/1, M/M/c,
 USL, "what happens under load", узкое место, очередь, нагрузка.
+
+Load **verification-validation** when the user mentions: verify, validation, V&V,
+verify.py, harness, invariant, metamorphic test, negative test, "can the generated
+code be trusted", верификация, валидация.
 
 Load **queueing-lazowska** when the user wants a quick analytical estimate without
 running code: "how many servers do I need", "which device saturates first",
