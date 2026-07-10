@@ -144,19 +144,10 @@ when the queue is full?"), that goes back to Phase 2/3 — you do not patch it i
 code implement `MODEL.md`?). Validation: "are we building the right model?" (does it
 show the behaviour the chosen law predicts?).
 
-**Why it is executable, not prose.** "Verify by reading" is how accidental semantics
-survive. `verify.py` runs a small battery: Tier-1 conservation invariants (work is
-conserved; no congestion loss at a healthy baseline) reused unchanged across projects —
-the fixed trust floor — plus Tier-2 per-model checks (curve shape, metamorphic toggles:
-disable a mechanism, assert the metric moves the right way).
-
-**Why negative-test every check.** A check that stays green on a deliberately broken
-model is worthless. This is non-negotiable — an assertion you have not seen fail is not
-evidence.
-
-**Why prefer an independent session.** The generator that missed a bug also fails to
-check for it (correlated blind spots). Running V&V in a separate session/agent makes the
-file boundary the hand-off, so the checker isn't the author.
+The *technique* — why executable not prose, why negative-test, why an independent
+session — moved with the technique itself to
+`skills/verification-validation/RATIONALE.md` (extracted 2026-07-10). What stays here
+is the gate, because the gate is the protocol's:
 
 **Why two gates here, not one.** Green certifies *correctness* automatically ("ships only
 green") — the machine replaces a human eyeballing a smoke test. Then a **human sign-off**

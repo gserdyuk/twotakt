@@ -114,7 +114,7 @@ gates is Claude's to execute.
   - `USLDBmodel/` — same, with a database connection pool added: cascaded bottlenecks
   - `PowerSearch/` — search aggregator case study: two pipelines (ingestion + queries), capacity planning
   - `FaxRx/` — worldwide fax reception with Erlang B + OCR, based on a production platform
-- `docs/` — concept, architecture, critique, one-pagers
+- `docs/` — concept (vision & roadmap), critique, verifiability, one-pagers
 - `CLAUDE.md` — tells Claude how to behave in this workspace (loads skills automatically)
 - `dev-log.md` — append-only log of project evolution
 

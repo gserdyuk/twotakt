@@ -887,3 +887,20 @@ only CHANGELOGs.
 Whole-example status instead of per-item debts: draft banners in the example's
 README.md and MODEL.md, TODO section collapsed; SIM_REPORT / MODEL.ru cleanups are
 moot until the rework.
+
+## 2026-07-10 — stale docs resolved by archiving; concept.md rewritten vision-only; RATIONALE follows the V&V split
+
+Third occurrence of the lesson "current-state descriptions lose the race with
+SKILL.md + README" — so this time: archive, don't refresh. architecture.md ->
+docs/archive/architecture-v2.md (kept for the v1->v2 decision record: why MCP/DSL
+were dropped); architecture-llm-layers.md -> archive (its #1 priority — externalize
+validation — was since implemented as the harness; unharvested ideas -> TODO P3:
+RAG textbook corpus, deterministic style checkers / spec-drift linter). concept.md
+rewritten as a vision-only doc (problem / differentiator / landscape / calibration
+direction; phase numbers removed — the phase layout is owned by the skill): vision
+rots slowly, cheap to keep. critique.md untouched — it is a dated record, not a
+current-state description. RATIONALE: technique-why moved to
+skills/verification-validation/RATIONALE.md; simstudy Phase 7 rationale keeps only
+the gate-why; the open trust-chain NOTE stays with the author.
+
+`#docs #archive #concept #vision #rationale #verification-validation`

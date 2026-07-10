@@ -242,11 +242,15 @@ Entry phrase for README:
       rotted (the skill evolved, the doc didn't). Lesson: spec-first holds for *the model* (a
       per-project artifact a human re-approves), not for *the method* (no one re-approves it
       each run). SKILL.md is now the single source of the protocol.
-- [ ] **RATIONALE for all three skills.** `skills/simstudy-protocol/RATIONALE.md` created as
+- [ ] **RATIONALE for all four skills.** `skills/simstudy-protocol/RATIONALE.md` created as
       the human "why" companion to SKILL.md (phase-by-phase reasons/failure-modes) — DRAFT,
-      user is adding their own reasons iteratively. Then mirror the pattern (shorter, tailored)
-      to `queueing-lazowska` and `modeling-jain`, whose "why" is thinner (they wrap external
-      published methods: when-to-use, assumptions, where-it-breaks — not failure-per-gate).
+      user is adding their own reasons iteratively (open `> NOTE:` on the trust chain — the
+      heart of the pitch — still to be written by the author).
+      `skills/verification-validation/RATIONALE.md` created 2026-07-10 (technique-why moved
+      there with the skill split; simstudy Phase 7 rationale keeps only the gate-why).
+      Then mirror the pattern (shorter, tailored) to `queueing-lazowska` and `modeling-jain`,
+      whose "why" is thinner (they wrap external published methods: when-to-use, assumptions,
+      where-it-breaks — not failure-per-gate).
 - [x] **Split V&V into its own skill (done 2026-07-10): `skills/verification-validation/`.**
       Extracted out of `simstudy-protocol`: Phase 7 detail, `references/metric-checklist.md`,
       `templates/verify.py`, the pointer to the shared `harness/` package. Phase 7 stays in
@@ -258,13 +262,16 @@ Entry phrase for README:
       (Lazowska, Jain); here the method is in-house and growing, Sargent is a source, not
       the owner. **Backlog stays project-wide** (this file) — per-skill backlogs = drift;
       skills carry only CHANGELOGs. CLAUDE.md / README / cross-refs synced same day.
-- [ ] **Refresh the architecture/concept docs** — `docs/architecture.md`, `docs/concept.md`,
-      `docs/architecture-llm-layers.md`, `docs/critique.md` are stale: they name the old skill
-      `skills/perf-simulation/` and the deleted `perf-simulation.skill`, call it "the 12-step
-      protocol", and describe a clean Layer 1 (methodology) / Layer 2 (skill) split that has
-      since collapsed — SKILL.md became the source of truth while methodology.md rotted. Bring
-      the layer model and the names in line with reality (couple this with the methodology.md
-      role decision above: A retire / B source-spec / C rationale-companion).
+- [x] **Stale architecture/concept docs — resolved by archiving, not refreshing (2026-07-10).**
+      Lesson applied (third time): current-state descriptions always lose the race with
+      SKILL.md + README. `docs/architecture.md` → `docs/archive/architecture-v2.md` (kept for
+      the v1→v2 decision record: why MCP/DSL were dropped); `docs/architecture-llm-layers.md`
+      → archive (its top priority — externalize validation — was since implemented as the
+      harness; unharvested ideas moved to P3 below). `docs/concept.md` → rewritten as a
+      vision-only doc (problem / differentiator / competitive landscape / reverse-simulation
+      calibration direction) — vision rots slowly, cheap to keep. `docs/critique.md` stays
+      as-is: it is a dated external-critique record with statuses (dev-log-like), not a
+      current-state description.
 - [x] Language policy = English everywhere: translate `PowerSearch/SIM_REPORT.md`
       (done 2026-06-15 — translated RU → EN; all four reports now in English)
 - [x] Re-encode `PowerSearch/Whiteboarding scenario-plus-asr.txt` to UTF-8; CRLF → LF
@@ -314,6 +321,15 @@ Entry phrase for README:
       from the same description; diff MODEL.md structurally (components / resources /
       laws — not wording); run V&V on every variant. Side effect: MODEL.md divergence
       points = ambiguity detector for the source description. Candidate for article #2.
+- [ ] **RAG over a curated textbook corpus** (harvested from the archived
+      architecture-llm-layers essay, 2026-07-10): Lazowska + Jain as the starting pair;
+      grounds theory answers in the canon with citations instead of model weights.
+      Sizeable (weeks), separable stages.
+- [ ] **Deterministic style checkers / spec-drift linter** (same source): AST check for
+      magic numbers outside `Config`; diff `Config` fields ↔ MODEL.md parameter table;
+      plot-structure check (throughput + success rate + latency present). Complements the
+      V&V harness: the harness checks *behavior*, these check *form* — the CLAUDE.md rules
+      that today hold only by discipline. Cheap (each checker tens of lines).
 
 ---
 

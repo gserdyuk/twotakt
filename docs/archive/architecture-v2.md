@@ -1,5 +1,12 @@
 # twotakt — Architecture (v2)
 
+> **ARCHIVED 2026-07-10.** Historical snapshot — names the skill two renames ago
+> (`perf-simulation`), a 12-step protocol (now 10 phases), and a methodology/skill
+> layer split that has since collapsed (SKILL.md is the single source). Current
+> structure is owned by `README.md` + `skills/*/SKILL.md`. Kept for the decision
+> record: the v1→v2 mapping table (why the MCP server and the DSL were dropped)
+> and the structural out-of-scope list.
+
 ## What this document is
 
 This document describes the structural arrangement of twotakt v2 —

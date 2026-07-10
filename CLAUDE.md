@@ -11,7 +11,7 @@ is approved by the user.
 ```
 skills/              ← local Claude skills (see below)
 examples/            ← worked SimPy models (PowerSearch, USLmodel, USLDBmodel, FaxRx)
-docs/                ← concept, architecture, critique
+docs/                ← concept (vision), critique, verifiability
 dev-log.md           ← append-only project log
 ```
 
