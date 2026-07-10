@@ -2,7 +2,8 @@
 
 > Audit (Phase 1) output. Source of truth for the SimPy model. If this doc and
 > the code disagree, this doc is the spec and the code is the bug.
-> **Status: DRAFT — awaiting user approval before any code is written.**
+> **Status: DRAFT project — parked, will be reworked.** (First version approved
+> 2026-06-17 and built through Phase 8; the modelling decisions are being revisited.)
 
 ## What real system is being modelled
 

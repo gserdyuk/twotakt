@@ -1,5 +1,9 @@
 # RadioMonitoring
 
+> **Status: DRAFT project — parked, will be reworked.** The first build-out is
+> complete (MODEL approved, verify 19/19 green, sweep + plots), but the modelling
+> decisions are being revisited; treat every artifact in this folder as provisional.
+
 A two-stage SimPy model of a frontline radio-spectrum surveillance system, built
 with the audit-first simstudy-protocol. The question: **what fraction of an adversary's
 channel activity does the system intercept and decode end-to-end (POI × decode-yield),

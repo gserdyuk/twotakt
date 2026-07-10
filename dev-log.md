@@ -881,3 +881,9 @@ Sargent is a source, not the owner. Backlog stays project-wide in TODO.md
 only CHANGELOGs.
 
 `#skills #vv #modularity #verification-validation`
+
+## 2026-07-10 — RadioMonitoring declared a DRAFT project (parked, will be reworked)
+
+Whole-example status instead of per-item debts: draft banners in the example's
+README.md and MODEL.md, TODO section collapsed; SIM_REPORT / MODEL.ru cleanups are
+moot until the rework.

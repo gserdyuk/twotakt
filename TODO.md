@@ -190,25 +190,16 @@ Entry phrase for README:
 
 ---
 
-## RadioMonitoring (Model #5) — remaining work (NOT finished)
+## RadioMonitoring (Model #5) — DRAFT project, will be reworked
 
-> Built fresh through the full protocol in a separate session; validation harness green
-> (19/19, record + decode × voice/digital). The *model* is only **temporarily** considered
-> done — not final. The *example* is deliberately not listed in README / one-pagers yet
-> (showcase-when-ready policy), though it lives in `examples/`.
-
-- [ ] **Model not final** — temporarily parked. Revisit modelling decisions still in flux
-      (classify/decode reading, stage-2 decode provisioning, core-contention when co-located,
-      drone/radar handling). User was gathering real params (see memory `radiomonitoring-status`).
-- [x] **Behavioural analysis (Phase 8)** — done: `sweep.py` + `plot_sweep.py` + `sweep.png`
-      exist; findings (undersized at both stages; ~12–16 SDR/band + ~32 decode workers)
-      recorded in memory + `dev-log.md`. (Contingent on the model-final caveat above.)
-- [ ] **SIM_REPORT.md** — the only remaining artifact; `README.md` (per template),
-      `ARCHITECTURE.md` + `REQUIREMENTS.md` + `MODEL.md` + `verify.py` + sweep already exist.
-- [ ] Decide whether the `MODEL.ru.md` duplicate stays (English-everywhere policy) and fix
-      the stale "DRAFT — awaiting approval before any code" status line in `MODEL.md`.
-- [ ] Listing in README Layout / `CLAUDE.md` examples is **not** a gap — deferred by the
-      showcase-when-ready policy; add only when the model is final.
+> **Status decided 2026-07-10: the whole example is a DRAFT project — parked, to be
+> reworked.** First build-out complete (full protocol in a separate session, verify
+> 19/19 green, Phase 8 sweep + plots); the modelling decisions are being revisited
+> (classify/decode reading, stage-2 provisioning, core-contention when co-located,
+> drone/radar handling; user gathering real params). Marked as draft in the example's
+> `README.md` and `MODEL.md`. Per-item cleanups (SIM_REPORT.md, `MODEL.ru.md`
+> keep/drop) are moot until the rework — they will be redone with it. Deliberately
+> not listed in README / one-pagers (showcase-when-ready policy).
 
 ---
 
