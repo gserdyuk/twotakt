@@ -1,6 +1,8 @@
 # Article candidate #4 — Invariant-based acceptance testing for LLM-generated simulations
 
-*Status: candidate (captured 2026-06-15). Target form: conference talk / short paper.*
+> **Type: reasoning** — corpus: append/compact, not synced · born 2026-06-15
+
+*Status: candidate. Target form: conference talk / short paper.*
 *Origin: design conversation while scoping the P1 verification harness.*
 
 *Working title is "invariant-based..."; a later turn reframed the whole thing as

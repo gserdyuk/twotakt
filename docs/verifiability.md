@@ -1,7 +1,9 @@
 # Verifiability by construction — a map and a doctrine for AI-built models
 
-*Status: DRAFT (captured 2026-07-09). Distilled from a design conversation; the author
-is still deciding what survives.*
+> **Type: reasoning** — corpus: append/compact, not synced · born 2026-07-09
+
+*Status: DRAFT. Distilled from a design conversation; the author is still deciding
+what survives.*
 
 *Relation to other docs: [`article_candidate_4_vv.md`](article_candidate_4_vv.md) covers
 the **validation-harness machinery** in depth (invariant tiers, authorship/independence,

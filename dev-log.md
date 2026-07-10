@@ -1,5 +1,7 @@
 # twotakt — development log
 
+> **Type: journal** — corpus: append-only, never edited · born 2026-04-30
+
 Append-only log of project evolution. Newest entries at the bottom.
 Tag entries with `#tag` so the log is greppable later.
 
@@ -904,3 +906,37 @@ skills/verification-validation/RATIONALE.md; simstudy Phase 7 rationale keeps on
 the gate-why; the open trust-chain NOTE stays with the author.
 
 `#docs #archive #concept #vision #rationale #verification-validation`
+
+
+## 2026-07-10 — research-project reframing: corpus/surface split, findings.md + INDEX.md
+
+The recurring cost of documentation was diagnosed at the root: the project was run as an
+*engineering* project (all docs must be currently true and synchronized) while it is in
+fact a *research* project (truth accumulates through dated records, findings, and
+publications). The whack-a-mole contradiction hunts were the price of applying product
+discipline to a research corpus.
+
+**Decisions:**
+
+- **Corpus vs surface split** (CLAUDE.md Key constraints): the research corpus (dev-log,
+  findings.md, theory docs, article drafts, critique) *accumulates* — append-only, dated,
+  contradictions are history; the product surface (README, one-pagers, CLAUDE.md,
+  SKILL.MDs, TODO) stays small, current, contradiction-free. Only the surface is ever
+  synchronized. Generalizes the thrice-learned "archive, don't refresh" lesson (F25).
+- **findings.md created** — the register of what the project knows: F-numbered claims,
+  one screen max, append-only (refinements reference back), each pointing to its long
+  form. Retrospectively seeded with F1–F26 from article #4, verifiability.md, and the
+  dev-log. Highest preservation form remains *compilation into practice* (a finding that
+  became a harness check cannot be lost) — marked with `compiled:`.
+- **INDEX.md created** — the catalog: one pointer line per thing worth finding again
+  (files, key decisions, findings clusters). Pointers + hooks, never content — a copy is
+  a future contradiction. Curated, not exhaustive (dev-log stays greppable by #tags).
+- **Compaction rhythm** (the video-codec analogy that seeded the design: append deltas =
+  P-frames, periodic review produces a new keyframe): when the findings tail stops
+  reading clean or before an external showing — review, merge, resolve, rewrite as vN,
+  archive vN-1; mature clusters graduate into theory docs / articles / skills.
+- **Granularity rule**: a big discussion yields 3–7 findings + possibly a long-form doc,
+  never a 4-page findings entry. Precedent was already in-repo: article #4 is "the long
+  form; the one-line version lives in TODO".
+
+`#process #research #findings #index #corpus #compaction`

@@ -1,5 +1,7 @@
 # twotakt — Concept & Direction
 
+> **Type: vision** — corpus: no current-state claims inside · rewritten 2026-07-10
+
 > Vision-level document: the problem, the bet, the differentiator, and the
 > calibration direction. The **current state** (structure, phases, skills) is
 > deliberately not described here — it is owned by `README.md` and

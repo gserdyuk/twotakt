@@ -12,7 +12,9 @@ is approved by the user.
 skills/              ← local Claude skills (see below)
 examples/            ← worked SimPy models (PowerSearch, USLmodel, USLDBmodel, FaxRx)
 docs/                ← concept (vision), critique, verifiability
-dev-log.md           ← append-only project log
+dev-log.md           ← append-only project log (the lab journal)
+findings.md          ← findings register: F-numbered claims + pointers to long forms
+INDEX.md             ← the catalog: one pointer line per thing worth finding again
 ```
 
 Each example folder typically contains: `README.md`, `executable_model.py`, `sweep.py`,
@@ -82,6 +84,22 @@ for sweep results; or audit a performance study for common measurement mistakes.
   (file `REQUIREMENTS.md`) — never the Russism "ТЗ". Do not use "Spec" for it either: that
   word is reserved for `MODEL.md` (the model spec). Russian-language docs (e.g. the RU
   one-pager) may keep "ТЗ".
+- **Corpus vs surface.** This is a research project. Its documents split into a
+  **research corpus** (`dev-log.md`, `findings.md`, docs/ theory & article drafts,
+  `critique.md`) that *accumulates* — append-only, dated, internal contradictions are
+  history and are never "fixed" — and a small **product surface** (`README.md`,
+  one-pagers, `CLAUDE.md`, `SKILL.md`s, `TODO.md`) that must stay current and
+  contradiction-free. Only surface documents are synchronized; corpus documents are
+  periodically *compacted* (reviewed, rewritten as a new version; the old version goes
+  to `docs/archive/`), never patched in place. Every corpus document opens with a
+  one-line passport under its title — `> **Type: reasoning|register|journal|record|vision**
+  — <regime> · born <date>` — stating what it is and how to treat it; the passport is
+  immutable (no ranges, counts, or other rotting claims in it). Surface docs need none.
+- **Findings discipline.** A finding leaves the chat the same session it appears:
+  append an entry to `findings.md` (the claim in ≤ one screen + a pointer to the long
+  form; a big result gets its own doc, and each distinct claim gets its own F-entry) and
+  add a pointer line to `INDEX.md`. `INDEX.md` holds pointers + one-line hooks, never
+  content; new files and important dev-log entries also get an INDEX line.
 
 ## Working rules
 

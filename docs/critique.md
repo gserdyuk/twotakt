@@ -1,5 +1,7 @@
 # twotakt — Critique (v2)
 
+> **Type: record** — corpus: dated review with response statuses, append-only
+
 This document is an adversarial review of the project as it stands.
 It is intentionally harsh. Strengths are listed first so they are not
 discarded by overcorrection; everything after the strengths is to be
