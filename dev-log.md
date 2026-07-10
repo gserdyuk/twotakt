@@ -865,3 +865,4 @@ without a frame. RU one-pager worded natively; EN kept to one paragraph per the 
 requirement.
 
 `#docs #42010 #concern #readme #one-pager`
+## 2026-07-09 — scope paragraphs removed from README + both one-pagers (concern → attribute → deletion)

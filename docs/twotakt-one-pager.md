@@ -4,8 +4,6 @@
 
 For IT-systems architects: performance modeling, capacity planning, bottleneck analysis.
 
-Scope, in ISO/IEC 42010 terms: the concern is **performance and scalability** — throughput, latency, behavior under load — via discrete-event simulation and queueing analysis. Availability and cost fit the same structural base and are planned; security is out of scope.
-
 ---
 
 ## Architects don't model. And until now they were right.
