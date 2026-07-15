@@ -24,6 +24,16 @@ compaction time, same rhythm as findings.md.
 - [findings.md](findings.md) — the findings register: F-numbered claims + pointers to long forms
 - [docs/verifiability.md](docs/verifiability.md) — theory (DRAFT): the map (model kinds, gates A/B/C, solvers) + the verifiability-by-construction doctrine
 - [docs/article_candidate_4_vv.md](docs/article_candidate_4_vv.md) — article #4 long form (lead candidate): invariant/intent verification for LLM-generated simulations
+- [docs/article_candidate_1_audit_first.md](docs/article_candidate_1_audit_first.md) — article #1 short form: audit-first, spec is primary ("when they diverge, the code is the bug")
+- [docs/article_candidate_2_interaction_bottleneck.md](docs/article_candidate_2_interaction_bottleneck.md) — article #2 short form: component ceilings don't compose (USLDBmodel, F10)
+- [docs/article_candidate_3_fail_fast_slow.md](docs/article_candidate_3_fail_fast_slow.md) — article #3 short form: same success rate, opposite failure UX (FaxRx; admission vs congestion loss)
+- [docs/linkedin_post_3_fail_fast_slow.md](docs/linkedin_post_3_fail_fast_slow.md) — approved LinkedIn draft for #3: first post of the warm-up series (order #3 → #2 → #1; #4 reserved for long form); companion diagram `docs/linkedin_post_3_architecture.png`
+- [docs/dou_article_3_fail_fast_slow.md](docs/dou_article_3_fail_fast_slow.md) — DOU.ua longread draft for #3 (Ukrainian): the full story incl. Erlang B, honest metrics, limitations; publish 1–2 weeks after the LinkedIn post
+- [docs/article_candidate_5_ai_architectural_landscape.md](docs/article_candidate_5_ai_architectural_landscape.md) — series "AI Influence on the Architectural Landscape" S1: microservices = modularity + distribution; AI removes the first reason
+- [docs/article_candidate_6_reverification_surface.md](docs/article_candidate_6_reverification_surface.md) — series S2: unit of architecture = unit of re-verification; #4 is the precondition of "just regenerate it"
+- [docs/article_candidate_8_lifecycle_economics.md](docs/article_candidate_8_lifecycle_economics.md) — series-adjacent (≠ S3 infra-TCO): uneven AI compression of lifecycle phases, Amdahl residue = analysis+oracle (F29), architecture as coefficient multiplier (F31), four unglued boundaries (F32), spec as context compression (F33); price-model sketch — likely a separate project
+- [docs/article_candidate_7_passports_corpus_surface.md](docs/article_candidate_7_passports_corpus_surface.md) — meta: staleness solved by not promising currency; passports + corpus/surface vs the LLM-wiki thread's pain
+- [docs/linkedin_post_7_llm_wiki_staleness.md](docs/linkedin_post_7_llm_wiki_staleness.md) — approved drafts for #7: gist field-report comment + LinkedIn note (jumps ahead of S1)
 - [docs/concept.md](docs/concept.md) — vision-only: problem / differentiator / landscape / calibration direction
 - [docs/critique.md](docs/critique.md) — dated adversarial review with response statuses + the five-point external critique
 - `docs/archive/` — superseded scenes: concept-v1, architecture-v1/v2, architecture-llm-layers essay; future findings-vN

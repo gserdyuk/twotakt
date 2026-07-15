@@ -179,3 +179,53 @@ retracted under the author's pushback within a turn. The AI could not distinguis
 substantive constructions from symmetry-driven filler *from the inside* — the most
 direct confirmation of F12's consequence so far, obtained about theorizing itself.
 → dev-log 2026-07-09 (verifiability entry).
+
+## Architecture economics (2026-07-13, series "AI Influence on the Architectural Landscape")
+
+**F27 (2026-07-13). Microservices are two decisions glued: modularity (change
+boundaries) + distribution (runtime boundaries). AI unglues them.** The collapse of
+code-construction cost removes the cheap-localized-change justification and leaves
+only runtime reasons (scale, isolation, failure modes) — which are exactly what
+simulation computes. Modular monolith becomes the default; distribute only for
+runtime. → `docs/article_candidate_5_ai_architectural_landscape.md`.
+
+**F28 (2026-07-13). The unit of architecture is the unit of re-verification.**
+Regeneration is cheap; re-proving is not (F12 applied to the loop). A monolith's
+re-verification surface is "everything"; contracts bound it per service. Boundaries
+migrate from cost-of-rewriting to cost-of-re-proving; automated verification (the
+candidate-#4 machinery, F23) is the *precondition* of any "just regenerate it"
+strategy. → `docs/article_candidate_6_reverification_surface.md`.
+
+**F29 (2026-07-14). AI compresses lifecycle phases unevenly; the residue is Amdahl's
+law over the lifecycle.** Codegen ×5, test *execution* ×5, analysis ×1, test *oracle*
+≤×1.5 → the primary-development total shrinks to ~30% of its old self and testing
+becomes its largest line (~43%); analysis grows 10%→~30% by denominator collapse
+alone. The unaccelerated human fraction (analysis + oracle) bounds total speedup from
+above, regardless of further codegen progress.
+→ `docs/article_candidate_8_lifecycle_economics.md`.
+
+**F30 (2026-07-14). AI gain is inversely proportional to the context already in the
+maintainer's head.** Comprehension (~50% of modification effort, the Lientz–Swanson-
+era constant) is AI's strongest mode → in the maintenance loop development falls
+*more* than in greenfield; reconciles METR's slowdown-on-own-repo with the observed
+multi-x speedup on foreign code. → candidate #8.
+
+**F31 (2026-07-14). Architecture enters the financial model as a multiplier on the
+AI coefficients, not as a cost line.** Two mechanisms: context locality (does the
+change-relevant slice fit the window) and blast radius. One-context rule replaces the
+two-pizza rule. Refines F27: modularity ≠ microservices, monolith ≠ spaghetti —
+partitioning suffices, *provided* boundaries are machine-enforced (AI erodes
+convention-held boundaries at generation speed). → candidate #8, candidate #5.
+
+**F32 (2026-07-14). Microservices glued four boundaries: comprehension, verification,
+deployment, team.** AI economics is sensitive only to the first two, and both are
+achievable inside a monolith (partitioning + contracts/specs); deployment bounds only
+the operational radius (process, memory, scaling) — the honest residual case for
+services. Refines F27/F28. → candidate #8.
+
+**F33 (2026-07-14). The spec is a context-compression format (~100:1), invariant to
+window size.** A neighbor enters the context as its MODEL.md, not its implementation;
+window growth and sparse attention shift the constant, not the gradient (sparsity
+prunes exactly the long-range pairs spaghetti needs). The spec also makes the
+re-verification radius *definable* — without it the rational radius is "everything".
+Ties audit-first to both economies. Refines F28. → candidate #8.

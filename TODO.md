@@ -391,13 +391,62 @@ Entry phrase for README:
 
 ## Article / pitch material (actions from captured findings)
 
-- [ ] Article candidate: **interaction bottleneck** (USLDBmodel — component ceilings
-      don't compose; pool=1 collapses at 6 rps despite a 20 rps paper ceiling)
-- [ ] Article / pitch demo candidate: **fail-fast vs fail-slow** (FaxRx — same success
+- [ ] Article candidate #2: **interaction bottleneck** (USLDBmodel — component ceilings
+      don't compose; pool=1 collapses at 6 rps despite a 20 rps paper ceiling).
+      Short form: `docs/article_candidate_2_interaction_bottleneck.md`.
+- [ ] Article / pitch demo candidate #3: **fail-fast vs fail-slow** (FaxRx — same success
       rate at 10× burst, qualitatively different failure UX; undersized front door as
-      admission control)
-- [ ] Article #1 (90-day plan, month 2): MODEL.md / audit-first approach; reuse the
-      "specification vs bug" line and the survivorship-bias example (PowerSearch)
+      admission control). Short form: `docs/article_candidate_3_fail_fast_slow.md`.
+      Publication drafts ready: LinkedIn EN post (`docs/linkedin_post_3_fail_fast_slow.md`,
+      first of the warm-up series) + DOU.ua UA longread (`docs/dou_article_3_fail_fast_slow.md`,
+      1–2 weeks after the post).
+- [ ] Article candidate #1 (90-day plan, month 2): MODEL.md / audit-first approach; reuse
+      the "specification vs bug" line and the survivorship-bias example (PowerSearch).
+      Short form: `docs/article_candidate_1_audit_first.md`.
+- [ ] **Article candidate #7 — passports + corpus/surface split** (standalone meta-topic:
+      knowledge transfer between LLM sessions; answer-by-discipline to the staleness pain
+      of Karpathy's LLM-wiki thread). Short form:
+      `docs/article_candidate_7_passports_corpus_surface.md`. Publication drafts ready
+      (`docs/linkedin_post_7_llm_wiki_staleness.md`): gist comment ASAP, LinkedIn note
+      jumps ahead of S1.
+
+### Series: AI Influence on the Architectural Landscape (born 2026-07-13)
+
+Thesis of the series: the collapse of code-construction cost reprices architectural
+decisions. Op-eds with a computable exhibit under the hood — the differentiator vs
+the "AI kills microservices" wave.
+
+**Publication pipeline (per topic):** LinkedIn EN note (drafted by AI, audited by
+author) → engagement gate 1–2 weeks (reactions + harvest objections from comments;
+quiet topic = stop) → DOU UA longread (author-written text — DOU forbids AI-generated
+text; AI draft = idea skeleton only) + same-day LinkedIn UA teaser linking the DOU
+piece + optional dev.to EN long form (no AI ban there; disclosure line as good taste).
+Cadence: one EN note per 1–1.5 weeks; interleave with the warm-up series (#2, #1).
+
+- [ ] **S1 = candidate #5 — microservices after the price drop** (modularity stays,
+      distribution retreats; distribute only for runtime). Short form:
+      `docs/article_candidate_5_ai_architectural_landscape.md`. Writable now.
+- [ ] **S2 = candidate #6 — the re-verification surface** (unit of architecture =
+      unit of re-verification; #4 is the precondition). Short form:
+      `docs/article_candidate_6_reverification_surface.md`. Writable now.
+- [ ] **S3 — TCO as an experiment**: cost-of-ownership layer as a postprocessor over
+      `sweep_results.json` — resource prices (real oracle: price lists) + business
+      penalty per lost unit (invented parameter → sensitivity axis, break-even
+      framing per F20) + rework *timing* computed from capacity ceilings under a
+      growth trajectory (dev cost enters as schedule, not amount; relative deltas
+      between variants of one system, never absolute estimates). Pilot on FaxRx A/B/C
+      (architectures differ exactly in procurement). Prior art: SEI CBAM. Explicitly
+      out: COCOMO-class absolute dev-cost estimation. **Needs building.**
+- [ ] **S4 — architecture as an options portfolio**: Monte Carlo over business-growth
+      trajectories → TCO distribution ("A cheaper in 70% of futures"); oversizing =
+      a purchased option on growth, priced by the model. Requires S3.
+- [ ] **Candidate #8 — lifecycle economics** (series-adjacent; ≠ S3, which is
+      infra-TCO of the modeled system): long form written 2026-07-14
+      (`docs/article_candidate_8_lifecycle_economics.md`, F29–F33). Open call:
+      home for the executable price model — likely a **separate project**, not
+      twotakt (author, 2026-07-14: "не хочется смешивать"); sketch lives in #8 §6
+      until decided.
+
 - [ ] **Article candidate #4 — intent/consistency verification for LLM-generated
       simulations** (strongest; lead candidate). Thesis: with no oracle, trust comes from
       checking mutual consistency among independent expressions of intent. Three tiers by

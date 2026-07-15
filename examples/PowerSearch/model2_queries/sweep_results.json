@@ -1,5 +1,25 @@
 [
   {
+    "config": {
+      "base_arrival_rate": 10.0,
+      "burst_multiplier": 5.0,
+      "burst_duration": 30.0,
+      "burst_interval": 120.0,
+      "sim_time": 600.0,
+      "seed": 42,
+      "search_time_mean": 0.02,
+      "es_query_time_mean": 0.08,
+      "num_search_workers": 10,
+      "es_query_pool_size": 100,
+      "alpha": 0.0,
+      "beta": 0.0,
+      "max_threads": null,
+      "sla_seconds": 0.5,
+      "seeds": [
+        42,
+        43
+      ]
+    },
     "base_arrival_rate": 10,
     "num_search_workers": 10,
     "success_rate": 0.9978516406941385,
@@ -9,6 +29,26 @@
     "dropped_timeout": 25.5
   },
   {
+    "config": {
+      "base_arrival_rate": 10.0,
+      "burst_multiplier": 5.0,
+      "burst_duration": 30.0,
+      "burst_interval": 120.0,
+      "sim_time": 600.0,
+      "seed": 42,
+      "search_time_mean": 0.02,
+      "es_query_time_mean": 0.08,
+      "num_search_workers": 20,
+      "es_query_pool_size": 100,
+      "alpha": 0.0,
+      "beta": 0.0,
+      "max_threads": null,
+      "sla_seconds": 0.5,
+      "seeds": [
+        42,
+        43
+      ]
+    },
     "base_arrival_rate": 10,
     "num_search_workers": 20,
     "success_rate": 0.9978516406941385,
@@ -18,6 +58,26 @@
     "dropped_timeout": 25.5
   },
   {
+    "config": {
+      "base_arrival_rate": 10.0,
+      "burst_multiplier": 5.0,
+      "burst_duration": 30.0,
+      "burst_interval": 120.0,
+      "sim_time": 600.0,
+      "seed": 42,
+      "search_time_mean": 0.02,
+      "es_query_time_mean": 0.08,
+      "num_search_workers": 30,
+      "es_query_pool_size": 100,
+      "alpha": 0.0,
+      "beta": 0.0,
+      "max_threads": null,
+      "sla_seconds": 0.5,
+      "seeds": [
+        42,
+        43
+      ]
+    },
     "base_arrival_rate": 10,
     "num_search_workers": 30,
     "success_rate": 0.9978516406941385,
@@ -27,6 +87,26 @@
     "dropped_timeout": 25.5
   },
   {
+    "config": {
+      "base_arrival_rate": 10.0,
+      "burst_multiplier": 5.0,
+      "burst_duration": 30.0,
+      "burst_interval": 120.0,
+      "sim_time": 600.0,
+      "seed": 42,
+      "search_time_mean": 0.02,
+      "es_query_time_mean": 0.08,
+      "num_search_workers": 50,
+      "es_query_pool_size": 100,
+      "alpha": 0.0,
+      "beta": 0.0,
+      "max_threads": null,
+      "sla_seconds": 0.5,
+      "seeds": [
+        42,
+        43
+      ]
+    },
     "base_arrival_rate": 10,
     "num_search_workers": 50,
     "success_rate": 0.9978516406941385,
@@ -36,6 +116,26 @@
     "dropped_timeout": 25.5
   },
   {
+    "config": {
+      "base_arrival_rate": 10.0,
+      "burst_multiplier": 5.0,
+      "burst_duration": 30.0,
+      "burst_interval": 120.0,
+      "sim_time": 600.0,
+      "seed": 42,
+      "search_time_mean": 0.02,
+      "es_query_time_mean": 0.08,
+      "num_search_workers": 75,
+      "es_query_pool_size": 100,
+      "alpha": 0.0,
+      "beta": 0.0,
+      "max_threads": null,
+      "sla_seconds": 0.5,
+      "seeds": [
+        42,
+        43
+      ]
+    },
     "base_arrival_rate": 10,
     "num_search_workers": 75,
     "success_rate": 0.9978516406941385,
@@ -45,6 +145,26 @@
     "dropped_timeout": 25.5
   },
   {
+    "config": {
+      "base_arrival_rate": 10.0,
+      "burst_multiplier": 5.0,
+      "burst_duration": 30.0,
+      "burst_interval": 120.0,
+      "sim_time": 600.0,
+      "seed": 42,
+      "search_time_mean": 0.02,
+      "es_query_time_mean": 0.08,
+      "num_search_workers": 100,
+      "es_query_pool_size": 100,
+      "alpha": 0.0,
+      "beta": 0.0,
+      "max_threads": null,
+      "sla_seconds": 0.5,
+      "seeds": [
+        42,
+        43
+      ]
+    },
     "base_arrival_rate": 10,
     "num_search_workers": 100,
     "success_rate": 0.9978516406941385,
@@ -54,6 +174,26 @@
     "dropped_timeout": 25.5
   },
   {
+    "config": {
+      "base_arrival_rate": 25.0,
+      "burst_multiplier": 5.0,
+      "burst_duration": 30.0,
+      "burst_interval": 120.0,
+      "sim_time": 600.0,
+      "seed": 42,
+      "search_time_mean": 0.02,
+      "es_query_time_mean": 0.08,
+      "num_search_workers": 10,
+      "es_query_pool_size": 100,
+      "alpha": 0.0,
+      "beta": 0.0,
+      "max_threads": null,
+      "sla_seconds": 0.5,
+      "seeds": [
+        42,
+        43
+      ]
+    },
     "base_arrival_rate": 25,
     "num_search_workers": 10,
     "success_rate": 0.9971740879583557,
@@ -63,6 +203,26 @@
     "dropped_timeout": 81.0
   },
   {
+    "config": {
+      "base_arrival_rate": 25.0,
+      "burst_multiplier": 5.0,
+      "burst_duration": 30.0,
+      "burst_interval": 120.0,
+      "sim_time": 600.0,
+      "seed": 42,
+      "search_time_mean": 0.02,
+      "es_query_time_mean": 0.08,
+      "num_search_workers": 20,
+      "es_query_pool_size": 100,
+      "alpha": 0.0,
+      "beta": 0.0,
+      "max_threads": null,
+      "sla_seconds": 0.5,
+      "seeds": [
+        42,
+        43
+      ]
+    },
     "base_arrival_rate": 25,
     "num_search_workers": 20,
     "success_rate": 0.9971913127523595,
@@ -72,6 +232,26 @@
     "dropped_timeout": 81.0
   },
   {
+    "config": {
+      "base_arrival_rate": 25.0,
+      "burst_multiplier": 5.0,
+      "burst_duration": 30.0,
+      "burst_interval": 120.0,
+      "sim_time": 600.0,
+      "seed": 42,
+      "search_time_mean": 0.02,
+      "es_query_time_mean": 0.08,
+      "num_search_workers": 30,
+      "es_query_pool_size": 100,
+      "alpha": 0.0,
+      "beta": 0.0,
+      "max_threads": null,
+      "sla_seconds": 0.5,
+      "seeds": [
+        42,
+        43
+      ]
+    },
     "base_arrival_rate": 25,
     "num_search_workers": 30,
     "success_rate": 0.9971913127523595,
@@ -81,6 +261,26 @@
     "dropped_timeout": 81.0
   },
   {
+    "config": {
+      "base_arrival_rate": 25.0,
+      "burst_multiplier": 5.0,
+      "burst_duration": 30.0,
+      "burst_interval": 120.0,
+      "sim_time": 600.0,
+      "seed": 42,
+      "search_time_mean": 0.02,
+      "es_query_time_mean": 0.08,
+      "num_search_workers": 50,
+      "es_query_pool_size": 100,
+      "alpha": 0.0,
+      "beta": 0.0,
+      "max_threads": null,
+      "sla_seconds": 0.5,
+      "seeds": [
+        42,
+        43
+      ]
+    },
     "base_arrival_rate": 25,
     "num_search_workers": 50,
     "success_rate": 0.9971913127523595,
@@ -90,6 +290,26 @@
     "dropped_timeout": 81.0
   },
   {
+    "config": {
+      "base_arrival_rate": 25.0,
+      "burst_multiplier": 5.0,
+      "burst_duration": 30.0,
+      "burst_interval": 120.0,
+      "sim_time": 600.0,
+      "seed": 42,
+      "search_time_mean": 0.02,
+      "es_query_time_mean": 0.08,
+      "num_search_workers": 75,
+      "es_query_pool_size": 100,
+      "alpha": 0.0,
+      "beta": 0.0,
+      "max_threads": null,
+      "sla_seconds": 0.5,
+      "seeds": [
+        42,
+        43
+      ]
+    },
     "base_arrival_rate": 25,
     "num_search_workers": 75,
     "success_rate": 0.9971913127523595,
@@ -99,6 +319,26 @@
     "dropped_timeout": 81.0
   },
   {
+    "config": {
+      "base_arrival_rate": 25.0,
+      "burst_multiplier": 5.0,
+      "burst_duration": 30.0,
+      "burst_interval": 120.0,
+      "sim_time": 600.0,
+      "seed": 42,
+      "search_time_mean": 0.02,
+      "es_query_time_mean": 0.08,
+      "num_search_workers": 100,
+      "es_query_pool_size": 100,
+      "alpha": 0.0,
+      "beta": 0.0,
+      "max_threads": null,
+      "sla_seconds": 0.5,
+      "seeds": [
+        42,
+        43
+      ]
+    },
     "base_arrival_rate": 25,
     "num_search_workers": 100,
     "success_rate": 0.9971913127523595,
@@ -108,6 +348,26 @@
     "dropped_timeout": 81.0
   },
   {
+    "config": {
+      "base_arrival_rate": 50.0,
+      "burst_multiplier": 5.0,
+      "burst_duration": 30.0,
+      "burst_interval": 120.0,
+      "sim_time": 600.0,
+      "seed": 42,
+      "search_time_mean": 0.02,
+      "es_query_time_mean": 0.08,
+      "num_search_workers": 10,
+      "es_query_pool_size": 100,
+      "alpha": 0.0,
+      "beta": 0.0,
+      "max_threads": null,
+      "sla_seconds": 0.5,
+      "seeds": [
+        42,
+        43
+      ]
+    },
     "base_arrival_rate": 50,
     "num_search_workers": 10,
     "success_rate": 0.9976358426799632,
@@ -117,6 +377,26 @@
     "dropped_timeout": 134.5
   },
   {
+    "config": {
+      "base_arrival_rate": 50.0,
+      "burst_multiplier": 5.0,
+      "burst_duration": 30.0,
+      "burst_interval": 120.0,
+      "sim_time": 600.0,
+      "seed": 42,
+      "search_time_mean": 0.02,
+      "es_query_time_mean": 0.08,
+      "num_search_workers": 20,
+      "es_query_pool_size": 100,
+      "alpha": 0.0,
+      "beta": 0.0,
+      "max_threads": null,
+      "sla_seconds": 0.5,
+      "seeds": [
+        42,
+        43
+      ]
+    },
     "base_arrival_rate": 50,
     "num_search_workers": 20,
     "success_rate": 0.9973105501634763,
@@ -126,6 +406,26 @@
     "dropped_timeout": 154.0
   },
   {
+    "config": {
+      "base_arrival_rate": 50.0,
+      "burst_multiplier": 5.0,
+      "burst_duration": 30.0,
+      "burst_interval": 120.0,
+      "sim_time": 600.0,
+      "seed": 42,
+      "search_time_mean": 0.02,
+      "es_query_time_mean": 0.08,
+      "num_search_workers": 30,
+      "es_query_pool_size": 100,
+      "alpha": 0.0,
+      "beta": 0.0,
+      "max_threads": null,
+      "sla_seconds": 0.5,
+      "seeds": [
+        42,
+        43
+      ]
+    },
     "base_arrival_rate": 50,
     "num_search_workers": 30,
     "success_rate": 0.9973105501634763,
@@ -135,6 +435,26 @@
     "dropped_timeout": 154.0
   },
   {
+    "config": {
+      "base_arrival_rate": 50.0,
+      "burst_multiplier": 5.0,
+      "burst_duration": 30.0,
+      "burst_interval": 120.0,
+      "sim_time": 600.0,
+      "seed": 42,
+      "search_time_mean": 0.02,
+      "es_query_time_mean": 0.08,
+      "num_search_workers": 50,
+      "es_query_pool_size": 100,
+      "alpha": 0.0,
+      "beta": 0.0,
+      "max_threads": null,
+      "sla_seconds": 0.5,
+      "seeds": [
+        42,
+        43
+      ]
+    },
     "base_arrival_rate": 50,
     "num_search_workers": 50,
     "success_rate": 0.9973105501634763,
@@ -144,6 +464,26 @@
     "dropped_timeout": 154.0
   },
   {
+    "config": {
+      "base_arrival_rate": 50.0,
+      "burst_multiplier": 5.0,
+      "burst_duration": 30.0,
+      "burst_interval": 120.0,
+      "sim_time": 600.0,
+      "seed": 42,
+      "search_time_mean": 0.02,
+      "es_query_time_mean": 0.08,
+      "num_search_workers": 75,
+      "es_query_pool_size": 100,
+      "alpha": 0.0,
+      "beta": 0.0,
+      "max_threads": null,
+      "sla_seconds": 0.5,
+      "seeds": [
+        42,
+        43
+      ]
+    },
     "base_arrival_rate": 50,
     "num_search_workers": 75,
     "success_rate": 0.9973105501634763,
@@ -153,6 +493,26 @@
     "dropped_timeout": 154.0
   },
   {
+    "config": {
+      "base_arrival_rate": 50.0,
+      "burst_multiplier": 5.0,
+      "burst_duration": 30.0,
+      "burst_interval": 120.0,
+      "sim_time": 600.0,
+      "seed": 42,
+      "search_time_mean": 0.02,
+      "es_query_time_mean": 0.08,
+      "num_search_workers": 100,
+      "es_query_pool_size": 100,
+      "alpha": 0.0,
+      "beta": 0.0,
+      "max_threads": null,
+      "sla_seconds": 0.5,
+      "seeds": [
+        42,
+        43
+      ]
+    },
     "base_arrival_rate": 50,
     "num_search_workers": 100,
     "success_rate": 0.9973105501634763,
@@ -162,6 +522,26 @@
     "dropped_timeout": 154.0
   },
   {
+    "config": {
+      "base_arrival_rate": 75.0,
+      "burst_multiplier": 5.0,
+      "burst_duration": 30.0,
+      "burst_interval": 120.0,
+      "sim_time": 600.0,
+      "seed": 42,
+      "search_time_mean": 0.02,
+      "es_query_time_mean": 0.08,
+      "num_search_workers": 10,
+      "es_query_pool_size": 100,
+      "alpha": 0.0,
+      "beta": 0.0,
+      "max_threads": null,
+      "sla_seconds": 0.5,
+      "seeds": [
+        42,
+        43
+      ]
+    },
     "base_arrival_rate": 75,
     "num_search_workers": 10,
     "success_rate": 0.9971155334995685,
@@ -171,6 +551,26 @@
     "dropped_timeout": 254.5
   },
   {
+    "config": {
+      "base_arrival_rate": 75.0,
+      "burst_multiplier": 5.0,
+      "burst_duration": 30.0,
+      "burst_interval": 120.0,
+      "sim_time": 600.0,
+      "seed": 42,
+      "search_time_mean": 0.02,
+      "es_query_time_mean": 0.08,
+      "num_search_workers": 20,
+      "es_query_pool_size": 100,
+      "alpha": 0.0,
+      "beta": 0.0,
+      "max_threads": null,
+      "sla_seconds": 0.5,
+      "seeds": [
+        42,
+        43
+      ]
+    },
     "base_arrival_rate": 75,
     "num_search_workers": 20,
     "success_rate": 0.9970981790918574,
@@ -180,6 +580,26 @@
     "dropped_timeout": 248.5
   },
   {
+    "config": {
+      "base_arrival_rate": 75.0,
+      "burst_multiplier": 5.0,
+      "burst_duration": 30.0,
+      "burst_interval": 120.0,
+      "sim_time": 600.0,
+      "seed": 42,
+      "search_time_mean": 0.02,
+      "es_query_time_mean": 0.08,
+      "num_search_workers": 30,
+      "es_query_pool_size": 100,
+      "alpha": 0.0,
+      "beta": 0.0,
+      "max_threads": null,
+      "sla_seconds": 0.5,
+      "seeds": [
+        42,
+        43
+      ]
+    },
     "base_arrival_rate": 75,
     "num_search_workers": 30,
     "success_rate": 0.9971439983887879,
@@ -189,6 +609,26 @@
     "dropped_timeout": 248.0
   },
   {
+    "config": {
+      "base_arrival_rate": 75.0,
+      "burst_multiplier": 5.0,
+      "burst_duration": 30.0,
+      "burst_interval": 120.0,
+      "sim_time": 600.0,
+      "seed": 42,
+      "search_time_mean": 0.02,
+      "es_query_time_mean": 0.08,
+      "num_search_workers": 50,
+      "es_query_pool_size": 100,
+      "alpha": 0.0,
+      "beta": 0.0,
+      "max_threads": null,
+      "sla_seconds": 0.5,
+      "seeds": [
+        42,
+        43
+      ]
+    },
     "base_arrival_rate": 75,
     "num_search_workers": 50,
     "success_rate": 0.9971439983887879,
@@ -198,6 +638,26 @@
     "dropped_timeout": 248.0
   },
   {
+    "config": {
+      "base_arrival_rate": 75.0,
+      "burst_multiplier": 5.0,
+      "burst_duration": 30.0,
+      "burst_interval": 120.0,
+      "sim_time": 600.0,
+      "seed": 42,
+      "search_time_mean": 0.02,
+      "es_query_time_mean": 0.08,
+      "num_search_workers": 75,
+      "es_query_pool_size": 100,
+      "alpha": 0.0,
+      "beta": 0.0,
+      "max_threads": null,
+      "sla_seconds": 0.5,
+      "seeds": [
+        42,
+        43
+      ]
+    },
     "base_arrival_rate": 75,
     "num_search_workers": 75,
     "success_rate": 0.9971439983887879,
@@ -207,6 +667,26 @@
     "dropped_timeout": 248.0
   },
   {
+    "config": {
+      "base_arrival_rate": 75.0,
+      "burst_multiplier": 5.0,
+      "burst_duration": 30.0,
+      "burst_interval": 120.0,
+      "sim_time": 600.0,
+      "seed": 42,
+      "search_time_mean": 0.02,
+      "es_query_time_mean": 0.08,
+      "num_search_workers": 100,
+      "es_query_pool_size": 100,
+      "alpha": 0.0,
+      "beta": 0.0,
+      "max_threads": null,
+      "sla_seconds": 0.5,
+      "seeds": [
+        42,
+        43
+      ]
+    },
     "base_arrival_rate": 75,
     "num_search_workers": 100,
     "success_rate": 0.9971439983887879,
@@ -216,6 +696,26 @@
     "dropped_timeout": 248.0
   },
   {
+    "config": {
+      "base_arrival_rate": 100.0,
+      "burst_multiplier": 5.0,
+      "burst_duration": 30.0,
+      "burst_interval": 120.0,
+      "sim_time": 600.0,
+      "seed": 42,
+      "search_time_mean": 0.02,
+      "es_query_time_mean": 0.08,
+      "num_search_workers": 10,
+      "es_query_pool_size": 100,
+      "alpha": 0.0,
+      "beta": 0.0,
+      "max_threads": null,
+      "sla_seconds": 0.5,
+      "seeds": [
+        42,
+        43
+      ]
+    },
     "base_arrival_rate": 100,
     "num_search_workers": 10,
     "success_rate": 0.9612112936585333,
@@ -225,6 +725,26 @@
     "dropped_timeout": 4639.0
   },
   {
+    "config": {
+      "base_arrival_rate": 100.0,
+      "burst_multiplier": 5.0,
+      "burst_duration": 30.0,
+      "burst_interval": 120.0,
+      "sim_time": 600.0,
+      "seed": 42,
+      "search_time_mean": 0.02,
+      "es_query_time_mean": 0.08,
+      "num_search_workers": 20,
+      "es_query_pool_size": 100,
+      "alpha": 0.0,
+      "beta": 0.0,
+      "max_threads": null,
+      "sla_seconds": 0.5,
+      "seeds": [
+        42,
+        43
+      ]
+    },
     "base_arrival_rate": 100,
     "num_search_workers": 20,
     "success_rate": 0.9974663524562233,
@@ -234,6 +754,26 @@
     "dropped_timeout": 290.5
   },
   {
+    "config": {
+      "base_arrival_rate": 100.0,
+      "burst_multiplier": 5.0,
+      "burst_duration": 30.0,
+      "burst_interval": 120.0,
+      "sim_time": 600.0,
+      "seed": 42,
+      "search_time_mean": 0.02,
+      "es_query_time_mean": 0.08,
+      "num_search_workers": 30,
+      "es_query_pool_size": 100,
+      "alpha": 0.0,
+      "beta": 0.0,
+      "max_threads": null,
+      "sla_seconds": 0.5,
+      "seeds": [
+        42,
+        43
+      ]
+    },
     "base_arrival_rate": 100,
     "num_search_workers": 30,
     "success_rate": 0.9972983569430538,
@@ -243,6 +783,26 @@
     "dropped_timeout": 315.0
   },
   {
+    "config": {
+      "base_arrival_rate": 100.0,
+      "burst_multiplier": 5.0,
+      "burst_duration": 30.0,
+      "burst_interval": 120.0,
+      "sim_time": 600.0,
+      "seed": 42,
+      "search_time_mean": 0.02,
+      "es_query_time_mean": 0.08,
+      "num_search_workers": 50,
+      "es_query_pool_size": 100,
+      "alpha": 0.0,
+      "beta": 0.0,
+      "max_threads": null,
+      "sla_seconds": 0.5,
+      "seeds": [
+        42,
+        43
+      ]
+    },
     "base_arrival_rate": 100,
     "num_search_workers": 50,
     "success_rate": 0.9972983569430538,
@@ -252,6 +812,26 @@
     "dropped_timeout": 315.0
   },
   {
+    "config": {
+      "base_arrival_rate": 100.0,
+      "burst_multiplier": 5.0,
+      "burst_duration": 30.0,
+      "burst_interval": 120.0,
+      "sim_time": 600.0,
+      "seed": 42,
+      "search_time_mean": 0.02,
+      "es_query_time_mean": 0.08,
+      "num_search_workers": 75,
+      "es_query_pool_size": 100,
+      "alpha": 0.0,
+      "beta": 0.0,
+      "max_threads": null,
+      "sla_seconds": 0.5,
+      "seeds": [
+        42,
+        43
+      ]
+    },
     "base_arrival_rate": 100,
     "num_search_workers": 75,
     "success_rate": 0.9972983569430538,
@@ -261,6 +841,26 @@
     "dropped_timeout": 315.0
   },
   {
+    "config": {
+      "base_arrival_rate": 100.0,
+      "burst_multiplier": 5.0,
+      "burst_duration": 30.0,
+      "burst_interval": 120.0,
+      "sim_time": 600.0,
+      "seed": 42,
+      "search_time_mean": 0.02,
+      "es_query_time_mean": 0.08,
+      "num_search_workers": 100,
+      "es_query_pool_size": 100,
+      "alpha": 0.0,
+      "beta": 0.0,
+      "max_threads": null,
+      "sla_seconds": 0.5,
+      "seeds": [
+        42,
+        43
+      ]
+    },
     "base_arrival_rate": 100,
     "num_search_workers": 100,
     "success_rate": 0.9972983569430538,
@@ -270,6 +870,26 @@
     "dropped_timeout": 315.0
   },
   {
+    "config": {
+      "base_arrival_rate": 125.0,
+      "burst_multiplier": 5.0,
+      "burst_duration": 30.0,
+      "burst_interval": 120.0,
+      "sim_time": 600.0,
+      "seed": 42,
+      "search_time_mean": 0.02,
+      "es_query_time_mean": 0.08,
+      "num_search_workers": 10,
+      "es_query_pool_size": 100,
+      "alpha": 0.0,
+      "beta": 0.0,
+      "max_threads": null,
+      "sla_seconds": 0.5,
+      "seeds": [
+        42,
+        43
+      ]
+    },
     "base_arrival_rate": 125,
     "num_search_workers": 10,
     "success_rate": 0.5224721783033721,
@@ -279,6 +899,26 @@
     "dropped_timeout": 71550.0
   },
   {
+    "config": {
+      "base_arrival_rate": 125.0,
+      "burst_multiplier": 5.0,
+      "burst_duration": 30.0,
+      "burst_interval": 120.0,
+      "sim_time": 600.0,
+      "seed": 42,
+      "search_time_mean": 0.02,
+      "es_query_time_mean": 0.08,
+      "num_search_workers": 20,
+      "es_query_pool_size": 100,
+      "alpha": 0.0,
+      "beta": 0.0,
+      "max_threads": null,
+      "sla_seconds": 0.5,
+      "seeds": [
+        42,
+        43
+      ]
+    },
     "base_arrival_rate": 125,
     "num_search_workers": 20,
     "success_rate": 0.9974071470190822,
@@ -288,6 +928,26 @@
     "dropped_timeout": 372.5
   },
   {
+    "config": {
+      "base_arrival_rate": 125.0,
+      "burst_multiplier": 5.0,
+      "burst_duration": 30.0,
+      "burst_interval": 120.0,
+      "sim_time": 600.0,
+      "seed": 42,
+      "search_time_mean": 0.02,
+      "es_query_time_mean": 0.08,
+      "num_search_workers": 30,
+      "es_query_pool_size": 100,
+      "alpha": 0.0,
+      "beta": 0.0,
+      "max_threads": null,
+      "sla_seconds": 0.5,
+      "seeds": [
+        42,
+        43
+      ]
+    },
     "base_arrival_rate": 125,
     "num_search_workers": 30,
     "success_rate": 0.9973747395224926,
@@ -297,6 +957,26 @@
     "dropped_timeout": 380.5
   },
   {
+    "config": {
+      "base_arrival_rate": 125.0,
+      "burst_multiplier": 5.0,
+      "burst_duration": 30.0,
+      "burst_interval": 120.0,
+      "sim_time": 600.0,
+      "seed": 42,
+      "search_time_mean": 0.02,
+      "es_query_time_mean": 0.08,
+      "num_search_workers": 50,
+      "es_query_pool_size": 100,
+      "alpha": 0.0,
+      "beta": 0.0,
+      "max_threads": null,
+      "sla_seconds": 0.5,
+      "seeds": [
+        42,
+        43
+      ]
+    },
     "base_arrival_rate": 125,
     "num_search_workers": 50,
     "success_rate": 0.9973747395224926,
@@ -306,6 +986,26 @@
     "dropped_timeout": 380.5
   },
   {
+    "config": {
+      "base_arrival_rate": 125.0,
+      "burst_multiplier": 5.0,
+      "burst_duration": 30.0,
+      "burst_interval": 120.0,
+      "sim_time": 600.0,
+      "seed": 42,
+      "search_time_mean": 0.02,
+      "es_query_time_mean": 0.08,
+      "num_search_workers": 75,
+      "es_query_pool_size": 100,
+      "alpha": 0.0,
+      "beta": 0.0,
+      "max_threads": null,
+      "sla_seconds": 0.5,
+      "seeds": [
+        42,
+        43
+      ]
+    },
     "base_arrival_rate": 125,
     "num_search_workers": 75,
     "success_rate": 0.9973747395224926,
@@ -315,6 +1015,26 @@
     "dropped_timeout": 380.5
   },
   {
+    "config": {
+      "base_arrival_rate": 125.0,
+      "burst_multiplier": 5.0,
+      "burst_duration": 30.0,
+      "burst_interval": 120.0,
+      "sim_time": 600.0,
+      "seed": 42,
+      "search_time_mean": 0.02,
+      "es_query_time_mean": 0.08,
+      "num_search_workers": 100,
+      "es_query_pool_size": 100,
+      "alpha": 0.0,
+      "beta": 0.0,
+      "max_threads": null,
+      "sla_seconds": 0.5,
+      "seeds": [
+        42,
+        43
+      ]
+    },
     "base_arrival_rate": 125,
     "num_search_workers": 100,
     "success_rate": 0.9973747395224926,
@@ -324,6 +1044,26 @@
     "dropped_timeout": 380.5
   },
   {
+    "config": {
+      "base_arrival_rate": 150.0,
+      "burst_multiplier": 5.0,
+      "burst_duration": 30.0,
+      "burst_interval": 120.0,
+      "sim_time": 600.0,
+      "seed": 42,
+      "search_time_mean": 0.02,
+      "es_query_time_mean": 0.08,
+      "num_search_workers": 10,
+      "es_query_pool_size": 100,
+      "alpha": 0.0,
+      "beta": 0.0,
+      "max_threads": null,
+      "sla_seconds": 0.5,
+      "seeds": [
+        42,
+        43
+      ]
+    },
     "base_arrival_rate": 150,
     "num_search_workers": 10,
     "success_rate": 0.4586255713995381,
@@ -333,6 +1073,26 @@
     "dropped_timeout": 96897.5
   },
   {
+    "config": {
+      "base_arrival_rate": 150.0,
+      "burst_multiplier": 5.0,
+      "burst_duration": 30.0,
+      "burst_interval": 120.0,
+      "sim_time": 600.0,
+      "seed": 42,
+      "search_time_mean": 0.02,
+      "es_query_time_mean": 0.08,
+      "num_search_workers": 20,
+      "es_query_pool_size": 100,
+      "alpha": 0.0,
+      "beta": 0.0,
+      "max_threads": null,
+      "sla_seconds": 0.5,
+      "seeds": [
+        42,
+        43
+      ]
+    },
     "base_arrival_rate": 150,
     "num_search_workers": 20,
     "success_rate": 0.9972959771956125,
@@ -342,6 +1102,26 @@
     "dropped_timeout": 472.0
   },
   {
+    "config": {
+      "base_arrival_rate": 150.0,
+      "burst_multiplier": 5.0,
+      "burst_duration": 30.0,
+      "burst_interval": 120.0,
+      "sim_time": 600.0,
+      "seed": 42,
+      "search_time_mean": 0.02,
+      "es_query_time_mean": 0.08,
+      "num_search_workers": 30,
+      "es_query_pool_size": 100,
+      "alpha": 0.0,
+      "beta": 0.0,
+      "max_threads": null,
+      "sla_seconds": 0.5,
+      "seeds": [
+        42,
+        43
+      ]
+    },
     "base_arrival_rate": 150,
     "num_search_workers": 30,
     "success_rate": 0.9974565064931685,
@@ -351,6 +1131,26 @@
     "dropped_timeout": 446.0
   },
   {
+    "config": {
+      "base_arrival_rate": 150.0,
+      "burst_multiplier": 5.0,
+      "burst_duration": 30.0,
+      "burst_interval": 120.0,
+      "sim_time": 600.0,
+      "seed": 42,
+      "search_time_mean": 0.02,
+      "es_query_time_mean": 0.08,
+      "num_search_workers": 50,
+      "es_query_pool_size": 100,
+      "alpha": 0.0,
+      "beta": 0.0,
+      "max_threads": null,
+      "sla_seconds": 0.5,
+      "seeds": [
+        42,
+        43
+      ]
+    },
     "base_arrival_rate": 150,
     "num_search_workers": 50,
     "success_rate": 0.9973659931020937,
@@ -360,6 +1160,26 @@
     "dropped_timeout": 455.0
   },
   {
+    "config": {
+      "base_arrival_rate": 150.0,
+      "burst_multiplier": 5.0,
+      "burst_duration": 30.0,
+      "burst_interval": 120.0,
+      "sim_time": 600.0,
+      "seed": 42,
+      "search_time_mean": 0.02,
+      "es_query_time_mean": 0.08,
+      "num_search_workers": 75,
+      "es_query_pool_size": 100,
+      "alpha": 0.0,
+      "beta": 0.0,
+      "max_threads": null,
+      "sla_seconds": 0.5,
+      "seeds": [
+        42,
+        43
+      ]
+    },
     "base_arrival_rate": 150,
     "num_search_workers": 75,
     "success_rate": 0.9973659931020937,
@@ -369,6 +1189,26 @@
     "dropped_timeout": 455.0
   },
   {
+    "config": {
+      "base_arrival_rate": 150.0,
+      "burst_multiplier": 5.0,
+      "burst_duration": 30.0,
+      "burst_interval": 120.0,
+      "sim_time": 600.0,
+      "seed": 42,
+      "search_time_mean": 0.02,
+      "es_query_time_mean": 0.08,
+      "num_search_workers": 100,
+      "es_query_pool_size": 100,
+      "alpha": 0.0,
+      "beta": 0.0,
+      "max_threads": null,
+      "sla_seconds": 0.5,
+      "seeds": [
+        42,
+        43
+      ]
+    },
     "base_arrival_rate": 150,
     "num_search_workers": 100,
     "success_rate": 0.9973659931020937,
@@ -378,6 +1218,26 @@
     "dropped_timeout": 455.0
   },
   {
+    "config": {
+      "base_arrival_rate": 175.0,
+      "burst_multiplier": 5.0,
+      "burst_duration": 30.0,
+      "burst_interval": 120.0,
+      "sim_time": 600.0,
+      "seed": 42,
+      "search_time_mean": 0.02,
+      "es_query_time_mean": 0.08,
+      "num_search_workers": 10,
+      "es_query_pool_size": 100,
+      "alpha": 0.0,
+      "beta": 0.0,
+      "max_threads": null,
+      "sla_seconds": 0.5,
+      "seeds": [
+        42,
+        43
+      ]
+    },
     "base_arrival_rate": 175,
     "num_search_workers": 10,
     "success_rate": 0.4290304174020459,
@@ -387,6 +1247,26 @@
     "dropped_timeout": 119611.5
   },
   {
+    "config": {
+      "base_arrival_rate": 175.0,
+      "burst_multiplier": 5.0,
+      "burst_duration": 30.0,
+      "burst_interval": 120.0,
+      "sim_time": 600.0,
+      "seed": 42,
+      "search_time_mean": 0.02,
+      "es_query_time_mean": 0.08,
+      "num_search_workers": 20,
+      "es_query_pool_size": 100,
+      "alpha": 0.0,
+      "beta": 0.0,
+      "max_threads": null,
+      "sla_seconds": 0.5,
+      "seeds": [
+        42,
+        43
+      ]
+    },
     "base_arrival_rate": 175,
     "num_search_workers": 20,
     "success_rate": 0.9972170293028899,
@@ -396,6 +1276,26 @@
     "dropped_timeout": 559.5
   },
   {
+    "config": {
+      "base_arrival_rate": 175.0,
+      "burst_multiplier": 5.0,
+      "burst_duration": 30.0,
+      "burst_interval": 120.0,
+      "sim_time": 600.0,
+      "seed": 42,
+      "search_time_mean": 0.02,
+      "es_query_time_mean": 0.08,
+      "num_search_workers": 30,
+      "es_query_pool_size": 100,
+      "alpha": 0.0,
+      "beta": 0.0,
+      "max_threads": null,
+      "sla_seconds": 0.5,
+      "seeds": [
+        42,
+        43
+      ]
+    },
     "base_arrival_rate": 175,
     "num_search_workers": 30,
     "success_rate": 0.9972323025582235,
@@ -405,6 +1305,26 @@
     "dropped_timeout": 569.0
   },
   {
+    "config": {
+      "base_arrival_rate": 175.0,
+      "burst_multiplier": 5.0,
+      "burst_duration": 30.0,
+      "burst_interval": 120.0,
+      "sim_time": 600.0,
+      "seed": 42,
+      "search_time_mean": 0.02,
+      "es_query_time_mean": 0.08,
+      "num_search_workers": 50,
+      "es_query_pool_size": 100,
+      "alpha": 0.0,
+      "beta": 0.0,
+      "max_threads": null,
+      "sla_seconds": 0.5,
+      "seeds": [
+        42,
+        43
+      ]
+    },
     "base_arrival_rate": 175,
     "num_search_workers": 50,
     "success_rate": 0.997333988015226,
@@ -414,6 +1334,26 @@
     "dropped_timeout": 541.0
   },
   {
+    "config": {
+      "base_arrival_rate": 175.0,
+      "burst_multiplier": 5.0,
+      "burst_duration": 30.0,
+      "burst_interval": 120.0,
+      "sim_time": 600.0,
+      "seed": 42,
+      "search_time_mean": 0.02,
+      "es_query_time_mean": 0.08,
+      "num_search_workers": 75,
+      "es_query_pool_size": 100,
+      "alpha": 0.0,
+      "beta": 0.0,
+      "max_threads": null,
+      "sla_seconds": 0.5,
+      "seeds": [
+        42,
+        43
+      ]
+    },
     "base_arrival_rate": 175,
     "num_search_workers": 75,
     "success_rate": 0.997333988015226,
@@ -423,6 +1363,26 @@
     "dropped_timeout": 541.0
   },
   {
+    "config": {
+      "base_arrival_rate": 175.0,
+      "burst_multiplier": 5.0,
+      "burst_duration": 30.0,
+      "burst_interval": 120.0,
+      "sim_time": 600.0,
+      "seed": 42,
+      "search_time_mean": 0.02,
+      "es_query_time_mean": 0.08,
+      "num_search_workers": 100,
+      "es_query_pool_size": 100,
+      "alpha": 0.0,
+      "beta": 0.0,
+      "max_threads": null,
+      "sla_seconds": 0.5,
+      "seeds": [
+        42,
+        43
+      ]
+    },
     "base_arrival_rate": 175,
     "num_search_workers": 100,
     "success_rate": 0.997333988015226,
@@ -432,6 +1392,26 @@
     "dropped_timeout": 541.0
   },
   {
+    "config": {
+      "base_arrival_rate": 200.0,
+      "burst_multiplier": 5.0,
+      "burst_duration": 30.0,
+      "burst_interval": 120.0,
+      "sim_time": 600.0,
+      "seed": 42,
+      "search_time_mean": 0.02,
+      "es_query_time_mean": 0.08,
+      "num_search_workers": 10,
+      "es_query_pool_size": 100,
+      "alpha": 0.0,
+      "beta": 0.0,
+      "max_threads": null,
+      "sla_seconds": 0.5,
+      "seeds": [
+        42,
+        43
+      ]
+    },
     "base_arrival_rate": 200,
     "num_search_workers": 10,
     "success_rate": 0.4132344137204418,
@@ -441,6 +1421,26 @@
     "dropped_timeout": 140670.0
   },
   {
+    "config": {
+      "base_arrival_rate": 200.0,
+      "burst_multiplier": 5.0,
+      "burst_duration": 30.0,
+      "burst_interval": 120.0,
+      "sim_time": 600.0,
+      "seed": 42,
+      "search_time_mean": 0.02,
+      "es_query_time_mean": 0.08,
+      "num_search_workers": 20,
+      "es_query_pool_size": 100,
+      "alpha": 0.0,
+      "beta": 0.0,
+      "max_threads": null,
+      "sla_seconds": 0.5,
+      "seeds": [
+        42,
+        43
+      ]
+    },
     "base_arrival_rate": 200,
     "num_search_workers": 20,
     "success_rate": 0.9877169521957982,
@@ -450,6 +1450,26 @@
     "dropped_timeout": 2918.0
   },
   {
+    "config": {
+      "base_arrival_rate": 200.0,
+      "burst_multiplier": 5.0,
+      "burst_duration": 30.0,
+      "burst_interval": 120.0,
+      "sim_time": 600.0,
+      "seed": 42,
+      "search_time_mean": 0.02,
+      "es_query_time_mean": 0.08,
+      "num_search_workers": 30,
+      "es_query_pool_size": 100,
+      "alpha": 0.0,
+      "beta": 0.0,
+      "max_threads": null,
+      "sla_seconds": 0.5,
+      "seeds": [
+        42,
+        43
+      ]
+    },
     "base_arrival_rate": 200,
     "num_search_workers": 30,
     "success_rate": 0.997384808945976,
@@ -459,6 +1479,26 @@
     "dropped_timeout": 604.5
   },
   {
+    "config": {
+      "base_arrival_rate": 200.0,
+      "burst_multiplier": 5.0,
+      "burst_duration": 30.0,
+      "burst_interval": 120.0,
+      "sim_time": 600.0,
+      "seed": 42,
+      "search_time_mean": 0.02,
+      "es_query_time_mean": 0.08,
+      "num_search_workers": 50,
+      "es_query_pool_size": 100,
+      "alpha": 0.0,
+      "beta": 0.0,
+      "max_threads": null,
+      "sla_seconds": 0.5,
+      "seeds": [
+        42,
+        43
+      ]
+    },
     "base_arrival_rate": 200,
     "num_search_workers": 50,
     "success_rate": 0.9973775372878716,
@@ -468,6 +1508,26 @@
     "dropped_timeout": 600.0
   },
   {
+    "config": {
+      "base_arrival_rate": 200.0,
+      "burst_multiplier": 5.0,
+      "burst_duration": 30.0,
+      "burst_interval": 120.0,
+      "sim_time": 600.0,
+      "seed": 42,
+      "search_time_mean": 0.02,
+      "es_query_time_mean": 0.08,
+      "num_search_workers": 75,
+      "es_query_pool_size": 100,
+      "alpha": 0.0,
+      "beta": 0.0,
+      "max_threads": null,
+      "sla_seconds": 0.5,
+      "seeds": [
+        42,
+        43
+      ]
+    },
     "base_arrival_rate": 200,
     "num_search_workers": 75,
     "success_rate": 0.9973775372878716,
@@ -477,6 +1537,26 @@
     "dropped_timeout": 600.0
   },
   {
+    "config": {
+      "base_arrival_rate": 200.0,
+      "burst_multiplier": 5.0,
+      "burst_duration": 30.0,
+      "burst_interval": 120.0,
+      "sim_time": 600.0,
+      "seed": 42,
+      "search_time_mean": 0.02,
+      "es_query_time_mean": 0.08,
+      "num_search_workers": 100,
+      "es_query_pool_size": 100,
+      "alpha": 0.0,
+      "beta": 0.0,
+      "max_threads": null,
+      "sla_seconds": 0.5,
+      "seeds": [
+        42,
+        43
+      ]
+    },
     "base_arrival_rate": 200,
     "num_search_workers": 100,
     "success_rate": 0.9973775372878716,
@@ -486,6 +1566,26 @@
     "dropped_timeout": 600.0
   },
   {
+    "config": {
+      "base_arrival_rate": 250.0,
+      "burst_multiplier": 5.0,
+      "burst_duration": 30.0,
+      "burst_interval": 120.0,
+      "sim_time": 600.0,
+      "seed": 42,
+      "search_time_mean": 0.02,
+      "es_query_time_mean": 0.08,
+      "num_search_workers": 10,
+      "es_query_pool_size": 100,
+      "alpha": 0.0,
+      "beta": 0.0,
+      "max_threads": null,
+      "sla_seconds": 0.5,
+      "seeds": [
+        42,
+        43
+      ]
+    },
     "base_arrival_rate": 250,
     "num_search_workers": 10,
     "success_rate": 0.3969083644300977,
@@ -495,6 +1595,26 @@
     "dropped_timeout": 180782.5
   },
   {
+    "config": {
+      "base_arrival_rate": 250.0,
+      "burst_multiplier": 5.0,
+      "burst_duration": 30.0,
+      "burst_interval": 120.0,
+      "sim_time": 600.0,
+      "seed": 42,
+      "search_time_mean": 0.02,
+      "es_query_time_mean": 0.08,
+      "num_search_workers": 20,
+      "es_query_pool_size": 100,
+      "alpha": 0.0,
+      "beta": 0.0,
+      "max_threads": null,
+      "sla_seconds": 0.5,
+      "seeds": [
+        42,
+        43
+      ]
+    },
     "base_arrival_rate": 250,
     "num_search_workers": 20,
     "success_rate": 0.5152841888583668,
@@ -504,6 +1624,26 @@
     "dropped_timeout": 145527.0
   },
   {
+    "config": {
+      "base_arrival_rate": 250.0,
+      "burst_multiplier": 5.0,
+      "burst_duration": 30.0,
+      "burst_interval": 120.0,
+      "sim_time": 600.0,
+      "seed": 42,
+      "search_time_mean": 0.02,
+      "es_query_time_mean": 0.08,
+      "num_search_workers": 30,
+      "es_query_pool_size": 100,
+      "alpha": 0.0,
+      "beta": 0.0,
+      "max_threads": null,
+      "sla_seconds": 0.5,
+      "seeds": [
+        42,
+        43
+      ]
+    },
     "base_arrival_rate": 250,
     "num_search_workers": 30,
     "success_rate": 0.9954229433645019,
@@ -513,6 +1653,26 @@
     "dropped_timeout": 1352.0
   },
   {
+    "config": {
+      "base_arrival_rate": 250.0,
+      "burst_multiplier": 5.0,
+      "burst_duration": 30.0,
+      "burst_interval": 120.0,
+      "sim_time": 600.0,
+      "seed": 42,
+      "search_time_mean": 0.02,
+      "es_query_time_mean": 0.08,
+      "num_search_workers": 50,
+      "es_query_pool_size": 100,
+      "alpha": 0.0,
+      "beta": 0.0,
+      "max_threads": null,
+      "sla_seconds": 0.5,
+      "seeds": [
+        42,
+        43
+      ]
+    },
     "base_arrival_rate": 250,
     "num_search_workers": 50,
     "success_rate": 0.995400424631771,
@@ -522,6 +1682,26 @@
     "dropped_timeout": 1357.5
   },
   {
+    "config": {
+      "base_arrival_rate": 250.0,
+      "burst_multiplier": 5.0,
+      "burst_duration": 30.0,
+      "burst_interval": 120.0,
+      "sim_time": 600.0,
+      "seed": 42,
+      "search_time_mean": 0.02,
+      "es_query_time_mean": 0.08,
+      "num_search_workers": 75,
+      "es_query_pool_size": 100,
+      "alpha": 0.0,
+      "beta": 0.0,
+      "max_threads": null,
+      "sla_seconds": 0.5,
+      "seeds": [
+        42,
+        43
+      ]
+    },
     "base_arrival_rate": 250,
     "num_search_workers": 75,
     "success_rate": 0.995400424631771,
@@ -531,6 +1711,26 @@
     "dropped_timeout": 1357.5
   },
   {
+    "config": {
+      "base_arrival_rate": 250.0,
+      "burst_multiplier": 5.0,
+      "burst_duration": 30.0,
+      "burst_interval": 120.0,
+      "sim_time": 600.0,
+      "seed": 42,
+      "search_time_mean": 0.02,
+      "es_query_time_mean": 0.08,
+      "num_search_workers": 100,
+      "es_query_pool_size": 100,
+      "alpha": 0.0,
+      "beta": 0.0,
+      "max_threads": null,
+      "sla_seconds": 0.5,
+      "seeds": [
+        42,
+        43
+      ]
+    },
     "base_arrival_rate": 250,
     "num_search_workers": 100,
     "success_rate": 0.995400424631771,
@@ -540,6 +1740,26 @@
     "dropped_timeout": 1357.5
   },
   {
+    "config": {
+      "base_arrival_rate": 300.0,
+      "burst_multiplier": 5.0,
+      "burst_duration": 30.0,
+      "burst_interval": 120.0,
+      "sim_time": 600.0,
+      "seed": 42,
+      "search_time_mean": 0.02,
+      "es_query_time_mean": 0.08,
+      "num_search_workers": 10,
+      "es_query_pool_size": 100,
+      "alpha": 0.0,
+      "beta": 0.0,
+      "max_threads": null,
+      "sla_seconds": 0.5,
+      "seeds": [
+        42,
+        43
+      ]
+    },
     "base_arrival_rate": 300,
     "num_search_workers": 10,
     "success_rate": 0.38955699147921913,
@@ -549,6 +1769,26 @@
     "dropped_timeout": 219608.5
   },
   {
+    "config": {
+      "base_arrival_rate": 300.0,
+      "burst_multiplier": 5.0,
+      "burst_duration": 30.0,
+      "burst_interval": 120.0,
+      "sim_time": 600.0,
+      "seed": 42,
+      "search_time_mean": 0.02,
+      "es_query_time_mean": 0.08,
+      "num_search_workers": 20,
+      "es_query_pool_size": 100,
+      "alpha": 0.0,
+      "beta": 0.0,
+      "max_threads": null,
+      "sla_seconds": 0.5,
+      "seeds": [
+        42,
+        43
+      ]
+    },
     "base_arrival_rate": 300,
     "num_search_workers": 20,
     "success_rate": 0.45330042100034496,
@@ -558,6 +1798,26 @@
     "dropped_timeout": 197004.0
   },
   {
+    "config": {
+      "base_arrival_rate": 300.0,
+      "burst_multiplier": 5.0,
+      "burst_duration": 30.0,
+      "burst_interval": 120.0,
+      "sim_time": 600.0,
+      "seed": 42,
+      "search_time_mean": 0.02,
+      "es_query_time_mean": 0.08,
+      "num_search_workers": 30,
+      "es_query_pool_size": 100,
+      "alpha": 0.0,
+      "beta": 0.0,
+      "max_threads": null,
+      "sla_seconds": 0.5,
+      "seeds": [
+        42,
+        43
+      ]
+    },
     "base_arrival_rate": 300,
     "num_search_workers": 30,
     "success_rate": 0.8870518152040161,
@@ -567,6 +1827,26 @@
     "dropped_timeout": 40653.0
   },
   {
+    "config": {
+      "base_arrival_rate": 300.0,
+      "burst_multiplier": 5.0,
+      "burst_duration": 30.0,
+      "burst_interval": 120.0,
+      "sim_time": 600.0,
+      "seed": 42,
+      "search_time_mean": 0.02,
+      "es_query_time_mean": 0.08,
+      "num_search_workers": 50,
+      "es_query_pool_size": 100,
+      "alpha": 0.0,
+      "beta": 0.0,
+      "max_threads": null,
+      "sla_seconds": 0.5,
+      "seeds": [
+        42,
+        43
+      ]
+    },
     "base_arrival_rate": 300,
     "num_search_workers": 50,
     "success_rate": 0.899622173628634,
@@ -576,6 +1856,26 @@
     "dropped_timeout": 36118.0
   },
   {
+    "config": {
+      "base_arrival_rate": 300.0,
+      "burst_multiplier": 5.0,
+      "burst_duration": 30.0,
+      "burst_interval": 120.0,
+      "sim_time": 600.0,
+      "seed": 42,
+      "search_time_mean": 0.02,
+      "es_query_time_mean": 0.08,
+      "num_search_workers": 75,
+      "es_query_pool_size": 100,
+      "alpha": 0.0,
+      "beta": 0.0,
+      "max_threads": null,
+      "sla_seconds": 0.5,
+      "seeds": [
+        42,
+        43
+      ]
+    },
     "base_arrival_rate": 300,
     "num_search_workers": 75,
     "success_rate": 0.9000647932254806,
@@ -585,6 +1885,26 @@
     "dropped_timeout": 35938.0
   },
   {
+    "config": {
+      "base_arrival_rate": 300.0,
+      "burst_multiplier": 5.0,
+      "burst_duration": 30.0,
+      "burst_interval": 120.0,
+      "sim_time": 600.0,
+      "seed": 42,
+      "search_time_mean": 0.02,
+      "es_query_time_mean": 0.08,
+      "num_search_workers": 100,
+      "es_query_pool_size": 100,
+      "alpha": 0.0,
+      "beta": 0.0,
+      "max_threads": null,
+      "sla_seconds": 0.5,
+      "seeds": [
+        42,
+        43
+      ]
+    },
     "base_arrival_rate": 300,
     "num_search_workers": 100,
     "success_rate": 0.9000647932254806,

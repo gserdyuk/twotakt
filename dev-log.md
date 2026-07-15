@@ -940,3 +940,251 @@ discipline to a research corpus.
   form; the one-line version lives in TODO".
 
 `#process #research #findings #index #corpus #compaction`
+
+## 2026-07-10 — reproducibility session: the whole example library re-run, bit-exact
+
+Question: do the committed examples reproduce their recorded behavior on the current
+environment (Python 3.14.6, simpy 4.1.2)? Answer: yes, exactly.
+
+- **Tier A (V&V regression):** all six verify.py green with the recorded counts —
+  USLmodel 6/6, USLDBmodel 7/7, FaxRx 6/6, PowerSearch ingestion 5/5 + queries 5/5,
+  RadioMonitoring 19/19 (parked as DRAFT, but the regression still holds). 48/48.
+- **Tier B (numeric reproduction against committed sweep_results.json):** PowerSearch
+  ingestion and queries — 3 points each across regimes (overload / knee / healthy),
+  seeds [42,43]: bit-exact, worst relative diff 0.0. FaxRx — the FULL sweep re-run
+  (33 points x 20 metrics = 660 comparisons): zero mismatches. The "slow" FaxRx sweep
+  is ~0.6 s/point on this machine (~20 s total) — the slowness note is stale.
+- Direct measured backing for the REPRODUCIBILITY position (TODO P2): below MODEL.md
+  everything is deterministic — now demonstrated, not asserted.
+
+Gaps noted, not yet acted on: USLmodel/USLDBmodel have no committed sweep baseline
+(nothing to regress against); PowerSearch committed JSON predates the config-per-row
+format of the current sweep.py (physics matches bit-exact, format would diff on a full
+regeneration).
+
+`#testing #reproducibility #regression #harness #seeds`
+## 2026-07-13 — article candidates #1-#3 get their own short-form files
+
+Only candidate #4 had a long form on disk; #1 (audit-first), #2 (interaction
+bottleneck) and #3 (fail-fast/slow) lived as TODO one-liners plus scattered dev-log /
+example material. Wrote a small corpus file per candidate — thesis + pointers to the
+evidence, not new content — so each candidate has a citable home before any of them
+grows:
+
+- `docs/article_candidate_1_audit_first.md` — spec is primary, "when they diverge,
+  the code is the bug"; survivorship-bias exhibit (PowerSearch); F12/F24.
+- `docs/article_candidate_2_interaction_bottleneck.md` — component ceilings don't
+  compose (USLDBmodel, F10); binding-region and metamorphic-relation sharpenings
+  (F9/F11) from the harness work.
+- `docs/article_candidate_3_fail_fast_slow.md` — same success rate, opposite failure
+  UX (FaxRx); admission loss vs congestion loss as the metric-level root (F7).
+
+Numbering fixed as the order of appearance: TODO already called audit-first "Article
+#1" and the 2026-06-16 entry called the pool-MR "article candidate #2 material", so
+fail-fast/slow is #3. Publication order is a separate question — article #4 §9 still
+argues #4 leads. TODO bullets now carry the numbers + file pointers; INDEX gained the
+three lines.
+
+`#articles #corpus #candidates #index`
+
+## 2026-07-13 — publication warm-up: LinkedIn series decided, post #3 drafted
+
+Decision (author): start public visibility with the methodologically *lighter*
+candidates as a warm-up series on LinkedIn, each post linking into the repo. Order
+#3 (fail-fast/slow) -> #2 (interaction bottleneck) -> #1 (audit-first): concrete
+war-stories first, the manifesto after credibility. #4 stays reserved for a long-form
+venue (talk/paper) — a feed post would burn its novelty. Rationale: #2/#3 are "weak"
+only methodologically; as feed content (one lesson, one chart, a punchline) they are
+the strongest of the four.
+
+Post #3 drafted and approved: `docs/linkedin_post_3_fail_fast_slow.md` (text + format
+decisions: native post ~2.5k chars, sweep.png as the image, link in first comment,
+written for a reader slightly outside the field — no Erlang-B/p95 jargon, each
+architecture a mini-story with a user in it). One deliberate simplification: only the
+1-hour SLA is mentioned, the 10-minute normal-case SLA dropped from the story.
+
+`#articles #linkedin #visibility #faxrx #publication`
+
+## 2026-07-13 — post #3 grew a second image and a personal frame; DOU chosen for the long form
+
+Post #3 (LinkedIn) revised after review: a second image (one-off architecture diagram,
+`docs/linkedin_post_3_architecture.png` — pipeline with the two failure points
+accented) and a personal-history frame (the author really built a PSTN fax-reception
+service; the frame opens the post and closes the lesson). ~2.9k chars, still under the
+3k limit.
+
+Language/platform decision for the second-language version: NOT a Russian-language
+duplicate on LinkedIn (marginal reach — RU-speaking LinkedIn reads English, built-in
+auto-translate exists) and NOT Habr (rejected by the author). The Ukrainian-language
+long form goes to **DOU.ua**, 1-2 weeks after the LinkedIn post. Draft written:
+`docs/dou_article_3_fail_fast_slow.md` (~12k chars) — restores everything the feed post
+cut (both SLAs, Erlang B sizing math, effective-latency/survivorship sidebar, full
+results table, no-redial limitation pre-empting the obvious commenter objection) and
+adds a bridge section mapping the lesson to modern systems (429/503, backpressure,
+load shedding). One material per candidate, two venues: feed post = hook, longread =
+the full story; both link into `examples/FaxRx`.
+
+`#articles #linkedin #dou #publication #faxrx`
+
+## 2026-07-13 — post #3 is live on LinkedIn
+
+Published by the author (title line + personal frame + two images + repo link in the
+first comment: github.com/gserdyuk/twotakt/tree/main/examples/FaxRx). ~100 impressions
+in the first hour. One glitch: the attached architecture diagram is the pre-fix
+version (overlapping "admitted" label) — the corrected PNG is in the repo; replace via
+post edit. Draft file marked posted; DOU longread window opens ~2026-07-20.
+
+`#articles #linkedin #published #faxrx`
+
+## 2026-07-13 — second article series born: "AI Influence on the Architectural Landscape"
+
+Grew out of the author's walk-idea (TCO model comparing architectures under business
+scenarios) and his "hod 5": the collapse of code-construction cost reprices the
+architectural landscape itself. Two conversation moves sharpened it: (1) microservices
+decompose into modularity (boundaries for change) + distribution (boundaries for
+runtime) — AI removes the change justification and leaves only runtime, which is
+exactly what simulation computes; (2) the author's testing-cost "offspring" turned out
+to be the center: regeneration is cheap, re-verification is not, so the unit of
+architecture becomes the unit of re-verification — making candidate #4 the
+*precondition* of the landscape shift, not a neighbor.
+
+Registered: candidates #5 (S1, landscape) and #6 (S2, re-verification surface) as
+short forms; S3 (TCO layer over sweep_results.json — break-even framing, rework as
+schedule not amount, pilot on FaxRx A/B/C) and S4 (Monte Carlo over growth
+trajectories, architecture as options portfolio) live in TODO and need building —
+the series deliberately drives the roadmap.
+
+Series name is the author's. Publication pipeline codified in TODO: LinkedIn EN note →
+engagement gate (notes are cheap, DOU longreads cost author-written text per DOU's
+no-AI-text rule, so the note's engagement selects which topics earn the longread;
+comments are harvested as the objection list) → DOU UA longread + same-day UA teaser
+post + optional dev.to EN. Series #1 (warm-up: #2, #1) and series #2 interleave.
+
+`#articles #series #ai-landscape #tco #microservices #verification #pipeline`
+
+## 2026-07-13 — candidate #7 born from Karpathy's LLM-wiki gist thread; two publication drafts
+
+The author surfaced Karpathy's "LLM Wiki" gist (5k+ stars) mid-session: twotakt's
+corpus system turns out to have converged on the pattern independently (INDEX=index,
+dev-log=log, CLAUDE.md=schema, findings=synthesis, compaction=lint). Read the full
+thread (107 comments loaded): ~70% self-promo/astroturf, but the substantive core
+converges on one pain — staleness/drift/provenance — and every proposed fix is
+tooling. Best voices: a-a-k (lossy compression; "not engineering until validators/
+source-hashes/regression-tests"), jazzonenl (update cascades, referential integrity,
+temporal blindness), nowissan (Identity/Level/Relationship failure modes from a month
+of use; claim-first fixes Level — which is findings.md's design), blurman-ai's
+measured boundary (pages pay only when compressing scattered facts; mirrors of
+greppable files are negative value — validates our no-concept-pages-for-code choice).
+
+Registered candidate #7 (standalone meta-topic): twotakt's answer is discipline, not
+tooling — passports (currency ambiguity resolved at read time), corpus/surface split
+(staleness solved by NOT promising currency; F25 generalized), claims-before-concepts
+(graduation rule). Drafts written and approved: gist field-report comment (restrained
+tone as the differentiator in an ad-flooded thread) + LinkedIn EN note (post-#3 house
+style). Queue call: gist comment ASAP, note jumps ahead of S1 — the thread is hot,
+S1 keeps.
+
+`#articles #candidate7 #llm-wiki #karpathy #corpus-surface #passports #findings-discipline`
+
+## 2026-07-13 — gist field-report comment is live
+
+Posted by the author to Karpathy's llm-wiki thread (user gserdyuk). Renders clean,
+@-mentions resolved; one glitch: the passport template's angle-bracket placeholders
+(<regime>, <date>) were eaten as HTML — backticks around the line fix it via comment
+edit. Noted in the thread right above ours: a commenter independently argues "grade
+the trust and make it travel — every page carries status + provenance, so a stale or
+disputed page degrades honestly instead of silently" — closest thinking to passports
+in the whole thread; possible conversation partner. LinkedIn note (#7) queued next,
+ahead of S1.
+
+`#published #candidate7 #karpathy #gist`
+
+## 2026-07-13 — candidate #7 fully published: gist comment + LinkedIn note, same day
+
+The LinkedIn note went live hours after the gist comment (author used the
+unicode-bold trick for the title line and section leads; links in the first comment).
+Campaign #7 is the fastest candidate to date: born, drafted, and published within one
+session — the corpus discipline it describes is also what made that speed possible
+(the thesis was already compiled in CLAUDE.md constraints + F25, nothing had to be
+invented, only framed). Day total across publications: post #3 (fail-fast/slow,
+14h, edited), gist field report, note #7. Queue next: DOU longread #3 (author's text,
+window ~07-20..27), then S1 (microservices landscape) EN note.
+
+`#published #candidate7 #linkedin #campaign`
+
+## 2026-07-13 — note #7: first objection and the answer that names the mechanism
+
+Note #7 outpaces post #3 (~550 impressions in hour one vs ~100). First real
+objection (S. Osypchuk): "do you expect humans to read automatically maintained
+wikis?" The published answer produced a formulation worth keeping for the #7/#4
+long forms: the corpus's primary reader is the LLM (context transfer), humans are
+the second audience; and the human reads at *write* time — every claim is born in a
+reviewed conversation, so the wiki records what a human already judged. "Machine-
+drafted, human-gated. The reading you're skeptical about already happened — once,
+when it counted." This is the audit-first gate restated for knowledge instead of
+code — one discipline, two artifact kinds.
+
+`#candidate7 #linkedin #objections #audit-first`
+
+## 2026-07-14 — lifecycle economics day: F29–F33, candidate #8 born
+
+The author walked the classic lifecycle cost split (Boehm/Glass baselines, two
+loops: primary development + modification) through AI-era coefficients. Why-notes
+worth keeping:
+
+- The author's structural move: recompute the shares on the *shrunken* base — "the
+  economics redistributed, but on a completely different number: 28% instead of
+  100%". That observation, formalized, became the Amdahl-over-the-lifecycle claim
+  (F29): the human residue (analysis + oracle) holds the asymptote.
+- The one genuinely contested coefficient: testing. Author: ×5 like codegen ("ask
+  the AI to click through the app"); pushback: only *execution* is ×5, the *oracle*
+  barely moves and is correlated with the generator's own misreadings. Not settled —
+  deliberately left as an explicit parameter (oracle/execution split), the single
+  number the whole shape of the primary loop hangs on.
+- Author's field data drove the maintenance-loop inversion (F30): multi-x speedup
+  on foreign code (mid-size, 5-dev project, 200k-window models a year ago)
+  vs METR's slowdown-on-own-repo. Reconciliation: gain ∝ 1/context-in-head;
+  comprehension (~50% of a modification) is AI's best mode.
+- Author's corrections that shaped F31/F32: modularity ≠ microservices, monolith ≠
+  spaghetti ("you need SERVICES, not MICROservices — code must fit the context");
+  batch changes by module, not one-by-one (prompt caching literalizes this); blast
+  radius is the real anti-monolith argument — answered by unbundling verification
+  from deployment (four glued boundaries, F32).
+- Registration caught a naming collision: TODO's S3 is *infrastructure* TCO of the
+  modeled system (COCOMO-class dev-cost estimation explicitly out of scope there).
+  Today's material is dev-cost economics — registered as standalone candidate #8,
+  series-adjacent, with the disambiguation written into both the doc and INDEX.
+- Decision: the executable price model (person-hours + tokens as two cost carriers,
+  currency = rate table) will likely live in a separate project — author: "не
+  хочется смешивать". Sketch recorded in candidate #8 §6 until the home is decided.
+
+`#findings #candidate8 #architecture-economics #lifecycle #amdahl #price-model`
+
+## 2026-07-15 - README onboarding: the "open it in Claude Code" step unpacked
+
+GitHub traffic showed 38 unique cloners on July 7 - and the Getting started
+section assumed the reader already lives in Claude Code. The likely failure mode:
+a newcomer clones, launches the Claude Code GUI, but the session is not rooted in
+the repo - CLAUDE.md never loads, the skills are invisible, and the project looks
+like a plain folder of markdown. Nothing tells the user this happened.
+
+Changes to README Option B:
+
+- a one-line prerequisites note (Python 3.10+, Claude Code) - removes the "what
+  do I even need" question;
+- step 1 expanded: separate CLI vs desktop-app instructions, naming the trap
+  explicitly (the working folder is chosen at session start and cannot be changed
+  mid-session);
+- a sanity check: ask Claude "What is this project?" - a one-question probe that
+  tells the newcomer whether the methodology actually loaded, cheaper than any
+  documentation;
+- Option A gained the AI-native path: instead of running the smoke test by hand,
+  ask Claude to run the USLmodel example and explain it - which is also the
+  fastest demonstration of the project's value.
+
+Why it matters beyond this fix: the methodology's entry point is environmental
+(a correctly-rooted session), not textual - no document can load itself. Any
+onboarding text must therefore verify the environment, not just describe the
+steps; the sanity-check question is that verification.
+
+`#readme #onboarding #getting-started`

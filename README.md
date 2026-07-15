@@ -56,9 +56,21 @@ cd examples/USLmodel
 pip install -r requirements.txt
 python executable_model.py
 ```
+Or simply ask Claude (with the session open in the repo root):
+*"Run the USLmodel example and explain what it shows."* — Claude installs the
+dependencies, runs the smoke test, and walks you through the result.
 
 **Option B — model your own system**
-1. Clone this repo and open it in Claude Code
+
+*Prerequisites: Python 3.10+ and [Claude Code](https://claude.com/claude-code) (CLI or desktop app). Nothing else — the methodology ships as skills inside the repo.*
+
+1. Clone the repo and open it in Claude Code — **the session must start in the repo root**, otherwise the methodology does not load:
+   ```bash
+   git clone https://github.com/gserdyuk/twotakt
+   ```
+   - *CLI:* `cd twotakt`, then run `claude`
+   - *Desktop app:* create a new session and select the cloned `twotakt` folder as its working directory (the folder is chosen at session start and cannot be changed mid-session)
+   - *Sanity check:* ask Claude *"What is this project?"* — the answer should mention Twotakt and audit-first. If it doesn't, the session is running in the wrong folder: close it and start a new one in `twotakt`.
 2. Prepare two documents: your system's architecture and its requirements
    (see `examples/USLmodel/ARCHITECTURE.md` and `examples/USLmodel/REQUIREMENTS.md` as examples)
 3. Tell Claude: *"I have an architecture. Let's model it."*
