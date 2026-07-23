@@ -17,6 +17,7 @@ compaction time, same rhythm as findings.md.
 - [docs/twotakt-one-pager.md](docs/twotakt-one-pager.md) / [RU](docs/twotakt-one-pager-rus.md) — pitch one-pagers (EN canonical)
 - `skills/` — the method itself: `simstudy-protocol` (entry point), `verification-validation`, `queueing-lazowska`, `modeling-jain`
 - [harness/](harness/README.md) — executable Tier-1 conservation + runner; what "green" means (and does not) in its README
+- [articles/](articles/index.md) — published EN long-form articles (frozen records): #3 fail-fast/slow, #7 LLM-wiki staleness; `_config.yml` makes GitHub Pages serve README + articles only (corpus excluded)
 
 ## Research corpus (accumulates; contradictions are dated history)
 

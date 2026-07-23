@@ -1188,3 +1188,57 @@ onboarding text must therefore verify the environment, not just describe the
 steps; the sanity-check question is that verification.
 
 `#readme #onboarding #getting-started`
+
+## 2026-07-17 — articles/: EN long-form home on GitHub Pages (canonical layer)
+
+Publication-venue review (run in the 3A8 session; venue analysis recorded in
+3A8/publish_platforms.md, journal-mode) found the coverage hole: long form existed
+only in Ukrainian (DOU pipeline), LinkedIn is short, the repo is corpus. Author's
+architecture decision: no standalone author site ("a shop in the desert — people
+shop in malls"); distribution stays in the malls (LinkedIn, DOU, HN), canonical
+texts live next to the projects, and a personal publications list (GitHub profile
+README + LinkedIn Publications) points at the homes.
+
+Implemented: `articles/` at repo root — index + two EN long forms written clean
+from the corpus sources (#3 fail-fast/fail-slow from the DOU draft skeleton; #7
+staleness from the candidate file + the "machine-drafted, human-gated" answer born
+in the note's comments). Frozen-copy images in `articles/img/` (records freeze
+their exhibits). `_config.yml` added: GitHub Pages can only build from root or
+/docs, so Pages is configured from root with the corpus (docs/, logs, registers,
+skills, harness, examples) excluded — the surface (README + articles) is served,
+the corpus stays repo-only. Pending (author actions): enable Pages in repo
+settings (root), review both articles, then add Pages links to the first comments
+of the two LinkedIn posts.
+
+`#articles #pages #publication #canonical #corpus-surface`
+
+## 2026-07-20 — week-one check of the three publications; the gist thread converges on tiered trust
+
+Status: LinkedIn #7 — 3 comments, no new ones; LinkedIn AI-titled the page "Solving
+Staleness in LLM Knowledge Bases with Discipline" (the algorithm parsed the thesis
+correctly). LinkedIn #3 — 3 reactions, 1 comment, quiet evergreen tail. Profile
+crossed 1,004 followers (990 pre-campaign). Gist comment: live, edited (both fixes
+applied: backticked passport line, expanded Level explanation); no direct replies yet.
+
+Material finding: the gist thread independently converges on twotakt's trust
+structure. pradocabreroalejandro (production ERP wiki): "grade the trust and make it
+travel" — per-page status + extraction provenance, two authorship tiers where only
+the human-annotated tier counts as verified provenance (= F3's generator-never-
+authors-its-own-trust-floor, rediscovered in production; write-up promised).
+bluejaeha (Korean audit accountant): quarantined unverified AI content that cannot
+be cited by other pages until checked against primary sources — "unverified citing
+unverified is exactly the circular evidence auditors are trained to reject" (an
+auditor's phrasing of the #4 tier logic). theafh: "the power of this idea lies in
+simplicity" — discipline-over-tooling from another angle. Long forms #7 and #4 are
+accumulating third-party evidence without our participation.
+
+`#candidate7 #candidate4 #karpathy #trust-tiers #status-check`
+
+## 2026-07-23 — DOU article #3: channel layer reworded to T1/E1
+
+In the article the channel layer now reads «лінії T1/E1» instead of SIP/T.38.
+`examples/FaxRx` (ARCHITECTURE/MODEL/README, `sip_channels`) left as is — the
+divergence is deliberate, not an error: same resource contract (N concurrent
+channels, no queue), same numbers.
+
+`#candidate3 #dou #faxrx`
