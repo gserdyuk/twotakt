@@ -229,3 +229,23 @@ window growth and sparse attention shift the constant, not the gradient (sparsit
 prunes exactly the long-range pairs spaghetti needs). The spec also makes the
 re-verification radius *definable* — without it the rational radius is "everything".
 Ties audit-first to both economies. Refines F28. → candidate #8.
+
+**F34 (2026-07-24). Under overload, "success rate" is an on-time rate, not a delivery
+rate — and the natural way to model it is biased toward accept-everything.** A fax past
+its SLA is dropped-and-counted-as-lost in the model, but a real service delivers it late
+(unbounded queue → nothing truly lost) or loses it only to a finite-queue overflow. The
+timeout-drop frees a worker the real system would still hold, and the unbounded queue
+never overflows — both simplifications flatter the architectures that accept everything
+(B, C), i.e. cut against the fail-slow thesis, so the bias is conservative. The metric
+conflates admission loss (never entered) with congestion delay (entered, late, silent).
+→ `docs/dou_article_3_fail_fast_slow.md`, `examples/FaxRx`. Refines the candidate-#3
+lesson.
+
+**F35 (2026-07-24). One workload, two cascaded bottlenecks, each governing a different
+metric.** FaxRx processing (all faxes, 4/s cap, 600 s SLA) collapses the *success rate*
+— plain-path timeouts dominate at every burst (3×: 228 vs 0 OCR-path; 10×: 11 852 vs
+1 817); OCR (half the faxes, 1.75/s, 3 600 s SLA) governs only the *p95 tail* (→ 3 600
+ceiling). Scaling OCR 5× (arch C) zeros OCR timeouts and cuts p95 3 600 → 1 402 yet
+leaves success at 0.68 because processing is untouched. "Which stage is the bottleneck"
+has no single answer — count and tail can be bound by different stages. Corrects the
+naive "OCR is the bottleneck" reading. → `examples/FaxRx`, candidate #3.

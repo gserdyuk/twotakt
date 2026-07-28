@@ -130,6 +130,10 @@ gates is Claude's to execute.
 - `CLAUDE.md` — tells Claude how to behave in this workspace (loads skills automatically)
 - `dev-log.md` — append-only log of project evolution
 
+## Articles
+
+Long-form English write-ups of ideas explored here — see the **[articles index](articles/index.md)**.
+
 ## What "AI-native" means here
 
 Claude is not a code generator bolted on top. It is a participant in the audit (asking the right questions, flagging gaps) and the driver of the simulation takt (building, verifying, running, and reporting autonomously). The methodology is designed for this collaboration — the skills, the document structure, and the gate boundaries all assume Claude is in the loop.

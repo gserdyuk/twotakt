@@ -1242,3 +1242,90 @@ divergence is deliberate, not an error: same resource contract (N concurrent
 channels, no queue), same numbers.
 
 `#candidate3 #dou #faxrx`
+
+## 2026-07-24 — DOU article #3 review pass: success rate is an on-time rate, and FaxRx has two cascaded bottlenecks
+
+Working the DOU longread with the author surfaced two things the FaxRx lesson had
+compressed away.
+
+(1) **Under overload, "success rate" is not a delivery rate but an on-time rate**
+(SLA attainment). The model drops a fax on SLA-timeout and frees its worker; a real
+service delivers it late (the model's queue is unbounded → nothing is truly lost) or
+loses it only to a finite-queue overflow. Both simplifications — freeing the worker
+and dropping-on-timeout — flatter the accept-everything architectures B and C, i.e.
+cut *against* the article's own fail-slow thesis, so the bias is conservative. Named
+as an explicit convention in the text rather than hidden.
+
+(2) **The failure is two cascaded bottlenecks, not "OCR."** Processing (20 workers →
+4 faxes/s, all faxes, tight 600 s SLA) collapses the *success rate*: plain-path
+timeouts dominate at every burst (3x: 228 vs 0 on the OCR path; 10x: 11 852 vs 1 817).
+OCR (1.75 faxes/s, half the faxes, loose 3600 s SLA) governs only the *p95 tail*
+(-> 3 600 ceiling). Arch C scales only OCR (35 -> 175): OCR timeouts go to zero, p95
+falls 3 600 -> 1 402, yet success stays 0.68 because processing is untouched.
+ARCHITECTURE.md already names "two cascaded bottlenecks"; the article had flattened it
+to one and now restores it.
+
+The article was corrected accordingly: channel layer SIP/T.38 -> T1/E1 (what we
+actually bought; termination tech we never knew), the metric reframing above, the
+bottleneck attribution, and the title -> the success-rate-paradox line ("Однаковий
+success rate - протилежний досвід..."). Also produced: social copy (UA/EN) and a UA
+author bio.
+
+Example code and specs left as-is by decision. Register note for later: the SIP/T.38
+vs T1/E1 divergence (article vs ARCHITECTURE.md/MODEL.md) and the ARCHITECTURE.md
+"overnight baseline" wording (contradicts the day-average the sweep actually
+multiplies) are both parked -- not bugs to fix now, recorded so they read as
+intentional, not forgotten.
+
+`#candidate3 #dou #faxrx #on-time-rate #two-bottlenecks #metric-hygiene`
+
+## 2026-07-28 — DOU article #3 published (fail-fast/fail-slow, FaxRx)
+
+The FaxRx longread went live on DOU: "Однаковий success rate — протилежний досвід
+(де насправді ламається система під навантаженням)"
+— https://dou.ua/forums/topic/60921/ . This is the publication the whole #candidate3
+line was building toward: the success-rate paradox (same success rate, opposite
+behaviour under overload) carried by the two-cascaded-bottlenecks FaxRx model.
+
+Start-of-week metrics (first days): 191 views, 2 likes, 1 favourite, 0 comments; a
+colleague acknowledged it. Read as a working organic start for a technical
+methodology piece, not a hot-take — views accrue over weeks and comment silence is
+normal for the genre (the 1 favourite is the save-not-argue signal). Not acting on the
+numbers yet; noting them as the baseline to watch the curve against over 1-2 weeks.
+
+`#candidate3 #dou #faxrx #published`
+
+## 2026-07-28 — LinkedIn announcement of the DOU article posted
+
+Follow-up feed post to the 2026-07-13 warm-up post (#3), now that the full DOU
+longread is live: framed as "the full write-up is out" rather than a re-tell — a
+compressed hook (same success rate, opposite failures; undersized front door = admission
+control) driving to the article, DOU link in the first comment (LinkedIn down-ranks
+posts with in-body links, same mechanic as the July post).
+Post: https://www.linkedin.com/feed/update/urn:li:activity:7487631871560814592/
+Article: https://dou.ua/forums/topic/60921/ . The author's live copy adds "(in
+Ukrainian)" so international readers know the target language before clicking; trimmed
+the two-cascaded-bottlenecks line for announcement brevity.
+
+`#candidate3 #dou #faxrx #linkedin #published`
+
+## 2026-07-29 — blog surface wired: README -> articles, DOU cross-linked
+
+Publication-plumbing pass, no new content -- three decisions, all following
+corpus/surface:
+(1) EN long-forms are the GitHub Pages blog (`articles/`, served by `_config.yml`);
+the DOU/LinkedIn forms are cross-linked *into* the matching article entry, not added
+as new entries -- one story = one entry. Added the Ukrainian DOU longread
+(dou.ua/forums/topic/60921) to the fail-fast entry in `articles/index.md`, marked
+"Ukrainian long form".
+(2) README now points to the articles index (`articles/index.md`, relative) so a repo
+reader clicks through to the blog. Deliberately NOT a `gserdyuk.github.io` link: Pages
+renders README *as* the site home, so that would be a self-link -- the github.io URL
+belongs in external profiles (LinkedIn/DOU/dev.to), and only once Pages is enabled. The
+relative link targets the *file* `index.md`, not the folder, because github.com
+auto-renders only `README.md` inside a directory.
+(3) Notes stay corpus (dev-log); the blog is finished articles only. Open next steps:
+publish the EN fail-fast article on dev.to; enable GitHub Pages (commit `_config.yml`,
+Settings -> Pages).
+
+`#blog #articles #dou #surface #pages`
