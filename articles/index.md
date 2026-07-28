@@ -10,7 +10,9 @@ frozen record; the living material (models, sweeps, verification) stays in the
   — two architectures, the same success rate under a 10× burst, opposite user
   experience; why an undersized front door is admission control, not a defect.
   (2026-07-17; short form: LinkedIn, 2026-07-13; Ukrainian long form:
-  [DOU](https://dou.ua/forums/topic/60921/), 2026-07-28)
+  [DOU](https://dou.ua/forums/topic/60921/), 2026-07-28; EN mirror:
+  [dev.to](https://dev.to/serdyuk/fail-fast-or-fail-slow-where-should-your-system-break-under-load-7ii),
+  2026-07-28, canonical -> this page)
 - **[Staleness is solved by not promising currency](llm-wiki-staleness.md)**
   — what a research repo's discipline says to the LLM-wiki staleness problem:
   document passports, the corpus/surface split, claims before concepts.

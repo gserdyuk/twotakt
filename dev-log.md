@@ -1329,3 +1329,29 @@ publish the EN fail-fast article on dev.to; enable GitHub Pages (commit `_config
 Settings -> Pages).
 
 `#blog #articles #dou #surface #pages`
+
+## 2026-07-29 — GitHub Pages live
+
+Pages enabled (Settings, source main / root); first build green from 0712cca. Site is
+up: gserdyuk.github.io/twotakt (home = README), the `/articles/` index and the fail-fast
+article both return 200, the DOU cross-link is visible on the live index. Closes the
+"enable Pages" step from the entry above. Jekyll serves articles as `.html`
+(`index.md -> index.html`). The now-live Pages article URL becomes the canonical target
+for any external re-post (dev.to). Only open publication step left: EN fail-fast on
+dev.to.
+
+`#blog #pages #surface #live`
+
+## 2026-07-29 — EN fail-fast mirrored on dev.to
+
+The English long form is now also on dev.to
+(dev.to/serdyuk/fail-fast-or-fail-slow-where-should-your-system-break-under-load-7ii),
+with `rel=canonical` pointing at the live Pages copy -- verified in the page head, so the
+Pages article stays the SEO first-source and the dev.to copy is a non-penalised mirror.
+Same EN text as the repo/Pages article, links back to `examples/FaxRx`. Closes the last
+open publication step from the entries above. Publication map now: Pages (EN, canonical)
+/ dev.to (EN mirror) / DOU (UK, standalone) / LinkedIn (EN distribution). Left to the
+author in the dev.to editor (not blocking): add a DOU cross-link in the footer, widen
+tags (`#python`, `#simulation`).
+
+`#blog #devto #faxrx #published #surface`
