@@ -1355,3 +1355,22 @@ author in the dev.to editor (not blocking): add a DOU cross-link in the footer, 
 tags (`#python`, `#simulation`).
 
 `#blog #devto #faxrx #published #surface`
+
+## 2026-07-29 — USLDBmodel re-verified; article #2 reframed (F36-F38)
+
+Preparing article #2 forced a re-verification of its exhibit, and the exhibit died:
+SIM_REPORT's "0.27 vs 1.00" at rate 6 is a one-seed artifact — the knee is bimodal
+across seeds (F36). Digging into theory instead: a USL fixed-point ceiling in closed
+form gives X* ~= 7.2 (not the naive 10), and the pool at default db_query=0.05 moves
+it by 0.04 rps — the default-parameter bottleneck is USL-CPU, the pool is innocent
+(F37). The pool binds only past a computable crossover db_query > c/X_cpu* ~= 0.14 s;
+at 0.3 s the interaction is clean and seed-robust, and the formula's four ceilings
+(7.18/7.22/3.21/6.88) match the simulated collapse points, with stochastic onset ~1 rps
+below each (F38). Article #2 direction settled with the author: not "interaction
+bottleneck" as originally framed, but "the bottleneck is a regime, not a component" —
+the narrative follows the actual investigation (paper 10/20 -> falls at 6 -> pool
+suspected, acquitted -> USL formula -> crossover). RU master draft first, then UK/EN.
+Rejected framings for the record: the knee/metastability story (too subtle — author),
+the confession-genre meta piece (weak reception precedent, #7).
+
+`#candidate2 #usldbmodel #verification #negative-finding #findings`

@@ -249,3 +249,24 @@ ceiling). Scaling OCR 5× (arch C) zeros OCR timeouts and cuts p95 3 600 → 1 4
 leaves success at 0.68 because processing is untouched. "Which stage is the bottleneck"
 has no single answer — count and tail can be bound by different stages. Corrects the
 naive "OCR is the bottleneck" reading. → `examples/FaxRx`, candidate #3.
+
+**F36 (2026-07-29). The USLDBmodel single-seed exhibit did not survive re-verification.**
+At the knee (rate 6) success is bimodal across seeds (~1.0 or ~0.05); 10 seeds give
+pool=1 0.33 (sd .35) vs pool=8 0.48 (sd .39) — SIM_REPORT's "0.27 vs 1.00" was a
+one-seed artifact. Near the knee a single run is a coin flip, not a measurement.
+Negative finding. → dev-log 2026-07-29, `examples/USLDBmodel`.
+
+**F37 (2026-07-29). The default-parameter ceiling is USL, not the pool — and it has a
+closed form.** Saddle-node of the fixed point N = X·[D_cpu·mult(N)/(1−ρ) + Z] gives
+X* ≈ 7.2 rps (naive 1/D = 10 is wrong by 28%). At db_query = 0.05 s the pool is
+irrelevant: pool=1 shifts X* by 0.04 rps (7.18 vs 7.22). Kills candidate #2's original
+default-parameter demonstration. Stochastic onset runs ~1 rps below the deterministic
+ceiling (see F36). → dev-log 2026-07-29.
+
+**F38 (2026-07-29). Bottleneck identity is a regime property with a computable
+crossover: the pool binds iff db_query > c/X_cpu\* (≈ 0.14 s at c=1).** Below it the
+pool is invisible (F37); above it the interaction is clean and seed-robust: at
+db_query = 0.3 s, formula predicts X_max 3.21 (pool=1) / 6.88 (pool=8), simulation
+collapses 0.99→0.55 between rate 3 and 4 / 0.88→0.26 between 5 and 6. Component
+ceilings still don't compose — but the honest form is "compute the regime first".
+Reframes candidate #2. → dev-log 2026-07-29, `examples/USLDBmodel`.

@@ -58,3 +58,4 @@ compaction time, same rhythm as findings.md.
 - 2026-07-10 — V&V extracted into its own skill; RadioMonitoring declared DRAFT project; stale docs archived, concept.md rewritten vision-only (F25)
 - 2026-07-10 — research-project reframing: corpus/surface split, findings.md + INDEX.md created, findings ladder in CLAUDE.md
 - 2026-07-24 — DOU #3 review pass: success rate = on-time rate, not delivery (F34); FaxRx count vs tail bound by different cascaded bottlenecks (F35); article corrected (T1/E1, metric reframing, title = success-rate paradox); FaxRx code + ARCHITECTURE.md:117 "overnight baseline" wording parked, not fixed
+- 2026-07-29 — USLDBmodel re-verification for article #2: single-seed exhibit killed (F36), USL closed-form ceiling ~7.2 (F37), pool binds only past crossover db_query > c/X_cpu* (F38); article #2 reframed "bottleneck is a regime, not a component", RU draft [docs/article_2_bottleneck_regime_rus.md](docs/article_2_bottleneck_regime_rus.md)
