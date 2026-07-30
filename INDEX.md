@@ -35,6 +35,9 @@ compaction time, same rhythm as findings.md.
 - [docs/article_candidate_8_lifecycle_economics.md](docs/article_candidate_8_lifecycle_economics.md) — series-adjacent (≠ S3 infra-TCO): uneven AI compression of lifecycle phases, Amdahl residue = analysis+oracle (F29), architecture as coefficient multiplier (F31), four unglued boundaries (F32), spec as context compression (F33); price-model sketch — likely a separate project
 - [docs/article_candidate_7_passports_corpus_surface.md](docs/article_candidate_7_passports_corpus_surface.md) — meta: staleness solved by not promising currency; passports + corpus/surface vs the LLM-wiki thread's pain
 - [docs/linkedin_post_7_llm_wiki_staleness.md](docs/linkedin_post_7_llm_wiki_staleness.md) — approved drafts for #7: gist field-report comment + LinkedIn note (jumps ahead of S1)
+- [docs/linkedin_post_2_bottleneck_regime.md](docs/linkedin_post_2_bottleneck_regime.md) — LinkedIn EN warm-up draft for #2 (min(10,20)=6; repo link in first comment)
+- [docs/dou_article_2_bottleneck_regime_ukr.md](docs/dou_article_2_bottleneck_regime_ukr.md) — DOU UA draft for #2 (translation skeleton — DOU requires author-written text)
+- [docs/article_2_bottleneck_regime_en.md](docs/article_2_bottleneck_regime_en.md) — EN long form draft for #2 (→ articles/ on publish, dev.to mirror)
 - [docs/concept.md](docs/concept.md) — vision-only: problem / differentiator / landscape / calibration direction
 - [docs/critique.md](docs/critique.md) — dated adversarial review with response statuses + the five-point external critique
 - `docs/archive/` — superseded scenes: concept-v1, architecture-v1/v2, architecture-llm-layers essay; future findings-vN
