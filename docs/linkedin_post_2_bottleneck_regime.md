@@ -2,6 +2,9 @@
 
 > **Type: reasoning** — corpus: publication draft (EN warm-up post) · born 2026-07-30
 
+*Published 2026-07-31:
+https://www.linkedin.com/feed/update/urn:li:activity:7488714946508288000/*
+
 *Second post of the warm-up series (#3 → #2 → #1). Standalone story; repo link goes
 in the first comment (LinkedIn down-ranks in-body links — same mechanic as the #3
 posts). Companion image: `docs/linkedin_post_2_sweep.png` — 1080x1350 (4:5 portrait,

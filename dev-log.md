@@ -1374,3 +1374,21 @@ Rejected framings for the record: the knee/metastability story (too subtle — a
 the confession-genre meta piece (weak reception precedent, #7).
 
 `#candidate2 #usldbmodel #verification #negative-finding #findings`
+
+## 2026-07-31 — LinkedIn warm-up post for #2 published
+
+Second post of the warm-up series (#3 -> #2 -> #1) is live:
+https://www.linkedin.com/feed/update/urn:li:activity:7488714946508288000/ . Hook is the
+broken formula "min(10, 20) = 6"; repo link in the first comment, as with #3. Two
+edits made against the platform rather than the argument: markdown emphasis stripped
+(LinkedIn renders it literally) and the `X*` notation replaced by numbers (0.14 s
+threshold, 0.05 vs 0.3 s regimes) since the symbol is introduced in the article but
+not in a feed post. Companion image is a LinkedIn-specific 1080x1350 4:5 render
+(`docs/linkedin_post_2_sweep.png`) with the hook burned into the canvas — the article's
+own 2.4:1 figure shrinks to unreadable in the feed. Figures for the article itself
+(`articles/img/usldbmodel-architecture.png`, `-sweep.png`) were stripped of prose after
+review: the diagram carries only the path, the N bracket and the USL loop.
+Remaining for #2: author proofread, EN long form to `articles/` (fix image paths to
+`img/...`), Pages canonical, dev.to mirror, UA rewrite for DOU.
+
+`#candidate2 #linkedin #published #figures`
