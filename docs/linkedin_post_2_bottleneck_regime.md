@@ -28,9 +28,11 @@ and the system simply stops coping. That ceiling — a closed-form fixed point �
 7.2 rps for this system. Not 10.
 
 And the pool? Whether it is ever the bottleneck at all is a regime switch with a
-computable threshold: t_query > c / X*. Below it the pool is invisible at any size;
-above it the pool dominates and the same system collapses at 3 rps. Same components.
-Different regime. Different bottleneck.
+computable threshold: the pool binds only once a single query takes longer than the
+pool size divided by that ceiling — 0.14 s for one connection. Our query took 0.05 s,
+so the pool was invisible at any size. Make it 0.3 s and the pool dominates: the same
+system now collapses at 3 rps. Same components. Different regime. Different
+bottleneck.
 
 A bottleneck is not a property of a component. It is the conditions the system puts
 that component in — and the influence runs both ways.
