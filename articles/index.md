@@ -13,6 +13,12 @@ frozen record; the living material (models, sweeps, verification) stays in the
   [DOU](https://dou.ua/forums/topic/60921/), 2026-07-28; EN mirror:
   [dev.to](https://dev.to/serdyuk/fail-fast-or-fail-slow-where-should-your-system-break-under-load-7ii),
   2026-07-28, canonical -> this page)
+- **[min(10, 20) = 6: where is the system's bottleneck?](min-10-20-equals-6.md)**
+  — two components rated 10 and 20 requests/s, a system that dies at 6; the
+  closed-form ceiling the napkin math misses, and why the bottleneck turns out to be
+  a property of the regime rather than of any component.
+  (2026-07-31; short form: LinkedIn, 2026-07-31; Ukrainian long form:
+  [DOU](https://dou.ua/forums/topic/61089/), submitted 2026-07-31, in moderation)
 - **[Staleness is solved by not promising currency](llm-wiki-staleness.md)**
   — what a research repo's discipline says to the LLM-wiki staleness problem:
   document passports, the corpus/surface split, claims before concepts.

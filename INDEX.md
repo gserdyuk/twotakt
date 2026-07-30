@@ -17,7 +17,7 @@ compaction time, same rhythm as findings.md.
 - [docs/twotakt-one-pager.md](docs/twotakt-one-pager.md) / [RU](docs/twotakt-one-pager-rus.md) — pitch one-pagers (EN canonical)
 - `skills/` — the method itself: `simstudy-protocol` (entry point), `verification-validation`, `queueing-lazowska`, `modeling-jain`
 - [harness/](harness/README.md) — executable Tier-1 conservation + runner; what "green" means (and does not) in its README
-- [articles/](articles/index.md) — published EN long-form articles (frozen records): #3 fail-fast/slow, #7 LLM-wiki staleness; `_config.yml` makes GitHub Pages serve README + articles only (corpus excluded)
+- [articles/](articles/index.md) — published EN long-form articles (frozen records): #3 fail-fast/slow, #7 LLM-wiki staleness, #2 min(10,20)=6; `_config.yml` makes GitHub Pages serve README + articles only (corpus excluded)
 
 ## Research corpus (accumulates; contradictions are dated history)
 
@@ -37,7 +37,7 @@ compaction time, same rhythm as findings.md.
 - [docs/linkedin_post_7_llm_wiki_staleness.md](docs/linkedin_post_7_llm_wiki_staleness.md) — approved drafts for #7: gist field-report comment + LinkedIn note (jumps ahead of S1)
 - [docs/linkedin_post_2_bottleneck_regime.md](docs/linkedin_post_2_bottleneck_regime.md) — LinkedIn EN warm-up draft for #2 (min(10,20)=6; repo link in first comment)
 - [docs/dou_article_2_bottleneck_regime_ukr.md](docs/dou_article_2_bottleneck_regime_ukr.md) — DOU UA draft for #2 (translation skeleton — DOU requires author-written text)
-- [docs/article_2_bottleneck_regime_en.md](docs/article_2_bottleneck_regime_en.md) — EN long form draft for #2 (→ articles/ on publish, dev.to mirror)
+- [articles/min-10-20-equals-6.md](articles/min-10-20-equals-6.md) — #2 EN long form, published (moved from docs/ 2026-07-31); dev.to mirror pending
 - [docs/concept.md](docs/concept.md) — vision-only: problem / differentiator / landscape / calibration direction
 - [docs/critique.md](docs/critique.md) — dated adversarial review with response statuses + the five-point external critique
 - `docs/archive/` — superseded scenes: concept-v1, architecture-v1/v2, architecture-llm-layers essay; future findings-vN

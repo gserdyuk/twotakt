@@ -1392,3 +1392,17 @@ Remaining for #2: author proofread, EN long form to `articles/` (fix image paths
 `img/...`), Pages canonical, dev.to mirror, UA rewrite for DOU.
 
 `#candidate2 #linkedin #published #figures`
+
+## 2026-07-31 — #2 submitted to DOU; EN long form promoted to articles/
+
+DOU submission in moderation: https://dou.ua/forums/topic/61089/ (UA text rewritten by
+the author from the translation skeleton, per DOU's no-AI-text rule; three short-description
+variants were drafted for the article card). The EN long form moved
+`docs/article_2_bottleneck_regime_en.md` -> `articles/min-10-20-equals-6.md`: passport
+flipped reasoning -> record, image paths rewritten to `img/...`, preamble now points at
+the LinkedIn short form. It goes live on Pages with this push, which is deliberate
+sequencing — the dev.to mirror lands tomorrow and needs its canonical target to already
+exist. Index entry carries the DOU link marked "in moderation"; drop that marker once
+approved, and add the dev.to line after tomorrow's mirror.
+
+`#candidate2 #dou #articles #pages #published`
