@@ -4,7 +4,8 @@
 
 *English long form, translated from the RU master
 (`docs/article_2_bottleneck_regime_rus.md`). On publication this moves to
-`articles/` as a frozen record; dev.to mirrors it with `canonical` → Pages. All
+`articles/` as a frozen record — at that point rewrite the two image paths from
+`../articles/img/...` to `img/...`; dev.to mirrors it with `canonical` → Pages. All
 numbers come from the open, reproducible model in
 [`examples/USLDBmodel`](https://github.com/gserdyuk/twotakt/tree/main/examples/USLDBmodel);
 every point is 10 seeded runs, mean and spread.*
@@ -14,6 +15,8 @@ every point is 10 seeded runs, mean and spread.*
 Take the simplest system with two resources: an application server (CPU) with a
 database behind it. A request does a little CPU work, waits a little on I/O, then
 takes a connection from a bounded pool, runs one database query — and leaves.
+
+![The request path: application server (CPU) to connection pool to database; below, a bracket marking N as every request in flight and the USL feedback loop closing back on the CPU](../articles/img/usldbmodel-architecture.png)
 
 The capacity of the parts fits on a napkin:
 
@@ -147,6 +150,8 @@ spread: where the pool is the bottleneck (the "4" row), the effect is clean and
 stable (±0.09 versus ±0.35 at the CPU knee). The resource interaction here is real:
 the single connection serializes requests, waiting burns the deadline, and the
 system dies at half the CPU's ceiling.
+
+![Two regimes side by side: with a fast query both curves (pool=1 and pool=8) collapse together near 6-7; with a slow query they separate, pool=1 collapsing at 3-4 while pool=8 holds to 5-6](../articles/img/usldbmodel-sweep.png)
 
 The same system. The same pool. In one regime it is a non-entity; in the other, the
 primary cause of death. **"What is the bottleneck" is a property of the regime, not
