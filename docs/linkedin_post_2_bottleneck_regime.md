@@ -4,7 +4,9 @@
 
 *Second post of the warm-up series (#3 → #2 → #1). Standalone story; repo link goes
 in the first comment (LinkedIn down-ranks in-body links — same mechanic as the #3
-posts). Companion image: none yet / optional two-panel sweep plot.*
+posts). Companion image: `docs/linkedin_post_2_sweep.png` — 1080x1350 (4:5 portrait,
+the mobile-friendly ratio), panels stacked and the hook burned into the image, so it
+reads while scrolling. The article's own wide version lives in `articles/img/`.*
 
 ---
 
