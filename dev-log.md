@@ -1406,3 +1406,16 @@ exist. Index entry carries the DOU link marked "in moderation"; drop that marker
 approved, and add the dev.to line after tomorrow's mirror.
 
 `#candidate2 #dou #articles #pages #published`
+
+## 2026-07-31 — #2 EN long form verified live on Pages
+
+Pages build for 2ebc015 went green in ~30 s; all four URLs return 200 — the article
+(`/articles/min-10-20-equals-6.html`), the index, and both figures. The canonical target
+for tomorrow's dev.to mirror therefore exists, which was the point of publishing the EN
+side before the mirror rather than after. Session ends here; open items for #2 unchanged:
+dev.to mirror (canonical -> the Pages URL above, tags python/simulation/architecture/
+performance, footer links to DOU + `examples/USLDBmodel`), then drop the "in moderation"
+marker from the index entry once DOU approves, and add the dev.to mirror line to
+`articles/index.md` the way #3 carries it.
+
+`#candidate2 #pages #verified`
