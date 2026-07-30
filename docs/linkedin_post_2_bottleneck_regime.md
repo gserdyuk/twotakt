@@ -25,7 +25,7 @@ loop feeds itself, and past a computable ceiling it stops converging: queues gro
 and the system simply stops coping. That ceiling — a closed-form fixed point — is
 7.2 rps for this system. Not 10.
 
-And the pool? Whether it is *ever* the bottleneck is a regime switch with a
+And the pool? Whether it is ever the bottleneck at all is a regime switch with a
 computable threshold: t_query > c / X*. Below it the pool is invisible at any size;
 above it the pool dominates and the same system collapses at 3 rps. Same components.
 Different regime. Different bottleneck.
