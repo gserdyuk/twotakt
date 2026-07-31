@@ -1,3 +1,10 @@
+---
+title: "Staleness is solved by not promising currency"
+description: "What a research repo's discipline says to the LLM-wiki staleness problem: document passports, the corpus/surface split, and claims recorded before concepts."
+article: true
+date: 2026-07-17
+---
+
 # Staleness is solved by not promising currency
 
 > **Type: record** — publication: frozen once published · born 2026-07-17

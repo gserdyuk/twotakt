@@ -1,0 +1,24 @@
+---
+layout: null
+sitemap: false
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>{{ site.title | xml_escape }} — articles</title>
+    <description>{{ site.description | xml_escape }}</description>
+    <link>{{ site.url }}{{ site.baseurl }}/articles/</link>
+    <atom:link href="{{ site.url }}{{ site.baseurl }}/feed.xml" rel="self" type="application/rss+xml" />
+    <language>en</language>
+    {%- assign articles = site.pages | where: "article", true | sort: "date" | reverse -%}
+    {%- for a in articles %}
+    <item>
+      <title>{{ a.title | xml_escape }}</title>
+      <link>{{ site.url }}{{ site.baseurl }}{{ a.url }}</link>
+      <guid isPermaLink="true">{{ site.url }}{{ site.baseurl }}{{ a.url }}</guid>
+      <description>{{ a.description | xml_escape }}</description>
+      <pubDate>{{ a.date | date_to_rfc822 }}</pubDate>
+    </item>
+    {%- endfor %}
+  </channel>
+</rss>

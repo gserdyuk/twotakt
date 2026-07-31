@@ -1430,3 +1430,14 @@ the DOU line plain. Publication map for #2: Pages (EN, canonical) / DOU (UA) / L
 the URL is live.
 
 `#candidate2 #dou #published`
+
+## 2026-08-01 — LinkedIn #2: long-form links added as a comment
+
+Now that both long forms are live, the warm-up post got a comment pointing at them:
+the Pages article (the canonical) and the DOU piece marked as Ukrainian. Separate from
+the first comment carrying the repo link — links in comments don't cost reach, links in
+the post body do, which is why the post itself stays link-free. Suggested tightening
+(language named before the link rather than trailing after it, as in the #3 announcement)
+is with the author.
+
+`#candidate2 #linkedin #distribution`

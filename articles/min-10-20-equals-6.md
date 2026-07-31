@@ -1,3 +1,11 @@
+---
+title: "min(10, 20) = 6: where is the system's bottleneck?"
+description: "Two components rated 10 and 20 requests/s - and a system that dies at 6. The closed-form ceiling that napkin capacity math misses, and why the bottleneck turns out to be a property of the regime rather than of any component."
+image: https://gserdyuk.github.io/twotakt/articles/img/usldbmodel-sweep.png
+article: true
+date: 2026-07-31
+---
+
 # min(10, 20) = 6: where is the system's bottleneck?
 
 > **Type: record** — publication: frozen once published · born 2026-07-31

@@ -1,3 +1,8 @@
+---
+title: "twotakt - articles"
+description: "Long-form English write-ups from the twotakt project: performance modeling, discrete-event simulation, and the methodology that makes a model trustworthy."
+---
+
 # twotakt — articles
 
 > **Type: register** — publication index: one line per published article · born 2026-07-17

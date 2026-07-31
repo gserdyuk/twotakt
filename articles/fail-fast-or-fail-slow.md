@@ -1,3 +1,11 @@
+---
+title: "Fail fast or fail slow: where should your system break under load?"
+description: "Two architectures, the same success rate under a 10x burst, opposite user experience - and why an undersized front door is admission control rather than a defect."
+image: https://gserdyuk.github.io/twotakt/articles/img/faxrx-sweep.png
+article: true
+date: 2026-07-17
+---
+
 # Fail fast or fail slow: where should your system break under load?
 
 > **Type: record** — publication: frozen once published · born 2026-07-17

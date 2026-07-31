@@ -6,6 +6,14 @@
 theme: jekyll-theme-primer
 title: twotakt
 description: "AI turns an architecture description into an executable simulation model. Methodology makes it trustworthy."
+
+# Absolute URLs for link-preview cards (og:image needs them). GitHub Pages
+# injects these too; stating them makes the build deterministic.
+url: https://gserdyuk.github.io
+baseurl: /twotakt
+
+plugins:
+  - jekyll-sitemap
 exclude:
   - docs/
   - examples/
