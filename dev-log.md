@@ -1470,3 +1470,25 @@ First real signal, same day: a star from a senior architect at Akamai (repo at 3
 we have been tracking.
 
 `#pages #seo #distribution #rss #signal`
+
+## 2026-08-01 — #2 mirrored on dev.to; both articles joined into a series
+
+Live at https://dev.to/serdyuk/min10-20-6-where-is-the-systems-bottleneck-46n8 .
+Verified via the dev.to API rather than by eye: canonical points at the Pages copy (so
+the SEO first-source stays ours), both articles carry cover images, and both sit in the
+same series (collection 42682) — #3 became part 1, #2 part 2. Covers are
+platform-specific renders at 1600x672 (dev.to crops to a 2.38 ratio; the article figures
+are 2.25 and 2.74 and would lose their footnotes), each carrying the article's hook on
+canvas: #2 shows the two regimes, #3 shows the paradox itself — success rates converging
+to 0.54 vs 0.52 beside p95 diverging 286 s vs 3600 s, both drawn from the committed
+FaxRx sweep rather than retyped from the article table.
+
+Series naming rule adopted: name the theme, not the project — a reader meets the series
+title before they know what twotakt is. Performance-under-load pieces go in one series;
+the AI-and-architecture line (S1/S2) and the meta piece (#7) get their own, since mixing
+engineering post-mortems with essays on development economics blurs both.
+
+Tag sets deliberately differ: #3 leans python/performance, #2 leans
+systemdesign/distributedsystems — same series, different discovery surfaces.
+
+`#candidate2 #devto #series #published`

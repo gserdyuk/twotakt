@@ -23,7 +23,9 @@ frozen record; the living material (models, sweeps, verification) stays in the
   closed-form ceiling the napkin math misses, and why the bottleneck turns out to be
   a property of the regime rather than of any component.
   (2026-07-31; short form: LinkedIn, 2026-07-31; Ukrainian long form:
-  [DOU](https://dou.ua/forums/topic/61089/), 2026-07-31)
+  [DOU](https://dou.ua/forums/topic/61089/), 2026-07-31; EN mirror:
+  [dev.to](https://dev.to/serdyuk/min10-20-6-where-is-the-systems-bottleneck-46n8),
+  2026-07-31, canonical -> this page)
 - **[Staleness is solved by not promising currency](llm-wiki-staleness.md)**
   — what a research repo's discipline says to the LLM-wiki staleness problem:
   document passports, the corpus/surface split, claims before concepts.
