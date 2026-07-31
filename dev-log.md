@@ -1419,3 +1419,14 @@ marker from the index entry once DOU approves, and add the dev.to mirror line to
 `articles/index.md` the way #3 carries it.
 
 `#candidate2 #pages #verified`
+
+## 2026-08-01 — DOU #2 cleared moderation and is published
+
+Live at https://dou.ua/forums/topic/61089/ as "min(10, 20) = 6: де вузьке місце
+системи" (dated 31 липня 9:30) — body public, not a stub. Same-day moderation, unlike
+#3. The "in moderation" marker is off the `articles/index.md` entry, which now carries
+the DOU line plain. Publication map for #2: Pages (EN, canonical) / DOU (UA) / LinkedIn
+(EN warm-up); dev.to mirror still open, and its footer can now link the DOU piece since
+the URL is live.
+
+`#candidate2 #dou #published`
