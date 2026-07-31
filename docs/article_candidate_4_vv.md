@@ -9,6 +9,16 @@
 **intent / consistency verification** (§4) — that framing may belong in the title.
 Pending a prior-art check on the term (§10).*
 
+*Revised 2026-08-01 — the non-composition exhibit was wrong and is rewritten. The original
+reading ("each component correct, yet pool=1 binds and the system collapses at 6 rps") came
+from a single seed and did not survive a ten-seed re-check (F36). Replaced by the corrected
+account: the USL fixed-point ceiling ~7.2 rps with the pool never binding at default
+parameters (F37), and the computable crossover at which the binding component switches (F38).
+The thesis survives — better supported than before, since the system ceiling now provably
+belongs to no component and the switch has a closed form. Affected: §4 (non-composition),
+§6 (novelty item 5), §9c (items 3 and 4). Long form of the corrected exhibit: the published
+article `articles/min-10-20-equals-6.md`.*
+
 This file is the long form — the reasoning chain in full, so the details are not
 lost. The one-line version lives in `TODO.md` under "Article / pitch material".
 
@@ -270,11 +280,26 @@ imbalance with all components green points at the wiring (an edge). System tests
 "something leaks"; component tests say "where."
 
 But both levels are necessary because **component correctness does not compose into system
-correctness.** Canonical demonstration — USLDBmodel: each component is individually correct
-(would pass its unit invariants) yet the system collapses at 6 rps because a pool=1 binds,
-despite a 20 rps paper ceiling. Component ceilings don't compose. The gap between "all parts
-OK" and "system fails" is exactly where the interesting findings — and emergent behavior —
-live, and component tests provably cannot reach it.
+correctness.** Canonical demonstration — USLDBmodel, whose parts are rated 10 rps (CPU) and
+20 rps (a single DB connection) while the system dies at ~6. Two distinct failures of
+composition sit there, and component tests reach neither:
+
+- **A component ceiling is not a constant.** The CPU's 10 rps assumed its work does not
+  depend on what the rest of the system is doing — but USL scales every burst by `mult(N)`,
+  and N counts *all* requests in flight, including those waiting on IO or queued for the
+  connection. Solving the resulting fixed point gives the real ceiling, **~7.2 rps** — 28%
+  below the naive figure, with the pool never binding at all (pool = 1 vs pool = inf differ
+  by 0.04 rps).
+- **Which component is the bottleneck is regime-dependent.** The pool binds only past a
+  computable crossover, `t_query > c / X*` (~0.14 s at c = 1). Below it the pool is invisible
+  at any size; above it the pool dominates and the same system collapses at **~3.2 rps**
+  while the CPU alone would sustain ~6.9.
+
+Every component passes its unit invariants in *both* regimes; nothing local is violated. The
+gap between "all parts OK" and "system fails" is exactly where the interesting findings — and
+emergent behavior — live, and component tests provably cannot reach it. (Numbers: F37, F38.
+The earlier reading of this exhibit — "pool=1 binds at 6 rps" — was a single-seed artifact,
+recorded as F36; see the revision note at the top.)
 
 Cost: a component test needs the part observable at its boundary — free in a structural
 model, invasive in a monolithic one (see next).
@@ -390,7 +415,9 @@ Intent/consistency verification as the **exit criterion of an AI build agent**
    the fixed library);
 5. the **scope axis + non-composition thesis** — two-level (component + system)
    verification where *component correctness does not compose into system correctness*
-   (demonstrated on USLDBmodel), and the orthogonal-axes map with a proportionality razor
+   (demonstrated on USLDBmodel, where the system ceiling is neither component's and the
+   binding component switches at a **closed-form crossover** — so "which part binds" is
+   computed, not probed), and the orthogonal-axes map with a proportionality razor
    that bounds the suite (default system Tier-1; automate verification, keep validation
    light). Arguably the strongest contribution — it is about the tool, not one example.
 
@@ -445,7 +472,9 @@ directional; PowerSearch is queued as a test of the predictions below.)
 
 What happened at each step: USLmodel created the contract + Tier-1 + Tier-2 (USL shape,
 degradation-MR). USLDBmodel reused the contract **unchanged** and added a pool-MR (lesson:
-a mechanism binds in *its own regime* — the pool binds in overload, not at the peak).
+a mechanism binds in *its own regime* — and the regime was originally misidentified as
+"overload", where the pool in fact never binds at the default query time; the real condition
+is the crossover `t_query > c / X*`, see the 2026-08-01 revision note).
 FaxRx (Erlang-B blocking, multi-class — a genuinely new class) **bent the contract**.
 
 ### The trend: two convergences and one non-convergence
@@ -581,9 +610,18 @@ validation harness is mature enough to state findings.
    work.** Every model's *first* check was wrong — a magic-number that didn't discriminate, a
    pool-MR read at the wrong operating point, a strict no-drops on a blocking system, an
    under-provisioned baseline. The negative test is where the design actually happens.
+   **A second failure mode surfaced later: reading a check — or an exhibit — off a single
+   seed.** Near the knee the outcome is bimodal across seeds (~1.0 or ~0.05, with a mean the
+   system never actually shows), so one run certifies nothing. USLDBmodel's headline result
+   lived for weeks on seed 42 and died on ten (F36). Seeds are part of the negative test, and
+   a stochastic exhibit without a spread is an unverified claim.
 4. **A mechanism check is only valid where the mechanism BINDS.** Degradation at the peak,
-   the pool in overload, blocking at high offered-load, decode under load. Every metamorphic
-   relation carries a binding region; test it elsewhere and it is vacuous or wrong.
+   blocking at high offered-load, decode under load — and the DB pool only past its
+   **crossover**, `t_query > c / X*`, *not* merely "in overload" as first recorded: at the
+   default 0.05 s query the pool never binds at any arrival rate (F37/F38). Every metamorphic
+   relation carries a binding region; test it elsewhere and it is vacuous or wrong. And the
+   region is sometimes derivable in closed form — cheaper and safer than probing for it,
+   which is how the wrong region survived here in the first place.
 5. **"Universal" laws carry hidden assumptions; replication strips them.** No-loss assumed a
    queueing (not blocking) discipline; completed≈offered assumed short requests. Each new
    class peels one off; the universal core shrinks toward bare continuity.
