@@ -1492,3 +1492,29 @@ Tag sets deliberately differ: #3 leans python/performance, #2 leans
 systemdesign/distributedsystems — same series, different discovery surfaces.
 
 `#candidate2 #devto #series #published`
+
+## 2026-08-01 — article #4 corrected; the register left alone on purpose
+
+Reviewing #4 for the paper track found its canonical non-composition exhibit resting on
+the claim F36 killed — "each component correct, yet pool=1 binds and the system collapses
+at 6 rps" — in five places, not one (S4, S6 item 5, S9b, S9c items 3 and 4). Rewritten
+around the corrected account: the USL fixed-point ceiling ~7.2 with the pool never binding
+at default parameters (F37), plus the crossover at which the binding component switches
+(F38). The thesis came out stronger, not patched: the system ceiling now provably belongs
+to *no* component, and "which part binds" has a closed form instead of being probed for.
+A revision note dated at the top of the file keeps the trail visible.
+
+Second gain, useful precisely because it is self-critical: S9c's "negative-test-first"
+lesson gained a second failure mode — reading a check or an exhibit off a **single seed**.
+The project's own headline result lived weeks on seed 42 and died on ten. For a paper about
+trusting generated code, an unforced error caught by the author's own discipline is better
+evidence than a planted bug.
+
+**Decided: do not touch F9/F10 in `findings.md`,** though both carry the refuted
+illustration. The register records what was known on a date; correcting entries in place
+would turn evidence into hindsight. F36-F38 sit after them with later dates and do the
+superseding. Article drafts converge and may be revised (with a dated note); registers
+accumulate. Same corpus, different contract — worth stating once, since the temptation to
+"just fix it" recurs.
+
+`#candidate4 #verification #corpus #findings #paper-track`
