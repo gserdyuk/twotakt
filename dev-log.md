@@ -1441,3 +1441,32 @@ the post body do, which is why the post itself stays link-free. Suggested tighte
 is with the author.
 
 `#candidate2 #linkedin #distribution`
+
+## 2026-08-01 — Pages: link-preview cards, sitemap, RSS
+
+Audit of the published pages found the distribution leak: every shared link previewed
+with the *site-wide* blurb and **no image at all** — same generic card for every article,
+on LinkedIn, Slack, Telegram, dev.to alike. Fixed by giving each article front matter
+(own `description`, own `image`) plus explicit `url`/`baseurl` so og:image resolves
+absolutely; verified live — og:description is now per-article, og:image points at the
+article's figure, and twitter:card upgraded summary -> summary_large_image. Added
+`jekyll-sitemap` (5 URLs indexed).
+
+RSS needed a decision: `jekyll-feed` reads only `_posts`, and converting the articles to
+posts would rewrite their URLs — which dev.to canonical and the DOU/LinkedIn links
+already point at. Published URLs win over plugin convenience, so `feed.xml` is
+hand-rolled over pages flagged `article: true`, sorted by a `date` field. Three items,
+correct order. Cost: a new article must remember the flag or it silently misses the feed.
+
+Distribution read recorded while we were at it: DOU = moderated, cohesive, but forum
+format sinks fast; LinkedIn = right audience, but 48-hour life and unsearchable — a pulse,
+not an archive; dev.to = weak on day one, judged properly at six months as a Google
+long-tail channel. Structural gap: all three push into a stream, none catches someone
+actively searching the problem, hence the SEO work above and aggregators (HN, Reddit) as
+the next candidate channel of a *different* shape.
+
+First real signal, same day: a star from a senior architect at Akamai (repo at 3 stars,
+2 forks). One reader of exactly the target profile is worth more than the raw view counts
+we have been tracking.
+
+`#pages #seo #distribution #rss #signal`
