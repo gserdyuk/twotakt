@@ -391,44 +391,70 @@ Entry phrase for README:
 
 ## Article / pitch material (actions from captured findings)
 
-- [ ] Article candidate #2: **interaction bottleneck** (USLDBmodel — component ceilings
-      don't compose; pool=1 collapses at 6 rps despite a 20 rps paper ceiling).
+**Notation.** `#N` = the global candidate key (stable identity, order of appearance —
+see each `docs/article_candidate_N_*.md`). Publications are organized into named
+**series**; a piece's slot is `<Series><n>` (e.g. `A1`, `S1`). `#N` is primary; the
+series slot is a label. Three series exist so far (A, B, S); some pieces are standalone.
+
+**Publication pipeline (per topic, shared by series A and S):** LinkedIn EN note
+(drafted by AI, audited by author) → engagement gate 1–2 weeks (reactions + harvest
+objections from comments; quiet topic = stop) → DOU UA longread (author-written text —
+DOU forbids AI-generated text; AI draft = idea skeleton only) + same-day LinkedIn UA
+teaser linking the DOU piece + optional dev.to EN long form (no AI ban there; disclosure
+line as good taste). Cadence: one EN note per 1–1.5 weeks; interleave series.
+
+**Next move (author, 2026-08-01): S1 = #5.**
+
+### Series A — Performance models you can run
+
+Runnable-exhibit findings: a surprising performance result the reader can rerun.
+
+- [x] **A1 = #3 — fail-fast vs fail-slow** (FaxRx — same success rate at
+      10× burst, opposite failure UX; undersized front door as admission control).
+      **Published:** LinkedIn 2026-07-13, EN long form `articles/fail-fast-or-fail-slow.md`
+      2026-07-17, DOU 2026-07-28, dev.to 2026-07-28. Tail: UA LinkedIn teaser.
+      Short form: `docs/article_candidate_3_fail_fast_slow.md`.
+- [x] **A2 = #2 — min(10,20)=6: the bottleneck is a regime, not a component** (USLDBmodel;
+      reframed after re-verification killed the one-seed "interaction bottleneck" exhibit,
+      F36–F38 — USL closed-form ceiling, the pool acquitted at default params, binds only
+      past a computable crossover). **Published 2026-07-31:** LinkedIn, EN
+      `articles/min-10-20-equals-6.md` (Pages), dev.to, DOU. Tail: UA LinkedIn teaser.
       Short form: `docs/article_candidate_2_interaction_bottleneck.md`.
-- [ ] Article / pitch demo candidate #3: **fail-fast vs fail-slow** (FaxRx — same success
-      rate at 10× burst, qualitatively different failure UX; undersized front door as
-      admission control). Short form: `docs/article_candidate_3_fail_fast_slow.md`.
-      Publication drafts ready: LinkedIn EN post (`docs/linkedin_post_3_fail_fast_slow.md`,
-      first of the warm-up series) + DOU.ua UA longread (`docs/dou_article_3_fail_fast_slow.md`,
-      1–2 weeks after the post).
-- [ ] Article candidate #1 (90-day plan, month 2): MODEL.md / audit-first approach; reuse
-      the "specification vs bug" line and the survivorship-bias example (PowerSearch).
-      Short form: `docs/article_candidate_1_audit_first.md`.
-- [ ] **Article candidate #7 — passports + corpus/surface split** (standalone meta-topic:
-      knowledge transfer between LLM sessions; answer-by-discipline to the staleness pain
-      of Karpathy's LLM-wiki thread). Short form:
-      `docs/article_candidate_7_passports_corpus_surface.md`. Publication drafts ready
-      (`docs/linkedin_post_7_llm_wiki_staleness.md`): gist comment ASAP, LinkedIn note
-      jumps ahead of S1.
+- [ ] **A-open** — future runnable findings (PowerSearch, USLmodel, …) land here as A3, A4.
 
-### Series: AI Influence on the Architectural Landscape (born 2026-07-13)
+### Series B — Twotakt building principles
 
-Thesis of the series: the collapse of code-construction cost reprices architectural
-decisions. Op-eds with a computable exhibit under the hood — the differentiator vs
-the "AI kills microservices" wave.
+The tool's trust doctrine: the two gates of the methodology. Venue varies
+(practitioner article / talk), not strictly the A/S pipeline. Order: #4 leads ahead of
+#1 (per candidate #1's own note).
 
-**Publication pipeline (per topic):** LinkedIn EN note (drafted by AI, audited by
-author) → engagement gate 1–2 weeks (reactions + harvest objections from comments;
-quiet topic = stop) → DOU UA longread (author-written text — DOU forbids AI-generated
-text; AI draft = idea skeleton only) + same-day LinkedIn UA teaser linking the DOU
-piece + optional dev.to EN long form (no AI ban there; disclosure line as good taste).
-Cadence: one EN note per 1–1.5 weeks; interleave with the warm-up series (#2, #1).
+- [ ] **B1 = #4 — intent/consistency verification for LLM-generated simulations** (the
+      **back gate**, after code; strongest / lead candidate). Thesis: with no oracle,
+      trust comes from checking mutual consistency among independent expressions of intent.
+      Three tiers by authorship: Tier 1 human-fixed conservation laws, Tier 2 spec-driven
+      law-shape, Tier 3 generator-authored model bounds — generator must *never* author its
+      own trust floor (correlated blind spots). Tier 3 = coverage not guarantee (catches
+      self-contradiction, not silent agreement); recurring Tier-3 promotes to Tier-1 by rule
+      of three. Law-shape assertable only up to the *emergence boundary*. Novelty is the
+      LLM-code angle, not invariant/intent testing itself. Evidence = P1 harness + multi-gen
+      experiment (Fig 1). Target form: talk / short paper. **#4's idea is the precondition
+      for S2.** Full reasoning: `docs/article_candidate_4_vv.md`.
+- [ ] **B2 = #1 — audit-first** (the **front gate**, before code): MODEL.md is the
+      artifact, the code is its implementation; "specification vs bug"; survivorship-bias
+      example (PowerSearch). Short form: `docs/article_candidate_1_audit_first.md`.
 
-- [ ] **S1 = candidate #5 — microservices after the price drop** (modularity stays,
-      distribution retreats; distribute only for runtime). Short form:
-      `docs/article_candidate_5_ai_architectural_landscape.md`. Writable now.
-- [ ] **S2 = candidate #6 — the re-verification surface** (unit of architecture =
-      unit of re-verification; #4 is the precondition). Short form:
-      `docs/article_candidate_6_reverification_surface.md`. Writable now.
+### Series S — AI Influence on the Architectural Landscape (born 2026-07-13)
+
+Thesis: the collapse of code-construction cost reprices architectural decisions. Op-eds
+with a computable exhibit under the hood — the differentiator vs the "AI kills
+microservices" wave.
+
+- [ ] **S1 = #5 — microservices after the price drop** (modularity stays, distribution
+      retreats; distribute only for runtime). Short form:
+      `docs/article_candidate_5_ai_architectural_landscape.md`. **Writable now — next up.**
+- [ ] **S2 = #6 — the re-verification surface** (unit of architecture = unit of
+      re-verification; needs #4's idea available — see B1). Short form:
+      `docs/article_candidate_6_reverification_surface.md`. Writable now. Tight pair with S1.
 - [ ] **S3 — TCO as an experiment**: cost-of-ownership layer as a postprocessor over
       `sweep_results.json` — resource prices (real oracle: price lists) + business
       penalty per lost unit (invented parameter → sensitivity axis, break-even
@@ -440,24 +466,21 @@ Cadence: one EN note per 1–1.5 weeks; interleave with the warm-up series (#2, 
 - [ ] **S4 — architecture as an options portfolio**: Monte Carlo over business-growth
       trajectories → TCO distribution ("A cheaper in 70% of futures"); oversizing =
       a purchased option on growth, priced by the model. Requires S3.
-- [ ] **Candidate #8 — lifecycle economics** (series-adjacent; ≠ S3, which is
-      infra-TCO of the modeled system): long form written 2026-07-14
-      (`docs/article_candidate_8_lifecycle_economics.md`, F29–F33). Open call:
-      home for the executable price model — likely a **separate project**, not
-      twotakt (author, 2026-07-14: "не хочется смешивать"); sketch lives in #8 §6
-      until decided.
+- [ ] **S5 = #8 — lifecycle economics after the price drop** (same phases, different pie;
+      dev-lifecycle economics of building software with AI — distinct from S3's infra-TCO
+      of the modeled system). Long form written 2026-07-14
+      (`docs/article_candidate_8_lifecycle_economics.md`, F29–F33); needs no code, so it can
+      publish ahead of S3/S4. Orthogonal open question: the *executable* price model sketched
+      in #8 §6 likely lives in a **separate project** (author, 2026-07-14: "не хочется
+      смешивать") — that decision does not block the article.
 
-- [ ] **Article candidate #4 — intent/consistency verification for LLM-generated
-      simulations** (strongest; lead candidate). Thesis: with no oracle, trust comes from
-      checking mutual consistency among independent expressions of intent. Three tiers by
-      authorship: Tier 1 human-fixed conservation laws, Tier 2 spec-driven law-shape, Tier 3
-      generator-authored model bounds — generator must *never* author its own trust floor
-      (correlated blind spots). Tier 3 = coverage not guarantee (catches self-contradiction,
-      not silent agreement); recurring Tier-3 promotes to Tier-1 by rule of three. Law-shape
-      assertable only up to the *emergence boundary* (beyond it = asserting the research
-      result, same trap as asserting the spec/goal). Novelty is the LLM-code angle, not
-      invariant/intent testing itself. Evidence = P1 harness + multi-gen experiment (Fig 1) —
-      already on the roadmap. Full reasoning: `docs/article_candidate_4_vv.md`.
+### Standalone (no series)
+
+- [x] **#7 — staleness / passports + corpus/surface split** (knowledge transfer between
+      LLM sessions; answer-by-discipline to Karpathy's LLM-wiki thread). **Published:**
+      Karpathy-gist comment + LinkedIn note 2026-07-13, EN long form
+      `articles/llm-wiki-staleness.md` 2026-07-17. Optional DOU version not done.
+      Short form: `docs/article_candidate_7_passports_corpus_surface.md`.
 
 ---
 

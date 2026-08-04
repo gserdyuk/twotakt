@@ -1518,3 +1518,86 @@ accumulate. Same corpus, different contract — worth stating once, since the te
 "just fix it" recurs.
 
 `#candidate4 #verification #corpus #findings #paper-track`
+
+## 2026-08-01 — publication plan reorganized into three named series (A / B / S)
+
+The article backlog had grown two competing numbering systems — the global `#N`
+candidate ids and the `S1..S4` slots of the architectural-landscape series — and they
+diverged (S3/S4 had no `#`, #1 was parked in the warm-up track where it did not belong by
+topic). Cleaned up with the author into one scheme, recorded in `TODO.md`
+("Article / pitch material" rewritten):
+
+- **`#N` is the primary key**; a series slot (`A1`, `S1`, …) is a label on top of it.
+- **Series A — "Performance models you can run"** (runnable-exhibit findings): A1 = #3,
+  A2 = #2, both published; open for future findings.
+- **Series B — "Twotakt building principles"** (the trust doctrine, two gates): B1 = #4
+  (back gate, V&V — leads per candidate #1's own note), B2 = #1 (front gate, audit-first).
+  Venue is talk/practitioner, not the A/S LinkedIn->DOU pipeline.
+- **Series S — "AI Influence on the Architectural Landscape"**: S1 = #5, S2 = #6, S3
+  (TCO), S4 (options portfolio), and **#8 moved in as S5** (was "series-adjacent"; the
+  author placed it in S — the *article* joins S, the executable price-model home stays a
+  separate open question).
+- **Standalone:** #7 (staleness) — explicitly not in any series.
+
+Naming decisions the author made along the way: kept `S` for the landscape series (letter
+stands for its topic, not sequence) even though A/S is not alphabetical; series B is Latin
+"B". Placement decision: the plan stays in `TODO.md`, not a new `docs/publication_plan.md`
+— a second home for the same truth is the drift trap that killed `WORKFLOW.md` and
+`methodology.md`. **Next move set: S1 = #5.**
+
+`#publication-plan #series #TODO #policy`
+
+## 2026-08-04 — prior-art bibliography for series S built out (clusters A-E)
+
+Background research pass (author asleep, explicit "collect in the background"). Built
+`docs/prior_art_landscape.md` from a Phase-0 calibration (cluster #2 microservices, format
+approved: type / read / claim / stance / use) into all five claim-clusters, ordered by the
+argument's structure rather than research order: **A** phase-3 collapse (the hub), then its
+spokes **B** microservices, **C** re-verification, **D** options, **E** lifecycle economics.
+~24 sources + 7 classical anchors (Brooks, Conway, Parnas, Dijkstra, Baldwin-Clark, Boehm,
+Lientz-Swanson), each verified by fetch/search (no citing from memory; `read:` records what
+was actually read), sided SUPPORTS/REFINES/TEMPERS/CONTRADICTS/BOUNDARY, with per-cluster and
+a cross-cluster synthesis.
+
+Strongest findings for the writing: (1) the industry states #6 almost verbatim ("code is
+cheap, verification is expensive, the bottleneck moved"; +91% PR review time) — cluster C is
+the best-attested. (2) Brooks's accidental/essential is the spine that makes our "phase 3
+collapsed, 1-2 stayed" rigorous, and Osmani's "70% problem" is that spine in field data. (3)
+Honesty anchors that keep us off the hype wave: Cockcroft (the Prime Video case is misread),
+METR (experienced devs 19% *slower*), GitClear (quality erosion), DORA (AI is an amplifier;
+benefit only for loosely-coupled architectures). (4) The prior art *confirms the project
+boundary*: economics/optimization = 3A8, runtime feasibility = twotakt, and the one seam is
+real-options-over-behavioral-qualities ([D-S2]). Density was treated as a cap not a quota
+(author's rule): clusters D/E are thinner because the classics already own them.
+
+Open leads recorded in-file (not admitted without a primary): the Fortune-50 "10x security
+findings" stat; a principled *pro-distribution* AI-era voice (cluster B's contra side is thin);
+firmer primaries for the 91% / 93%-10% figures. Home still this repo; migrates to 3A8 with the
+rest of series S when the boundary call is made.
+
+`#prior-art #series-S #bibliography #research #3a8-boundary`
+
+## 2026-08-04 — cold-reader rule: surface docs define before they promise
+
+The author added a one-line "what this project is about" to the top of `README.md` and asked
+whether it was a good line. As written it was not (typos, "This project is about…" wiki
+register, italics that demoted the hook) — but the *impulse* was right, and the first reading
+that called it redundant was wrong. Re-read from a stranger's position, the README opened with
+a slogan ("Audit together. Simulate autonomously."), then a **promise** ("in hours, not weeks"),
+then an **audience list** ("for IT-system architects: …"). Three lines, none of which says what
+the thing does. The author named the general failure: *"приходишь на проект и не понимаешь, о чём
+он — люди пишут промо, исходя из того, что они в проекте месяцами и всё знают"*.
+
+Kept the line, rewrote it as a definition and put it above the hook; codified the general case
+as a **Cold-reader first** constraint in `CLAUDE.md` (surface docs open with a definition before
+any slogan/promise/positioning; a tagline, an audience list and a benefit are each *not* a
+definition). The parallel with the passport rule is exact: a passport tells a reader how to
+*treat* a corpus document before reading it; the cold-reader opener tells a reader what a
+surface document *is* before selling it. Both exist because the author's context is invisible
+to the reader and feels like shared knowledge from the inside.
+
+Also noted, not acted on: the GitHub **About** field is empty, which is where this sentence is
+actually seen first (search results, repo header). Left to the author — changing public repo
+metadata is not a silent edit.
+
+`#README #surface #policy #cold-reader #onboarding`

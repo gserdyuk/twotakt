@@ -95,6 +95,14 @@ for sweep results; or audit a performance study for common measurement mistakes.
   one-line passport under its title — `> **Type: reasoning|register|journal|record|vision**
   — <regime> · born <date>` — stating what it is and how to treat it; the passport is
   immutable (no ranges, counts, or other rotting claims in it). Surface docs need none.
+- **Cold-reader first.** Every outward-facing document (`README.md`, one-pagers, article
+  drafts, published posts) must open with a plain answer to *what is this thing* — in the
+  words of someone who has never seen the project — **before** any slogan, promise or
+  positioning. A tagline is not a definition; an audience list is not a definition; a
+  benefit ("in hours, not weeks") is not a definition. Written from the inside, these read
+  as sufficient and are not: the author has months of context the reader lacks. When
+  editing a surface document, re-read its first screen as a stranger would and fix the
+  opening if it fails this test.
 - **Findings discipline.** A finding leaves the chat the same session it appears:
   append an entry to `findings.md` (the claim in ≤ one screen + a pointer to the long
   form; a big result gets its own doc, and each distinct claim gets its own F-entry) and
