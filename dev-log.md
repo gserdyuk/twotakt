@@ -1601,3 +1601,24 @@ actually seen first (search results, repo header). Left to the author — changi
 metadata is not a silent edit.
 
 `#README #surface #policy #cold-reader #onboarding`
+
+## 2026-08-04 — README lead, second pass: "kit", not "methodology"; scope un-narrowed
+
+Two corrections to the cold-reader line written earlier today, both from the author.
+
+**"Methodology" undersells and misleads.** A stranger reads it as a set of advice — a PDF —
+and never learns that the repo ships four executable skills and worked models with code,
+specs and reports. The author's phrasing: *"это все что нужно чтоб симулировать"*. Lead now
+says **complete kit — method, AI skills, worked SimPy models**. Same insider failure as the
+first pass, inverted: the author knows what is in the folder, so the smallest word for it
+feels sufficient.
+
+**"Before it is built" was cut** (both occurrences). It is a real narrowing: simulation
+earns its keep on *existing* systems too — capacity planning, "what happens at 2x load",
+sizing before a migration. Positioning the project as pre-build-only would hand away the
+larger half of its use cases.
+
+Final: *"a complete kit for simulating an IT architecture — method, AI skills, worked SimPy
+models — so you can see where the system breaks under load."*
+
+`#README #surface #cold-reader #positioning #scope`

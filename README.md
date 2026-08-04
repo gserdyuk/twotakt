@@ -1,6 +1,6 @@
 # Twotakt — Audit together. Simulate autonomously.
 
-**What this is:** a methodology for simulating an IT architecture before it is built — you describe the system, an AI builds a discrete-event (SimPy) model of it, and you run the model to see where it breaks under load.
+**What this is:** a complete kit for simulating an IT architecture — method, AI skills, worked SimPy models — so you can see where the system breaks under load.
 
 **AI turns an architecture description into an executable simulation model — in hours, not weeks.**
 
