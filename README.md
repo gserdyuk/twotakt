@@ -1,5 +1,7 @@
 # Twotakt — Audit together. Simulate autonomously.
 
+*This project is about simulation of IT architecture to asset it behavior under the different load levels*
+ 
 **AI turns an architecture description into an executable simulation model — in hours, not weeks.**
 
 For IT-system architects: performance modeling, capacity planning, bottleneck analysis. The simulation engine is [SimPy](https://simpy.readthedocs.io/) (Python discrete-event simulation); the methodology is what makes the model trustworthy.
