@@ -1622,3 +1622,107 @@ Final: *"a complete kit for simulating an IT architecture — method, AI skills,
 models — so you can see where the system breaks under load."*
 
 `#README #surface #cold-reader #positioning #scope`
+
+## 2026-08-04 — cloud examined and rejected (F39); packaging deferred, not decided
+
+The author opened with "let's plan how to run twotakt in AWS via Bedrock, as a learning
+subproject for AgentCore". The planning turned into a scoping conversation and ended in a
+negative result, recorded here so it is not re-opened from scratch in six months.
+
+**Four different projects hid under one name**: (1) same work, tokens routed through
+Bedrock — a corporate-access scenario that changes nothing in twotakt; (2) someone else
+running it on their own AWS — packaging, not method; (3) twotakt as a service — a product,
+with API, auth, billing, other people's data; (4) twotakt as material for learning
+AgentCore. The author meant (4). Naming that inverts the design logic: components get
+picked for what is worth touching, not for what the project needs — and then any "we need
+Runtime because…" is invented after the fact.
+
+**Why the cloud fell away.** Nothing in twotakt is cloud-shaped: sweeps are minutes on a
+laptop, storage is a repo, parallelism is ten seeds. The decisive step was the author's
+own observation — *"in Takt 2 there is no agent; what could an agent do that we need?"*
+Decomposing the phases by "is an LLM inside the loop" left exactly one agentic element:
+build/V&V's write → run → traceback → fix, whose stop condition is `verify.py` green.
+Sweeps are pure CPU, the rest are single calls. Two tools suffice (files, `python`), so
+Gateway/Identity/Memory have nothing to attach to. Deploying would have required
+*inventing* an agent first — the tail wagging the dog. Registered as F39.
+
+**Corrected framing, worth keeping.** The author's read of the above — "so there is nothing
+agentic in this product :(" — was answered, and the answer holds: the five human gates are
+not a shortfall of autonomy but the product itself, and what twotakt has is precisely what
+agent stacks lack — a *proved* stopping condition rather than a model's opinion that it is
+done. Slogan form from the session: **everyone ships the loop; nobody ships the gate.**
+
+**The agent-world publication branch was raised and closed by the author** ("no audience,
+the local form is the best and simplest"). Recorded for the future because the material is
+already in the register and did not lose value: F3/F4 as a mechanism-level critique of
+LLM-as-judge (the generator may never author its own trust floor), F8 negative-test-first
+as an eval rule, F15 as the derivation of *where* the human belongs, F5/F21 on inherited
+credibility, F26 on the AI not distinguishing substance from symmetry-driven filler from
+the inside. F7 answers what would transfer: not the invariants (queueing laws mean nothing
+to that audience) but the tiering method.
+
+**Packaging (installable locally, outside the repo) is deferred, not rejected** — the
+author: "probably none, I'm not ready". The distinction matters and is why this entry says
+it twice: the cloud is closed *on the merits*, packaging is open *on capacity*. Diagnosis
+recorded while it was fresh: the blocker is one line, `examples/*/verify.py`'s
+`sys.path.insert(..., parents[2])` — the generated verifier assumes it lives two levels
+under the repo root, which is why a user must move *into* twotakt instead of using it from
+their own project. Un-blocking it means two mechanisms (skills → Claude Code plugin,
+harness → pip package) and changes what twotakt is: from a workspace you move into, to a
+tool you use where you are. Also unresolved there: the skill's `description` points at
+`twotakt/examples`, which a user would not have.
+
+Nothing else was touched this session — no `deploy/`, no plugin, no repo restructuring.
+
+`#scope #agentcore #aws #negative-finding #findings #packaging #deferred`
+
+## 2026-10-19 — LEAP marketplace prep: the 3A8 precedent reused, and the three places twotakt had to differ
+
+The task was "prepare twotakt for leap.epam.com by analogy with 3A8". Most of it was
+mechanical and is recorded in `docs/leap-marketplace.md` (ticked, with dates): `author`
+in all four skill frontmatters, a `## Maintainer` section in README, the `LICENSE`
+copyright line filled, a `NOTICE`, `tools/check_frontmatter.py` carried over from 3A8
+(5 files, 0 failing), and `FACTORY.md`. The letter is drafted in
+`docs/leap_submission_2026-10-19.md`; nothing was pushed to the `epam` remote and nothing
+was sent.
+
+**The note was stale on the one thing that would have cost a round trip.** It said the
+factory goes to `factories/twotakt/FACTORY.md`. On 2026-09-17 the LEAP team told 3A8 that
+their data-processing rules want `FACTORY.md` in the root of the directory the factory
+occupies — for a repository that *is* one factory, the repository root — and 3A8's file was
+moved and its `factories/` folder deleted. Twotakt was built root-first, so there is nothing
+to move; the note is corrected in place (2.3) rather than left to be rediscovered.
+
+**Where the analogy with 3A8 breaks, deliberately, in three places.**
+
+*What is submitted.* 3A8 asked the catalogue to treat its four skills as parts of the
+factory, because each is an entry point into one instrument whose sensors are defined by
+what they may not see — outside the run order they do not form a method. Twotakt's four
+are not like that: `queueing-lazowska` and `modeling-jain` are self-contained methodology
+skills, and the honest reason to say so is in the method itself — a capacity question that
+closed-form queueing theory answers in a minute should not be simulated at all. So the
+submission is one factory **and** four skills standing on their own.
+
+*Proven On.* 3A8 could claim L2 on a sealed outcome (FaxRxTx, calibrated centre within
+×1.3 of the actual). Twotakt has four worked models, one of them built on a real production
+platform, and **not one prediction scored against a measured production result.** The letter
+claims L1, L2 at most, says why, and leaves the level to the catalogue's criteria. A
+marketplace card is exactly the place where "based on a production platform" would quietly
+be read as "validated in production", so the distinction is spelled out rather than left to
+be inferred.
+
+*Packaging.* The temptation of a submission deadline is to fix the known blocker in a hurry —
+`examples/*/verify.py`'s `sys.path.insert(..., parents[2])`, which is why a user must move
+*into* twotakt instead of using it from their own project (2026-08-04: "probably none, I'm
+not ready"). It stays deferred. Instead both the FACTORY.md body and the letter state it as a
+limit, including the detail that `simstudy-protocol`'s own description still points at
+`twotakt/examples` — a path a stranger does not have. An asset that under-promises is
+recoverable; one that over-promises burns the one introduction it gets.
+
+**Ownership, settled the same way as on 3A8.** The copyright holder is Gennadiy Serdyuk
+<gserdyuk@gmail.com>, stated in `LICENSE` and `NOTICE`; the GitLab project is a mirror under
+the same licence, not a transfer. Skill frontmatter carries the gmail identity (skills are
+reused outside EPAM); the epam.com address appears only in `FACTORY.md`'s `authors`, which is
+the file the catalogue card is built from.
+
+`#leap #marketplace #publication #factory #packaging #deferred #surface`

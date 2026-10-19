@@ -10,6 +10,7 @@ description: >-
   (provides D_k when measured from real system monitoring). Source: Raj Jain — "The Art of
   Computer Systems Performance Analysis" (Wiley, 1991).
   Free: archive.org/details/artofcomputersys0000jain
+author: "Gennadiy Serdyuk <gserdyuk@gmail.com>"
 ---
 
 # Jain — Measurement and Output Analysis Methodology

@@ -270,3 +270,16 @@ db_query = 0.3 s, formula predicts X_max 3.21 (pool=1) / 6.88 (pool=8), simulati
 collapses 0.99→0.55 between rate 3 and 4 / 0.88→0.26 between 5 and 6. Component
 ceilings still don't compose — but the honest form is "compute the regime first".
 Reframes candidate #2. → dev-log 2026-07-29, `examples/USLDBmodel`.
+
+## Scope & form (2026-08)
+
+**F39 (2026-08-04). Twotakt has no cloud-shaped work; its agentic surface is one loop
+with an executable gate.** Takt 2's only agentic element is write → run → traceback →
+fix, terminating on `verify.py` green — a machine-checkable stop condition, which is
+exactly what most agent loops lack. Everything else is a single model call or pure CPU
+(sweeps: minutes on a laptop). Of Bedrock AgentCore's six components only Runtime /
+Code Interpreter / Observability would be non-artificial; Gateway, Identity and Memory
+have nothing to bind to. The five human gates are not missing autonomy — they are the
+product; a method whose value is "the human decides here" structurally cannot look
+agentic, and measuring it that way uses someone else's ruler. Examined and rejected:
+no deployment; the local form matches the nature of the thing. → dev-log 2026-08-04.

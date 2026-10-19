@@ -17,6 +17,7 @@ compaction time, same rhythm as findings.md.
 - [docs/twotakt-one-pager.md](docs/twotakt-one-pager.md) / [RU](docs/twotakt-one-pager-rus.md) — pitch one-pagers (EN canonical)
 - `skills/` — the method itself: `simstudy-protocol` (entry point), `verification-validation`, `queueing-lazowska`, `modeling-jain`
 - [harness/](harness/README.md) — executable Tier-1 conservation + runner; what "green" means (and does not) in its README
+- [FACTORY.md](FACTORY.md) — the LEAP marketplace card: what the factory is, the audit gate, components, limits; root placement is the crawler's rule
 - [articles/](articles/index.md) — published EN long-form articles (frozen records): #3 fail-fast/slow, #7 LLM-wiki staleness, #2 min(10,20)=6; `_config.yml` makes GitHub Pages serve README + articles only (corpus excluded)
 
 ## Research corpus (accumulates; contradictions are dated history)
@@ -42,6 +43,8 @@ compaction time, same rhythm as findings.md.
 - [articles/min-10-20-equals-6.md](articles/min-10-20-equals-6.md) — #2 EN long form, published (moved from docs/ 2026-07-31); dev.to mirror pending
 - [docs/concept.md](docs/concept.md) — vision-only: problem / differentiator / landscape / calibration direction
 - [docs/critique.md](docs/critique.md) — dated adversarial review with response statuses + the five-point external critique
+- [docs/leap-marketplace.md](docs/leap-marketplace.md) — the LEAP/EPAM GitLab procedure: crawler layout rules, the `epam` remote, what is submitted and why; annotated in place with dates
+- [docs/leap_submission_2026-10-19.md](docs/leap_submission_2026-10-19.md) — the submission letter as drafted + the pre-send check (the author sends it, not the repo)
 - `docs/archive/` — superseded scenes: concept-v1, architecture-v1/v2, architecture-llm-layers essay; future findings-vN
 
 ## Examples (worked evidence; per-example `## Lesson` holds the finding)
@@ -65,3 +68,5 @@ compaction time, same rhythm as findings.md.
 - 2026-07-24 — DOU #3 review pass: success rate = on-time rate, not delivery (F34); FaxRx count vs tail bound by different cascaded bottlenecks (F35); article corrected (T1/E1, metric reframing, title = success-rate paradox); FaxRx code + ARCHITECTURE.md:117 "overnight baseline" wording parked, not fixed
 - 2026-07-29 — USLDBmodel re-verification for article #2: single-seed exhibit killed (F36), USL closed-form ceiling ~7.2 (F37), pool binds only past crossover db_query > c/X_cpu* (F38); article #2 reframed "bottleneck is a regime, not a component", RU draft [docs/article_2_bottleneck_regime_rus.md](docs/article_2_bottleneck_regime_rus.md)
 - 2026-08-04 — cold-reader rule: surface docs open with a definition, before slogan/promise/audience; README lead rewritten, constraint added to CLAUDE.md
+- 2026-08-04 — AWS/Bedrock AgentCore examined and rejected (F39): no cloud-shaped work, the agentic surface is one loop with an executable gate, the human gates are the product; local packaging deferred on capacity, not decided (blocker: `verify.py`'s `parents[2]` path assumption)
+- 2026-10-19 — LEAP marketplace layout done (FACTORY.md in the root, `author` in every skill, NOTICE, validator); submitting the factory **and** the four skills as assets in their own right; packaging stated as a limit, not fixed

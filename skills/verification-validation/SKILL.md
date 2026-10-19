@@ -14,6 +14,7 @@ description: >-
   for re-verifying an existing example after a change. Triggers: verify,
   validation, V&V, verify.py, harness, smoke test, invariant, metamorphic
   test, negative test, верификация, валидация, проверка модели.
+author: "Gennadiy Serdyuk <gserdyuk@gmail.com>"
 ---
 
 # Verification & Validation of simulation models

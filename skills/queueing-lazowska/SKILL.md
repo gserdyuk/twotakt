@@ -10,6 +10,7 @@ description: >-
   behaviour and non-product-form mechanisms. Source: Lazowska, Zahorjan,
   Graham, Sevcik — "Quantitative System Performance" (1984),
   freely available at homes.cs.washington.edu/~lazowska/qsp/
+author: "Gennadiy Serdyuk <gserdyuk@gmail.com>"
 ---
 
 # QSP — Analytical Performance Modeling (Lazowska)

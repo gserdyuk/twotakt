@@ -17,6 +17,7 @@ description: >-
   metric-critique checklist that catches survivorship bias and other common
   measurement mistakes. Default examples library lives at the user examples
   directory, for instance twotakt/examples.
+author: "Gennadiy Serdyuk <gserdyuk@gmail.com>"
 ---
 
 # Performance Simulation Methodology

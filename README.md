@@ -148,4 +148,8 @@ Twotakt does **not** hide SimPy. The user sees the code; the methodology ensures
 
 The output: a MODEL.md of your system and a bottleneck report. The model will either confirm your expectations — and they turn into a document you can show your team and your client — or reveal something you didn't expect. Before production, not in production.
 
-Gennadiy Serdyuk — gserdyuk@gmail.com / https://www.linkedin.com/in/gserdyuk
+## Maintainer
+
+Gennadiy Serdyuk <gserdyuk@gmail.com> (at EPAM: gennadiy_serdyuk@epam.com) / https://www.linkedin.com/in/gserdyuk
+
+License: Apache 2.0. Canonical repository: https://github.com/gserdyuk/twotakt
