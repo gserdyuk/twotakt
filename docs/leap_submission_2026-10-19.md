@@ -15,14 +15,19 @@ ever running a simulation, and `verification-validation` is usable against any S
 
 ## Pre-send check
 
-- [ ] `git push epam main` done and `git rev-parse epam/main` equals `origin/main` (both at the commit
-      that carries this file).
-- [ ] https://git.epam.com/gennadiy_serdyuk/twotakt → Settings → General → Visibility is **Internal**
-      (the crawler cannot read Private).
-- [ ] `PYTHONUTF8=1 py tools/check_frontmatter.py` passes (4 skills + `FACTORY.md`).
+- [x] `git push epam main` done and `git rev-parse epam/main` equals `origin/main` (both at the commit
+      that carries this file). Done 2026-10-19: both remotes at `07277df`. One local fix was needed —
+      twotakt's `.git/config` resets `credential.helper` to empty before adding gh's helper, which also
+      drops the system-wide Git Credential Manager, so git.epam.com had no helper at all; fixed with
+      `git config --local credential."https://git.epam.com".helper manager`. 3A8 needs nothing: it has
+      no local credential block and inherits GCM.
+- [x] https://git.epam.com/gennadiy_serdyuk/twotakt → Settings → General → Visibility is **Internal**
+      (the crawler cannot read Private). Confirmed by the author 2026-10-20.
+- [x] `PYTHONUTF8=1 py tools/check_frontmatter.py` passes (4 skills + `FACTORY.md`). Run 2026-10-19:
+      5 files, 0 failing.
 - [ ] The two folder URLs below open in a browser while signed in to git.epam.com.
-- [ ] `FACTORY.md` is in the repository root, not under `factories/` (the LEAP team's rule, learned on
-      3A8 on 2026-09-17).
+- [x] `FACTORY.md` is in the repository root, not under `factories/` (the LEAP team's rule, learned on
+      3A8 on 2026-09-17). Built that way from the start.
 
 ## The letter
 
