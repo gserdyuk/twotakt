@@ -318,3 +318,33 @@ file the skills entry only if they say the overlap is fine.**
   confirming through the UI (Go to `registry` → **+** → **New file**); if GitLab offers a
   fork instead, ask the LEAP team for access, as their guide instructs.
 - Nothing has been submitted.
+
+### 3.5. First attempt, 2026-10-20: merge request !6, red — and why
+
+The author opened
+https://git.epam.com/epm-ease/factory-registry/-/merge_requests/6 from a **fork**
+(`gennadiy_serdyuk/factory-registry:patch-1`), because he has no write access to the
+project itself. `validate:registry` failed in 29 seconds, and the YAML was never looked
+at. The job log ends:
+
+```
+$ test -n "$GIT_READ_TOKEN" || { echo "GIT_READ_TOKEN is not set - add it as a masked,
+  protected CI/CD variable"; exit 1; }
+GIT_READ_TOKEN is not set - add it as a masked, protected CI/CD variable
+```
+
+`GIT_READ_TOKEN` is a masked, protected CI/CD variable of the upstream project; a fork
+pipeline does not get it, so the job exits 1 before any validation runs. **This is what
+the guide's "work in the project itself, not in a fork" means in practice: from a fork the
+pipeline cannot go green, whatever the file says.** A red pipeline cannot be approved, so
+the route is blocked until the LEAP team grants write access (the guide's "contact us").
+The earlier 404 on the new-file URL (3.4) was the same fact seen from the other side.
+
+Second defect, independent of the first and worth fixing before the next attempt: the file
+was committed to the **repository root** as `gennadiy-serdyuk-twotakt.yaml`. It belongs in
+`registry/`. The content itself is correct, byte for byte as in 3.2 (only a missing
+trailing newline, which is harmless). The merge request title says "twotaket", a typo that
+touches nothing but the title.
+
+So the next attempt is: access → branch inside `epm-ease/factory-registry` →
+`registry/gennadiy-serdyuk-twotakt.yaml` → merge request with the registry-entry template.
