@@ -2,6 +2,13 @@
 
 > **Type: record** — corpus: the letter as drafted, frozen once sent · born 2026-10-19
 
+> **Superseded in its mechanism on 2026-10-20, one day after it was written: the letter is
+> not how you submit any more.** The mailbox route was replaced by a merge request against
+> `epm-ease/factory-registry` — see `docs/leap-marketplace.md` §3, and the section at the
+> end of this file. The letter below is kept as written: its content did not become wrong,
+> only its envelope, and the "what it is / proven on / limits" paragraphs are the raw
+> material for the merge request description.
+
 Prepared 2026-10-19, after bringing the repository to the layout the crawler expects (`FACTORY.md` in the
 root, `author` in every skill, `NOTICE`, maintainer line, validator). The author sends the mail; nothing
 here is sent by the repository or its tools. Procedure and layout rules: `docs/leap-marketplace.md` §2.
@@ -105,3 +112,37 @@ gennadiy_serdyuk@epam.com
   (they asked exactly that on 3A8), the answer is in the letter: `simstudy-protocol` and
   `verification-validation` are the factory's own surface, `queueing-lazowska` and `modeling-jain` stand
   on their own. Their call either way; nothing in the repository has to move.
+
+
+## What replaces the letter — 2026-10-20
+
+The official guide (https://leap.epam.com/sp/ai-marketplace/contribute, LEAP v.0.48.0.4)
+now describes a registry merge request. Full reading of the deltas:
+`docs/leap-marketplace.md` §3. The short form for twotakt:
+
+1. Confirm write access to https://git.epam.com/epm-ease/factory-registry (`registry` →
+   **+** → **New file**). A fork offer means no access — ask the LEAP team for it.
+2. Add `registry/gennadiy-serdyuk-twotakt.yaml`:
+
+   ```yaml
+   repo_url: https://git.epam.com/gennadiy_serdyuk/twotakt
+   repo_path: ./
+   contacts:
+   - gennadiy_serdyuk@epam.com
+   owner: Gennadiy Serdyuk
+   is_factory: true
+   ```
+
+   Identical in shape to the author's existing `registry/gennadiy-serdyuk-3a8.yaml`.
+3. Commit to a new branch, open the merge request with the **registry-entry** template,
+   complete its checklist, wait for `validate:registry`, `validate:targets` and
+   `scan:security` to go green, then a maintainer reviews and merges.
+4. In the merge request description, say what the letter says: what the factory is, that
+   no production outcome is claimed (L1, L2 at most), and that the four skills are meant to
+   stand on their own — and ask whether a second entry with `repo_path: skills` and
+   `is_factory: false` is acceptable given that `./` already covers that folder. Measured
+   on 3A8, a `./` factory entry publishes the factory card only: its catalogue page shows
+   Factories 1, Agents 0, Skills 0.
+
+The pre-send check above still applies as a pre-**merge-request** check: visibility
+Internal, mirror pushed, frontmatter validator green, `FACTORY.md` in the factory root.

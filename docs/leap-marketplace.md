@@ -6,6 +6,12 @@ Working note. Written 2026-09-11 after reviewing the LEAP portal
 (https://leap.epam.com) and its asset submission guide; updated 2026-09-13 and
 2026-10-19.
 
+**Read 3 first: the submission procedure changed.** Sections 2.3 and 2.4 below were
+written against the 2026-09 process (a letter to a mailbox). Re-read of the official
+guide on 2026-10-20 (https://leap.epam.com/sp/ai-marketplace/contribute) found it
+replaced by a merge request against a registry repository. What is still true, what is
+not, and what twotakt has to do now: section 3.
+
 Decision 2026-09-11: **not submitting yet**, but bring the repository to the
 expected layout in advance. Decision 2026-10-19: the layout work is **done** and
 the letter is drafted — `docs/leap_submission_2026-10-19.md`. The author sends the
@@ -149,7 +155,7 @@ use_cases:
 `Dedicated Capacity`. `sdlc_phase` is a single value, not a list. Omit
 `project_deployments` if there is nothing to put there.
 
-### 2.4. Submitting
+### 2.4. Submitting (the 2026-09 process — **superseded**, kept as history; see 3)
 
 Email to SpecialEPM-EASEFeedback@epam.com, one folder URL per asset type
 plus the owner:
@@ -200,3 +206,115 @@ appeared at https://leap.epam.com/hyperfactory/ai-assets-marketplace.
 - The niche is empty: the catalog has no factory about architecture
   performance simulation. The closest is "AI Systems Performance Testing
   docs generator", and that one is about documents, not models.
+
+
+## 3. The 2026-10-20 process (read this one)
+
+Re-read of https://leap.epam.com/sp/ai-marketplace/contribute on 2026-10-20, with the
+registry repository and the live catalogue checked alongside it. LEAP portal version at
+the time: v.0.48.0.4.
+
+### 3.1. What changed
+
+**Submission is no longer an email.** The mailbox route of 2.4 is gone. You register a
+*source* — a repository, or one folder inside it — by adding one YAML file to
+https://git.epam.com/epm-ease/factory-registry under `registry/` and opening a merge
+request. A pipeline validates it; a maintainer approves and merges; only merged entries
+are published. Work in the project itself, not a fork — the pipeline only runs there.
+If GitLab offers to fork, you have no write access yet and have to ask them for it.
+
+**The crawler no longer finds you by itself.** It indexes the sources in the registry,
+and re-reads them on a schedule. Pushing to an already-registered repository still
+publishes automatically; a new merge request is needed only to register a *new* source.
+
+**The factory root rule relaxed.** `FACTORY.md` may sit in the repository root **or in
+any subfolder** (`bundles/<name>/`), and one repository may hold several factories.
+The root placement twotakt already has stays correct — nothing to move. `BUNDLE.md`
+is a deprecated fallback.
+
+**Host list is explicit:** `git.epam.com`, `eu.git.epam.com`, `gitbud.epam.com`,
+`gitpct.epam.com`. Internal or Public visibility, as before.
+
+**Marker files are no longer the only option.** A skill is `skills/<name>/` plus either
+`SKILL.md` / `skill.md` / `<name>.md` **or** an `apm.yml` with `type: skill`; an agent is
+`agents/<name>/` plus `agent.md` / `<name>.md` or `apm.yml` with `type: agent`. Microsoft
+APM is an optional packaging layer, recommended for agents and factories, explicitly *not*
+recommended for skills. `discoverable: false` still hides an asset.
+
+**FACTORY.md frontmatter: every field is optional and read independently** — but a file
+with no frontmatter at all fails the pipeline, and missing `name` / `description` / `owner` /
+`authors` produce a sparse card and a warning. Newly stated details: `authors` entries must
+be **strings** (mappings are dropped); `project_deployments` entries may be strings or
+objects, and the key should be omitted rather than left empty; **`use_cases` is only a hint
+to an LLM enrichment step, not stored as written**; `support_level` is case-sensitive and
+one of the three known values; a comma-separated `sdlc_phase` keeps only the first value.
+Twotakt's `FACTORY.md` already satisfies all of this (checked 2026-10-20).
+
+### 3.2. The registry file for twotakt
+
+Path and name: `registry/gennadiy-serdyuk-twotakt.yaml` — `{owner}-{repo}.yaml`, lowercase
+kebab-case, `.yaml` only (`.yml` is rejected). Content, one-for-one with the author's
+existing 3A8 entry (`registry/gennadiy-serdyuk-3a8.yaml`, read 2026-10-20):
+
+```yaml
+repo_url: https://git.epam.com/gennadiy_serdyuk/twotakt
+repo_path: ./
+contacts:
+- gennadiy_serdyuk@epam.com
+owner: Gennadiy Serdyuk
+is_factory: true
+```
+
+`repo_url` is the repository home page URL — no `.git`, no trailing slash, no
+`/-/tree/...`. `repo_path` is relative to the repository root, `./` for the whole
+repository. `contacts` must be @epam.com addresses; they are shown on the asset pages and
+are asked to act on security findings. No other fields are allowed, and the pair
+`repo_url` + `repo_path` must be unique across the registry.
+
+The merge request: commit to a new branch, keep "Start a new merge request", choose the
+**registry-entry** description template, complete its checklist. One registry file per
+merge request.
+
+Pipeline jobs that must be green: `validate:registry` (name, YAML, required fields,
+uniqueness), `validate:targets` (repository clones, `repo_path` exists, no empty
+`FACTORY.md`; missing recommended fields are warnings only), `scan:security` (critical and
+high findings block; they are fixed in the source repository, not in the registry file).
+Note: the registry repository's latest commit as of 2026-10-20 reads "Disabled
+scan:security; added support_level enum enforcement", so that job may currently be off.
+
+### 3.3. The one open question: do the four skills get listed separately?
+
+Measured on the author's own 3A8 entry, which is `repo_path: ./` with `is_factory: true`,
+exactly like the twotakt entry above. In the catalogue 3A8 shows as **Factories 1,
+Agents 0, Skills 0**, and none of its four `skills/estimate*` folders appears under the
+Skills tab. So a factory-root source publishes the factory card **only**; its skills are
+not listed as assets in their own right.
+
+That contradicts nothing in the decision of 2026-10-19 — it just means the decision costs a
+second registry entry:
+
+```yaml
+repo_url: https://git.epam.com/gennadiy_serdyuk/twotakt
+repo_path: skills
+contacts:
+- gennadiy_serdyuk@epam.com
+owner: Gennadiy Serdyuk
+is_factory: false
+```
+
+named `registry/gennadiy-serdyuk-twotakt-skills.yaml`, in a **second** merge request
+(the guide allows several entries per repository — `epam-omsl-epam-ai-assets-skills.yaml`
+and `-agents.yaml` are the precedent — but it never shows one that overlaps a `./` entry,
+and `./` already contains `skills/`). Unknown whether the pipeline or the crawler objects
+to the overlap. **Plan: open the factory merge request first, ask the question in it, and
+file the skills entry only if they say the overlap is fine.**
+
+### 3.4. State on 2026-10-20
+
+- Repository layout, frontmatter and `FACTORY.md` meet the current rules; the validator
+  passes; the mirror is pushed; visibility is Internal.
+- `https://git.epam.com/epm-ease/factory-registry/-/new/main/registry` returns 404 for the
+  author, which on GitLab usually means no write access to that project yet. Worth
+  confirming through the UI (Go to `registry` → **+** → **New file**); if GitLab offers a
+  fork instead, ask the LEAP team for access, as their guide instructs.
+- Nothing has been submitted.

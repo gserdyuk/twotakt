@@ -1726,3 +1726,43 @@ reused outside EPAM); the epam.com address appears only in `FACTORY.md`'s `autho
 the file the catalogue card is built from.
 
 `#leap #marketplace #publication #factory #packaging #deferred #surface`
+
+## 2026-10-20 — LEAP changed the submission procedure: the letter is dead, the registry MR is the gate
+
+The author's remark that "они немного поменяли процедуру" turned out to be an
+understatement, and checking it cost one browser session. The guide at
+leap.epam.com/sp/ai-marketplace/contribute (LEAP v.0.48.0.4) no longer describes a letter
+to SpecialEPM-EASEFeedback@epam.com. A contributor now registers a *source* — a repository
+or one folder in it — by adding one YAML file to `epm-ease/factory-registry` under
+`registry/` and opening a merge request against it; a three-job pipeline validates the
+entry, clones the repository and scans it, a maintainer approves, and only merged entries
+are crawled. The deltas, field by field, are in `docs/leap-marketplace.md` §3; §2.3 and
+§2.4 are annotated as superseded rather than rewritten, and the drafted letter is kept
+with a note saying its envelope died, not its content.
+
+**Nothing in the repository had to change.** That is the result worth recording: every
+layout rule the new guide states — `FACTORY.md` in a factory root, non-empty frontmatter,
+`authors` as strings, single-valued `sdlc_phase`, case-sensitive `support_level`,
+`name`/`description`/`author` with an email on every skill, folder names in
+`[A-Za-z0-9_-]`, Internal visibility on an allowed host — was already satisfied by the
+2026-10-19 work. The one rule that *relaxed* is the one we had treated as a hard
+constraint: a factory root may now sit in any subfolder, not only the repository root.
+Prep done against the old procedure survived the new one intact, which is the argument for
+doing layout work before the submission window rather than during it.
+
+**The open question got an empirical answer, and it is not the one the decision assumed.**
+On 2026-10-19 it was decided to submit the four skills as assets in their own right
+alongside the factory. The author's own 3A8 entry is the control case: `repo_path: ./`,
+`is_factory: true`, four skills under `skills/` — and its catalogue page reads
+**Factories 1, Agents 0, Skills 0**. A factory-root source publishes the factory card and
+nothing else. So the decision is not free: it costs a second registry entry
+(`repo_path: skills`, `is_factory: false`) in a second merge request, overlapping a `./`
+entry in a way the guide never illustrates. Rather than guess, the plan is to open the
+factory merge request first and ask the question inside it.
+
+Also found: the author appears to have no write access to `factory-registry` yet (the
+new-file URL 404s, which is how GitLab hides a missing permission), so the first step is
+asking for it. And the registry repository's latest commit reads "Disabled scan:security",
+so the security job may currently be off — noted, not relied on.
+
+`#leap #marketplace #publication #procedure-change #factory #registry`
