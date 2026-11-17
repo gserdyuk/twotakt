@@ -1,0 +1,36 @@
+#!/usr/bin/env sh
+# twotakt pre-push hook: refuse to push red examples.
+#
+# Runs the fast half of the trust check - every example's verify.py
+# (`python -m harness verify-all --no-mutants`, ~20 s). The full run with the
+# mutation suites (~1 min) is CI's job (.github/workflows/verify.yml) and yours
+# after any change to a model, a verify.py or harness/.
+#
+# Enable once per clone:   git config core.hooksPath tools/git-hooks
+# Bypass in an emergency:  git push --no-verify
+
+cd "$(git rev-parse --show-toplevel)" || exit 1
+
+PY=""
+for cand in python python3; do
+    if command -v "$cand" >/dev/null 2>&1 && "$cand" -c "import simpy" >/dev/null 2>&1; then
+        PY="$cand"
+        break
+    fi
+done
+if [ -z "$PY" ]; then
+    echo "pre-push: no python with simpy found - examples NOT verified (pip install -r requirements-verify.txt)." >&2
+    echo "pre-push: refusing to push unverified; bypass with --no-verify if you must." >&2
+    exit 1
+fi
+
+echo "pre-push: verifying examples (checks only; mutants run in CI)..."
+if "$PY" -m harness verify-all --no-mutants > .verify-all.log 2>&1; then
+    tail -n 1 .verify-all.log
+    rm -f .verify-all.log
+    exit 0
+fi
+cat .verify-all.log >&2
+rm -f .verify-all.log
+echo "pre-push: some example is red - push refused. Fix it, or bypass with --no-verify." >&2
+exit 1

@@ -50,8 +50,16 @@ python -m harness verify-all --no-mutants   # checks only
 cd examples/USLmodel && python verify.py --mutants   # one example's mutation suite
 ```
 
-CI (`.github/workflows/verify.yml`) runs `verify-all` on every push. `constraints.txt`
-holds the exact versions the examples were last verified with.
+Two layers, by design:
+
+- **Locally, before every push** — `tools/git-hooks/pre-push` runs the fast half
+  (`verify-all --no-mutants`, ~20 s) and refuses to push a red example. Enable once per
+  clone: `git config core.hooksPath tools/git-hooks`.
+- **In CI, on every push** — `.github/workflows/verify.yml` runs the full `verify-all`
+  (checks + mutants) on a clean Linux machine, Python 3.11 and 3.14: the independent
+  witness that the examples pass from the repository alone, not just on the author's machine.
+
+`constraints.txt` holds the exact versions the examples were last verified with.
 
 ## What it does NOT do
 

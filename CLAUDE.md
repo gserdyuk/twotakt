@@ -65,6 +65,8 @@ for sweep results; or audit a performance study for common measurement mistakes.
   to an `executable_model.py`, `verify.py` or `harness/`, run `python -m harness
   verify-all` (checks + mutants; CI runs it too). A new check needs a mutant that kills
   it; a check that cannot fail goes into `WAIVED` with the reason, never silently.
+  A clone enables the pre-push gate once: `git config core.hooksPath tools/git-hooks`.
+  Never bypass it (`--no-verify`) without the user's say-so.
 - Plots must show throughput, success rate, and latency together — the number of panels is determined by the question, not by a fixed rule.
 - Sync `MODEL.md` after every code change that touches `Config`, `Server.__init__`,
   or `_serve`.

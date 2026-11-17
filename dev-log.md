@@ -1833,3 +1833,24 @@ tolerance of unknown keys is unverified, and a second copy of the number would r
 number in README or one-pagers.
 
 `#release #versioning #naming`
+
+## 2026-11-17 — verification gate in two layers: local pre-push + CI
+
+Question asked: automate the check on GitHub, or keep everything local? Answer: both,
+because they prove different things. A local run proves the examples pass on the author's
+machine (its `.venv`, Python 3.14, Windows, possibly uncommitted files); the repeatability
+claim is "anyone who clones gets the same result", and only a clean machine that knows
+nothing but the repository can witness that. Concretely, `requires-python >= 3.11` had
+never been exercised — CI's matrix runs 3.11 and 3.14.
+
+- **Local:** `tools/git-hooks/pre-push` (versioned, enabled per clone with
+  `git config core.hooksPath tools/git-hooks`) runs `verify-all --no-mutants` (~18 s) and
+  refuses the push on red. Tested both ways: green → exit 0; a planted always-red example
+  → push refused, exit 1. No python with simpy → refuse, not silently pass.
+- **CI:** the full `verify-all` (checks + mutants) on every push — the expensive half,
+  off the author's critical path.
+
+Not covered: the GitLab mirror (`epam`) — GitHub Actions do not run there; a
+`.gitlab-ci.yml` is a separate step (fork pipelines lack `GIT_READ_TOKEN`, see MR !6).
+
+`#ci #hooks #repeatability #vv`
