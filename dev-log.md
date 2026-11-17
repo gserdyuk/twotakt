@@ -1854,3 +1854,13 @@ Not covered: the GitLab mirror (`epam`) — GitHub Actions do not run there; a
 `.gitlab-ci.yml` is a separate step (fork pipelines lack `GIT_READ_TOKEN`, see MR !6).
 
 `#ci #hooks #repeatability #vv`
+
+## 2026-11-17 — GitLab mirror gets no CI of its own (decision)
+
+The `epam` GitLab mirror will not get a `.gitlab-ci.yml`. The canonical repository is
+GitHub (`origin`); its Actions run the full `verify-all` and are the one CI witness. The
+mirror carries the same commits and tags, so a second pipeline would re-prove the same
+thing while adding the fork-token problem (MR !6). Supersedes the "separate step" note in
+the previous entry.
+
+`#ci #gitlab #decision`
