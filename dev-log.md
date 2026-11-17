@@ -1808,3 +1808,28 @@ decline (SLA-timeout collapse mimics it, as verify.py's own comment says); the b
 does is admission control — a hard-coded `max_threads=16` turns the curve into a plateau.
 
 `#vv #negative-test #mutation #harness #ci #repeatability`
+
+## 2026-11-17 — release 3.0.0: one version, one place; the name stays
+
+The persistent mutation suite changes what "an example is done" means, so it is the
+natural release boundary. Two decisions, both the author's:
+
+**The name stays `twotakt`.** Repository, articles (dev.to, DOU), the LEAP registry entry
+and every posted link point at it; a new name would cut all of that for nothing a version
+number cannot say.
+
+**The number is 3.0.0, and it now has one home.** Before today the version was
+inconsistent: `pyproject.toml` said `0.2.0`, the last tag was `v2.0` (2026-04-30). Now
+`pyproject.toml` is the single source, the release is the tag `v3.0.0`, and a root
+`CHANGELOG.md` records release-level changes (skill CHANGELOGs keep per-skill history).
+`python -m harness verify-all` prints the version, so every verification output says which
+version of the method it was produced under.
+
+Why *major*: semver read for a methodology — an example built to 2.x (verify.py only, no
+`mutants.py`) fails `verify-all` under 3.0. Stricter trust floor = breaking change.
+
+Deliberately *not* done: no `version` key in FACTORY.md frontmatter (the LEAP crawler's
+tolerance of unknown keys is unverified, and a second copy of the number would rot), no
+number in README or one-pagers.
+
+`#release #versioning #naming`

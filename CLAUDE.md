@@ -114,6 +114,12 @@ for sweep results; or audit a performance study for common measurement mistakes.
   add a pointer line to `INDEX.md`. `INDEX.md` holds pointers + one-line hooks, never
   content; new files and important dev-log entries also get an INDEX line.
 
+- **One version, one place.** The kit version lives only in `pyproject.toml`; a release
+  is the git tag `v<version>` on the commit that sets it, plus an entry in root
+  `CHANGELOG.md`. Major = work built to the previous version may stop passing (stricter
+  protocol or trust floor); minor = additive; patch = fixes/docs. Do not write the
+  number into README, one-pagers or FACTORY.md.
+
 ## Working rules
 
 New conventions that emerge during work go in the **Key constraints** section above —

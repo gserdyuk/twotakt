@@ -13,6 +13,7 @@ compaction time, same rhythm as findings.md.
 
 - [README.md](README.md) — the outward face: what/why/how to start; takts↔phases map
 - [CLAUDE.md](CLAUDE.md) — how Claude works here: skills, key constraints, locked vocabulary
+- [CHANGELOG.md](CHANGELOG.md) — release-level changes; version policy (single source: `pyproject.toml`, tag `v<version>`)
 - [TODO.md](TODO.md) — plans and state; the single project-wide backlog (skills carry only CHANGELOGs)
 - [docs/twotakt-one-pager.md](docs/twotakt-one-pager.md) / [RU](docs/twotakt-one-pager-rus.md) — pitch one-pagers (EN canonical)
 - `skills/` — the method itself: `simstudy-protocol` (entry point), `verification-validation`, `queueing-lazowska`, `modeling-jain`
@@ -72,3 +73,4 @@ compaction time, same rhythm as findings.md.
 - 2026-10-19 — LEAP marketplace layout done (FACTORY.md in the root, `author` in every skill, NOTICE, validator); submitting the factory **and** the four skills as assets in their own right; packaging stated as a limit, not fixed
 - 2026-10-20 — LEAP submission procedure replaced: registry MR against `epm-ease/factory-registry`, not a letter; repository layout needed no change (one rule relaxed: factory root may be a subfolder); a `./` factory entry publishes the factory card only — measured on 3A8
 - 2026-11-17 — negative tests made persistent: `mutants.py` per example, `harness/mutation.py`, `verify-all` + CI, pinned engine; F40: RadioMonitoring per-stage conservation is an identity (WAIVED)
+- 2026-11-17 — release 3.0.0: version unified (pyproject was 0.2.0, tag v2.0), root CHANGELOG.md, semver read for a methodology (major = previous-version work may stop passing); name stays twotakt

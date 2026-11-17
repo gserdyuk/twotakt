@@ -40,7 +40,18 @@ def run_checks(example: Path) -> tuple[bool, str]:
     return proc.returncode == 0, summary
 
 
+def kit_version() -> str:
+    """The twotakt version from pyproject.toml (its single source)."""
+    try:
+        import tomllib
+        with open(REPO_ROOT / "pyproject.toml", "rb") as f:
+            return tomllib.load(f)["project"]["version"]
+    except Exception:
+        return "unknown"
+
+
 def verify_all(argv: list[str]) -> int:
+    print(f"twotakt {kit_version()} - verify-all")
     mutants = "--no-mutants" not in argv
     examples = discover([a for a in argv if not a.startswith("--")])
     if not examples:
@@ -59,7 +70,7 @@ def verify_all(argv: list[str]) -> int:
             ok = ok and rep.ok
         rows.append((name, summary, mut, ok, time.time() - t0))
 
-    print("\n=== verify-all ===")
+    print(f"\n=== verify-all (twotakt {kit_version()}) ===")
     for name, summary, mut, ok, dt in rows:
         print(f"  {'[OK]  ' if ok else '[FAIL]'} {name:40s} checks: {summary:16s} "
               f"mutants: {mut:8s} {dt:5.1f}s")

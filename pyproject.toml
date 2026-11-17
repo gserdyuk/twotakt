@@ -1,8 +1,9 @@
 [project]
 name = "twotakt"
-version = "0.2.0"
+version = "3.0.0"
 description = "Discrete-event simulation methodology and examples (SimPy)."
 requires-python = ">=3.11"
-# v2: examples are self-contained; per-example requirements.txt declare deps.
-# This file is kept as a workspace marker.
+# The single source of the twotakt version (the git tag v<version> must match;
+# `python -m harness verify-all` prints it). Examples are self-contained;
+# per-example requirements.txt declare deps. Otherwise a workspace marker.
 dependencies = []
