@@ -98,10 +98,16 @@ model's output into the `RunSummary` ledger and runs a small battery:
   a pool → throughput drops where it binds). Use the *direction* from
   `MODEL.md`, not magic-number thresholds, and take each toggle at the
   operating point where the mechanism **binds**.
-- **Negative-test every check** — confirm it goes red on a deliberately
-  broken model. A check that stays green on a broken model is
-  worthless; this is non-negotiable. Experience says every check's
-  *first* version is wrong (does not bite, or bites the healthy model).
+- **Negative-test every check, persistently** — confirm it goes red on a
+  deliberately broken model, and keep that broken model as code: write
+  `mutants.py` next to `verify.py` (skeleton at `templates/mutants.py`),
+  one `Mutant` per realistic bug, each naming the checks it must turn
+  red. `python verify.py --mutants` (and `python -m harness verify-all`)
+  fails if a mutant survives or a check is claimed by no mutant. A check
+  that stays green on a broken model is worthless; this is
+  non-negotiable. Experience says every check's *first* version is wrong
+  (does not bite, or bites the healthy model). A check that structurally
+  cannot fail goes into `WAIVED` with its reason - a visible gap, not a pass.
 - **Proportionality razor** — keep it small: system-level Tier-1 by
   default; add a Tier-2 check only against a named risk.
 
@@ -134,6 +140,8 @@ decision, not this skill's.
 
 - `templates/verify.py` — per-example V&V skeleton; the executable
   form of this protocol.
+- `templates/mutants.py` — per-example mutation suite skeleton; the
+  persistent form of negative testing.
 
 ## Validation harness (shared, repo root)
 
@@ -145,6 +153,10 @@ The fixed machinery lives in the repo-root `harness/` package:
   (do not edit per project).
 - `harness/runner.py` — runs one example's checks and reports
   pass/fail.
+- `harness/mutation.py` — the mutation suite: plants each `mutants.py`
+  bug and requires the claimed checks to go red.
+- `python -m harness verify-all` — every example, checks + mutants
+  (what CI runs).
 - `harness/README.md` — **what green does and does NOT mean**.
 
 Distinct from the *sweep* harness (`sweep.py` / `sweep_2d.py`), which

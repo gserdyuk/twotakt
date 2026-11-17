@@ -5,6 +5,28 @@ which project motivated it, what gap or failure it addresses.
 
 ---
 
+## 2026-11  Negative tests made persistent: the mutation suite
+
+### Added
+- **`mutants.py` per example + `harness/mutation.py`.** Negative testing was a
+  one-off act (break the model by hand, see red, note it in the dev-log); after
+  the next edit nobody knew whether a check still bites. Now each example keeps
+  its broken models as code: named, realistic bugs, each claiming the checks it
+  must turn red. `python verify.py --mutants` fails on a surviving mutant, an
+  unguarded check, or a crashing mutant. `WAIVED` declares checks that
+  structurally cannot fail - reported on every run, never silent.
+- **`python -m harness verify-all`** (checks + mutants, every example), exact
+  engine pin `requirements-verify.txt`, `constraints.txt`, and a GitHub Actions
+  workflow running it on every push.
+- `templates/mutants.py`.
+  Motivation: repeatability of the trust floor itself. Also the method's first
+  machine-found finding: RadioMonitoring's per-stage work-conservation checks are
+  identities (in_flight is the residual of the same count) and can never fail -
+  now WAIVED with the reason; the residual check is what guards those stages.
+  Source project: twotakt's own examples (all six suites written at once).
+
+---
+
 ## 2026-07  Extracted from simstudy-protocol (skill modularity)
 
 ### Added

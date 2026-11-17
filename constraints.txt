@@ -1,0 +1,7 @@
+# Exact versions the examples were last verified with (python -m harness verify-all).
+# Per-example requirements.txt keep minimum versions for readers; pin a run with:
+#   pip install -r examples/<Example>/requirements.txt -c constraints.txt
+# Bump a pin only together with a green verify-all on the new version.
+simpy==4.1.2
+matplotlib==3.11.0
+numpy==2.5.1

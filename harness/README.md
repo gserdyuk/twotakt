@@ -32,8 +32,26 @@ sweeps on.**
   decline).
 - **Multi-class and multi-stage models** — one ledger per category (e.g. voice / digital)
   and per stage (e.g. record → decode), with partition checks.
-- **Every check is negative-tested** — confirmed to go red on a deliberately broken model.
-  A check that stays green on a broken model is worthless, so this is non-negotiable.
+- **Every check is negative-tested, on every run** — each example keeps a `mutants.py`:
+  named, realistic bugs (a request that vanishes, a pool sized from a constant, a dead
+  degradation multiplier, latency in ms against an SLA in s...) planted into the model.
+  The mutation suite (`harness/mutation.py`) re-imports `verify.py` on top of each broken
+  model in its own subprocess and requires every check the mutant claims to go red.
+  A check that no mutant turns red is *unguarded* and fails the suite. A check that
+  structurally cannot fail may be declared in `WAIVED` with the reason; waivers are
+  printed on every run as a known gap, never as a pass.
+
+## Running everything
+
+```bash
+pip install -r requirements-verify.txt      # exact engine pin (simpy)
+python -m harness verify-all                # every example: verify.py + mutation suite
+python -m harness verify-all --no-mutants   # checks only
+cd examples/USLmodel && python verify.py --mutants   # one example's mutation suite
+```
+
+CI (`.github/workflows/verify.yml`) runs `verify-all` on every push. `constraints.txt`
+holds the exact versions the examples were last verified with.
 
 ## What it does NOT do
 
@@ -48,8 +66,8 @@ sweeps on.**
   (USL ≠ Erlang ≠ cascade — the laws don't compose).
 - **Not yet:** per-component checks (today: system / per-category / per-stage only);
   generator-authored bounds; statistical confidence intervals in the checks (runs are
-  deterministic, fixed-seed); a repo-wide "verify everything" command (run per example);
-  integration into the skill (so build sessions may still verify by prose).
+  deterministic, fixed-seed); integration into the skill (so build sessions may still
+  verify by prose).
 
 ## The one line to remember
 

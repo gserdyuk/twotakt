@@ -1,0 +1,3 @@
+# What `python -m harness verify-all` needs (checks + mutation suites). Exact pins:
+# a verification run must be reproducible, so the engine version is part of the result.
+simpy==4.1.2

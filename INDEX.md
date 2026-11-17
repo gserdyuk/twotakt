@@ -16,7 +16,7 @@ compaction time, same rhythm as findings.md.
 - [TODO.md](TODO.md) — plans and state; the single project-wide backlog (skills carry only CHANGELOGs)
 - [docs/twotakt-one-pager.md](docs/twotakt-one-pager.md) / [RU](docs/twotakt-one-pager-rus.md) — pitch one-pagers (EN canonical)
 - `skills/` — the method itself: `simstudy-protocol` (entry point), `verification-validation`, `queueing-lazowska`, `modeling-jain`
-- [harness/](harness/README.md) — executable Tier-1 conservation + runner; what "green" means (and does not) in its README
+- [harness/](harness/README.md) — executable Tier-1 conservation + runner + mutation suite (`python -m harness verify-all`, run by CI); what "green" means (and does not) in its README
 - [FACTORY.md](FACTORY.md) — the LEAP marketplace card: what the factory is, the audit gate, components, limits; root placement is the crawler's rule
 - [articles/](articles/index.md) — published EN long-form articles (frozen records): #3 fail-fast/slow, #7 LLM-wiki staleness, #2 min(10,20)=6; `_config.yml` makes GitHub Pages serve README + articles only (corpus excluded)
 
@@ -71,3 +71,4 @@ compaction time, same rhythm as findings.md.
 - 2026-08-04 — AWS/Bedrock AgentCore examined and rejected (F39): no cloud-shaped work, the agentic surface is one loop with an executable gate, the human gates are the product; local packaging deferred on capacity, not decided (blocker: `verify.py`'s `parents[2]` path assumption)
 - 2026-10-19 — LEAP marketplace layout done (FACTORY.md in the root, `author` in every skill, NOTICE, validator); submitting the factory **and** the four skills as assets in their own right; packaging stated as a limit, not fixed
 - 2026-10-20 — LEAP submission procedure replaced: registry MR against `epm-ease/factory-registry`, not a letter; repository layout needed no change (one rule relaxed: factory root may be a subfolder); a `./` factory entry publishes the factory card only — measured on 3A8
+- 2026-11-17 — negative tests made persistent: `mutants.py` per example, `harness/mutation.py`, `verify-all` + CI, pinned engine; F40: RadioMonitoring per-stage conservation is an identity (WAIVED)

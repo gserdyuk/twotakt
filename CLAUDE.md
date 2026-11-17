@@ -60,6 +60,11 @@ for sweep results; or audit a performance study for common measurement mistakes.
 - **Spec is primary.** `MODEL.md` is the source of truth; the code is its
   implementation. When they diverge, the code is the bug.
 - Every numeric parameter lives on `Config` — no magic numbers in function bodies.
+- **Negative tests are code.** Every example with a `verify.py` keeps a `mutants.py`
+  (realistic planted bugs, each naming the checks it must turn red). After any change
+  to an `executable_model.py`, `verify.py` or `harness/`, run `python -m harness
+  verify-all` (checks + mutants; CI runs it too). A new check needs a mutant that kills
+  it; a check that cannot fail goes into `WAIVED` with the reason, never silently.
 - Plots must show throughput, success rate, and latency together — the number of panels is determined by the question, not by a fixed rule.
 - Sync `MODEL.md` after every code change that touches `Config`, `Server.__init__`,
   or `_serve`.

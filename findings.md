@@ -283,3 +283,16 @@ have nothing to bind to. The five human gates are not missing autonomy — they 
 product; a method whose value is "the human decides here" structurally cannot look
 agentic, and measuring it that way uses someone else's ruler. Examined and rejected:
 no deployment; the local form matches the nature of the thing. → dev-log 2026-08-04.
+
+## Trust floor repeatability (2026-11)
+
+**F40 (2026-11-17). A ledger whose in_flight is the residual of its own offered count is
+an identity, not a check.** RadioMonitoring's four per-stage work-conservation checks
+(voice/digital x record/decode) set `offered = blocks` (or `intercepted`) and derive
+`in_flight = offered - completed - rejected - overload`, so the balance holds by
+construction and no bug can turn it red. Found by the first persistent mutation suite:
+twelve bookkeeping mutants killed every other Tier-1 check of those ledgers, none could
+kill these. They stay, WAIVED with the reason; the "in-flight residual small" check is
+what actually guards the stages. Generalizes: Tier-1 conservation bites only when
+`offered` comes from outside the model's own counters (rate x time), as in the USL,
+FaxRx and PowerSearch examples. → dev-log 2026-11-17, `harness/mutation.py`.

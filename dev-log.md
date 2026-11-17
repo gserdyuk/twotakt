@@ -1766,3 +1766,45 @@ asking for it. And the registry repository's latest commit reads "Disabled scan:
 so the security job may currently be off — noted, not relied on.
 
 `#leap #marketplace #publication #procedure-change #factory #registry`
+
+## 2026-11-17 — negative tests made persistent: mutants.py, verify-all, CI
+
+The V&V rule "negative-test every check" was, until today, a one-off act: break the model
+by hand, watch the check go red, write it down here. That proves the check bit *once*.
+After the next edit of `executable_model.py` or `verify.py` nobody knew whether it still
+does — the trust floor itself was not repeatable. Prompted by a comparison with two
+code-generation factories (the strongest transferable practice from one of them: a review
+finding is accepted only with a surviving/killed mutant as evidence).
+
+What changed:
+
+- **`harness/mutation.py`** — each example keeps a `mutants.py`: named, realistic bugs
+  (`apply(model)` patches the imported `executable_model`), each claiming the checks it
+  must turn red. Every mutant runs in its own subprocess; `verify.py` is re-imported on
+  top of the broken model, unchanged. The suite fails on a surviving mutant, on a check
+  no mutant claims (unguarded), on a crashing mutant, on a stale waiver.
+- **Mutants for all six suites** (USLmodel 6, USLDBmodel 7, FaxRx 6, PowerSearch 5+5,
+  RadioMonitoring 15). Tier-1 mostly bookkeeping bugs (vanished requests, double counts,
+  finished work booked as timeouts); Tier-2 behavioural (dead degradation, pool or SIP
+  channels sized from a constant, inverted OCR routing, hard-coded thread cap that hides
+  the USL collapse behind a plateau, latency in ms vs SLA in s, eff-latency without
+  timeouts, voice record window read from the digital field).
+- **`python -m harness verify-all`** (checks + mutants, all examples, ~50 s locally),
+  `python verify.py --mutants` per example, `requirements-verify.txt` (exact simpy pin),
+  `constraints.txt` (versions last verified), `.github/workflows/verify.yml`.
+- Docs: harness README, V&V SKILL.md + CHANGELOG, `templates/mutants.py`.
+
+**Finding F40.** RadioMonitoring's per-stage work-conservation checks cannot fail —
+`in_flight` is the residual of the same count used as `offered`. Not fixed (that would
+change the example's trust floor, a separate decision); declared `WAIVED` with the reason,
+printed on every run.
+
+**Sanity of the mechanism itself:** in a scratch copy of USLmodel the degradation check was
+weakened to `PEAK_ON <= 2 * PEAK_OFF`; `verify-all` went red: the `dead-degradation` mutant
+survived and the check was reported unguarded.
+
+Probing notes worth keeping: a dead degradation multiplier does *not* remove USLmodel's
+decline (SLA-timeout collapse mimics it, as verify.py's own comment says); the bug that
+does is admission control — a hard-coded `max_threads=16` turns the curve into a plateau.
+
+`#vv #negative-test #mutation #harness #ci #repeatability`
