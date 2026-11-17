@@ -10,6 +10,20 @@ the reasoning behind changes is in `dev-log.md`.
 
 ---
 
+## 3.0.1 — 2026-11-17 — local pre-push gate
+
+### Added
+- **`tools/git-hooks/pre-push`** — runs `python -m harness verify-all --no-mutants`
+  (~20 s) before every push and refuses a red example (or a machine with no python +
+  simpy). Enable once per clone: `git config core.hooksPath tools/git-hooks`. The full
+  run with mutants stays in CI. Patch: no example's pass/fail changes.
+
+### Decided
+- The GitLab mirror gets no CI of its own; GitHub Actions on the canonical repository
+  is the one CI witness (see `dev-log.md`).
+
+---
+
 ## 3.0.0 — 2026-11-17 — the trust floor is repeatable
 
 **Breaking.** An example is now complete only with a `mutants.py` next to its

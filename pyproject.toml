@@ -1,6 +1,6 @@
 [project]
 name = "twotakt"
-version = "3.0.0"
+version = "3.0.1"
 description = "Discrete-event simulation methodology and examples (SimPy)."
 requires-python = ">=3.11"
 # The single source of the twotakt version (the git tag v<version> must match;
